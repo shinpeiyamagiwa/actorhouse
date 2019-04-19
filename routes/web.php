@@ -14,3 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/movie', 'MovieController@index');
+// Route::get('/movie/like', 'MovieController@like');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

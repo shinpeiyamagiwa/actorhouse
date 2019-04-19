@@ -1,0 +1,106 @@
+body{
+  margin-top:60px;
+  
+}
+
+
+
+.navbar { 
+  background: rgb(98, 223, 26);
+} 
+.nav-item{
+    font-size:0.8rem;
+  }
+ 
+ .ActorProfile,.MovieProfile{
+   margin:0px;
+ }
+ .actorprofile h3{
+  margin-top:15px;
+  margin-left:15px; 
+ }
+ .actorprofile h5,ul{
+  margin-left:15px;
+ }
+
+ .actorprofile li{
+   font-size:1rem;
+ }
+
+ .ActorMovie {
+   color:white;
+   margin:15px; 
+   background-color: rgb(98, 223, 26);
+   margin:0px;
+ }
+
+ .movieList {
+   padding:20px;
+ }
+.col-2{
+     padding: 3px;
+   }
+.twitter-timeline , .Instagram,.myimage{
+  margin:auto;
+}
+
+.userTwieet{
+  background:url(../img/emma_LALALAND.jpg) ;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.movieimage img{
+  height: 600px;
+  width:auto;
+  margin:auto;
+}
+
+.mycontent1,.mycontent2,.mycontent3:hover{
+  opacity:0.8;
+  cursor:pointer;
+}
+
+.actorList img {
+  width:150px;
+  height:200px;
+  object-fit: cover;
+}
+
+.movieList img {
+  width:200px;
+  height:250px;
+  object-fit: cover;
+}
+
+.myimage img{
+  width:100%;
+  height:70%; 
+  object-fit: cover;
+}
+.MyProfile {
+  margin:0px; 
+}
+
+.funactor .card{
+  background-color :rgb(98, 223, 26);
+}
+.Topheader{
+  background-color :rgb(98, 223, 26);
+}
+
+.trendactor{
+  height:100%;
+}
+
+.topic1 img {
+  width:100%;
+  height:500px; 
+  object-fit: cover;
+}
+
+.topic2 img{
+  width:100%;
+  height:250px; 
+  object-fit: cover;
+}
