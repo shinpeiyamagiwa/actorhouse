@@ -18,6 +18,8 @@ Route::get('/', function () {
 Route::get('/movie', 'MovieController@index');
 // Route::get('/movie/like', 'MovieController@like');
 
+Route::get('/actor', 'ActorController@index');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
