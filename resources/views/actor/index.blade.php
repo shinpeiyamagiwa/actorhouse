@@ -4,8 +4,8 @@
     <!-- 俳優プロフィール -->
   <div class="ActorProfile jumbotron">
     <div class="row">
-      <div class="card actorimage col-sm-6  img-fluid">
-        <img  class="card-body center" src="images/emmastone.jpg" alt="">
+      <div class="card actorimage  col-sm-4 ">
+        <img  class="card-body center img-fluid responsive" src="images/emmastone.jpg" alt="">
         <div class="row">
           <div class="col-6">
           <h3>エマ・ストーン</h3> 
@@ -16,9 +16,9 @@
           </div>
         </div>
       </div>
-      <div class="actorprofile col-sm-6">
+      <div class="actorprofile col-sm-8">
         <div class="card w-100 h-75">
-          <div class="card-body  w-100 h-100">
+          <div class="card-body ">
             <iframe width=100% height=100% src="https://www.youtube.com/embed/tpIQe30Wj1w" frameborder="0" 
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>         
          </div>
@@ -38,32 +38,66 @@
   </div>
 
 <!-- 俳優出演作品 -->
-  <div class="ActorMovie ">
+<div id="ActorMovie" class="carousel slide" data-ride="carousel">
     <h5>出演作品</h5>
-    <div class="row movieList responsive mx-0">
-      <div class="col-lg-2 col-sm-4 col-6">
-        <a href="movie.page.html">
-          <img src="images/emma_LALALAND.jpg" alt="" class="img-fluid mb-2">
+    <div class="carousel-inner">
+      <div class="movieList responsive mx-0 carousel-item active">
+        <div class="row">
+          <div class="col-lg-2 col-sm-4 col-6">
+            <a href="movie">
+              <img src="images/emma_LALALAND.jpg" alt="" class="img-fluid mb-2">
+            </a>
+          </div>
+          <div class="col-lg-2 col-sm-4 col-6">
+            <img src="images/Begin again.jpg" alt="" class="img-fluid">
+          </div>
+          <div class="col-lg-2 col-sm-4 col-6">
+            <img src="images/ENDGAME.jpg" alt="" class="img-fluid">
+          </div>
+          <div class="col-lg-2 col-sm-4 col-6">
+            <img src="images/ROOM.jpg" alt="" class="img-fluid">
+          </div>
+          <div class="col-lg-2 col-sm-4 col-6">
+            <img src="images/Help1.jpg" alt="" class="img-fluid">
+          </div>
+          <div class="col-lg-2 col-sm-4 col-6">
+            <img src="images/Amazing Spidetman.jpg" alt="" class="img-fluid">
+          </div>
+        </div>
+      </div>
+      <div class="movieList responsive mx-0 carousel-item">
+        <div class="row">
+          <div class="col-lg-2 col-sm-4 col-6">
+            <a href="movie">
+              <img src="images/emma_LALALAND.jpg" alt="" class="img-fluid mb-2">
+            </a>
+          </div>
+          <div class="col-lg-2 col-sm-4 col-6">
+            <img src="images/Begin again.jpg" alt="" class="img-fluid">
+          </div>
+          <div class="col-lg-2 col-sm-4 col-6">
+            <img src="images/ENDGAME.jpg" alt="" class="img-fluid">
+          </div>
+          <div class="col-lg-2 col-sm-4 col-6">
+            <img src="images/ROOM.jpg" alt="" class="img-fluid">
+          </div>
+          <div class="col-lg-2 col-sm-4 col-6">
+            <img src="images/Help1.jpg" alt="" class="img-fluid">
+          </div>
+          <div class="col-lg-2 col-sm-4 col-6">
+            <img src="images/Amazing Spidetman.jpg" alt="" class="img-fluid">
+          </div>
+        </div>
+        </div>
+        <a href="#ActorMovie" class="carousel-control-prev" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         </a>
-      </div>
-      <div class="col-lg-2 col-sm-4 col-6">
-        <img src="images/Begin again.jpg" alt="" class="img-fluid">
-      </div>
-      <div class="col-lg-2 col-sm-4 col-6">
-        <img src="images/ENDGAME.jpg" alt="" class="img-fluid">
-      </div>
-      <div class="col-lg-2 col-sm-4 col-6">
-        <img src="images/ROOM.jpg" alt="" class="img-fluid">
-      </div>
-      <div class="col-lg-2 col-sm-4 col-6">
-        <img src="images/Help1.jpg" alt="" class="img-fluid">
-      </div>
-      <div class="col-lg-2 col-sm-4 col-6">
-        <img src="images/Amazing Spidetman.jpg" alt="" class="img-fluid">
-      </div>
-    </div>
-  </div>
-
+        <a href="#ActorMovie" class="carousel-control-next" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </a>
+    </div> 
+    
+</div>
 <!-- 俳優ツイッター＆インスタ -->
   <div class="Actorcontent"> 
     <div class="row">
@@ -81,7 +115,7 @@
 
 <!-- 俳優フォロワーコメント一覧 -->
   <div class="jumbotron userTwieet img-fluid w-100">
-    <h1 class="text-white text-center">エマ・ストーンを語ろう</h1>
+    <h1 class="text-white text-center">エマ・ストーン</h1>
     <div class="card w-75 mx-auto">
       <table class="card-body w-80 table table-responsive">
         <tbody>

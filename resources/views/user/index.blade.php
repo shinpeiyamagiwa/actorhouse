@@ -27,9 +27,9 @@
               <h3>My TOP4</h3>
             </div>
           </div>
-          <div class="card-body row actorList responsive my-0 mx-auto">
+          <div class="card-body row myactorList responsive my-0 mx-auto">
             <div class="col-sm-3 col-6">
-              <a href="actor.page.html">
+              <a href="actor">
                 <img src="images/emmastone.jpg" alt="" class="img-fluid card">
                 <p>エマ・ストーン</p>
               </a>
@@ -85,7 +85,7 @@
     <div id="movieRoom" class="card collapse ">
       <div class="row actorList responsive mb-2 container">
         <div class="col-md-3 col-6">
-          <a href="movie.page.html">
+          <a href="movie">
             <img src="images/emma_LALALAND.jpg" alt="" class="img-fluid ">
           </a>
         </div>
@@ -124,7 +124,7 @@
         <br>
         <div class="row actorList responsive container mx-auto">
           <div class="col-2">
-            <a href="movie.page.html">
+            <a href="movie">
               <img src="images/anna kendrick.jpg" alt="" class="img-fluid ">
             </a>
           </div>

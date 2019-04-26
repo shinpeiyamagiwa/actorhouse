@@ -23,12 +23,16 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="small.css" media="screen and (max-width:350px)">
+    <link rel="stylesheet" href="medium.css" media="screen and (min-width:350px) and (max-width:896px)">
+    <link rel="stylesheet" href="wide.css" media="screen and (min-width:896px)">
+
 </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-light navbar-expand-sm fixed-top">
             <div class="container">
-                <a href="top.page.html" class="navbar-brand">
+                <a href="top" class="navbar-brand">
                 <h4>ACTOR HOUSE</h4></a>
                 <button class="navbar-toggler col-sm-" data-toggle="collapse"
                     data-target="#navbarCollapse">
@@ -37,10 +41,10 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item ">
-                            <a href="Mypage.html" class="nav-link">MYページ</a>
+                            <a href="user" class="nav-link">MYページ</a>
                         </li>
                         <li class="nav-item ">
-                            <a href="Tweetpage.html" class="nav-link">Tweetページ</a>
+                            <a href="user" class="nav-link">Tweetページ</a>
                         </li>
                     </ul>
                 </div>

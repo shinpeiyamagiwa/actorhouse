@@ -4,8 +4,15 @@
 <!-- 映画紹介 -->
   <div class="MovieProfile jumbotron">
     <div class="row">
-      <div class="movieimage col-sm-4 mb-3">
-        <img  class="w-100 h-100"  src="images/emma_LALALAND.jpg" alt="">
+      <div class="movieimage col-4 mb-3">
+        <img  class="img-fluid"  src="images/emma_LALALAND.jpg" alt="">
+      </div>
+      <div class="d-xs-block d-sm-none moviename col-8">
+        <h3>LA LA LAND</h3>           
+        <ul class="d-xs-block d-sm-none moviename col-8">
+          <li>公開日	1988年11月6日</li>
+          <li>作品時間	127分</li>
+        </ul>
       </div>
       <div class="actorprofile col-sm-8 mb-3">
         <div class="card w-100 h-75">
@@ -15,9 +22,9 @@
           </div>
         </div>
         <div class="row">
-          <div class="actorName col-6">
+          <div class="actorName col-6 d-none d-sm-block">
             <h3>LA LA LAND</h3>           
-            <ul class="d-none d-sm-block">
+            <ul class="d-none d-md-block">
               <li>公開日	1988年11月6日</li>
               <li>作品時間	127分</li>
             </ul>
@@ -103,22 +110,22 @@
   <div class="ActorMovie">
     <h5　class="mx-3">出演者</h5>
     <div class="row actorList responsive container mx-auto">
-      <div class="col-2">
+      <div class="col-4 col-lg-2 mb-2">
         <img src="images/emmastone.jpg" alt="" class="img-fluid">
       </div>
-      <div class="col-2">
+      <div class="col-4 col-lg-2 mb-2">
         <img src="images/Hailee Steinfeld.png" alt="" class="img-fluid">
       </div>
-      <div class="col-2">
+      <div class="col-4 col-lg-2 mb-2">
         <img src="images/Tom Cruise.jpg" alt="" class="img-fluid">
       </div>
-      <div class="col-2">
+      <div class="col-4 col-lg-2 mb-2">
         <img src="images/Gal_Gadot.jpg" alt="" class="img-fluid">
       </div>
-      <div class="col-2">
+      <div class="col-4 col-lg-2 mb-2">
         <img src="images/Tony_Stark.jpg" alt="" class="img-fluid">
       </div>
-      <div class="col-2">
+      <div class="col-4 col-lg-2 mb-2">
         <img src="images/Mark_Ruffalo.jpg" alt="" class="img-fluid">
       </div>
     </div>
