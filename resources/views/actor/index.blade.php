@@ -8,11 +8,11 @@
         <img  class="card-body center img-fluid responsive" src="images/emmastone.jpg" alt="">
         <div class="row">
           <div class="col-6">
-          <h3>エマ・ストーン</h3> 
+          <p>エマ・ストーン</p> 
           <h5>Fun:   人</h5>
           </div>
           <div class="float-right col-6">
-            <a href="#" class="btn btn-outline-success btn-lg float-right">MyHOUSEに登録</a>
+            <a href="#" class="btn btn-outline-success btn-xs float-right">MyHOUSEに登録</a>
           </div>
         </div>
       </div>

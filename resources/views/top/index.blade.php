@@ -5,9 +5,11 @@
 <!-- 会員登録ボタン -->
   <div class="Topheader jumbotron text-center">
     <h1>好きな俳優を見つけよう</h1>
-    <button class="btn btn-primary"
-      data-toggle="modal" data-target="#menber">会員登録
-    </button>
+    <a href="register">
+      <button class="btn btn-primary"
+        data-toggle="modal" data-target="#menber">会員登録
+      </button>
+    </a>  
     <br>
     <h1>映画で繋がろう</h1>
   </div>
