@@ -6,7 +6,7 @@
       <div class="col-lg-3 col-sm-6 img-fluid mb-3">
         <div class="card myimage ">
           <img  class="card-body rounded-circle" src="images/emmastone.jpg" alt="">
-          <h3 class="text-center">Shinpei</h3>
+          <h3 class="text-center">shinpei</h3>
           <div class="row">
             <div class="col-4">
               <p>FunActor:</p>

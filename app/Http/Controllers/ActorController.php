@@ -3,11 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Actors;
 
 class ActorController extends Controller
 {
     //
     public function index() {
-        return view('actor.index');
+
+        $actors = Actors::all();
+
+        return view('actor.index',compact('actors'));
+        
+
+
+        
     }
 }

@@ -19,13 +19,20 @@ Route::get('/movie', 'MovieController@index');
 // Route::get('/movie/like', 'MovieController@like');
 
 Route::get('/actor', 'ActorController@index');
+Route::get('/actor/{id}', 'ActorController@index');
 
 Route::get('/user', 'UserController@index');
+Route::get('/user/{id}', 'UserController@index');
 
 Route::get('/top', 'TopController@index');
 
 Route::get('/register','RegisterController@index');
 
+Route::get('/create','RegisterController@index');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/createactor','AdminController@createactor');
+Route::get('/createmovie','AdminController@createmovie');

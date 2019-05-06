@@ -8,7 +8,7 @@
         <img  class="card-body center img-fluid responsive" src="images/emmastone.jpg" alt="">
         <div class="row">
           <div class="col-6">
-          <p>エマ・ストーン</p> 
+          <p>emastone</p> 
           <h5>Fun:   人</h5>
           </div>
           <div class="float-right col-6">
