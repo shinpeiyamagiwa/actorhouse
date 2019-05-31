@@ -2,12 +2,53 @@
 
 namespace App\Http\Controllers;
 
+use App\Movie;
+use App\Cast;
+use App\Review;
+use App\WatchList;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class MovieController extends Controller
 {
     //
-    public function index() {
-        return view('movie.index');
+    public function index($id) {
+
+        $user = Auth::user();
+        $movie = Movie::find($id);
+        $casts = Cast::join('actors', 'casts.actor_id', '=', 'actors.id')
+                    ->where('casts.movie_id', '=', $id)
+                    ->select('actor_id', 'actors.image_path')
+                    ->get();
+        $review = Review::where('user_id', '=', Auth::id())->where('movie_id', '=', $id)
+                        ->first();
+        $reviews = Review::join('users', 'reviews.user_id', '=', 'users.id')
+                        ->where('movie_id', '=', $id)
+                        ->select('users.name', 'evaluate', 'content', 'user_id', 'reviews.id')
+                        ->get();
+        $watchList = WatchList::where('user_id', '=', Auth::id())
+                            ->where('movie_id', '=', $id)
+                            ->first();
+        // $review_comments = ReviewComment::join('users', 'review_comments.user_id', '=', 'users.id')
+        //                             ->where('movie_id', '=', 'reviews.id');
+        return view('movie.index', compact('movie', 'casts', 'review','user', 'reviews', 'watchList'));
+
     }
+    public function favorite($id) {
+        // 現在認証されているユーザーの取得
+        $user = Auth::user();
+        // 現在認証されているユーザーのID取得
+        $userId = Auth::id();
+        
+        FavoriteMovie::create([
+            'user_id' => $userId,
+            'movier_id' => $id
+        ]);
+        
+
+
+        return redirect('/home');
+    }
+
+    
 }

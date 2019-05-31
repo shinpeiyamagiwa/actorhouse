@@ -11,28 +11,45 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// みんなが見れるページ
+Route::get('/', 'TopController@index');
+Route::get('/movie/{id}', 'MovieController@index');
+Route::get('/actor/{id}', 'ActorController@index');
+Route::post('/search/movie', 'MovieSearchController@index');
+
+// ログインしていないとできない
+Route::group(['middleware' => ['auth']], function () {
+    Route::post('/review/store', 'ReviewController@store');
+    Route::post('/post/store', 'PostController@store');
 });
 
-Route::get('/movie', 'MovieController@index');
-// Route::get('/movie/like', 'MovieController@like');
+// Route::post('/actor/{id}', 'AdminPostController@store');
 
-Route::get('/actor', 'ActorController@index');
-Route::get('/actor/{id}', 'ActorController@index');
-
-Route::get('/user', 'UserController@index');
+Route::get('/home', 'HomeController@index');
+Route::get('/home/edit', 'HomeController@edit');
+Route::post('/home/edit', 'HomeController@update');
+Route::post('/review/comment/store', 'ReviewCommentController@store');
 Route::get('/user/{id}', 'UserController@index');
-
-Route::get('/top', 'TopController@index');
-
-Route::get('/register','RegisterController@index');
-
-Route::get('/create','RegisterController@index');
-
+// Route::get('/user', 'UserController@index');
+// Ajaxにしたい
+Route::post('/favorite/actor/store','FavoriteActorController@store');
+Route::post('/favorite/actor/delete','FavoriteActorController@delete');
+Route::post('/watchlist/movie/store','WatchListController@store');
+Route::post('/watchlist/movie/delete','WatchListController@delete');
+// Laravelの認証機能
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('login', function() {
+//     view('auth.login');
+// })->name('login')
 
-Route::get('/createactor','AdminController@createactor');
-Route::get('/createmovie','AdminController@createmovie');
+
+// 管理画面
+Route::group(['middleware' => ['admin']], function() {
+    Route::resource('admin/actors','AdminActorController');
+    Route::resource('admin/movies','AdminMovieController');
+    Route::resource('admin/users','AdminUserController');
+});
+
+
+// Route::resource('admin/post','AdminPostController');
