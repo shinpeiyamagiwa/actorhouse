@@ -3,7 +3,7 @@
 
 @section('content')
     <!-- 俳優プロフィール -->
-  <div class="actorTop jumbotron mt-5 mb-0"
+  <div class="actorTop jumbotron mt-4 mb-0"
   style="background-image:url('/images/{{$bg_image->image_path}}');
   background-repeat:no-repeat;
   background-size:cover;
@@ -179,10 +179,10 @@
   </div>   
   <div class="actorcontent"> 
     <div id="twieetRoom" class="card collapse">
-      <a class="twitter-timeline" href="{{$actor->twitter_link}}" data-width=80% data-height="1000">Tweets by dailyemmastone</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+      <a class="twitter-timeline ml-10 mx-auto" href="{{$actor->twitter_link}}" data-width=80% data-height="1000">Tweets by dailyemmastone</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
     </div>
     <div id="talkRoom" class="collapse">
-      <div class="responsive mb-2 mx-auto mt-5">
+      <div class="responsive mb-2 mt-5">
         @if($posts)
           <div class="post img-fluid center-block">
             <div class="container">

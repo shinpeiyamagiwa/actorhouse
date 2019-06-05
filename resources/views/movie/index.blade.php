@@ -2,7 +2,7 @@
 
 @section('content')
 <!-- 映画紹介 -->
-<div class="movieTop jumbotron mt-5 mb-2">
+<div class="movieTop jumbotron mt-4 mb-2">
   <div class="container-fluid">
     <div class="row">
       <div class="movieimage col-sm-4 mb-3">
@@ -135,10 +135,14 @@
         </div>
         <div class="col row">
           <div class="col-6">
-            公開日	{{$movie->released_at}}
+            公開日
+            <br>
+            {{$movie->released_at}}
           </div>
           <div class="col-6">
-            作品時間	{{$movie->screen_time}}分
+            作品時間
+            <br>
+            {{$movie->screen_time}}分
           </div>
         </div>
         @if($userId === 1)
@@ -174,10 +178,10 @@
 
 <div class="moviecontent"> 
   <div id="actorRoom" class="collapse">
-    <div class="row responsive mb-2 mx-0 mt-5">
+    <div class="row responsive container mb-2 mx-0 mt-5">
       @if($casts)
         @foreach($casts as $cast)
-          <div class="actorList col-lg-2 col-sm-3 col-4">
+          <div class="castList col-lg-2 col-sm-3 col-4">
             <a href="/actor/{{$cast->actor_id}}">
               <img src="/images/{{$cast->image_path}}" alt="" class="img-fluid mb-2">
               <p>{{$cast->name}}</p>
@@ -188,10 +192,10 @@
     </div>
   </div>
   <div id="videoRoom" class="card　container collapse">
-      <div class="row responsive mb-2 container mx-auto mt-5">
-      <iframe width=100% height=500px src="https://www.youtube.com/embed/{{$movie->video_link}}" 
-        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>    
-      </div>
+    <div class="row responsive mb-2 container mx-auto mt-5">
+    <iframe width=100% height=500px src="https://www.youtube.com/embed/{{$movie->video_link}}" 
+      frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>    
+    </div>
   </div>
   <div id="reviewsRoom" class="collapse">
     <div class="responsive mb-2 mx-auto mt-5">

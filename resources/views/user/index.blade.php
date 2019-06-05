@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="userTop jumbotron mt-5 mb-0">
+<div class="userTop jumbotron mt-4 mb-0">
     <div class="b"></div>
       <div class="container-fluid">
         <div class="row">
@@ -82,7 +82,7 @@
 
   <div class="usercontent"> 
     <div id="twieetRoom" class="card collapse">
-      <div class="row responsive mb-2 container mx-auto mt-5">
+      <div class="row responsive mb-2 container-fluid mx-auto mt-5">
           @if($favorite_movies)
             @foreach($favorite_movies as $favorite_movie)
               <div class="movieList col-lg-2 col-sm-3 col-4 float-right"
@@ -173,8 +173,8 @@
       </div>
     </div>
     </div>
-    <div id="actorRoom" class="card collapse">
-      <div class="row responsive mb-2 container mx-auto mt-5">
+    <div id="actorRoom" class="collapse">
+      <div class="myactorList row responsive mb-2 container mx-auto mt-5">
       @if($favorite_actors)
             @foreach($favorite_actors as $favorite_actor)
               <div class="favoriteActor col-lg-2 col-sm-3 col-4">

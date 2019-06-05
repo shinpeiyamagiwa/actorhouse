@@ -37,16 +37,28 @@
                 <a href="/" class="navbar-brand">
                     <h4>ACTOR HOUSE</h4>
                 </a>
-                {!! Form::open(['method'=>'POST', 'action'=> 'MovieSearchController@index']) !!}
-                    <div class="form-group">
-                        {!! Form::text('title', null, ['class'=>'form-control', 'placeholder'=>'映画タイトル']) !!}
+                <a id="navbarDropdown" class="nav-link dropdown-toggle text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    検索<i class="fas fa-search"></i>
+                </a>
+
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <div class="dropdown-item">
+                        {!! Form::open(['method'=>'POST', 'action'=> 'MovieSearchController@index']) !!}
+                            <div class="form-group">
+                                {!! Form::text('name', null, ['class'=>'form-control', 'placeholder'=>'俳優']) !!}
+                            </div>
+                        {!! Form::close() !!}  
+                        </div>
+                    <div class="dropdown-item">
+                        {!! Form::open(['method'=>'POST', 'action'=> 'MovieSearchController@index']) !!}
+                            <div class="form-group">
+                                {!! Form::text('name', null, ['class'=>'form-control', 'placeholder'=>'俳優']) !!}
+                            </div>
+                        {!! Form::close() !!}
                     </div>
-                {!! Form::close() !!}
-                {!! Form::open(['method'=>'POST', 'action'=> 'MovieSearchController@index']) !!}
-                    <div class="form-group">
-                        {!! Form::text('name', null, ['class'=>'form-control', 'placeholder'=>'俳優']) !!}
-                    </div>
-                {!! Form::close() !!}
+                </div>
+                
+                
                 <button class="navbar-toggler col-sm-" data-toggle="collapse"
                     data-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
@@ -83,7 +95,7 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
