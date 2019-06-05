@@ -129,31 +129,7 @@
     crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js"></script>
     <script src="modaal.min.js"></script>
-<script>
-      $('.mycontent1').click(function () {
-      $('#twieetRoom').addClass('show');
-      $('#movieRoom').removeClass('show');
-      $('#actorRoom').removeClass('show');
-      $('#watchlistRoom').removeClass('show');
-    });
-    $('.mycontent2').click(function () {
-      $('#movieRoom').addClass('show');
-      $('#twieetRoom').removeClass('show');
-      $('#actorRoom').removeClass('show');
-      $('#watchlistRoom').removeClass('show');
-    });
-    $('.mycontent3').click(function () {
-      $('#actorRoom').addClass('show');
-      $('#movieRoom').removeClass('show');
-      $('#twieetRoom').removeClass('show');
-      $('#watchlistRoom').removeClass('show');
-    });
-    $('.mycontent4').click(function () {
-      $('#watchlistRoom').addClass('show');
-      $('#movieRoom').removeClass('show');
-      $('#actorRoom').removeClass('show');
-      $('#twieetRoom').removeClass('show');
-    });</script>
+
     
 
 

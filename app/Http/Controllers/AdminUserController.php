@@ -6,6 +6,7 @@ use App\User;
 use App\Actor;
 use Illuminate\Http\Request;
 
+
 class AdminUserController extends Controller
 {
     /**
@@ -39,6 +40,7 @@ class AdminUserController extends Controller
     public function store(Request $request)
     {
         //
+        $user = User::findOrFail($id);
         User::create($request->all());
         return redirect('/admin/users');
     }
@@ -64,9 +66,8 @@ class AdminUserController extends Controller
     {
         //
         $user = User::findOrFail($id);
-        $actor = Actor::lists('id', 'name')->all();
-        User::create($request->all());
-        return view('admin.users.edit', compact('user', 'actor'));
+        
+        return view('admin.users.edit', compact('user'));
     }
 
     /**
@@ -79,6 +80,14 @@ class AdminUserController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $user = User::findOrFail($id);
+        
+        $input = $request->all();
+
+        
+        
+        $user->update($input);
+        return redirect('/home');
     }
 
     /**

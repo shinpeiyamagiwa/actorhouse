@@ -3,10 +3,10 @@
 @section('content')
 
 <div class="container">
-    z
+    
     <h1>Create Actors</h1>
 
-    {!! Form::open(['method'=>'POST', 'action'=> 'AdminActorController@store']) !!}
+    {!! Form::model(['method'=>'PATCH', 'action'=> 'AdminActorController@update']) !!}
     <!--  -->
     <div class="form-group">
         {!! Form::label('name', 'Name:') !!}

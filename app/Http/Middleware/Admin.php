@@ -18,10 +18,10 @@ class Admin
     {
         $user = Auth::user();
         $id = Auth::id();
-        if($user->id === 1) {
+        if($id) {
             return $next($request);
         }
-            return redirect('/user');
+            return redirect('/');
     }
 
 }

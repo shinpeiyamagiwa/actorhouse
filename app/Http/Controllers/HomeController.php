@@ -7,6 +7,8 @@ use App\Users;
 use App\FavoriteActor;
 use App\FavoriteMovie;
 use App\WatchList;
+use App\Review;
+use App\Post;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -38,8 +40,18 @@ class HomeController extends Controller
                                         ->where('watch_lists.user_id', '=', $id)
                                         ->select('movie_id', 'movies.title', 'movies.image_path')
                                         ->get();
-
-        return view('user.index', compact('user','favorite_actors', 'favorite_movies', 'watch_lists'));
+        $reviews = Review::join('movies', 'reviews.movie_id', '=', 'movies.id')
+                                        ->where('user_id', '=', $id)
+                                        ->select('movies.title', 'evaluate', 'content', 'movie_id', 'reviews.id', 'movies.image_path')
+                                        ->orderBy('reviews.id', 'desc')
+                                        ->get();
+        $avg = Review:: where('user_id', '=', $id)
+                                        ->avg('evaluate');
+        $posts = Post::where('user_id', '=', $id)
+                                        ->select('content', 'user_id', 'posts.id')
+                                        ->orderBy('id', 'desc')
+                                        ->get();
+        return view('user.index', compact('user','favorite_actors', 'favorite_movies', 'watch_lists', 'reviews', 'avg', 'posts'));
     }
     
 

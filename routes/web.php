@@ -46,10 +46,10 @@ Auth::routes();
 
 // 管理画面
 Route::group(['middleware' => ['admin']], function() {
-    Route::resource('admin/actors','AdminActorController');
-    Route::resource('admin/movies','AdminMovieController');
-    Route::resource('admin/users','AdminUserController');
 });
-
+Route::resource('admin/actors','AdminActorController');
+Route::resource('admin/movies','AdminMovieController');
+Route::resource('admin/users','AdminUserController');
+// Route::patch('/home', 'AdminUserController@updata');
 
 // Route::resource('admin/post','AdminPostController');

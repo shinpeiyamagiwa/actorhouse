@@ -2,63 +2,340 @@ body{
   margin-top:60px;
   
 }
+/* 俳優TOP */
+@media screen and (max-width:497px) {
+  .actorimage img{
+  width:150px;
+  height:200px;
+  object-fit: cover;
+}
 
+.actorTop h1 {
+  font-size:30px;
+}
+.actorTop h6 {
+  font-size:15px;
+}
+.introduction {
+  display:none;
+}
+.actorcontentList h6 {
+  font-size:8px;
+}
+}
+@media screen and (min-width:497px) and (max-width:574px) {
+  .actorimage img{
+  width:150px;
+  height:200px;
+  object-fit: cover;
+}
 
-.actorimage img {
+.actorTop h1 {
+  font-size:30px;
+}
+.video {
+  height:200px;
+  }
+}
+@media screen and (min-width:575px) and (max-width:676px) {
+  .actorimage img{
+  width:200px;
+  height:250px;
+  object-fit: cover;
+}
+
+.actorTop h1 {
+  font-size:30px;
+}
+.video {
+  height:300px;
+}
+}
+@media screen and (min-width:677px) and (max-width:767px) {
+  .actorimage img{
+  width:200px;
+  height:250px;
+  object-fit: cover;
+  }
+  .video {
+  height:300px;
+  }
+}
+@media screen and (min-width:768px) and (max-width:991px) {
+  .actorimage img{
+  width:250px;
+  height:350px;
+  object-fit: cover;
+}
+  .video {
+  height:450px;
+  }
+}
+@media screen and (min-width:992px) {
+  .actorimage img{
   width:300px;
   height:450px;
   object-fit: cover;
-  
+  }
+  .video {
+  height:500px;
+  }
+}
+.bg {
+  background-color: rgba(7, 7, 7, 0.808);
+  position: absolute;
+  top:0px;
+  left:0px;
+  width:100%;
+  height:750px;
+}
+.actorcontentList {
+  background-color:white;
 }
 
-.navbar,.usercontentList { 
+/* 映画TOP */
+@media screen and (max-width:497px) {
+  .movieimage img{
+  width:150px;
+  height:200px;
+  object-fit: cover;
+}
+.movieTop {
+  height:400px;
+}
+.movieTop h1 {
+  font-size:20px;
+}
+.movieTop h6 {
+  font-size:15px;
+}
+.introduction {
+  display:none;
+}
+.moviecontentList h6 {
+  font-size:8px;
+}
+}
+@media screen and (min-width:497px) and (max-width:574px) {
+  .movieimage img{
+  width:150px;
+  height:200px;
+  object-fit: cover;
+}
+
+.movieTop h1 {
+  font-size:30px;
+}
+.video {
+  height:200px;
+  }
+}
+@media screen and (min-width:575px) and (max-width:676px) {
+  .movieimage img{
+  width:200px;
+  height:250px;
+  object-fit: cover;
+}
+
+.movieTop h1 {
+  font-size:30px;
+}
+.video {
+  height:300px;
+}
+}
+@media screen and (min-width:677px) and (max-width:767px) {
+  .movieimage img{
+  width:200px;
+  height:250px;
+  object-fit: cover;
+  }
+  .video {
+  height:300px;
+  }
+}
+@media screen and (min-width:768px) and (max-width:991px) {
+  .movieimage img{
+  width:250px;
+  height:350px;
+  object-fit: cover;
+}
+  .video {
+  height:450px;
+  }
+}
+@media screen and (min-width:992px) {
+  .movieimage img{
+  width:300px;
+  height:450px;
+  object-fit: cover;
+  }
+  .video {
+  height:500px;
+  }
+  .movieTop {
+    height:580px;
+  }
+}
+.moviecontentList {
+  background-color:white;
+}
+
+@media screen and (max-width:497px) {
+  .userimage img{
+  width:80px;
+  height:80px;
+  object-fit: cover;
+}
+.userTop {
+  height:400px;
+}
+.userTop h1 {
+  font-size:20px;
+}
+.userTop h6 {
+  font-size:3px;
+}
+.introduction {
+  display:none;
+}
+.usercontentList h6 {
+  font-size:8px;
+}
+}
+@media screen and (min-width:497px) and (max-width:574px) {
+  .userimage img{
+  width:100px;
+  height:100px;
+  object-fit: cover;
+}
+.userTop h6{
+  font-size:10px;
+}
+.userTop h1 {
+  font-size:30px;
+}
+.video {
+  height:200px;
+  }
+}
+@media screen and (min-width:575px) and (max-width:676px) {
+  .userimage img{
+  width:100px;
+  height:100px;
+  object-fit: cover;
+}
+
+.userTop h1 {
+  font-size:20px;
+}
+.video {
+  height:300px;
+}
+.userTop h6{
+  font-size:10px;
+}
+}
+@media screen and (min-width:677px) and (max-width:767px) {
+  .userimage img{
+  width:150px;
+  height:150px;
+  object-fit: cover;
+  }
+  .video {
+  height:300px;
+  }
+  .userTop h6{
+    font-size:10px;
+  }
+  .userTop h1 {
+    font-size:25px;
+  }
+}
+@media screen and (min-width:768px) and (max-width:991px) {
+  .userimage img{
+  width:150px;
+  height:150px;
+  object-fit: cover;
+}
+  .video {
+  height:450px;
+  }
+  .userTop h1 {
+    font-size:35px;
+  }
+}
+@media screen and (min-width:992px) {
+  .userimage img{
+  width:200px;
+  height:200px;
+  object-fit: cover;
+  }
+  .video {
+  height:500px;
+  }
+  .userTop {
+    height:400px;
+  }
+}
+.usercontentList {
+  background-color:white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 紹介文 */
+.introduction {
+  width: 100%;
+}
+.introduction  p {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 10;
+  overflow: hidden;
+}
+
+
+/* メニューバー */
+.navbar, .usercontentList { 
   background: rgb(28, 19, 29);
 } 
-.usercontentList {
-  background: white;
-  color:rgb(28, 19, 29);
-  height:80px;
+.uservar {
+  background-color: rgb(28, 19, 29);
+  color:white;
+  height:35px;
 }
-
 .navbar h4{
   color:white;
-  
 }
 .nav-item{
     font-size:0.8rem;
-  }
- 
-
-
- .ActorMovie {
-   color:white;
-   margin:15px; 
-   background-color: rgb(98, 223, 26);
-   margin:0px;
- }
-
- .movieList {
-   padding:20px;
- }
-.col-2{
-     padding: 3px;
-   }
-.twitter-timeline , .Instagram,.myimage{
-  margin:auto;
 }
 
-.userTwieet{
-  background:url(../images/emma_LALALAND.jpg) ;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
 
-.myactorhouse p{
-  color: rgb(11, 245, 3);
-  font-size: 60%
-}
-
-.mycontent1,.mycontent2,.mycontent3:hover{
+.mycontent1:hover,
+.mycontent2:hover,
+.mycontent3:hover,
+.mycontent4:hover{
   opacity:0.8;
   cursor:pointer;
 }
@@ -75,14 +352,6 @@ body{
 
 .MyProfile {
   margin:0px; 
-}
-
-.funactor .card .usercontent{
-  background-color :rgb(98, 223, 26);
-}
-
-.Topheader{
-  background-color :rgb(98, 223, 26);
 }
 
 .trendactor{
@@ -201,12 +470,18 @@ body{
 @media screen and (min-width:600px) {
   .movieList img{
     width:100%;
-    height:200px; 
+    height:250px; 
     object-fit: cover;
   }
   
 }
-.postImages img{
+.postImages img {
+    width:30px;
+    height:30px; 
+    object-fit: cover;
+}
+
+.reviewImages img{
     width:30px;
     height:30px; 
     object-fit: cover;
@@ -247,6 +522,7 @@ body{
   
 }
 
+
 @media screen and (max-width:350px) {
   .movieimage img{
     width:100%;
@@ -262,137 +538,11 @@ body{
 
 }
 
-@media screen and (min-width:351px) and (max-width:500px) {
-  .movieimage img{
-    width:90%;
-    height:200px; 
-    object-fit: cover;
-  }
-  .MovieProfile {
-    font-size:12px;
-  }
-  .MovieProfile h3{
-    font-size:20px;
-  }
-} 
+
+ 
 
 
-@media screen and (min-width:501px) and (max-width:700px) {
-  .movieimage img{
-    width:80%;
-    height:250px; 
-    object-fit: cover;
-  }
-  .MovieProfile {
-    font-size:20px;
-  }
-  .MovieProfile h3{
-    font-size:25px;
-  }
-}
 
-@media screen and (min-width:701px) and (max-width:900px) {
-  .movieimage img{
-    width:100%;
-    height:350px; 
-    object-fit: cover;
-  }
-  .MovieProfile {
-    font-size:20px;
-  }
-  .MovieProfile h3{
-    font-size:25px;
-  }
-}
-@media screen and (min-width:901px) and (max-width:1100px) {
-  .movieimage img{
-    width:90%;
-    height:350px; 
-    object-fit: cover;
-  }
-  
-}
-@media screen and (min-width:1101px) {
-  .movieimage img{
-    width:80%;
-    height:450px; 
-    object-fit: cover;
-  }
-  
-}
-@media screen and (max-width:350px) {
-  .movieimage img{
-    width:100%;
-    height:150px; 
-    object-fit: cover;
-  }
-  .MovieProfile {
-    font-size:10px;
-  }
-  .MovieProfile h3{
-    font-size:15px;
-  }
-
-}
-
-@media screen and (min-width:351px) and (max-width:500px) {
-  .movieimage img{
-    width:90%;
-    height:200px; 
-    object-fit: cover;
-  }
-  .MovieProfile {
-    font-size:12px;
-  }
-  .MovieProfile h3{
-    font-size:20px;
-  }
-} 
-
-
-@media screen and (min-width:501px) and (max-width:700px) {
-  .movieimage img{
-    width:80%;
-    height:250px; 
-    object-fit: cover;
-  }
-  .MovieProfile {
-    font-size:20px;
-  }
-  .MovieProfile h3{
-    font-size:25px;
-  }
-}
-
-@media screen and (min-width:701px) and (max-width:900px) {
-  .movieimage img{
-    width:100%;
-    height:350px; 
-    object-fit: cover;
-  }
-  .MovieProfile {
-    font-size:20px;
-  }
-  .MovieProfile h3{
-    font-size:25px;
-  }
-}
-@media screen and (min-width:901px) and (max-width:1100px) {
-  .movieimage img{
-    width:90%;
-    height:350px; 
-    object-fit: cover;
-  }
-  
-}
-@media screen and (min-width:1101px) {
-  .movieimage img{
-    width:80%;
-    height:450px; 
-    object-fit: cover;
-  }
-  
-}
 
 
 

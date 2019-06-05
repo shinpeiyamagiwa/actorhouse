@@ -26,7 +26,8 @@ class ActorController extends Controller
                         ->get();
         $posts = Post::join('users', 'posts.user_id', '=', 'users.id')
                         ->where('actor_id', '=', $id)
-                        ->select('users.name', 'content', 'user_id')
+                        ->select('users.name', 'content', 'user_id', 'posts.id')
+                        ->orderBy('id', 'desc')
                         ->get();
         $favorite_actors = FavoriteActor::where('user_id', '=', $userId)
                         ->where('actor_id', '=', $id)
@@ -35,8 +36,11 @@ class ActorController extends Controller
         $fun_member = FavoriteActor::where('actor_id', '=', $id)
                                 ->select('user_id')
                                 ->get();
-       
-        return view('actor.index',compact('user', 'actor', 'works', 'posts', 'favorite_actors', 'fun_member'));
+        $bg_image = Cast::join('movies', 'casts.movie_id', '=', 'movies.id')
+                                ->where('casts.actor_id', '=', $id)
+                                ->select('movies.image_path')
+                                ->first();
+        return view('actor.index',compact('user', 'userId', 'actor', 'works', 'posts', 'favorite_actors', 'fun_member', 'bg_image'));
         
     }
     

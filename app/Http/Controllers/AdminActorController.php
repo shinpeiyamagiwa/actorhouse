@@ -76,6 +76,9 @@ class AdminActorController extends Controller
     public function edit($id)
     {
         //
+        $actor = Actor::findOrFail($id);
+        
+        return view('admin.actors.edit', compact('actor'));
     }
 
     /**
@@ -88,6 +91,14 @@ class AdminActorController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $actor = Actor::findOrFail($id);
+        
+        $input = $request->all();
+
+        
+        
+        $actor->update($input);
+        return redirect('/actor/{$id}');
     }
 
     /**

@@ -5,7 +5,7 @@
     <div class="row">
       <div class="col-lg-3 col-sm-4 img-fluid mb-3">
         <div class="card myimage">
-          <img  class="card-body rounded-circle" src="images/emmastone.jpg" alt="">
+          <img  class="card-body rounded-circle" src="images/{{$user->image_path}}" alt="">
           <h3 class="text-center">{{$user->name}}</h3>
           <div class="row">
             <div class="col-4">
@@ -159,6 +159,31 @@
       </div>
     </div>
   </div>
+  <script>
+    $('.mycontent1').click(function () {
+    $('#twieetRoom').addClass('show');
+    $('#movieRoom').removeClass('show');
+    $('#actorRoom').removeClass('show');
+    $('#watchlistRoom').removeClass('show');
+  });
+  $('.mycontent2').click(function () {
+    $('#movieRoom').addClass('show');
+    $('#twieetRoom').removeClass('show');
+    $('#actorRoom').removeClass('show');
+    $('#watchlistRoom').removeClass('show');
+  });
+  $('.mycontent3').click(function () {
+    $('#actorRoom').addClass('show');
+    $('#movieRoom').removeClass('show');
+    $('#twieetRoom').removeClass('show');
+    $('#watchlistRoom').removeClass('show');
+  });
+  $('.mycontent4').click(function () {
+    $('#watchlistRoom').addClass('show');
+    $('#movieRoom').removeClass('show');
+    $('#actorRoom').removeClass('show');
+    $('#twieetRoom').removeClass('show');
+  });</script>
   <!-- <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
