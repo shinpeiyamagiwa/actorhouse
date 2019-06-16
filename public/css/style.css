@@ -22,6 +22,14 @@ body{
 .actorcontentList h6 {
   font-size:8px;
 }
+.bg {
+  background-color: rgba(7, 7, 7, 0.808);
+  position: absolute;
+  top:0px;
+  left:0px;
+  width:100%;
+  height:550px;
+}
 }
 @media screen and (min-width:497px) and (max-width:574px) {
   .actorimage img{
@@ -36,6 +44,15 @@ body{
 .video {
   height:200px;
   }
+.bg {
+  background-color: rgba(7, 7, 7, 0.808);
+  position: absolute;
+  top:0px;
+  left:0px;
+  width:100%;
+  height:535px;
+}
+
 }
 @media screen and (min-width:575px) and (max-width:676px) {
   .actorimage img{
@@ -43,7 +60,14 @@ body{
   height:250px;
   object-fit: cover;
 }
-
+.bg {
+  background-color: rgba(7, 7, 7, 0.808);
+  position: absolute;
+  top:0px;
+  left:0px;
+  width:100%;
+  height:460px;
+}
 .actorTop h1 {
   font-size:30px;
 }
@@ -57,6 +81,14 @@ body{
   height:250px;
   object-fit: cover;
   }
+  .bg {
+    background-color: rgba(7, 7, 7, 0.808);
+    position: absolute;
+    top:0px;
+    left:0px;
+    width:100%;
+    height:450px;
+  }
   .video {
   height:300px;
   }
@@ -66,6 +98,14 @@ body{
   width:250px;
   height:350px;
   object-fit: cover;
+}
+.bg {
+  background-color: rgba(7, 7, 7, 0.808);
+  position: absolute;
+  top:0px;
+  left:0px;
+  width:100%;
+  height:565px;
 }
   .video {
   height:450px;
@@ -80,15 +120,16 @@ body{
   .video {
   height:500px;
   }
+  .bg {
+    background-color: rgba(7, 7, 7, 0.808);
+    position: absolute;
+    top:0px;
+    left:0px;
+    width:100%;
+    height:650px;
+  }
 }
-.bg {
-  background-color: rgba(7, 7, 7, 0.808);
-  position: absolute;
-  top:0px;
-  left:0px;
-  width:100%;
-  height:850px;
-}
+
 .actorcontentList {
   background-color:white;
 }

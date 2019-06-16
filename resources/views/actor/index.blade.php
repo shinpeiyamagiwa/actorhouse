@@ -23,21 +23,31 @@
             <h1>{{$actor->name}} </h1>
           </div>
           <div class="col row float-left">
-            <div class="col-lg-4 col-6">
-              <h6 class="mb-0">お気に入り登録者数</h6>
+            <div class="col-4">
+              <h6 class="mb-0">登録者数</h6>
             </div>
-            <div class="col-lg-4 col-6">
+            <div class="col-4">
               <h6 class="mb-0">出演作品数</h6>
+            </div>
+            <div class="col-4">
+              <h6 class="mb-0">鑑賞数</h6>
             </div>
           </div>
           <div class="col row">
-            <div class="col-lg-4 col-6">
+            <div class="col-4">
                 <h1 class="float-right">{{count($fun_member)}}</h1>
             </div>
-            <div class="col-lg-3 col-6">
+            <div class="col-4">
               <h1 class="float-right">{{count($works)}}</h1>
             </div>
-            <div class="col-lg-1 col-3">
+            @if(isset($watch_movie))
+              <div class="col-4">
+                <h1 class="float-right">{{count($watch_movie)}}/{{count($works)}}</h1>
+              </div>
+            @endif
+            </div>
+            <div class="row">
+            <div class="col-2">
               @if(!$favorite_actors)
                 <button data-actor-id="{{$actor->tmdb_id}}" data-favorite="false" id="favorite_button" type="button" class="registButton btn btn-outline-success btn-xs">
                   <span id="regist_text">
@@ -52,7 +62,7 @@
                 </button>
               @endif
             </div>
-            <div class="col-lg-1 col-3">
+            <div class="col-2">
               <button tyoe="button" class="btn btn-outline-success"
               data-toggle="modal" data-target="#moviediary">
                 <i class="far fa-edit"></i>
@@ -113,7 +123,7 @@
               </div>
             </div>
             @if(!is_null($actor->homepage))
-              <div class="col-lg-1 col-3">
+              <div class="col-2">
                 <button class="btn btn-outline-success btn-xs">
                   <a href={{$actor->homepage}}>
                     <i class="far fa-id-card"></i>

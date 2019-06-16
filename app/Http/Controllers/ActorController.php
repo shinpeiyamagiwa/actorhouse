@@ -7,6 +7,7 @@ use App\Actor;
 use App\Cast;
 use App\Post;
 use App\FavoriteActor;
+use App\FavoriteMovie;
 use App\ActorImages;
 use Illuminate\Support\Facades\Auth;
 
@@ -47,12 +48,17 @@ class ActorController extends Controller
         $images = ActorImages::where('actor_id', '=', $id)
                                 ->select('actor_images.id', 'image_path', 'user_id')
                                 ->get();
+
         
-        
+        $watch_movie = FavoriteMovie::join('casts', 'favorite_movies.movie_id','=', 'casts.movie_id')
+                                ->where('user_id', '=', $userId)
+                                ->where('casts.actor_id', '=', $id)
+                                ->get();
         
 
 
-        return view('actor.index',compact('user', 'userId', 'actor', 'works', 'posts', 'favorite_actors', 'fun_member', 'bg_image', 'images'));
+        return view('actor.index',compact('user', 'userId', 'actor', 'works', 'posts', 
+        'favorite_actors', 'fun_member', 'bg_image', 'images', 'watch_movie'));
         
 
 
