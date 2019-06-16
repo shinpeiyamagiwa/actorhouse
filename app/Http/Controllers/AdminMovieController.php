@@ -16,7 +16,7 @@ class AdminMovieController extends Controller
     {
         //
         
-        return view('admin.movies.create');
+        return view('admin.movies.edit');
     }
 
     /**
@@ -62,6 +62,10 @@ class AdminMovieController extends Controller
     public function edit($id)
     {
         //
+        $movie = Movie::where('movies.tmdb_id', '=', $id)
+                    ->first();
+                    
+        return view('admin.movies.edit', compact('movie'));
     }
 
     /**
@@ -74,6 +78,16 @@ class AdminMovieController extends Controller
     public function update(Request $request, $id)
     {
         //
+        Movie::where('movies.tmdb_id', '=', $id)
+        ->update([
+            'title' => $request->title,
+            'image_path' => $request->image_path,
+            'overview' => $request->overview,
+            'video_link' => $request->video_link,
+            'screen_time' => $request->screen_time,
+            'released_at' => $request->released_at,
+            ]);
+        return redirect("/movie/$id");
     }
 
     /**

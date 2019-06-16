@@ -13,10 +13,6 @@
     </div>
     <div class="form-group">
         {!! Form::label('image_path', 'Image:') !!}
-        {!! Form::text('image_path', null, ['class'=>'form-control']) !!}
-    </div>
-    <div class="form-group">
-        {!! Form::label('image_path', 'Image:') !!}
         {!! Form::file('image_path', null, ['class'=>'form-control']) !!}
     </div> 
     <div class="form-group">

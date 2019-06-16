@@ -7,6 +7,7 @@ use App\Actor;
 use App\Cast;
 use App\Post;
 use App\FavoriteActor;
+use App\ActorImages;
 use Illuminate\Support\Facades\Auth;
 
 class ActorController extends Controller
@@ -19,8 +20,8 @@ class ActorController extends Controller
          // 現在認証されているユーザーのID取得
          $userId = Auth::id();
 
-        $actor = Actor::find($id);
-        $works = Cast::join('movies', 'casts.movie_id', '=', 'movies.id')
+        $actor = Actor::where('tmdb_id', '=', $id)->first();
+        $works = Cast::join('movies', 'casts.movie_id', '=', 'movies.tmdb_id')
                         ->where('casts.actor_id', '=', $id)
                         ->select('movie_id', 'movies.image_path')
                         ->get();
@@ -32,16 +33,58 @@ class ActorController extends Controller
         $favorite_actors = FavoriteActor::where('user_id', '=', $userId)
                         ->where('actor_id', '=', $id)
                         ->first();
-                        
+        FavoriteActor::where('actor_id', '=', $id)
+                    ->where('user_id', '=', $userId)
+                    ->update(['new' => 0]);
         $fun_member = FavoriteActor::where('actor_id', '=', $id)
                                 ->select('user_id')
                                 ->get();
-        $bg_image = Cast::join('movies', 'casts.movie_id', '=', 'movies.id')
+        $bg_image = Cast::join('movies', 'casts.movie_id', '=', 'movies.tmdb_id')
                                 ->where('casts.actor_id', '=', $id)
                                 ->select('movies.image_path')
                                 ->first();
-        return view('actor.index',compact('user', 'userId', 'actor', 'works', 'posts', 'favorite_actors', 'fun_member', 'bg_image'));
+                                
+        $images = ActorImages::where('actor_id', '=', $id)
+                                ->select('actor_images.id', 'image_path', 'user_id')
+                                ->get();
         
+        
+        
+
+
+        return view('actor.index',compact('user', 'userId', 'actor', 'works', 'posts', 'favorite_actors', 'fun_member', 'bg_image', 'images'));
+        
+
+
+
+    }
+    public function update(Request $request, $id)
+    {
+        //
+       
+        $input = $request->all();
+        // dd($input);
+        ActorImages::create([
+            'user_id' => $input['user_id'],
+            'actor_id' => $input['actor_id'],
+            'image_path' => $input['image_path']
+        ]);
+    //    dd($request->all());
+        
+        return redirect("/actor/$id");
+    }
+
+    public function delete(Request $request)
+    {
+        //
+        $id = $request['actor_id'];
+        $userId = Auth::id();
+        ActorImages::where('id', $request['id'])->delete();
+        
+        
+    //    dd($request->all());
+        
+        return redirect("/actor/$id");
     }
     
 

@@ -6,6 +6,7 @@ use App\Movie;
 use App\Cast;
 use App\Review;
 use App\WatchList;
+use App\ReviewComment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -16,8 +17,9 @@ class MovieController extends Controller
 
         $user = Auth::user();
         $userId = Auth::id();
-        $movie = Movie::find($id);
-        $casts = Cast::join('actors', 'casts.actor_id', '=', 'actors.id')
+        $movie = Movie::where('movies.tmdb_id', '=', $id)
+                    ->first();
+        $casts = Cast::join('actors', 'casts.actor_id', '=', 'actors.tmdb_id')
                     ->where('casts.movie_id', '=', $id)
                     ->select('actor_id', 'actors.image_path')
                     ->get();
@@ -25,20 +27,22 @@ class MovieController extends Controller
                         ->first();
         $reviews = Review::join('users', 'reviews.user_id', '=', 'users.id')
                         ->where('movie_id', '=', $id)
-                        ->select('users.name', 'evaluate', 'content', 'user_id', 'reviews.id')
+                        ->select('users.name', 'evaluate', 'reviews.content', 'reviews.user_id', 'reviews.id')
                         ->orderBy('reviews.id', 'desc')
                         ->get();
         $avg = Review::join('users', 'reviews.user_id', '=', 'users.id')
                         ->where('movie_id', '=', $id)
-                        ->avg('evaluate');
-                        
+                        ->avg('evaluate');          
         $watchList = WatchList::where('user_id', '=', Auth::id())
                             ->where('movie_id', '=', $id)
                             ->first();
+        
         // $review_comments = ReviewComment::join('users', 'review_comments.user_id', '=', 'users.id')
-        //                             ->where('movie_id', '=', 'reviews.id');
+        //                             ->leftjoin('reviews', 'review_comments.review_id', '=', 'reviews.id')
+        //                             ->where($reviewsId, '=', 'reviews.id');
         return view('movie.index', compact('movie', 'userId', 'casts', 'review','user', 'reviews', 'watchList', 'avg'));
 
+        
     }
     public function favorite($id) {
         // 現在認証されているユーザーの取得

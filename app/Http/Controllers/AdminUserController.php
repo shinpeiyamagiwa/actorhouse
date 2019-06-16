@@ -84,7 +84,7 @@ class AdminUserController extends Controller
         
         $input = $request->all();
 
-        
+    //    dd($request->all());
         
         $user->update($input);
         return redirect('/home');

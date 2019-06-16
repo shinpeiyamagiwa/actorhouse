@@ -15,9 +15,11 @@ class CreateActorsTable extends Migration
     {
         Schema::create('actors', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('tmdb_id');
             $table->string('name');
             $table->string('image_path')->nullable();
-            $table->string('wikipedia')->nullable();
+            $table->string('homepage')->nullable();
+            $table->text('info')->nullable();
             $table->string('video_link')->nullable();
             $table->string('twitter_link')->nullable();
             $table->string('place')->nullable();

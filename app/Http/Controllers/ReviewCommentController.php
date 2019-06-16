@@ -27,7 +27,7 @@ class ReviewCommentController extends Controller
         ReviewComment::create([
             'content' => request('content'),
             'user_id' => $id,
-            'review_id' => request('movie_id')
+            'review_id' => request('review_id')
         ]);
         // Actor::create([
         //     'name' => 'kkkk',

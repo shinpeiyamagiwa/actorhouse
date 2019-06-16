@@ -37,15 +37,15 @@
                 <a href="/" class="navbar-brand">
                     <h4>ACTOR HOUSE</h4>
                 </a>
-                <a id="navbarDropdown" class="nav-link dropdown-toggle text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                <a id="searchDropdown" class="nav-link dropdown-toggle text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                     検索<i class="fas fa-search"></i>
                 </a>
 
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="searchDropdown">
                     <div class="dropdown-item">
                         {!! Form::open(['method'=>'POST', 'action'=> 'MovieSearchController@index']) !!}
                             <div class="form-group">
-                                {!! Form::text('name', null, ['class'=>'form-control', 'placeholder'=>'俳優']) !!}
+                                {!! Form::text('title', null, ['class'=>'form-control', 'placeholder'=>'映画']) !!}
                             </div>
                         {!! Form::close() !!}  
                         </div>
@@ -126,7 +126,7 @@
                 <div class="row">
                     <div class="col">
                         <p>Copyright &copy;
-                            <span id="year"></span>Glozzom
+                            <span id="year"></span>ActorHOUSE
                         </p>
                     </div>
                 </div>
@@ -141,9 +141,5 @@
     crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js"></script>
     <script src="modaal.min.js"></script>
-
-    
-
-
 </body>
 </html>

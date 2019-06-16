@@ -26,10 +26,11 @@ class ReviewController extends Controller
         $user = Auth::user();
         // 現在認証されているユーザーのID取得
        
-        
+      
         FavoriteMovie::create([
             'user_id' => $id,
-            'movie_id' => request('movie_id')
+            'movie_id' => request('movie_id'),
+            'genre' => request('genre')
         ]);
         
         Review::create([
@@ -43,8 +44,8 @@ class ReviewController extends Controller
         //     'youtube_link' => $request->aaaa
         //     'image_path' => 
         // ]);
-
-        return redirect("/user/$id");
+        
+        return redirect("/home");
         
     }
 }

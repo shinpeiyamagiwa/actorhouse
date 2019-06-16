@@ -17,6 +17,7 @@ class CreateFavoriteMoviesTable extends Migration
             $table->bigIncrements('id');
             $table->integer('user_id');
             $table->integer('movie_id');
+            $table->integer('genre')->nullabel();
             $table->timestamps();
         });
     }

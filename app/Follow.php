@@ -4,11 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Tweet extends Model
+class Follow extends Model
 {
     //
     protected $fillable = [
-        'user_id',
-        'content'
+        'follow_id',
+        'follower_id'
     ];
 }

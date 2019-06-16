@@ -1,27 +1,25 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
-use App\FavoriteActor;
+use App\Follow;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
-class FavoriteActorController extends Controller
+class FollowController extends Controller
 {
     //
     public function store(Request $request) {
         // 現在認証されているユーザーの取得
         $user = Auth::user();
         // 現在認証されているユーザーのID取得
-        $userId = Auth::id();
+        $id = Auth::id();
         
-        FavoriteActor::create([
-            'user_id' => $userId,
-            'actor_id' => $request->actor_id,
-            'new' => 0
+        Follow::create([
+            'follower_id' => $id,
+            'follow_id' => $request->follow_id
         ]);
-     
 
+        dd($request);
         // return redirect('/user');
         return response()->json([
             'result' => true
@@ -31,8 +29,8 @@ class FavoriteActorController extends Controller
 
     public function delete(Request $request) {
         // 現在認証されているユーザーのID取得
-        $userId = Auth::id();
-        FavoriteActor::where('user_id', $userId)->where('actor_id', $request->actor_id)->delete();
+        $id = Auth::id();
+        Follow::where('follower_id', $id)->where('follow_id', $request->follow_id)->delete();
         
         // return redirect('/user');
         return response()->json([

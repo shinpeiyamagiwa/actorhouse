@@ -9,6 +9,7 @@ class FavoriteActor extends Model
     //
     protected $fillable = [
         'user_id',
-        'actor_id'
+        'actor_id',
+        'new'
     ];
 }

@@ -12,6 +12,9 @@ class Movie extends Model
         'image_path',
         'video_link',
         'screen_time',
-        'released_at'
+        'released_at',
+        'overview',
+        'tmdb_id',
+        'homepage'
     ];
 }

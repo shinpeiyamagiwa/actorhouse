@@ -13,14 +13,17 @@
 
 // みんなが見れるページ
 Route::get('/', 'TopController@index');
-Route::get('/movie/{id}', 'MovieController@index');
-Route::get('/actor/{id}', 'ActorController@index');
+Route::get('/movie/{tmdb_id}', 'MovieController@index');
+Route::get('/actor/{tmdb_id}', 'ActorController@index');
+Route::patch('/actor/{tmdb_id}/images', 'ActorController@update');
 Route::post('/search/movie', 'MovieSearchController@index');
+Route::post('/actor/images/delete','ActorController@delete');
 
 // ログインしていないとできない
 Route::group(['middleware' => ['auth']], function () {
     Route::post('/review/store', 'ReviewController@store');
     Route::post('/post/store', 'PostController@store');
+    Route::post('/tweet/store', 'TweetController@store');
 });
 
 // Route::post('/actor/{id}', 'AdminPostController@store');
@@ -36,6 +39,8 @@ Route::post('/favorite/actor/store','FavoriteActorController@store');
 Route::post('/favorite/actor/delete','FavoriteActorController@delete');
 Route::post('/watchlist/movie/store','WatchListController@store');
 Route::post('/watchlist/movie/delete','WatchListController@delete');
+Route::post('/follow/user/store','FollowController@store');
+Route::post('/follow/user/delete','FollowController@delete');
 // Laravelの認証機能
 Auth::routes();
 
@@ -53,3 +58,6 @@ Route::resource('admin/users','AdminUserController');
 // Route::patch('/home', 'AdminUserController@updata');
 
 // Route::resource('admin/post','AdminPostController');
+Route::post('movie/update', 'MovieUpdateController@update');
+Route::post('actor/update', 'ActorUpdateController@update');
+Route::post('cast/update', 'CastUpdateController@update');

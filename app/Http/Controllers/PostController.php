@@ -33,7 +33,7 @@ class PostController extends Controller
         // ]);
         
 
-        return redirect("/user/$id");
+        return redirect("/home");
     }
 
 }

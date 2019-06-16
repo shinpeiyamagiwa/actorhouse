@@ -4,17 +4,19 @@
 @section('content')
     <!-- 俳優プロフィール -->
   <div class="actorTop jumbotron mt-4 mb-0"
-  style="background-image:url('/images/{{$bg_image->image_path}}');
+  @isset($bg_image)
+  style="background-image:url('http://image.tmdb.org/t/p/w500/{{$bg_image->image_path}}');
   background-repeat:no-repeat;
   background-size:cover;
   object-fit: cover;
   color:white;
-  ">
+  "
+  @endisset>
     <div class="bg"></div>
     <div class="container-fluid">
       <div class="row">
         <div class="actorimage col-sm-4 mt-4">
-          <img  class="center img-fluid responsive float-md-right" src="/images/{{$actor->image_path}}" alt="">
+          <img  class="center img-fluid responsive float-md-right" src="http://image.tmdb.org/t/p/w500/{{$actor->image_path}}" alt="">
         </div>
         <div class="actorprofile col-sm-8 mx-auto mt-4">
           <div class="actorName">
@@ -37,13 +39,13 @@
             </div>
             <div class="col-lg-1 col-3">
               @if(!$favorite_actors)
-                <button data-actor-id="{{$actor->id}}" data-favorite="false" id="favorite_button" type="button" class="registButton btn btn-outline-success btn-xs">
+                <button data-actor-id="{{$actor->tmdb_id}}" data-favorite="false" id="favorite_button" type="button" class="registButton btn btn-outline-success btn-xs">
                   <span id="regist_text">
-                      <i class="far fa-heart"></i>
+                    <i class="fas fa-user-plus"></i>
                   </span>
                 </button>
               @else
-                <button data-actor-id="{{$actor->id}}" data-favorite="true" id="favorite_button" type="button" class="registButton btn btn-outline-success btn-xs">
+                <button data-actor-id="{{$actor->tmdb_id}}" data-favorite="true" id="favorite_button" type="button" class="registButton btn btn-outline-success btn-xs">
                   <span id="regist_text">
                       <i class="far fa-heart"></i>
                   </span>
@@ -90,7 +92,7 @@
                           <textarea name="editor1" class="form-control"></textarea> -->
                       </div>
                       <div class="form-group">
-                          {{Form::hidden('actor_id', $actor->id)}} 
+                          {{Form::hidden('actor_id', $actor->tmdb_id)}} 
                       </div>
                       <div class="form-group">
                           {!! Form::submit('記録', null, ['class'=>'btn btn-success']) !!}
@@ -110,21 +112,20 @@
                 </div>
               </div>
             </div>
-            <div class="col-lg-1 col-3">
-              <button class="btn btn-outline-success btn-xs">
-                <i class="fab fa-wikipedia-w"></i>
-              </button>
-            </div>
-            <div class="col-lg-1 col-3">
-              <button class="btn btn-outline-success btn-xs">
-                  <i class="far fa-id-card"></i>
-              </button>
-            </div>
+            @if(!is_null($actor->homepage))
+              <div class="col-lg-1 col-3">
+                <button class="btn btn-outline-success btn-xs">
+                  <a href={{$actor->homepage}}>
+                    <i class="far fa-id-card"></i>
+                  </a>
+                </button>
+              </div>
+            @endif
           </div>
           <div class="col introduction d-none d-md-inline">
-            <p>
+            {{-- <p>
               ライアン・トーマス・ゴズリング（英: Ryan Thomas Gosling、1980年11月12日 - ）[2]は、カナダの俳優・ミュージシャンである。ディズニー・チャンネルで放送された『ミッキーマウス・クラブ』（1993年 - 1995年）で子役としてキャリアを開始させ、『アー・ユー・アフレイド・オブ・ザ・ダーク?』（1995年）や『ミステリー・グースバンプス』（1996年）など子ども向け娯楽番組にいくつか出演した。映画初主演作はユダヤ人のネオナチを演じた『ザ・ビリーヴァー（英語版）』（2001年）で、その後も『完全犯罪クラブ』（2002年）・『スローター・ルール（英語版）』（2002年）・『16歳の合衆国』（2003年）など、自主映画数本に出演した。
-            </p>
+            </p> --}}
           </div>
           <div class="col row">
             <div class="col-md-5 col-6 d-none d-md-inline">
@@ -159,27 +160,64 @@
   
   <div class="actorcontentList sticky-top border-bottom align-items-center pt-2">
     <div class="row container mx-auto responsive">
-      <div class="mycontent1 col-3 text-center"date-toggle="collapse"
-      data-target="#twieetRoom">
-        <h6>Twitter</h6>
-      </div>
-      <div class="mycontent2 col-3 text-center"date-toggle="collapse"
-      data-target="#talkRoom">
-        <h6>トークルーム</h6>
-      </div>
       <div class="mycontent3 col-3 text-center"date-toggle="collapse"
       data-target="#workRoom">
         <h6>出演作品</h6>
+      </div>
+      <div class="mycontent1 col-3 text-center"date-toggle="collapse"
+      data-target="#twieetRoom">
+        <h6>写真</h6>
       </div>
       <div class="mycontent4 col-3 text-center"date-toggle="collapse"
       data-target="#videoRoom">
         <h6>動画</h6>
       </div>
+      <div class="mycontent2 col-3 text-center"date-toggle="collapse"
+      data-target="#talkRoom">
+        <h6>トークルーム</h6>
+      </div>
     </div>
   </div>   
   <div class="actorcontent"> 
     <div id="twieetRoom" class="card collapse">
-      <a class="twitter-timeline ml-10 mx-auto" href="{{$actor->twitter_link}}" data-width=80% data-height="1000">Tweets by dailyemmastone</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+      <h5>{{$actor->name}}のアルバムを作ろう</h5>
+        {!! Form::model($actor,['method'=>'PATCH', 'action'=> ['ActorController@update', $actor->tmdb_id]]) !!}
+          <div class="form-group">
+              {!! Form::label('image_path', 'Image:') !!}
+              {!! Form::file('image_path', null, ['class'=>'form-control']) !!}
+          </div> 
+          <div class="form-group">
+              {{Form::hidden('user_id', $user->id)}} 
+          </div>
+          <div class="form-group">
+              {{Form::hidden('actor_id', $actor->tmdb_id)}} 
+          </div>
+          <div class="form-group">
+            {!! Form::submit('アップロード', null, ['class'=>'btn btn-primary']) !!}
+          </div>
+        {!! Form::close() !!}
+        @include('includes.form_error')
+        <div class="row responsive mb-2 mx-0 mt-5">
+          @if($images)
+            @foreach($images as $image)
+              <div class="movieList col-lg-2 col-sm-3 col-4">
+                  <img src="/images/{{$image->image_path}}" alt="" class="img-fluid mb-2">
+              </div>
+              @if($image->user_id==$userId OR $userId==1)
+              {!! Form::open(['method'=>'POST', 'action'=> 'ActorController@delete']) !!}
+              {{Form::hidden('actor_id', $actor->tmdb_id)}} 
+              {{Form::hidden('id', $image->id)}} 
+              {!! Form::submit('削除', null, ['class'=>'btn btn-primary']) !!}
+              {!! Form::close() !!}
+                {{-- <a href="/actor/images/delete">
+                  <button>
+                    <p>削除</p>
+                  </button>
+                </a> --}}
+              @endif
+            @endforeach
+          @endif
+        </div>
     </div>
     <div id="talkRoom" class="collapse">
       <div class="responsive mb-2 mt-5">
@@ -264,7 +302,7 @@
         @foreach($works as $work)
           <div class="movieList col-lg-2 col-sm-3 col-4">
             <a href="/movie/{{$work->movie_id}}">
-              <img src="/images/{{$work->image_path}}" alt="" class="img-fluid mb-2">
+              <img src="http://image.tmdb.org/t/p/w500/{{$work->image_path}}" alt="" class="img-fluid mb-2">
               <p>{{$work->title}}</p>
             </a>
           </div>
@@ -318,7 +356,7 @@
 
       const is_favorite = $(this).data('favorite');
       console.log('is_favorite: ', is_favorite);
-      if (is_favorite == 'false') {
+      if (is_favorite == false) {
         // 登録処理
         $.ajax({
           type: "POST",
@@ -334,7 +372,7 @@
             alert('登録する');
             // data属性を書き換える
             // $('.registButton')[0].dataset.favorite = 'true';
-            $('.registButton').data('favorite', 'true');
+            $('.registButton').data('favorite', true);
             // ボタンの表記を書き換える
             $('#regist_text').text('登録解除');
           }
@@ -357,7 +395,7 @@
           if (response['result']) {
             alert('登録解除');
             // $('.registButton')[0].dataset.favorite = 'false';
-            $('.registButton').data('favorite', 'false');
+            $('.registButton').data('favorite', false);
             $('#regist_text').text('登録する');
           }
         }).fail(function (err) {

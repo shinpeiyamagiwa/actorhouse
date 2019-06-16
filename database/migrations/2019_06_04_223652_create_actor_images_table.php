@@ -15,6 +15,9 @@ class CreateActorImagesTable extends Migration
     {
         Schema::create('actor_images', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('user_id');
+            $table->integer('actor_id');
+            $table->string('image_path');
             $table->timestamps();
         });
     }

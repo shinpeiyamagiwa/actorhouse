@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFavoriteActorsTable extends Migration
+class CreateFollowsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateFavoriteActorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('favorite_actors', function (Blueprint $table) {
+        Schema::create('follows', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('user_id');
-            $table->integer('actor_id');
-            $table->integer('new');
+            $table->integer('follow_id');
+            $table->integer('follower_id');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateFavoriteActorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('favorite_actors');
+        Schema::dropIfExists('follows');
     }
 }

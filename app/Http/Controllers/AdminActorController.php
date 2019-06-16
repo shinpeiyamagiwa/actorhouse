@@ -76,7 +76,8 @@ class AdminActorController extends Controller
     public function edit($id)
     {
         //
-        $actor = Actor::findOrFail($id);
+        $actor = Actor::where('actors.tmdb_id', '=', $id)
+                    ->first();
         
         return view('admin.actors.edit', compact('actor'));
     }
@@ -93,12 +94,18 @@ class AdminActorController extends Controller
         //
         $actor = Actor::findOrFail($id);
         
-        $input = $request->all();
-
-        
-        
-        $actor->update($input);
-        return redirect('/actor/{$id}');
+        Actor::where('actors.tmdb_id', '=', $id)
+        ->update([
+            'name' => $request->name,
+            'place' => $request->place,
+            'birthday' => $request->birthday,
+            'image_path' => $request->image_path,
+            'homepage' => $request->homepage,
+            'info' => $request->info,
+            'video_link' => $request->video_link,
+            'twitter_link' => $request->twitter_link,
+            ]);
+        return redirect("/actor/$id");;
     }
 
     /**

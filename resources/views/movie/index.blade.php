@@ -6,7 +6,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="movieimage col-sm-4 mb-3">
-        <img  class="img-fluid"  src="/images/{{$movie->image_path}}" alt="">
+        <img  class="img-fluid"  src="http://image.tmdb.org/t/p/w500/{{$movie->image_path}}" alt="">
       </div>         
       <div class="movieprofile col-sm-8 mx-auto">
         <div class="movieName">
@@ -22,12 +22,12 @@
         </div>
         <div class="col row">
           <div class="col-3">
-          <h1 class="float-right">{{round($avg,2)}}</h1>
+            <h1 class="float-right">{{round($avg,2)}}</h1>
           </div>
           <div class="col-3">
             <h1 class="float-right">{{count($reviews)}}</h1>
           </div>
-          <div class="col-3">
+          <div class="col-2">
             @if(!$review)
               <div class="mt-0">
                 <button class="btn btn-outline-success"
@@ -53,29 +53,19 @@
                           class="form-control"> -->
                           <div class="form-group">
                           {!! Form::label('evaluate', '評価：') !!}
-                          <!-- {!! Form::text('comment', null, ['class'=>'form-control']) !!} -->
                           {{Form::selectRange('evaluate', 0, 5.0, '', ['placeholder' => ''])}}
                           </div>
-                          <!-- <div class="form-group">
-                            <label for="point">鑑賞日</label>
-                            <input type="date" name="date"　class="form-control">
-                            {!! Form::label('period', '日付:') !!}
-                            {{Form::selectRange('from_year', 1960, 2019, '', ['placeholder' => ''])}}年
-                            {{Form::selectRange('from_month', 1, 12, '', ['placeholder' => ''])}}月
-                            {{Form::selectRange('from_day', 1, 31, '', ['placeholder' => ''])}}日
-                          </div> -->
-                          <!-- <div class="form-group">
-                              {!! Form::label('title', 'タイトル：') !!}
-                              {!! Form::textarea('title', null, ['class'=>'form-control']) !!} 
-                          </div> -->
+                          <div class="form-group">
+                              {{Form::select('genre', ['','アクション', 'SF', 'ドラマ', 'コメディ', 'ホラー'], null, ['class' => 'field'])}}
+                          </div>
                           <div class="form-group">
                               {!! Form::label('content', '感想：') !!}
-                              {!! Form::textarea('content', null, ['class'=>'form-control']) !!} 
+                              {!! Form::textarea('content', '鑑賞しました。', ['class'=>'form-control']) !!} 
                               <!-- <label for="point">感想</label>
                               <textarea name="editor1" class="form-control"></textarea> -->
                           </div>
                           <div class="form-group">
-                              {{Form::hidden('movie_id', $movie->id)}} 
+                              {{Form::hidden('movie_id', $movie->tmdb_id)}} 
                           </div>
                           <div class="form-group">
                               {!! Form::submit('記録', null, ['class'=>'btn btn-success']) !!}
@@ -108,29 +98,38 @@
               </div>
             @endif
           </div>
-          <div class="col-3">
-            @if(!$watchList)
-              <div class="mt-0">
-                <button data-movie-id="{{$movie->id}}" data-watchlist="false" id="watchlist_button" type="button" class="watchList btn btn-outline-success btn-xs">
+          <div class="col-2">
+            @if(isset($watchList))
+              <div class="mt-0 text-center">
+                <button data-movie-id="{{$movie->tmdb_id}}" data-watchlist="ture" id="watchlist_button" type="button" class="watchList btn btn-outline-success btn-xs">
                   <span id="watchlist_text">
                     <p class="my-auto"><i class="fas fa-list-ol"></i></p>
                   </span>
                 </button>
               </div>
             @else
-              <div class="mt-0 text-center">
-                <button data-movie-id="{{$movie->id}}" data-watchlist="ture" id="watchlist_button" type="button" class="watchList btn btn-outline-success btn-xs">
+              <div class="mt-0">
+                <button data-movie-id="{{$movie->tmdb_id}}" data-watchlist="false" id="watchlist_button" type="button" class="watchList btn btn-outline-success btn-xs">
                   <span id="watchlist_text">
                     <p class="my-auto"><i class="fas fa-list-ol"></i></p>
                   </span>
                 </button>
               </div>
-          　　@endif
-          </div>           
+            @endif
+          </div> 
+          @if(!is_null($movie->homepage))
+            <div class="col-2">
+              <button class="btn btn-outline-success btn-xs">
+                <a href={{$movie->homepage}}>
+                  <i class="far fa-id-card"></i>
+                </a>
+              </button>
+            </div>
+          @endif          
         </div>
         <div class="col introduction">
           <p>
-            ライアン・トーマス・ゴズリング（英: Ryan Thomas Gosling、1980年11月12日 - ）[2]は、カナダの俳優・ミュージシャンである。ディズニー・チャンネルで放送された『ミッキーマウス・クラブ』（1993年 - 1995年）で子役としてキャリアを開始させ、『アー・ユー・アフレイド・オブ・ザ・ダーク?』（1995年）や『ミステリー・グースバンプス』（1996年）など子ども向け娯楽番組にいくつか出演した。映画初主演作はユダヤ人のネオナチを演じた『ザ・ビリーヴァー（英語版）』（2001年）で、その後も『完全犯罪クラブ』（2002年）・『スローター・ルール（英語版）』（2002年）・『16歳の合衆国』（2003年）など、自主映画数本に出演した。
+            {{$movie->overview}}
           </p>
         </div>
         <div class="col row">
@@ -147,7 +146,7 @@
         </div>
         @if($userId === 1)
           <div class="col">
-            <a href={{route('movies.edit', $user->id)}}>
+            <a href={{route('movies.edit', $movie->tmdb_id)}}>
               <button>
                 <p class="my-auto">編集</p>
               </button>
@@ -178,20 +177,22 @@
 
 <div class="moviecontent"> 
   <div id="actorRoom" class="collapse">
-    <div class="row responsive container mb-2 mx-0 mt-5">
-      @if($casts)
-        @foreach($casts as $cast)
-          <div class="castList col-lg-2 col-sm-3 col-4">
-            <a href="/actor/{{$cast->actor_id}}">
-              <img src="/images/{{$cast->image_path}}" alt="" class="img-fluid mb-2">
-              <p>{{$cast->name}}</p>
-            </a>
-          </div>
-        @endforeach
-      @endif
+    <div class="container">
+      <div class="row responsive mb-2 mx-0 mt-5">
+        @if($casts)
+          @foreach($casts as $cast)
+            <div class="castList col-lg-2 col-sm-3 col-4">
+              <a href="/actor/{{$cast->actor_id}}">
+                <img src="http://image.tmdb.org/t/p/w500/{{$cast->image_path}}" alt="" class="img-fluid mb-2">
+                <p>{{$cast->name}}</p>
+              </a>
+            </div>
+          @endforeach
+        @endif
+      </div>
     </div>
   </div>
-  <div id="videoRoom" class="card　container collapse">
+  <div id="videoRoom" class="container collapse show">
     <div class="row responsive mb-2 container mx-auto mt-5">
     <iframe width=100% height=500px src="https://www.youtube.com/embed/{{$movie->video_link}}" 
       frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>    
@@ -206,21 +207,29 @@
               <div class="card border-success mb-3" >
                 <div class="card-header d-inline py-0">
                   <div class="row no-gutters mt-1">
-                    <div class="col-1 rounded-circle postImages mr-2　d-inline-block">
-                      @if($user->image_path)
-                        <img src="/images/{{$user->image_path}}" alt="" class="float-right mt-2">
-                      @else
-                        <i class="fas fa-user float-right mt-2"></i>
-                      @endif
-                    </div>
-                    <div class="col-6 d-inline-block">
+                    {{-- <div class="col-1 rounded-circle postImages mr-2　d-inline-block">
+                      
+                    </div> --}}
+                    <div class="col-6 d-inline-block rounded-circle postImages mr-2　d-inline-block">
                       <a href="/user/{{$review->user_id}}">
-                        <p class="ml-1 mt-1 py-0">{{$review->name}}<p>
+                        <p class="mt-2 mb-2">
+                          @if($user->image_path)
+                          <img src="/images/{{$user->image_path}}" alt="" class="">
+                          @else
+                          <i class="fas fa-user"></i>
+                          @endif
+                          {{$review->name}}
+                        </p>
                       </a>
                     </div>
                     <div class="col-1 float-right">
                       <div data-toggle="modal" data-target="#reviewreply">
                         <i class="far fa-comment-dots float-left mt-2"></i>
+                        {{-- @if(isset($review->review_id))
+                        <a href="/review/comment/{{$review->id}}">
+                          <p>{{count($review->review_id)}}</p>
+                        </a>
+                        @endif --}}
                       </div>
                       <div class="modal fade" id="reviewreply"　tabindex="-1" role="dialog" 
                         aria-labelledby="reviewReplyLabel" aria-hidden="true">
@@ -238,7 +247,7 @@
                                     {!! Form::textarea('content', null, ['class'=>'form-control']) !!} 
                                 </div>
                                 <div class="form-group">
-                                    {{Form::hidden('movie_id', $movie->id)}} 
+                                    {{Form::hidden('movie_id', $movie->tmdb_id)}} 
                                 </div>
                                 <div class="form-group">
                                     {{Form::hidden('review_id', $review->id)}} 
@@ -261,10 +270,19 @@
                         </div>
                       </div>
                     </div>
+
                   </div>
                 </div>
-                <div class="card-body text-success">
+                <div class="card-body pt-3">
+                  <div class="mb-0">
+                  @if(isset($review->evaluate))
+                    <p class="mb-0">評価：{{$review->evaluate}}</p>
+                  @endif
+                  </div>
+                  <hr class="mt-1">
+                  <p class="text-success">
                     {{$review->content}}
+                  </p>
                 </div>
               </div>
             @endforeach
@@ -298,7 +316,8 @@ $('.mycontent3').click(function () {
       var movie_id = $(this).data('movieId')
       // var actor_id = $('#actor_id').val();
       const watchList = $(this).data('watchlist')
-      if (watchList == 'false') {
+      // console.log(watchList == false)デバック処理
+      if (watchList == false) {
       $.ajax({
         type: "POST",
         headers: {
@@ -311,8 +330,8 @@ $('.mycontent3').click(function () {
         // 通信成功時の処理
         if (response['result']) {
           alert('ウォッチリスト登録しました！');
-          $('.watchList').data('watchlist', 'true');
-          $('#watchlist_text').text('ウォッチリスト解除');
+          $('.watchList').data('watchlist', true);
+          // $('#watchlist_text').text('');
         }
       }).fail(function (err) {
         // 通信失敗時の処理
@@ -331,8 +350,8 @@ $('.mycontent3').click(function () {
         // 通信成功時の処理
         if (response['result']) {
           alert('ウォッチリスト解除しました！');
-          $('.watchList').data('watchlist', 'false');
-          $('#watchlist_text').text('気になる');
+          $('.watchList').data('watchlist', false);
+          // $('#watchlist_text').text('気になる');
         }
       }).fail(function (err) {
         // 通信失敗時の処理
