@@ -57,7 +57,7 @@
               @else
                 <button data-actor-id="{{$actor->tmdb_id}}" data-favorite="true" id="favorite_button" type="button" class="registButton btn btn-outline-success btn-xs">
                   <span id="regist_text">
-                      <i class="far fa-heart"></i>
+                    <i class="fas fa-user-minus"></i>
                   </span>
                 </button>
               @endif
@@ -384,7 +384,7 @@
             // $('.registButton')[0].dataset.favorite = 'true';
             $('.registButton').data('favorite', true);
             // ボタンの表記を書き換える
-            $('#regist_text').text('登録解除');
+            $('#regist_text').html('<i class="fas fa-user-minus"></i>');
           }
         }).fail(function (err) {
           // 通信失敗時の処理
@@ -406,7 +406,7 @@
             alert('登録解除');
             // $('.registButton')[0].dataset.favorite = 'false';
             $('.registButton').data('favorite', false);
-            $('#regist_text').text('登録する');
+            $('#regist_text').html('<i class="fas fa-user-plus"></i>');
           }
         }).fail(function (err) {
           // 通信失敗時の処理

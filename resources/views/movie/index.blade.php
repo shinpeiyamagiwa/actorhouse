@@ -32,7 +32,7 @@
               <div class="mt-0">
                 <button class="btn btn-outline-success"
                 data-toggle="modal" data-target="#moviediary">
-                  <p class="my-auto">記録</p>
+                  <p class="my-auto"><i class="fas fa-book"></i></p>
                 </button>
                 <br>
                 <div class="modal fade" id="moviediary" tabindex="-1" role="dialog" 
@@ -40,7 +40,7 @@
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header bg-success">
-                        <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-book-medical"></i></h5>
+                        <h5 class="modal-title" id="exampleModalLabel">記録</i></h5>
                         <button class="close" data-dismiss="modal">
                           &times;
                         </button>
@@ -101,15 +101,15 @@
           <div class="col-2">
             @if(isset($watchList))
               <div class="mt-0 text-center">
-                <button data-movie-id="{{$movie->tmdb_id}}" data-watchlist="ture" id="watchlist_button" type="button" class="watchList btn btn-outline-success btn-xs">
+                <button data-movie-id="{{$movie->tmdb_id}}" data-watchlist="ture" id="watchlist_button" type="button" class="watchList btn btn-success btn-xs">
                   <span id="watchlist_text">
-                    <p class="my-auto"><i class="fas fa-list-ol"></i></p>
+                    <p class="my-auto"><i class="fas fa-tag"></i></i></p>
                   </span>
                 </button>
               </div>
             @else
               <div class="mt-0">
-                <button data-movie-id="{{$movie->tmdb_id}}" data-watchlist="false" id="watchlist_button" type="button" class="watchList btn btn-outline-success btn-xs">
+                <button data-movie-id="{{$movie->tmdb_id}}" data-watchlist="false" id="watchlist_button" type="button" class="watchList btn-xs btn-outline-success btn-xs">
                   <span id="watchlist_text">
                     <p class="my-auto"><i class="fas fa-list-ol"></i></p>
                   </span>
@@ -210,7 +210,7 @@
                     {{-- <div class="col-1 rounded-circle postImages mr-2　d-inline-block">
                       
                     </div> --}}
-                    <div class="col-6 d-inline-block rounded-circle postImages mr-2　d-inline-block">
+                    <div class="col-6 d-inline-block rounded-circle postImages mr-2">
                       <a href="/user/{{$review->user_id}}">
                         <p class="mt-2 mb-2">
                           @if($user->image_path)
@@ -331,7 +331,7 @@ $('.mycontent3').click(function () {
         if (response['result']) {
           alert('ウォッチリスト登録しました！');
           $('.watchList').data('watchlist', true);
-          // $('#watchlist_text').text('');
+          $('#watchlist_text').html('<i class="fas fa-tag"></i>');
         }
       }).fail(function (err) {
         // 通信失敗時の処理
@@ -351,7 +351,7 @@ $('.mycontent3').click(function () {
         if (response['result']) {
           alert('ウォッチリスト解除しました！');
           $('.watchList').data('watchlist', false);
-          // $('#watchlist_text').text('気になる');
+          $('#watchlist_text').html('<i class="fas fa-list-ol">');
         }
       }).fail(function (err) {
         // 通信失敗時の処理

@@ -1,21 +1,53 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="userTop jumbotron mt-4 mb-0">
-    <div class="b"></div>
+<div class="userTop jumbotron mt-4 mb-0">   
       <div class="container-fluid">
         <div class="row">
-          <div class="userimage col-sm-3 mb-3">
+          <div class="userimage col-3 mb-3">
             @if($user->image_path)
-              <img  class="img-fluid"  src="/images/{{$user->image_path}}" alt="">
+              <img  class="img-fluid rounded-circle border border-success"  src="/images/{{$user->image_path}}" alt="">
             @else
-              <img  class="img-fluid"  src="/images/no-image.png" alt="">
+              <img  class="img-fluid rounded-circle border border-success"  src="/images/no-image.png" alt="">
             @endif
           </div>
-          <div class="userprofile col-sm-9 mx-auto">
-            <div class="userName">
-              <h1>{{$user->title}}</h1>
+          <div class="userprofile col-9 mx-auto">
+              <div class="userName">
+                <h1>
+                  {{$user->name}}
+                </h1>
+              </div>
+              <hr>
+              <div class="col row float-left">
+                <div class="col-3">
+                  <h6 class="mb-0  d-none d-sm-block">お気に入り俳優</h6>
+                </div>
+                <div class="col-3">
+                  <h6 class="mb-0  d-none d-sm-block">映画鑑賞数</h6>
+                </div>
+                <div class="col-3">
+                  <h6 class="mb-0 d-none d-sm-block">映画評価平均</h6>
+                </div>
+                <div class="col-3">
+                  <h6 class="mb-0 d-none d-sm-block">コメント数</h6>
+                </div>
+              </div>
+              <div class="col row">
+                <div class="col-3">
+                    <h1 class="float-right d-none d-sm-block">{{count($favorite_actors)}}人</h1>
+                </div>
+                <div class="col-3">
+                  <h1 class="float-right d-none d-sm-block">{{count($reviews)}}本</h1>
+                </div>
+                <div class="col-3">
+                    <h1 class="float-right d-none d-sm-block">{{round($avg,2)}}</h1>
+                </div>
+                <div class="col-3">
+                  <h1 class="float-right d-none d-sm-block">{{count($reviews) + count($posts)}}</h1>
+                </div>
+              </div>
             </div>
+          <div class="row d-sm-none d-block">
             <div class="col row float-left">
               <div class="col-3">
                 <h6 class="mb-0">お気に入り俳優</h6>
@@ -27,7 +59,7 @@
                 <h6 class="mb-0">映画評価平均</h6>
               </div>
               <div class="col-3">
-                <h6 class="mb-0">レビュー<br>コメント数</h6>
+                <h6 class="mb-0">コメント数</h6>
               </div>
             </div>
             <div class="col row">
@@ -44,19 +76,13 @@
                 <h1 class="float-right">{{count($reviews) + count($posts)}}</h1>
               </div>
             </div>
-            <div class="col">
-              <a href={{route('users.edit', $user->id)}}>
-                <button>
-                  <p class="my-auto">編集</p>
-                </button>
-              </a>
-            </div>
+          </div>
             @if(isset($follow))
               <div class="col">
                 <div class="mt-0 text-center">
                   <button data-user-id="{{$user->id}}" data-follow="ture" id="follow_button" type="button" class="follow btn btn-outline-success btn-xs">
                     <span id="follow_text">
-                      <p class="my-auto">フォローを外す</p>
+                      <h6 class="my-auto">フォローを外す</h6>
                     </span>
                   </button>
                 </div>
@@ -66,47 +92,38 @@
                 <div class="mt-0">
                   <button data-user-id="{{$user->id}}" data-follow="false" id="follow_button" type="button" class="follow btn btn-outline-success btn-xs">
                     <span id="follow_text">
-                      <p class="my-auto">フォローする</i></p>
+                      <h6 class="my-auto">フォローする</i></h6>
                     </span>
                   </button>
                 </div>
               </div>
             @endif
-            @if(Auth::id() === 1)
-              <div class="col">
-                <a href='/test'>
-                  <button>
-                    <p class="my-auto">更新</p>
-                  </button>
-                </a>
-              </div>
-            @endif
-          </div>
+         
         </div>
       </div>  
   </div>
 
 
-  <div class="actorcontentList sticky-top border-bottom align-items-center ">
+  <div class="usercontentList sticky-top border-bottom align-items-center ">
     <div class="uservar pt-2">
       <div class="row container mx-auto responsive">
-        <div class="mycontent1 col-2 text-center"date-toggle="collapse"
+        <div class="mycontent1 col-md-2 col-4 text-center"date-toggle="collapse"
         data-target="#movieRoom">
           <h6>鑑賞映画</h6>
         </div>
-        <div class="mycontent2 col-2 text-center"date-toggle="collapse"
+        <div class="mycontent2 col-md-2 col-4 text-center"date-toggle="collapse"
         data-target="#reviewRoom">
           <h6>レビュー</h6>
         </div>
-        <div class="mycontent3 col-2 text-center"date-toggle="collapse"
+        <div class="mycontent3 col-md-2 col-4 text-center"date-toggle="collapse"
         data-target="#twieetRoom">
           <h6>ツイート</h6>
         </div>
-        <div class="mycontent4 col-2 text-center"date-toggle="collapse"
+        <div class="mycontent4 col-md-2 col-4 text-center"date-toggle="collapse"
         data-target="#actorRoom">
           <h6>お気に入り俳優</h6>
         </div>
-        <div class="mycontent5 col-2 text-center"date-toggle="collapse"
+        <div class="mycontent5 col-md-2 col-4 text-center"date-toggle="collapse"
         data-target="#watchlistRoom">
           <h6>ウォッチリスト</h6>
         </div>

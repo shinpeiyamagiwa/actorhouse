@@ -9,11 +9,12 @@ class CastUpdateController extends Controller
 {
     //
     public function update(Request $request)  {
-        $curl = curl_init();
+        
         $start = $request->start;
         $end = $request->end;
         
         for($cast = $start; $cast <= $end; $cast++) {
+            $curl = curl_init();
             curl_setopt_array($curl, array(
                 CURLOPT_URL => "https://api.themoviedb.org/3/movie/$cast/credits?api_key=c04db39f7aa30c13badfff2f6954efda",
                 CURLOPT_RETURNTRANSFER => true,
@@ -26,10 +27,12 @@ class CastUpdateController extends Controller
             ));
             
             $response = curl_exec($curl);
+            curl_close($curl);
             $response = json_decode($response, true);
             if(isset($response['id'])) {
                 $castlist = Cast::where('movie_id', '=', $response['id'])
-                            ->first();
+                                    ->first();
+                dd($castlist);
                 if(is_null($castlist)){
                     if(isset($response['cast'])) {
                         $cas = count($response['cast']);

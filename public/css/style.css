@@ -99,14 +99,7 @@ body{
   height:350px;
   object-fit: cover;
 }
-.bg {
-  background-color: rgba(7, 7, 7, 0.808);
-  position: absolute;
-  top:0px;
-  left:0px;
-  width:100%;
-  height:565px;
-}
+
   .video {
   height:450px;
   }
@@ -225,26 +218,38 @@ body{
   background-color:white;
 }
 
+/* mypage */
 @media screen and (max-width:497px) {
   .userimage img{
-  width:80px;
-  height:80px;
+  width:30px;
+  height:30px;
   object-fit: cover;
 }
 .userTop {
-  height:400px;
+  height:280px;
 }
 .userTop h1 {
-  font-size:20px;
+  font-size:13px;
 }
 .userTop h6 {
-  font-size:3px;
+  font-size:1px;
 }
 .introduction {
   display:none;
 }
 .usercontentList h6 {
   font-size:8px;
+}
+.userprofile img {
+  width:30px;
+  height:30px; 
+  object-fit: cover;
+  display:block;
+}
+.uservar {
+  background-color: rgb(28, 19, 29);
+  color:white;
+  height:50px;
 }
 }
 @media screen and (min-width:497px) and (max-width:574px) {
@@ -262,6 +267,11 @@ body{
 .video {
   height:200px;
   }
+.uservar {
+  background-color: rgb(28, 19, 29);
+  color:white;
+  height:60px;
+}
 }
 @media screen and (min-width:575px) and (max-width:676px) {
   .userimage img{
@@ -279,6 +289,11 @@ body{
 .userTop h6{
   font-size:10px;
 }
+.uservar {
+  background-color: rgb(28, 19, 29);
+  color:white;
+  height:60px;
+}
 }
 @media screen and (min-width:677px) and (max-width:767px) {
   .userimage img{
@@ -295,6 +310,11 @@ body{
   .userTop h1 {
     font-size:25px;
   }
+  .uservar {
+    background-color: rgb(28, 19, 29);
+    color:white;
+    height:60px;
+  }
 }
 @media screen and (min-width:768px) and (max-width:991px) {
   .userimage img{
@@ -308,6 +328,14 @@ body{
   .userTop h1 {
     font-size:35px;
   }
+  .uservar {
+    background-color: rgb(28, 19, 29);
+    color:white;
+    height:30px;
+  }
+  .usercontentList h6 {
+    font-size:12px;
+  }
 }
 @media screen and (min-width:992px) {
   .userimage img{
@@ -320,6 +348,11 @@ body{
   }
   .userTop {
     height:400px;
+  }
+  .uservar {
+    background-color: rgb(28, 19, 29);
+    color:white;
+    height:35px;
   }
 }
 .usercontentList {
@@ -342,11 +375,7 @@ body{
 .navbar, .usercontentList { 
   background: rgb(28, 19, 29);
 } 
-.uservar {
-  background-color: rgb(28, 19, 29);
-  color:white;
-  height:35px;
-}
+
 .navbar h4{
   color:white;
 }
