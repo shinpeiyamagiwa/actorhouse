@@ -56,11 +56,11 @@
                           {{Form::selectRange('evaluate', 0, 5.0, '', ['placeholder' => ''])}}
                           </div>
                           <div class="form-group">
-                              {{Form::select('genre', ['','アクション', 'SF', 'ドラマ', 'コメディ', 'ホラー'], null, ['class' => 'field'])}}
+                              {{Form::select('genre', ['','アクション', 'サスペンス', 'ドラマ', 'コメディ', 'ホラー'], null, ['class' => 'field'])}}
                           </div>
                           <div class="form-group">
                               {!! Form::label('content', '感想：') !!}
-                              {!! Form::textarea('content', '鑑賞しました。', ['class'=>'form-control']) !!} 
+                              {!! Form::textarea('content', null, ['class'=>'form-control']) !!} 
                               <!-- <label for="point">感想</label>
                               <textarea name="editor1" class="form-control"></textarea> -->
                           </div>
@@ -208,7 +208,6 @@
                 <div class="card-header d-inline py-0">
                   <div class="row no-gutters mt-1">
                     {{-- <div class="col-1 rounded-circle postImages mr-2　d-inline-block">
-                      
                     </div> --}}
                     <div class="col-6 d-inline-block rounded-circle postImages mr-2">
                       <a href="/user/{{$review->user_id}}">

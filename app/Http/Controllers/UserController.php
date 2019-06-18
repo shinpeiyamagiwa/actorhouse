@@ -46,13 +46,14 @@ class UserController extends Controller
                                         ->select('content', 'user_id', 'posts.id')
                                         ->orderBy('id', 'desc')
                                         ->get();
-        // $comment = User::join('reviews', 'reviews.user_id', '=', 'users.id')
-        //                ->join('posts', 'posts.user_id', '=', 'users.id')
-        //                ->join('movies', 'reviews.movie_id', '=', 'movies.tmdb_id')
-        //                ->join('actors', 'posts.actor_id', '=', 'actors.tmdb_id')
-        //                ->where('users.id', '=', $id)
-        //                ->select('movies.title', 'actors.name', 'actors.image_path', 'movies.image_path')
-        //                ->get();
+        $comment = User::join('reviews', 'reviews.user_id', '=', 'users.id')
+                       ->join('posts', 'posts.user_id', '=', 'users.id')
+                       ->join('movies', 'reviews.movie_id', '=', 'movies.tmdb_id')
+                       ->join('actors', 'posts.actor_id', '=', 'actors.tmdb_id')
+                       ->where('users.id', '=', $id)
+                       ->select('movies.title', 'actors.name', 'actors.image_path', 'movies.image_path')
+                       ->get();
+                       
         $follow = Follow::where('follow_id', '=', $id)
                         ->where('follower_id', '=', Auth::id())
                         ->select('follower_id', 'follow_id')

@@ -40,7 +40,7 @@ class MovieUpdateController extends Controller
                     $option = array(
                         'part' => 'snippet', 
                         'key' => 'AIzaSyC23guRfvzzJOq4XhSu-8DDWBuj3yPwHfk',
-                        'q' => $response['results'][$i]['title']
+                        'q' => $response['results'][$i]['title']." "."予告編"
                      );
                     $url = "https://www.googleapis.com/youtube/v3/search?".http_build_query($option, 'a', '&');
                     $curl = curl_init($url);

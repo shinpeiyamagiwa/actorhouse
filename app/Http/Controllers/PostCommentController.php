@@ -9,24 +9,24 @@ use Illuminate\Http\Request;
 
 class PostCommentController extends Controller
 {
-    //
-    // public function store(Request $request)
-    // {
+    
+    public function store(Request $request)
+    {
         
         
        
-    //     $user = Auth::user();
-    //     $id = Auth::id();
+        $user = Auth::user();
+        $id = Auth::id();
         
                                
-    //     PostComment::create([
-    //         'content' => request('content'),
-    //         'user_id' => $id,
-    //         'posts_id' => request('actor_id')
-    //     ]);
+        PostComment::create([
+            'content' => request('content'),
+            'user_id' => $id,
+            'posts_id' => request('post_id')
+        ]);
        
         
 
-    //     return redirect('/user');
-    // }
+        return redirect('/user');
+    }
 }

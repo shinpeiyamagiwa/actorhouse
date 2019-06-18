@@ -83,16 +83,36 @@ class HomeController extends Controller
                         ->join('users', 'follow_id', '=', 'users.id')
                         ->where('follower_id', '=', $id)
                         ->select('posts.content', 'reviews.content', 'tweets.content', 'users.name', 'users.image_path')
-                        // ->orderBy('created_at', 'desc')
                         ->get();
-                        
+                        // dd($tweets);
+        $follow_reviews = Follow::join('reviews', 'follow_id', '=', 'reviews.user_id')
+                                ->join('users', 'follow_id', '=', 'users.id')
+                                ->leftjoin('movies', 'reviews.movie_id', '=', 'movies.tmdb_id')
+                                ->where('follower_id', '=', $id)
+                                ->orderBy('reviews.created_at', 'desc')
+                                ->select('reviews.content', 'users.name', 'users.image_path', 'users.id', 'movies.title', 'evaluate')
+                                ->get();
+        $follow_posts = Follow::join('posts', 'follow_id', '=', 'posts.user_id')
+                                ->join('users', 'follow_id', '=', 'users.id')
+                                ->leftjoin('actors', 'posts.actor_id', '=', 'actors.tmdb_id')
+                                ->where('follower_id', '=', $id)
+                                ->orderBy('posts.created_at', 'desc')
+                                ->select('posts.content', 'users.name', 'users.image_path', 'user_id', 'actors.name', 'actors.tmdb_id', 'actors.image_path', 'posts.id')
+                                ->get();
+        $follow_tweets = Follow::join('tweets', 'follow_id', '=', 'tweets.user_id')
+                                ->join('users', 'follow_id', '=', 'users.id')
+                                ->where('follower_id', '=', $id)
+                                ->orderBy('tweets.created_at', 'desc')
+                                ->select('tweets.content', 'users.name', 'users.image_path', 'user_id')
+                                ->get();
         $follow = Follow::where('follow_id', '=', $id)
                         ->where('follower_id', '=', Auth::id())
                         ->select('follower_id', 'follow_id')
                         ->first(); 
         return view('home', compact('user','favorite_actors', 'favorite_movies', 
         'watch_lists', 'reviews', 'avg', 'posts', 'tweets', 'follow','action_movies', 
-        'suspense_movies', 'drama_movies', 'comedy_movies', 'horror_movies'));
+        'suspense_movies', 'drama_movies', 'comedy_movies', 'horror_movies',
+        'follow_reviews', 'follow_posts', 'follow_tweets'));
     }
     
 

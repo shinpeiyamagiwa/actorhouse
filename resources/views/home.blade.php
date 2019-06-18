@@ -208,7 +208,7 @@
           <h6>レビュー</h6>
         </div>
         <div class="mycontent3 col-md-2 col-4 text-center"date-toggle="collapse"
-        data-target="#twieetRoom">
+        data-target="#tweetRoom">
           <h6>ツイート</h6>
         </div>
         <div class="mycontent4 col-md-2 col-4 text-center"date-toggle="collapse"
@@ -422,7 +422,303 @@
         </div>
       </div>
     </div>
-    <div id="twieetRoom" class="collapse">
+    <div id="tweetRoom" class="card collapse">
+      <div class="followList border-bottom align-items-center ">
+        <div class="followvar pt-2">
+          <div class="row container mx-auto responsive">
+            <div class="follow1 col-4 text-center"date-toggle="collapse"
+            data-target="#reviews">
+              <h6>映画レビュー</h6>
+            </div>
+            <div class="follow2 col-4 text-center"date-toggle="collapse"
+            data-target="#posts">
+              <h6>俳優登録</h6>
+            </div>
+            <div class="follow3 col-4 text-center"date-toggle="collapse"
+            data-target="#tweets">
+              <h6>ツイート</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="reviews" class="collapse">
+        <div class="responsive mb-2 mx-auto mt-5">
+          @if($follow_reviews)
+            <div class="review center-block">
+              <div class="container">
+                @foreach($follow_reviews as $follow_review)
+                  <div class="card border-success mb-3" >
+                    <div class="card-header d-inline py-0">
+                      <div class="row no-gutters mt-1">
+                        {{-- <div class="col-1 rounded-circle postImages mr-2　d-inline-block">
+                        </div> --}}
+                        <div class="col-6 d-inline-block rounded-circle postImages mr-2">
+                          <a href="/user/{{$follow_review->user_id}}">
+                            <p class="mt-2 mb-2">
+                              @if($user->image_path)
+                              <img src="/images/{{$follow_review->image_path}}" alt="" class="">
+                              @else
+                              <i class="fas fa-user"></i>
+                              @endif
+                              {{$follow_review->name}}
+                            </p>
+                          </a>
+                        </div>
+                        <div class="col-1 float-right">
+                          <div data-toggle="modal" data-target="#reviewreply">
+                            <i class="far fa-comment-dots float-left mt-2"></i>
+                            {{-- @if(isset($review->review_id))
+                            <a href="/review/comment/{{$review->id}}">
+                              <p>{{count($review->review_id)}}</p>
+                            </a>
+                            @endif --}}
+                          </div>
+                          <div class="modal fade" id="reviewreply"　tabindex="-1" role="dialog" 
+                            aria-labelledby="reviewReplyLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header bg-success">
+                                  <button class="close" data-dismiss="modal">
+                                    &times;
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                  {!! Form::open(['method'=>'review', 'action'=> 'ReviewCommentController@store']) !!}
+                                    <div class="form-group">
+                                        {!! Form::label('content', '') !!}
+                                        {!! Form::textarea('content', null, ['class'=>'form-control']) !!} 
+                                    </div>
+                                    <div class="form-group">
+                                        {{Form::hidden('review_id', $review->id)}} 
+                                    </div>
+                                    <div class="form-group">
+                                        {!! Form::submit('返信', null, ['class'=>'btn btn-success']) !!}
+                                    </div>
+                                    @if ($errors->any())
+                                      <div class="alert alert-danger">
+                                        <ul>
+                                          @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                          @endforeach
+                                        </ul>
+                                      </div>
+                                    @endif
+                                  {!! Form::close() !!}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-body pt-3">
+                      <div class="mb-0">
+                      @if(isset($follow_review->evaluate))
+                        <p class="mb-0">評価：{{$follow_review->evaluate}}</p>
+                      @endif
+                      {{$follow_review->title}}
+                      </div>
+                      <hr class="mt-1">
+                      @if(isset($follow_review->content))
+                        <p class="mb-0">{{$follow_review->content}}</p>
+                      @endif
+                    </div>
+                  </div>
+                @endforeach
+              </div>
+            </div>
+          @endif
+        </div>  
+      </div> 
+      <div id="posts" class="collapse">
+        <div class="responsive mb-2 mx-auto mt-5">
+          @if($follow_posts)
+            <div class="posts center-block">
+              <div class="container">
+                @foreach($follow_posts as $follow_post)
+                  <div class="card border-success mb-3" >
+                    <div class="card-header d-inline py-0">
+                      <div class="row no-gutters mt-1">
+                        {{-- <div class="col-1 rounded-circle postImages mr-2　d-inline-block">
+                        </div> --}}
+                        <div class="col-6 d-inline-block rounded-circle postImages mr-2">
+                          <a href="/user/{{$follow_post->user_id}}">
+                            <p class="mt-2 mb-2">
+                              @if($user->image_path)
+                              <img src="/images/{{$follow_post->image_path}}" alt="" class="">
+                              @else
+                              <i class="fas fa-user"></i>
+                              @endif
+                              {{$follow_post->name}}
+                            </p>
+                          </a>
+                        </div>
+                        <div class="col-1 float-right">
+                            <div data-toggle="modal" data-target="#postreply">
+                              <i class="far fa-comment-dots float-left mt-2"></i>
+                              {{-- @if(isset($review->review_id))
+                              <a href="/review/comment/{{$review->id}}">
+                                <p>{{count($review->review_id)}}</p>
+                              </a>
+                              @endif --}}
+                            </div>
+                            <div class="modal fade" id="postreply"　tabindex="-1" role="dialog" 
+                              aria-labelledby="postReplyLabel" aria-hidden="true">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                  <div class="modal-header bg-success">
+                                    <button class="close" data-dismiss="modal">
+                                      &times;
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+                                    {!! Form::open(['method'=>'post', 'action'=> 'PostCommentController@store']) !!}
+                                      <div class="form-group">
+                                          {!! Form::label('content', '') !!}
+                                          {!! Form::textarea('content', null, ['class'=>'form-control']) !!} 
+                                      </div>
+                                      <div class="form-group">
+                                          {{Form::hidden('post_id', $follow_post->id)}} 
+                                      </div>
+                                      <div class="form-group">
+                                          {!! Form::submit('返信', null, ['class'=>'btn btn-success']) !!}
+                                      </div>
+                                      @if ($errors->any())
+                                        <div class="alert alert-danger">
+                                          <ul>
+                                            @foreach ($errors->all() as $error)
+                                              <li>{{ $error }}</li>
+                                            @endforeach
+                                          </ul>
+                                        </div>
+                                      @endif
+                                    {!! Form::close() !!}
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="card-body pt-3">
+                      <div class="mb-0">
+                        <a href="/actor/{{$follow_post->tmdb_id}}">
+                          <p class="mt-2 mb-2">
+                            {{-- @if($follow_post->actors->image_path)
+                            <img src="/images/{{$follow_post->actors->image_path}}" alt="" class="">
+                            @else
+                            <i class="fas fa-user"></i>
+                            @endif --}}
+                            {{$follow_post->name}}
+                          </p>
+                        </a>
+                      </div>
+                      <hr class="mt-1">
+                      @if(isset($follow_post->content))
+                        <p class="mb-0">{{$follow_post->content}}</p>
+                      @endif
+                    </div>
+                  </div>
+                @endforeach
+              </div>
+            </div>
+          @endif
+        </div>  
+      </div> 
+      <div id="tweets" class="collapse">
+        <div class="responsive mb-2 mx-auto mt-5">
+          @if($follow_tweets)
+            <div class="tweets center-block">
+              <div class="container">
+                @foreach($follow_tweets as $follow_tweet)
+                  <div class="card border-success mb-3" >
+                    <div class="card-header d-inline py-0">
+                      <div class="row no-gutters mt-1">
+                        {{-- <div class="col-1 rounded-circle postImages mr-2　d-inline-block">
+                        </div> --}}
+                        <div class="col-6 d-inline-block rounded-circle postImages mr-2">
+                          <a href="/user/{{$follow_tweet->user_id}}">
+                            <p class="mt-2 mb-2">
+                              @if($user->image_path)
+                              <img src="/images/{{$follow_tweet->image_path}}" alt="" class="">
+                              @else
+                              <i class="fas fa-user"></i>
+                              @endif
+                              {{$follow_tweet->name}}
+                            </p>
+                          </a>
+                        </div>
+                        {{-- <div class="col-1 float-right">
+                          <div data-toggle="modal" data-target="#reviewreply">
+                            <i class="far fa-comment-dots float-left mt-2"></i>
+                            @if(isset($review->review_id))
+                            <a href="/review/comment/{{$review->id}}">
+                              <p>{{count($review->review_id)}}</p>
+                            </a>
+                            @endif
+                          </div> --}}
+                          {{-- <div class="modal fade" id="reviewreply"　tabindex="-1" role="dialog" 
+                            aria-labelledby="reviewReplyLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header bg-success">
+                                  <button class="close" data-dismiss="modal">
+                                    &times;
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                  {!! Form::open(['method'=>'tweet', 'action'=> 'TweetCommentController@store']) !!}
+                                    <div class="form-group">
+                                        {!! Form::label('content', '') !!}
+                                        {!! Form::textarea('content', null, ['class'=>'form-control']) !!} 
+                                    </div>
+                                    <div class="form-group">
+                                        {!! Form::submit('返信', null, ['class'=>'btn btn-success']) !!}
+                                    </div>
+                                    @if ($errors->any())
+                                      <div class="alert alert-danger">
+                                        <ul>
+                                          @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                          @endforeach
+                                        </ul>
+                                      </div>
+                                    @endif
+                                  {!! Form::close() !!}
+                                </div>
+                              </div>
+                            </div>
+                          </div> --}}
+                        {{-- </div> --}}
+                      </div>
+                    </div>
+                    <div class="card-body pt-3">
+                        <p class="mb-0">{{$follow_tweet->content}}</p>
+                    </div>
+                  </div>
+                @endforeach
+              </div>
+            </div>
+          @endif
+        </div>  
+      </div> 
+      <div id="tweets" class="collapse">
+        <div class="row responsive mb-2 container-fluid mx-auto mt-5">
+            @if($follow_tweets)
+              @foreach($follow_tweets as $follow_tweet)
+                <div class="movieList col-lg-2 col-sm-3 col-4 float-right"
+                data-toggle="modal" data-target="#moviediary">
+                  <a href="/movie/{{$follow_tweet->movie_id}}">
+                    <img src="http://image.tmdb.org/t/p/w500/{{$follow_tweet->image_path}}" alt="" class="img-fluid mb-2">
+                    <p>{{$follow_tweet->title}}</p>
+                  </a>
+                </div>
+              @endforeach
+            @endif
+        </div>
+      </div> 
+    </div>
+    {{-- <div id="twieetRoom" class="collapse">
       <div class="responsive mb-2 mx-auto mt-5">
         @if($tweets)
           <div class="tweet img-fluid  center-block">
@@ -486,7 +782,7 @@
                             </div>
                           </div>
                         </div> --}}
-                    </div>
+                    {{-- </div>
                   </div>
                   <div class="card-body">
                       {{$tweet->content}}
@@ -498,7 +794,7 @@
           @endif
         </div>
       </div>
-    </div>
+    </div> --}} 
     </div>
     <div id="actorRoom" class="collapse">
       <div class="myactorList row responsive mb-2 container mx-auto mt-5">
@@ -540,19 +836,19 @@
     $('.mycontent1').click(function () {
     $('#movieRoom').addClass('show');
     $('#reviewRoom').removeClass('show');
-    $('#twieetRoom').removeClass('show');
+    $('#tweetRoom').removeClass('show');
     $('#actorRoom').removeClass('show');
     $('#watchlistRoom').removeClass('show');
   });
   $('.mycontent2').click(function () {
     $('#reviewRoom').addClass('show');
     $('#movieRoom').removeClass('show');
-    $('#twieetRoom').removeClass('show');
+    $('#tweetRoom').removeClass('show');
     $('#actorRoom').removeClass('show');
     $('#watchlistRoom').removeClass('show');
   });
   $('.mycontent3').click(function () {
-    $('#twieetRoom').addClass('show');
+    $('#tweetRoom').addClass('show');
     $('#movieRoom').removeClass('show');
     $('#reviewRoom').removeClass('show');
     $('#actorRoom').removeClass('show');
@@ -562,14 +858,14 @@
     $('#actorRoom').addClass('show');
     $('#movieRoom').removeClass('show');
     $('#reviewRoom').removeClass('show');
-    $('#twieetRoom').removeClass('show');
+    $('#tweetRoom').removeClass('show');
     $('#watchlistRoom').removeClass('show');
   });
   $('.mycontent5').click(function () {
     $('#watchlistRoom').addClass('show');
     $('#movieRoom').removeClass('show');
     $('#reviewRoom').removeClass('show');
-    $('#twieetRoom').removeClass('show');
+    $('#tweetRoom').removeClass('show');
     $('#actorRoom').removeClass('show');
   });</script>
   <script>
@@ -621,6 +917,23 @@
     $('#drama').removeClass('show');
     $('#comedy').removeClass('show');
   });</script>
+  <script>
+    $('.follow1').click(function () {
+    $('#reviews').addClass('show');
+    $('#posts').removeClass('show');
+    $('#tweets').removeClass('show');
+  });
+  $('.follow2').click(function () {
+    $('#posts').addClass('show');
+    $('#reviews').removeClass('show');
+    $('#tweets').removeClass('show');
+  });
+  $('.follow3').click(function () {
+    $('#tweets').addClass('show');
+    $('#reviews').removeClass('show');
+    $('#posts').removeClass('show');
+  });
+  </script>
 
   <!-- <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>

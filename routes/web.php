@@ -32,6 +32,7 @@ Route::get('/home', 'HomeController@index');
 Route::get('/home/edit', 'HomeController@edit');
 Route::post('/home/edit', 'HomeController@update');
 Route::post('/review/comment/store', 'ReviewCommentController@store');
+Route::post('/post/comment/store', 'PostCommentController@store');
 Route::get('/user/{id}', 'UserController@index');
 // Route::get('/user', 'UserController@index');
 // Ajaxにしたい
