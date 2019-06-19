@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Movie;
+use App\Http\Requests\CreateMovieRequest;
 use Illuminate\Http\Request;
 
 class AdminMovieController extends Controller
@@ -75,9 +76,11 @@ class AdminMovieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CreateMovieRequest $request, $id)
     {
         //
+        return $request->all();
+        
         Movie::where('movies.tmdb_id', '=', $id)
         ->update([
             'title' => $request->title,

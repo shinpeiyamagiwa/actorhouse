@@ -92,12 +92,7 @@
                         {{Form::selectRange('from_day', 1, 31, '', ['placeholder' => ''])}}日
                       </div> -->
                       <div class="form-group">
-                          {!! Form::label('image_path', 'タイトル：') !!}
-                          {!! Form::text('image_path', null, ['class'=>'form-control']) !!} 
-                      </div>
-                      <div class="form-group">
-                          {!! Form::label('content', '感想：') !!}
-                          {!! Form::textarea('content', null, ['class'=>'form-control']) !!} 
+                          {!! Form::textarea('content', null, ['class'=>'form-control','placeholder'=>'好きな作品や最新情報から好きなことを投稿しよう']) !!} 
                           <!-- <label for="point">感想</label>
                           <textarea name="editor1" class="form-control"></textarea> -->
                       </div>
@@ -107,14 +102,17 @@
                       <div class="form-group">
                           {!! Form::submit('記録', null, ['class'=>'btn btn-success']) !!}
                       </div>
-                      @if ($errors->any())
-                          <div class="alert alert-danger">
-                              <ul>
-                                  @foreach ($errors->all() as $error)
-                                      <li>{{ $error }}</li>
-                                  @endforeach
-                              </ul>
-                          </div>
+                      @if (count($errors) > 0 )
+                      <div class="alert alert-danger">
+                        <p>投稿できませんでした</p>
+                        <ul>
+                            @foreach($errors->all() as $error)
+                              <li>
+                                  {{ $error }}
+                              </li>
+                            @endforeach
+                          </ul>
+                      </div>
                       @endif
                       {!! Form::close() !!}
                     </div>
@@ -297,6 +295,26 @@
                 </div>
                 <div class="card-body">
                     {{$post->content}}
+                    {{-- <hr>
+                    @if($post_comments)
+                    @foreach($post_comments as $post_comment)
+                    <div class="row no-gutters mt-1">
+                      <div class="col-1 rounded-circle postImages mr-2 d-inline-block">
+                        @if($post_comment->image_path)
+                          <img src="/images/{{$post_comment->image_path}}" alt="" class="mt-2 float-right">
+                        @else
+                          <i class="fas fa-user mt-2 float-right"></i>
+                        @endif
+                      </div>
+                      <div class="col-5 float-left d-inline-block">
+                        <a href="/user/{{$post_comment->user_id}}">
+                          <p class="ml-1 mt-1 py-0">{{$post_comment->name}}<p>
+                        </a>
+                      </div>
+                    </div>
+                    <p>{{$post_comment->content}}</p>
+                    @endforeach
+                    @endif --}}
                 </div>
               </div>
               <hr>

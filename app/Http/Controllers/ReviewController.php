@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Actor;
 use App\FavoriteMovie;
 use App\Review;
+use App\Http\Requests\ReviewRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -12,8 +13,9 @@ use Illuminate\Validation\Rule;
 class ReviewController extends Controller
 {
     //
-    public function store(Request $request)
+    public function store(ReviewRequest $request)
     {
+        return $request->all();
         //
         $id = Auth::id();
         // Validator::make($request, [

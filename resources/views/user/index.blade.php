@@ -77,28 +77,23 @@
               </div>
             </div>
           </div>
-            @if(isset($follow))
-              <div class="col">
-                <div class="mt-0 text-center">
-                  <button data-user-id="{{$user->id}}" data-follow="ture" id="follow_button" type="button" class="follow btn btn-outline-success btn-xs">
-                    <span id="follow_text">
-                      <h6 class="my-auto">フォローを外す</h6>
-                    </span>
-                  </button>
-                </div>
+          <div class="col">
+            <div class="mt-0 text-center">
+              @if(isset($follow))
+                <button data-user-id="{{$user->id}}" data-follow="ture" id="follow_button" type="button" class="follow btn btn-outline-success btn-xs">
+                  <span id="follow_text">
+                    <h6 class="my-auto">フォロー解除</h6>
+                  </span>
+                </button>
+              @else
+                <button data-user-id="{{$user->id}}" data-follow="false" id="follow_button" type="button" class="follow btn btn-outline-success btn-xs">
+                  <span id="follow_text">
+                    <h6 class="my-auto">フォローする</i></h6>
+                  </span>
+                </button>
+              @endif
               </div>
-            @else
-              <div class="col">
-                <div class="mt-0">
-                  <button data-user-id="{{$user->id}}" data-follow="false" id="follow_button" type="button" class="follow btn btn-outline-success btn-xs">
-                    <span id="follow_text">
-                      <h6 class="my-auto">フォローする</i></h6>
-                    </span>
-                  </button>
-                </div>
-              </div>
-            @endif
-         
+          </div>
         </div>
       </div>  
   </div>
@@ -405,13 +400,13 @@
             url: 'https://actorhouse.test/follow/user/store',
             dataType: "json",
             data: {follow_id : follow_id}
-          }).done(function (response) {
+          })
+          .done(function (response) {
             // 通信成功時の処理
-            console.log(response['result'])
             if (response['result']) {
               alert('フォローしました！');
               $('.follow').data('follow', true);
-              // $('#watchlist_text').text('');
+              $('#follow_text').text('フォロー解除');
             }
           }).fail(function (err) {
             // 通信失敗時の処理
@@ -431,7 +426,7 @@
             if (response['result']) {
               alert('フォロー解除しました！');
               $('.follow').data('follow', false);
-              // $('#watchlist_text').text('気になる');
+              $('#follow_text').text('フォローする');
             }
           }).fail(function (err) {
             // 通信失敗時の処理

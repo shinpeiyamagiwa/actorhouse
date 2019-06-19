@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Actor;
 use App\FavoriteMovie;
 use App\Review;
+use App\Http\Requests\CreateActorRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -49,9 +50,10 @@ class AdminActorController extends Controller
     //     // ]);
     //     return redirect('/admin/actors');
     // }
-    public function store(Request $request)
+    public function store(CreateActorRequest $request)
     {
-        
+        return $request->all();
+
         Actor::create($request->all());
         return redirect('/admin/actors');
     }
@@ -89,9 +91,10 @@ class AdminActorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CreateActorRequest $request, $id)
     {
         //
+        return $request->all();
         $actor = Actor::findOrFail($id);
         
         Actor::where('actors.tmdb_id', '=', $id)

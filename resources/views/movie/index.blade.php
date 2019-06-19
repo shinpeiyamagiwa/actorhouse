@@ -242,7 +242,6 @@
                             <div class="modal-body">
                               {!! Form::open(['method'=>'review', 'action'=> 'ReviewCommentController@store']) !!}
                                 <div class="form-group">
-                                    {!! Form::label('content', '') !!}
                                     {!! Form::textarea('content', null, ['class'=>'form-control']) !!} 
                                 </div>
                                 <div class="form-group">
@@ -254,16 +253,18 @@
                                 <div class="form-group">
                                     {!! Form::submit('返信', null, ['class'=>'btn btn-success']) !!}
                                 </div>
-                                @if ($errors->any())
+                                {!! Form::close() !!}
+                                @if (count($errors) > 0 )
                                   <div class="alert alert-danger">
                                     <ul>
-                                      @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                      @endforeach
-                                    </ul>
+                                        @foreach($errors->all() as $error)
+                                          <li>
+                                              {{ $error }}
+                                          </li>
+                                        @endforeach
+                                      </ul>
                                   </div>
-                                @endif
-                              {!! Form::close() !!}
+                                  @endif
                             </div>
                           </div>
                         </div>

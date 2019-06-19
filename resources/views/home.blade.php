@@ -219,6 +219,10 @@
         data-target="#watchlistRoom">
           <h6>ウォッチリスト</h6>
         </div>
+        <div class="mycontent6 col-md-2 col-4 text-center"date-toggle="collapse"
+        data-target="#top20Room">
+          <h6>視聴TOP俳優</h6>
+        </div>
       </div>
     </div>
   </div> 

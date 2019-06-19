@@ -53,7 +53,17 @@
         {!! Form::submit('Update Actor', null, ['class'=>'btn btn-primary']) !!}
         </div>
         {!! Form::close() !!}
-        @include('includes.form_error')
+        @if (count($errors) > 0 )
+        <div class="alert alert-danger">
+          <ul>
+              @foreach($errors->all() as $error)
+                <li>
+                    {{ $error }}
+                </li>
+              @endforeach
+            </ul>
+        </div>
+        @endif
     </div>
  </div>
 @endsection

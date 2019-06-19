@@ -19,7 +19,7 @@ class FollowController extends Controller
             'follow_id' => $request->follow_id
         ]);
 
-        dd($request);
+       
         // return redirect('/user');
         return response()->json([
             'result' => true

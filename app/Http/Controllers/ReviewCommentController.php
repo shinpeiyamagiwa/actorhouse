@@ -4,14 +4,16 @@ namespace App\Http\Controllers;
 
 use App\ReviewComment;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\ReviewRequest;
 use Illuminate\Http\Request;
 
 class ReviewCommentController extends Controller
 {
     //
-    public function store(Request $request)
+    public function store(ReviewRequest $request)
     {
         //
+        return $request->all();
         $id = Auth::id();
         // Validator::make($request, [
         //     'movie_id' => Rule::unique('reviews')->where(function ($query) {

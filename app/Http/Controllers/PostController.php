@@ -4,14 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\PostRequest;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
     //
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
         //
+        return $request->all();
         
        
         // 現在認証されているユーザーの取得

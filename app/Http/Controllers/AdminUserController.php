@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Actor;
+use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
 
 
@@ -77,9 +78,10 @@ class AdminUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserRequest $request, $id)
     {
         //
+        return $request->all();
         $user = User::findOrFail($id);
         
         $input = $request->all();
