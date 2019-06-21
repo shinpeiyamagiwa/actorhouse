@@ -10,6 +10,7 @@ class Movie extends Model
     protected $fillable = [
         'title',
         'image_path',
+        'backdrop_path',
         'video_link',
         'screen_time',
         'released_at',

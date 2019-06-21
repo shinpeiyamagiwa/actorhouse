@@ -32,7 +32,7 @@ class CastUpdateController extends Controller
             if(isset($response['id'])) {
                 $castlist = Cast::where('movie_id', '=', $response['id'])
                                     ->first();
-                dd($castlist);
+                
                 if(is_null($castlist)){
                     if(isset($response['cast'])) {
                         $cas = count($response['cast']);

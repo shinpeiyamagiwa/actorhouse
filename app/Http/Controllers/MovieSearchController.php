@@ -13,11 +13,9 @@ class MovieSearchController extends Controller
         $moviekeyword = $request->input('title');
         $actorkeyword = $request->input('name');
         if($moviekeyword) {
-            $movies = Movie::leftJoin('casts', 'casts.movie_id', '=', 'movies.tmdb_id')
-                    ->leftJoin('actors', 'casts.actor_id', '=', 'actors.tmdb_id')
-                    ->where('movies.title', 'like', '%'.$moviekeyword.'%')
+            $movies = Movie::where('movies.title', 'like', '%'.$moviekeyword.'%')
                     // ->orWhere('actors.name', 'like', '%'.$moviekeyword.'%')
-                    ->select('title', 'movies.image_path', 'movies.tmdb_id', 'actors.name')
+                    ->select('title', 'movies.image_path', 'movies.tmdb_id')
                     ->get();
             $actors = null;
         }

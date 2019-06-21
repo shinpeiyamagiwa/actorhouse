@@ -232,23 +232,23 @@
       <div class="genretList border-bottom align-items-center ">
         <div class="genrevar pt-2">
           <div class="row container mx-auto responsive">
-            <div class="genre1 col-2 text-center"date-toggle="collapse"
+            <div class="genre1 col-md-2 col-4 text-center"date-toggle="collapse"
             data-target="#all">
               <h6>全ジャンル</h6>
             </div>
-            <div class="genre2 col-2 text-center"date-toggle="collapse"
+            <div class="genre2 col-md-2 col-4 text-center"date-toggle="collapse"
             data-target="#action">
               <h6>アクション</h6>
             </div>
-            <div class="genre3 col-2 text-center"date-toggle="collapse"
+            <div class="genre3 col-md-2 col-4 text-center"date-toggle="collapse"
             data-target="#suspense">
               <h6>サスペンス</h6>
             </div>
-            <div class="genre4 col-2 text-center"date-toggle="collapse"
+            <div class="genre4 col-md-2 col-4 text-center"date-toggle="collapse"
             data-target="#drama">
               <h6>ドラマ</h6>
             </div>
-            <div class="genre5 col-2 text-center"date-toggle="collapse"
+            <div class="genre5 col-md-2 col-4 text-center"date-toggle="collapse"
             data-target="#comedy">
               <h6>コメディ</h6>
             </div>
@@ -259,7 +259,7 @@
           </div>
         </div>
       </div>
-      <div id="all" class="collapse">
+      <div id="all" class="collapse show">
         <div class="row responsive mb-2 container-fluid mx-auto mt-5">
             @if($favorite_movies)
               @foreach($favorite_movies as $favorite_movie)

@@ -2,7 +2,16 @@
 
 @section('content')
 <!-- 映画紹介 -->
-<div class="movieTop jumbotron mt-4 mb-2">
+<div class="movieTop jumbotron mt-4 mb-0"
+@isset($movie->backdrop_path)
+  style="background-image:url('http://image.tmdb.org/t/p/w500/{{$movie->backdrop_path}}');
+  background-repeat:no-repeat;
+  background-size:cover;
+  object-fit: cover;
+  color:white;
+  "
+  @endisset>
+  <div class="bg"></div>
   <div class="container-fluid">
     <div class="row">
       <div class="movieimage col-sm-4 mb-3">
@@ -109,7 +118,7 @@
               </div>
             @else
               <div class="mt-0">
-                <button data-movie-id="{{$movie->tmdb_id}}" data-watchlist="false" id="watchlist_button" type="button" class="watchList btn-xs btn-outline-success btn-xs">
+                <button data-movie-id="{{$movie->tmdb_id}}" data-watchlist="false" id="watchlist_button" type="button" class="watchList btn btn-outline-success btn-xs">
                   <span id="watchlist_text">
                     <p class="my-auto"><i class="fas fa-list-ol"></i></p>
                   </span>
@@ -158,7 +167,7 @@
   </div>  
 </div>
 
-<div class="actorcontentList sticky-top border-bottom align-items-center mt-0">
+<div class="actorcontentList sticky-top border-bottom align-items-center pt-2">
   <div class="row container mx-auto responsive">
     <div class="mycontent1 col-4 text-center"date-toggle="collapse"
     data-target="#actorRoom">

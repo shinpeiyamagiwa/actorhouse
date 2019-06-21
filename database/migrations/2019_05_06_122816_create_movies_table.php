@@ -19,6 +19,7 @@ class CreateMoviesTable extends Migration
             $table->string('title');
             $table->string('homepage')->nullable();
             $table->string('image_path')->nullable();
+            $table->string('backdrop_path')->nullable();
             $table->string('video_link')->nullable();
             $table->integer('screen_time')->nullable();
             $table->date('released_at')->nullable();
