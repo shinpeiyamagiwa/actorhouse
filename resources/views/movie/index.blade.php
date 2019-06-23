@@ -40,7 +40,7 @@
             @if(!$review)
               <div class="mt-0">
                 <button class="btn btn-outline-success"
-                data-toggle="modal" data-target="#moviediary">
+                data-toggle="modal" data-target="#moviediary" >
                   <p class="my-auto"><i class="fas fa-book"></i></p>
                 </button>
                 <br>
@@ -54,7 +54,7 @@
                           &times;
                         </button>
                       </div>
-                      <div class="modal-body">
+                      <div class="modal-body text-dark">
                       <!-- <form action="form-group"> -->
                       {!! Form::open(['method'=>'POST', 'action'=> 'ReviewController@store']) !!}
                           <!-- <label for="point">評価</label>
@@ -65,11 +65,12 @@
                           {{Form::selectRange('evaluate', 0, 5.0, '', ['placeholder' => ''])}}
                           </div>
                           <div class="form-group">
+                              {!! Form::label('genre', 'ジャンル：') !!}
                               {{Form::select('genre', ['','アクション', 'サスペンス', 'ドラマ', 'コメディ', 'ホラー'], null, ['class' => 'field'])}}
                           </div>
                           <div class="form-group">
                               {!! Form::label('content', '感想：') !!}
-                              {!! Form::textarea('content', null, ['class'=>'form-control']) !!} 
+                              {!! Form::textarea('content', '鑑賞しました', ['class'=>'form-control']) !!} 
                               <!-- <label for="point">感想</label>
                               <textarea name="editor1" class="form-control"></textarea> -->
                           </div>
@@ -166,7 +167,8 @@
     </div>
   </div>  
 </div>
-
+<div class="bg-light">
+ 
 <div class="actorcontentList sticky-top border-bottom align-items-center pt-2">
   <div class="row container mx-auto responsive">
     <div class="mycontent1 col-4 text-center"date-toggle="collapse"
@@ -184,8 +186,9 @@
   </div>
 </div>  
 
-<div class="moviecontent"> 
-  <div id="actorRoom" class="collapse">
+
+<div class="moviecontent bg-light"> 
+  <div id="actorRoom" class="collapse bg-light">
     <div class="container">
       <div class="row responsive mb-2 mx-0 mt-5">
         @if($casts)
@@ -201,13 +204,13 @@
       </div>
     </div>
   </div>
-  <div id="videoRoom" class="container collapse show">
+  <div id="videoRoom" class="container collapse show bg-light">
     <div class="row responsive mb-2 container mx-auto mt-5">
     <iframe width=100% height=500px src="https://www.youtube.com/embed/{{$movie->video_link}}" 
       frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>    
     </div>
   </div>
-  <div id="reviewsRoom" class="collapse">
+  <div id="reviewsRoom" class="collapse bg-light">
     <div class="responsive mb-2 mx-auto mt-5">
       @if($reviews)
         <div class="review center-block">
@@ -300,7 +303,8 @@
       @endif
     </div>      
   </div>     
-</div>       
+</div>  
+</div>     
 <hr>
 <script>
   $('.mycontent1').click(function () {

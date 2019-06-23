@@ -189,10 +189,11 @@
   <div class="actorcontent"> 
     <div id="twieetRoom" class="card collapse">
       <h5>{{$actor->name}}のアルバムを作ろう</h5>
-        {!! Form::model($actor,['method'=>'PATCH', 'action'=> ['ActorController@update', $actor->tmdb_id]]) !!}
+        {!! Form::model($actor,['method'=>'PATCH', 'action'=> ['ActorController@upload', $actor->tmdb_id], 'files' => true]) !!}
+        {{ csrf_field() }}
           <div class="form-group">
-              {!! Form::label('image_path', 'Image:') !!}
-              {!! Form::file('image_path', null, ['class'=>'form-control']) !!}
+              {!! Form::label('actor_image', 'Image:') !!}
+              {!! Form::file('actor_image', null, ['class'=>'form-control']) !!}
           </div> 
           <div class="form-group">
               {{Form::hidden('user_id', $user->id)}} 
@@ -206,27 +207,20 @@
         {!! Form::close() !!}
         @include('includes.form_error')
         <div class="row responsive mb-2 mx-0 mt-5">
-          @if($images)
-            @foreach($images as $image)
+            @foreach($files as $file)
               <div class="movieList col-lg-2 col-sm-3 col-4">
-                  <img src="/images/{{$image->image_path}}" alt="" class="img-fluid mb-2">
+                <img src="{{$file->image_url}}" alt="" class="img-fluid mb-2">
               </div>
-              @if($image->user_id==$userId OR $userId==1)
-              {!! Form::open(['method'=>'POST', 'action'=> 'ActorController@delete']) !!}
-              {{Form::hidden('actor_id', $actor->tmdb_id)}} 
-              {{Form::hidden('id', $image->id)}} 
-              {!! Form::submit('削除', null, ['class'=>'btn btn-primary']) !!}
-              {!! Form::close() !!}
-                {{-- <a href="/actor/images/delete">
-                  <button>
-                    <p>削除</p>
-                  </button>
-                </a> --}}
+              @if($file->user_id==$userId || $userId==1)
+                {!! Form::open(['method'=>'POST', 'action'=> 'ActorController@delete']) !!}
+                {{Form::hidden('actor_id', $actor->tmdb_id)}} 
+                {{Form::hidden('id', $file->id)}} 
+                {!! Form::submit('削除', null, ['class'=>'btn btn-primary']) !!}
+                {!! Form::close() !!} 
               @endif
             @endforeach
-          @endif
         </div>
-    </div>
+    </div> 
     <div id="talkRoom" class="collapse">
       <div class="responsive mb-2 mt-5">
         @if($posts)

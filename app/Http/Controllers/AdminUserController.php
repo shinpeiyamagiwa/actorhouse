@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Actor;
 use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 
@@ -80,16 +82,18 @@ class AdminUserController extends Controller
      */
     public function update(UserRequest $request, $id)
     {
-        //
-        return $request->all();
-        $user = User::findOrFail($id);
-        
-        $input = $request->all();
 
-    //    dd($request->all());
+        $file = $request->file('image_path');
         
-        $user->update($input);
-        return redirect('/home');
+        // s3のuploadsファイルに追加
+        $path = Storage::disk('s3')->putFile('/', $file, 'public');
+
+        $input = $request->all();
+        
+        User::where('id', Auth::id())
+          ->update(['image_path' => $path]);
+
+        return redirect("/");
     }
 
     /**

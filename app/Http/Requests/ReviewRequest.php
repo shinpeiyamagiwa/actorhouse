@@ -25,7 +25,7 @@ class ReviewRequest extends FormRequest
     {
         return [
             //
-            'content' => 'max:300',
+            'content' => 'required|max:300',
         ];
     }
 

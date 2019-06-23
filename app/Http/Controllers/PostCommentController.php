@@ -14,7 +14,7 @@ class PostCommentController extends Controller
     public function store(PostRequest $request)
     {
         
-        return $request->all();
+        $validated = $request->validated();
        
         $user = Auth::user();
         $id = Auth::id();

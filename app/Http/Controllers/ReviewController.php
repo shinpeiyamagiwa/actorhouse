@@ -15,7 +15,7 @@ class ReviewController extends Controller
     //
     public function store(ReviewRequest $request)
     {
-        return $request->all();
+        $validated = $request->validated();
         //
         $id = Auth::id();
         // Validator::make($request, [

@@ -12,8 +12,8 @@ class PostController extends Controller
     //
     public function store(PostRequest $request)
     {
-        //
-        return $request->all();
+        
+        $validated = $request->validated();
         
        
         // 現在認証されているユーザーの取得

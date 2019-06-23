@@ -15,7 +15,7 @@
 Route::get('/', 'TopController@index');
 Route::get('/movie/{tmdb_id}', 'MovieController@index');
 Route::get('/actor/{tmdb_id}', 'ActorController@index');
-Route::patch('/actor/{tmdb_id}/images', 'ActorController@update');
+Route::patch('/actor/{tmdb_id}/images', 'ActorController@upload');
 Route::post('/search/movie', 'MovieSearchController@index');
 Route::post('/actor/images/delete','ActorController@delete');
 

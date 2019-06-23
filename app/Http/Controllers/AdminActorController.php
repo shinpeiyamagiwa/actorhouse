@@ -94,7 +94,7 @@ class AdminActorController extends Controller
     public function update(CreateActorRequest $request, $id)
     {
         //
-        return $request->all();
+        $validated = $request->validated();
         $actor = Actor::findOrFail($id);
         
         Actor::where('actors.tmdb_id', '=', $id)

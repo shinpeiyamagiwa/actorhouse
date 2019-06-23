@@ -10,6 +10,6 @@ class ActorImages extends Model
     protected $fillable = [
         'user_id',
         'actor_id',
-        'image_path'
+        'actor_image'
     ];
 }

@@ -9,13 +9,14 @@ use App\Post;
 use App\FavoriteActor;
 use App\FavoriteMovie;
 use App\ActorImages;
+use Intervention\Image\ImageManagerStatic as Image;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 
 class ActorController extends Controller
 {
     //
     public function index($id) {
-        
          // 現在認証されているユーザーの取得
          $user = Auth::user();
          // 現在認証されているユーザーのID取得
@@ -45,51 +46,49 @@ class ActorController extends Controller
                                 ->select('movies.image_path')
                                 ->first();
                                 
-        $images = ActorImages::where('actor_id', '=', $id)
-                                ->select('actor_images.id', 'image_path', 'user_id')
-                                ->get();
-
-        
         $watch_movie = FavoriteMovie::join('casts', 'favorite_movies.movie_id','=', 'casts.movie_id')
                                 ->where('user_id', '=', $userId)
                                 ->where('casts.actor_id', '=', $id)
                                 ->get();
         
-
+        $files = ActorImages::where('actor_id', '=', $id)
+                            ->select('actor_images.id', 'actor_image', 'user_id')
+                            ->get();
+        foreach($files as $file) {
+            $file->image_url = Storage::disk('s3')->url($file->actor_image);
+        }
 
         return view('actor.index',compact('user', 'userId', 'actor', 'works', 'posts', 
-        'favorite_actors', 'fun_member', 'bg_image', 'images', 'watch_movie'));
-        
-
-
-
+        'favorite_actors', 'fun_member', 'bg_image', 'watch_movie', 'files'));
     }
-    public function update(Request $request, $id)
+
+    public function upload(Request $request, $id)
     {
-        //
-       
+        $file = $request->file('actor_image');
+        // s3のuploadsファイルに追加
+        $path = Storage::disk('s3')->putFile('/', $file, 'public');
+
         $input = $request->all();
-        // dd($input);
+
         ActorImages::create([
             'user_id' => $input['user_id'],
             'actor_id' => $input['actor_id'],
-            'image_path' => $input['image_path']
+            'actor_image' => $path
         ]);
-    //    dd($request->all());
-        
+
         return redirect("/actor/$id");
     }
 
     public function delete(Request $request)
     {
-        //
         $id = $request['actor_id'];
         $userId = Auth::id();
+        $file = ActorImages::where('id', $request['id'])
+                           ->select('actor_image')
+                           ->first();
         ActorImages::where('id', $request['id'])->delete();
-        
-        
-    //    dd($request->all());
-        
+        Storage::disk('s3')->delete($file->actor_image, 'public');
+
         return redirect("/actor/$id");
     }
     

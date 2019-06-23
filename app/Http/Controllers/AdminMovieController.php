@@ -79,7 +79,7 @@ class AdminMovieController extends Controller
     public function update(CreateMovieRequest $request, $id)
     {
         //
-        return $request->all();
+        $validated = $request->validated();
         
         Movie::where('movies.tmdb_id', '=', $id)
         ->update([

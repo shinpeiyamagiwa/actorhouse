@@ -11,7 +11,7 @@ class TweetController extends Controller
     //
     public function store(TweetRequest $request)
     {
-        return $request->all();
+        $validated = $request->validated();
         
         $id = Auth::id();
 

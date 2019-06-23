@@ -17,7 +17,7 @@ class CreateActorImagesTable extends Migration
             $table->bigIncrements('id');
             $table->integer('user_id');
             $table->integer('actor_id');
-            $table->string('image_path');
+            $table->string('actor_image');
             $table->timestamps();
         });
     }

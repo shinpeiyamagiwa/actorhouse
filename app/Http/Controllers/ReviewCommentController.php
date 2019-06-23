@@ -13,7 +13,7 @@ class ReviewCommentController extends Controller
     public function store(ReviewRequest $request)
     {
         //
-        return $request->all();
+        $validated = $request->validated();
         $id = Auth::id();
         // Validator::make($request, [
         //     'movie_id' => Rule::unique('reviews')->where(function ($query) {

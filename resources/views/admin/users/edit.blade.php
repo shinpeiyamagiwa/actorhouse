@@ -5,7 +5,7 @@
 <div class="container">
     <h1>Edit User</h1>
 
-    {!! Form::model($user,['method'=>'PATCH', 'action'=> ['AdminUserController@update', $user->id]]) !!}
+    {!! Form::model($user,['method'=>'PATCH', 'action'=> ['AdminUserController@update', $user->id],'files' => true]) !!}
     <!--  -->
     <div class="form-group">
         {!! Form::label('name', 'Name:') !!}

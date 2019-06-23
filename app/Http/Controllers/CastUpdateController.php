@@ -13,10 +13,10 @@ class CastUpdateController extends Controller
         $start = $request->start;
         $end = $request->end;
         
-        for($cast = $start; $cast <= $end; $cast++) {
+        for($movie_id = $start; $movie_id <= $end; $movie_id++) {
             $curl = curl_init();
             curl_setopt_array($curl, array(
-                CURLOPT_URL => "https://api.themoviedb.org/3/movie/$cast/credits?api_key=c04db39f7aa30c13badfff2f6954efda",
+                CURLOPT_URL => "https://api.themoviedb.org/3/movie/$movie_id/credits?api_key=c04db39f7aa30c13badfff2f6954efda",
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => "",
                 CURLOPT_MAXREDIRS => 10,
@@ -29,22 +29,22 @@ class CastUpdateController extends Controller
             $response = curl_exec($curl);
             curl_close($curl);
             $response = json_decode($response, true);
+
             if(isset($response['id'])) {
-                $castlist = Cast::where('movie_id', '=', $response['id'])
+                $castlist = Cast::where('movie_id', '=', $movie_id)
                                     ->first();
-                
                 if(is_null($castlist)){
                     if(isset($response['cast'])) {
-                        $cas = count($response['cast']);
-                        for ($i=0; $i<$cas; $i++) {
+                        
+                        foreach ($response['cast'] as $cast) {
                             Cast::create([
-                                'movie_id' => $response['id'],
-                                'actor_id' => $response['cast'][$i]['id'],
+                                'movie_id' => $movie_id,
+                                'actor_id' => $cast['id'],
                             ]); 
-                            $new = FavoriteActor::where('favorite_actors.actor_id', '=', $response['cast'][$i]['id'])
-                                                ->first();
-                            if(isset($new)) {
-                                FavoriteActor::where('favorite_actors.actor_id', '=', $response['cast'][$i]['id'])
+                            $news = FavoriteActor::where('favorite_actors.actor_id', '=', $cast['id'])
+                                                ->get();
+                            foreach ($news as $new) {
+                                FavoriteActor::where('favorite_actors.actor_id', '=', $cast['id'])
                                             ->update(['new' => 1]);                       
                             }
                         }

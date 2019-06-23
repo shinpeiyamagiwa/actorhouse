@@ -11,6 +11,7 @@ use App\Review;
 use App\Post;
 use App\Follow;
 use App\PostComment;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -26,10 +27,7 @@ class HomeController extends Controller
         $user = Auth::user();
         // 現在認証されているユーザーのID取得
         $id = Auth::id();
-        $favorite_actors = FavoriteActor::join('actors', 'favorite_actors.actor_id', '=', 'actors.tmdb_id')
-                                        ->where('favorite_actors.user_id', '=', $id)
-                                        ->select('actor_id', 'actors.name', 'actors.image_path')
-                                        ->get();
+        
         $favorite_actors = FavoriteActor::join('actors', 'favorite_actors.actor_id', '=', 'actors.tmdb_id')
                                         ->where('favorite_actors.user_id', '=', $id)
                                         ->select('actor_id', 'actors.name', 'actors.image_path', 'new')
@@ -63,6 +61,18 @@ class HomeController extends Controller
                                         ->where('genre', '=', 5)
                                         ->select('movie_id', 'movies.title', 'movies.image_path')
                                         ->get();
+
+
+        // TODO: SQL複数回投げずに、ジャンル分けする
+        // $action = [];
+        // $horror = [];
+        // ...etc
+        // foreach ($favorite_movies as $movie) {
+        //     if ($movie->genre == 1) {
+        //         array_push($action, $movie);
+        //     }
+        //     ...etc
+        // }
         $watch_lists = WatchList::join('movies', 'watch_lists.movie_id', '=', 'movies.tmdb_id')
                                         ->where('watch_lists.user_id', '=', $id)
                                         ->select('movie_id', 'movies.title', 'movies.image_path')
@@ -89,7 +99,7 @@ class HomeController extends Controller
                         ->join('tweets', 'follow_id', '=', 'tweets.user_id')
                         ->join('users', 'follow_id', '=', 'users.id')
                         ->where('follower_id', '=', $id)
-                        ->select('posts.content', 'reviews.content', 'tweets.content', 'users.name', 'users.image_path')
+                        ->select('posts.content','reviews.content', 'tweets.content', 'users.name', 'users.image_path')
                         ->get();
                         // dd($tweets);
         $follow_reviews = Follow::join('reviews', 'follow_id', '=', 'reviews.user_id')
@@ -97,37 +107,43 @@ class HomeController extends Controller
                                 ->leftjoin('movies', 'reviews.movie_id', '=', 'movies.tmdb_id')
                                 ->where('follower_id', '=', $id)
                                 ->orderBy('reviews.created_at', 'desc')
-                                ->select('reviews.content', 'users.name', 'users.image_path', 'user_id', 'movies.title', 'evaluate')
+                                ->select('reviews.content', 'reviews.id', 'users.name', 'users.image_path as user_image', 'user_id', 'movies.title', 'evaluate', 'movies.image_path as movie_image')
                                 ->get();
+        
         $follow_posts = Follow::join('posts', 'follow_id', '=', 'posts.user_id')
                                 ->join('users', 'follow_id', '=', 'users.id')
                                 ->leftjoin('actors', 'posts.actor_id', '=', 'actors.tmdb_id')
                                 ->where('follower_id', '=', $id)
                                 ->orderBy('posts.created_at', 'desc')
-                                ->select('posts.content', 'users.name', 'users.image_path', 'user_id', 'actors.name', 'actors.tmdb_id', 'actors.image_path', 'posts.id')
+                                ->select('posts.content', 'users.name as user_name', 'users.image_path', 'user_id', 'actors.name as actor_name', 'actors.tmdb_id', 'actors.image_path as actor_image', 'posts.id')
                                 ->get();
         $follow_tweets = Follow::join('tweets', 'follow_id', '=', 'tweets.user_id')
                                 ->join('users', 'follow_id', '=', 'users.id')
+                                // ->join('tweets', 'tweets.user_id', '=', $id)
+                                // ->leftjoin('users', 'users.id', '=', $id)
                                 ->where('follower_id', '=', $id)
                                 ->orderBy('tweets.created_at', 'desc')
-                                ->select('tweets.content', 'users.name', 'users.image_path', 'user_id')
+                                ->select('tweets.content', 'users.name as user_name', 'users.image_path', 'user_id')
                                 ->get();
         $follow = Follow::where('follow_id', '=', $id)
                         ->where('follower_id', '=', Auth::id())
                         ->select('follower_id', 'follow_id')
                         ->first(); 
-        // $watch_actor = FavoriteMovie::join('casts', 'favorite_movies.movie_id', '=', 'casts.movie_id')
-        //                     ->leftjoin('actors', 'actor_id', '=', 'actors.tmdb_id')
-        //                     ->where('favorite_movies.user_id', '=', $id)
-        //                     ->select('actors.tmdb_id', 'actors.name', 'actors.image_path')
-        //                     ->withCount('actor_id')
-        //                     ->orderBy('actor_id_count', 'desc')
-        //                     ->get();
-        //                     dd($watch_actor);
+        $watch_actors = FavoriteMovie::join('casts', 'favorite_movies.movie_id', '=', 'casts.movie_id')
+                            ->leftJoin('actors', 'casts.actor_id', '=', 'actors.tmdb_id')
+                            ->where('favorite_movies.user_id', '=', $id)
+                            ->select(\DB::raw('count(*) as actor_count, casts.actor_id'),'actors.name','actors.tmdb_id','actors.image_path')
+                            ->groupBy('casts.actor_id','actors.name','actors.tmdb_id','actors.image_path')
+                            ->orderBy('actor_count', 'desc')
+                            ->limit(10)
+                            ->get();
+                            
+        
+
         return view('home', compact('user','favorite_actors', 'favorite_movies', 
         'watch_lists', 'reviews', 'avg', 'posts', 'tweets', 'follow','action_movies', 
         'suspense_movies', 'drama_movies', 'comedy_movies', 'horror_movies',
-        'follow_reviews', 'follow_posts', 'follow_tweets'));
+        'follow_reviews', 'follow_posts', 'follow_tweets', 'watch_actors'));
     }
     
 
