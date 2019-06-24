@@ -48,7 +48,7 @@
               <h1 class="float-right d-none d-sm-block">{{count($reviews) + count($posts)}}</h1>
             </div>
           </div>
-{{-- //sm以外表示(使用データ) --}}
+
         </div>
 
 {{-- smのみ表示(使用データ) --}}
@@ -82,7 +82,7 @@
             </div>
           </div>
         </div>
-{{-- //smのみ表示(使用データ) --}}
+
 
 {{-- ツイート機能 --}}
           <div class="col-lg-1 col-3">
@@ -122,7 +122,7 @@
               </div>
             </div>
           </div>
-{{-- //ツイート機能 --}}
+
 
 {{-- user編集 --}}
           <div class="col">
@@ -132,7 +132,7 @@
               </button>
             </a>
           </div>
-{{-- //user編集 --}}
+
 
 {{-- データ更新（映画・俳優・キャスト）user_id=1のみ --}}
           @if(Auth::id() === 1)
@@ -199,10 +199,11 @@
               </div>
             </div>
           @endif
-{{-- //データ更新（映画・俳優・キャスト）user_id=1のみ --}}
+
       </div>
     </div>  
   </div>
+
 
 {{-- ユーザーメニューバー --}}
   <div class="usercontentList sticky-top border-bottom align-items-center">
@@ -235,7 +236,7 @@
       </div>
     </div>
   </div> 
-{{-- //ユーザーメニューバー --}}
+
 
 
 {{-- 鑑賞済み映画 --}}
@@ -577,7 +578,7 @@
                     {{-- //TODO返信機能 --}}
                     </div>
                   </div>
-                  <div class="card-body pt-3">
+                  <div class="card-body pt-3 postImages">
                     <div class="mb-0">
                       <a href="/actor/{{$follow_post->tmdb_id}}">
                         <p class="mt-2 mb-2">
@@ -719,7 +720,7 @@
     </div>      
   </div>
 {{-- ウォッチリスト --}}
-  <div id="watchlistRoom" class="card collapse">
+  <div id="watchlistRoom" class="collapse">
     <div class="row responsive mb-2 container mx-auto mt-5">
         @if($watch_lists)
           @foreach($watch_lists as $watch_list)
@@ -735,7 +736,7 @@
     </div>
   </div>
 {{-- TOP視聴俳優 --}}
-  <div id="top20Room" class="card collapse">
+  <div id="top20Room" class="collapse">
     <div class="row responsive mb-2 container mx-auto mt-5">
         @if($watch_actors)
           @foreach($watch_actors as $watch_actor)

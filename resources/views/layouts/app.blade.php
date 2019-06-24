@@ -32,6 +32,7 @@
 </head>
 <body>
     <div id="app">
+    {{-- navbar --}}
         <nav class="navbar navbar-light navbar-expand-sm fixed-top">
             <div class="container">
                 <a href="/" class="navbar-brand">
@@ -65,18 +66,6 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <!-- <ul class="navbar-nav ml-auto">
-                        <li class="nav-item ">
-                            <a href="user" class="nav-link">MYページ</a>
-                        </li>
-                        <li class="nav-item ">
-                            <a href="user" class="nav-link">Tweetページ</a>
-                        </li>
-                        <li class="nav-item ">
-                            <a href="/logout" class="nav-link">ログアウト</a>
-                        </li>
-
-                    </ul> -->
                     <ul class="navbar-nav mr-auto">
 
                     </ul>
@@ -86,11 +75,11 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link text-light" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link text-light" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else

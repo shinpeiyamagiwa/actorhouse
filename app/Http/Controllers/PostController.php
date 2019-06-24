@@ -28,11 +28,7 @@ class PostController extends Controller
             'user_id' => $id,
             'actor_id' => request('actor_id')
         ]);
-        // Actor::create([
-        //     'name' => 'kkkk',
-        //     'youtube_link' => $request->aaaa
-        //     'image_path' => 
-        // ]);
+        
         
 
         return redirect("/home");

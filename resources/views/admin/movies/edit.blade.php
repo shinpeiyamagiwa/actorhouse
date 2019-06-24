@@ -8,9 +8,6 @@
         
     
         {!! Form::model($movie,['method'=>'PATCH', 'action'=> ['AdminMovieController@update', $movie->tmdb_id]]) !!}
-        {{-- {!! Form::model($user,['method'=>'PATCH', 'action'=> ['AdminUserController@update', $user->id]]) !!} --}}
-
-        <!--  -->
         <div class="form-group">
             {!! Form::label('title', 'Title:') !!}
             {!! Form::text('title', null, ['class'=>'form-control']) !!}
@@ -19,10 +16,6 @@
             {!! Form::label('image_path', 'Image:') !!}
             {!! Form::text('image_path', null, ['class'=>'form-control']) !!}
         </div>
-        {{-- <div class="form-group">
-            {!! Form::label('file', 'Image:') !!}
-            {!! Form::file('file', null, ['class'=>'form-control']) !!}
-        </div> --}}
         <div class="form-group">
             {!! Form::label('概要', '概要:') !!}
             {!! Form::textarea('overview', null, ['class'=>'form-control']) !!}

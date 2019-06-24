@@ -23,6 +23,14 @@ body{
 .actorcontentList h6 {
   font-size:8px;
 }
+.b {
+  background-color: rgba(7, 7, 7, 0.808);
+  position: absolute;
+  top:0px;
+  left:0px;
+  width:100%;
+  height:550px;
+}
 }
 @media screen and (min-width:497px) and (max-width:574px) {
   .actorimage img{
@@ -37,7 +45,14 @@ body{
 .video {
   height:200px;
   }
-
+.b {
+  background-color: rgba(7, 7, 7, 0.808);
+  position: absolute;
+  top:0px;
+  left:0px;
+  width:100%;
+  height:540px;
+}
 }
 @media screen and (min-width:575px) and (max-width:676px) {
   .actorimage img{
@@ -52,6 +67,14 @@ body{
 .video {
   height:300px;
 }
+.b {
+  background-color: rgba(7, 7, 7, 0.808);
+  position: absolute;
+  top:0px;
+  left:0px;
+  width:100%;
+  height:480px;
+}
 }
 @media screen and (min-width:677px) and (max-width:767px) {
   .actorimage img{
@@ -62,6 +85,14 @@ body{
   
   .video {
   height:300px;
+  }
+  .b {
+    background-color: rgba(7, 7, 7, 0.808);
+    position: absolute;
+    top:0px;
+    left:0px;
+    width:100%;
+    height:480px;
   }
 }
 @media screen and (min-width:768px) and (max-width:991px) {
@@ -74,7 +105,14 @@ body{
   .video {
   height:450px;
   }
-  
+  .b {
+    background-color: rgba(7, 7, 7, 0.808);
+    position: absolute;
+    top:0px;
+    left:0px;
+    width:100%;
+    height:580px;
+  }
 }
 @media screen and (min-width:992px) {
   .actorimage img{
@@ -85,7 +123,14 @@ body{
   .video {
   height:500px;
   }
-  
+  .b {
+    background-color: rgba(7, 7, 7, 0.808);
+    position: absolute;
+    top:0px;
+    left:0px;
+    width:100%;
+    height:680px;
+  }
 }
 
 .actorcontentList {
@@ -669,23 +714,24 @@ body{
   }
   
 }
+/* お気に入り俳優通知機能 */
+  #favoriteActor {
+    position:relative;
+  }
+  .badge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 12px;
+    line-height: 13px;
+    border-radius: 50%;
+    width: 40px;
+    height: 20px;
+    background-color: #ff0000; 
+    border: 4px solid #ff0000;
+    color: #ffffff;
+  }
 
-#favoriteActor {
-  position:relative;
-}
-.badge {
-  position: absolute;
-  top: 0;
-  left: 0;
-  font-size: 12px;
-  line-height: 13px;
-  border-radius: 50%;
-  width: 40px;
-  height: 20px;
-  background-color: #ff0000; 
-  border: 4px solid #ff0000;
-  color: #ffffff;
-}
 
 
 

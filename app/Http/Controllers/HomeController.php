@@ -33,8 +33,9 @@ class HomeController extends Controller
                                         ->select('actor_id', 'actors.name', 'actors.image_path', 'new')
                                         ->get();
         $favorite_movies = FavoriteMovie::join('movies', 'favorite_movies.movie_id', '=', 'movies.tmdb_id')
+                                        ->leftJoin('reviews', 'reviews.movie_id', '=', 'movies.tmdb_id')
                                         ->where('favorite_movies.user_id', '=', $id)
-                                        ->select('movie_id', 'movies.title', 'movies.image_path')
+                                        ->select('favorite_movies.movie_id', 'movies.title', 'movies.image_path','evaluate')
                                         ->get();
         $action_movies = FavoriteMovie::join('movies', 'favorite_movies.movie_id', '=', 'movies.tmdb_id')
                                         ->where('favorite_movies.user_id', '=', $id)

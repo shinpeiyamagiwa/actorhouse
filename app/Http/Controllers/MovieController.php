@@ -36,10 +36,6 @@ class MovieController extends Controller
         $watchList = WatchList::where('user_id', '=', Auth::id())
                             ->where('movie_id', '=', $id)
                             ->first();
-        
-        // $review_comments = ReviewComment::join('users', 'review_comments.user_id', '=', 'users.id')
-        //                             ->leftjoin('reviews', 'review_comments.review_id', '=', 'reviews.id')
-        //                             ->where($reviewsId, '=', 'reviews.id');
         return view('movie.index', compact('movie', 'userId', 'casts', 'review','user', 'reviews', 'watchList', 'avg'));
 
         

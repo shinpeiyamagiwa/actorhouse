@@ -3,7 +3,8 @@
 
 @section('content')
     <!-- 俳優プロフィール -->
-  <div class="actorTop jumbotron mt-4 mb-0"
+{{-- 俳優プロフィール --}}
+  <div class="actorTop jumbotron mt-4 mb-0 text-light"
   @isset($bg_image)
   style="background-image:url('http://image.tmdb.org/t/p/w500/{{$bg_image->image_path}}');
   background-repeat:no-repeat;
@@ -12,13 +13,15 @@
   color:white;
   "
   @endisset>
-    <div class="bg"></div>
+  
+    <div class="b"></div>
     <div class="container-fluid">
       <div class="row">
         <div class="actorimage col-sm-4 mt-4">
           <img  class="center img-fluid responsive float-md-right" src="http://image.tmdb.org/t/p/w500/{{$actor->image_path}}" alt="">
         </div>
         <div class="actorprofile col-sm-8 mx-auto mt-4">
+        {{-- 登録者数・作品数・鑑賞数 --}}
           <div class="actorName">
             <h1>{{$actor->name}} </h1>
           </div>
@@ -27,7 +30,7 @@
               <h6 class="mb-0">登録者数</h6>
             </div>
             <div class="col-4">
-              <h6 class="mb-0">出演作品数</h6>
+              <h6 class="mb-0">作品数</h6>
             </div>
             <div class="col-4">
               <h6 class="mb-0">鑑賞数</h6>
@@ -47,6 +50,7 @@
             @endif
             </div>
             <div class="row">
+        {{-- 俳優お気に入り登録 --}}
             <div class="col-2">
               @if(!$favorite_actors)
                 <button data-actor-id="{{$actor->tmdb_id}}" data-favorite="false" id="favorite_button" type="button" class="registButton btn btn-outline-success btn-xs">
@@ -62,6 +66,7 @@
                 </button>
               @endif
             </div>
+        {{-- 俳優についてコメント --}}
             <div class="col-2">
               <button tyoe="button" class="btn btn-outline-success"
               data-toggle="modal" data-target="#moviediary">
@@ -78,23 +83,9 @@
                       </button>
                     </div>
                     <div class="modal-body">
-                      <!-- <form action="form-group"> -->
-                      {!! Form::open(['method'=>'POST', 'action'=> 'PostController@store']) !!}
-                      <!-- <label for="point">評価</label>
-                      <input type="text" placeholder="評価0~5.0"
-                      class="form-control"> -->
-                      <!-- <div class="form-group">
-                        <label for="point">鑑賞日</label>
-                        <input type="date" name="date"　class="form-control">
-                        {!! Form::label('period', '日付:') !!}
-                        {{Form::selectRange('from_year', 1960, 2019, '', ['placeholder' => ''])}}年
-                        {{Form::selectRange('from_month', 1, 12, '', ['placeholder' => ''])}}月
-                        {{Form::selectRange('from_day', 1, 31, '', ['placeholder' => ''])}}日
-                      </div> -->
+                          {!! Form::open(['method'=>'POST', 'action'=> 'PostController@store']) !!}
                       <div class="form-group">
                           {!! Form::textarea('content', null, ['class'=>'form-control','placeholder'=>'好きな作品や最新情報から好きなことを投稿しよう']) !!} 
-                          <!-- <label for="point">感想</label>
-                          <textarea name="editor1" class="form-control"></textarea> -->
                       </div>
                       <div class="form-group">
                           {{Form::hidden('actor_id', $actor->tmdb_id)}} 
@@ -130,11 +121,7 @@
               </div>
             @endif
           </div>
-          <div class="col introduction d-none d-md-inline">
-            {{-- <p>
-              ライアン・トーマス・ゴズリング（英: Ryan Thomas Gosling、1980年11月12日 - ）[2]は、カナダの俳優・ミュージシャンである。ディズニー・チャンネルで放送された『ミッキーマウス・クラブ』（1993年 - 1995年）で子役としてキャリアを開始させ、『アー・ユー・アフレイド・オブ・ザ・ダーク?』（1995年）や『ミステリー・グースバンプス』（1996年）など子ども向け娯楽番組にいくつか出演した。映画初主演作はユダヤ人のネオナチを演じた『ザ・ビリーヴァー（英語版）』（2001年）で、その後も『完全犯罪クラブ』（2002年）・『スローター・ルール（英語版）』（2002年）・『16歳の合衆国』（2003年）など、自主映画数本に出演した。
-            </p> --}}
-          </div>
+        {{-- 俳優生年月日・出身地 --}}
           <div class="col row">
             <div class="col-md-5 col-6 d-none d-md-inline">
               <h6>
@@ -165,7 +152,7 @@
 
   
   
-  
+{{-- 俳優メニューバー --}}
   <div class="actorcontentList sticky-top border-bottom align-items-center pt-2">
     <div class="row container mx-auto responsive">
       <div class="mycontent3 col-3 text-center"date-toggle="collapse"
@@ -185,7 +172,23 @@
         <h6>トークルーム</h6>
       </div>
     </div>
-  </div>   
+  </div>
+{{-- 俳優作品一覧 --}}
+  <div id="workRoom" class="card collapse">
+    <div class="row responsive mb-2 mx-0 mt-5">
+      @if($works)
+        @foreach($works as $work)
+          <div class="movieList col-lg-2 col-sm-3 col-4">
+            <a href="/movie/{{$work->movie_id}}">
+              <img src="http://image.tmdb.org/t/p/w500/{{$work->image_path}}" alt="" class="img-fluid mb-2">
+              <p>{{$work->title}}</p>
+            </a>
+          </div>
+        @endforeach
+      @endif
+    </div>
+  </div> 
+{{-- 俳優写真投稿   --}}
   <div class="actorcontent"> 
     <div id="twieetRoom" class="card collapse">
       <h5>{{$actor->name}}のアルバムを作ろう</h5>
@@ -220,7 +223,8 @@
               @endif
             @endforeach
         </div>
-    </div> 
+    </div>
+{{-- 俳優トークルーム --}}
     <div id="talkRoom" class="collapse">
       <div class="responsive mb-2 mt-5">
         @if($posts)
@@ -242,6 +246,7 @@
                         <p class="ml-1 mt-1 py-0">{{$post->name}}<p>
                       </a>
                     </div>
+                  {{-- TODO返信機能 --}}
                     {{-- <div class="col-1 float-right">
                       <div data-toggle="modal" data-target="#postreply">
                         <i class="far fa-comment-dots float-left mt-2"></i>
@@ -285,10 +290,12 @@
                         </div>
                       </div>
                     </div> --}}
+                  {{-- //TODO返信機能 --}}
                   </div>
                 </div>
                 <div class="card-body">
                     {{$post->content}}
+                  {{-- TODO返信表示 --}}
                     {{-- <hr>
                     @if($post_comments)
                     @foreach($post_comments as $post_comment)
@@ -309,6 +316,7 @@
                     <p>{{$post_comment->content}}</p>
                     @endforeach
                     @endif --}}
+                  {{-- //TODO返信表示 --}}
                 </div>
               </div>
               <hr>
@@ -317,21 +325,8 @@
         @endif
       </div>
     </div>      
-  </div> 
-  <div id="workRoom" class="card collapse">
-    <div class="row responsive mb-2 mx-0 mt-5">
-      @if($works)
-        @foreach($works as $work)
-          <div class="movieList col-lg-2 col-sm-3 col-4">
-            <a href="/movie/{{$work->movie_id}}">
-              <img src="http://image.tmdb.org/t/p/w500/{{$work->image_path}}" alt="" class="img-fluid mb-2">
-              <p>{{$work->title}}</p>
-            </a>
-          </div>
-        @endforeach
-      @endif
-    </div>
-  </div>      
+  </div>
+{{-- 俳優youtube     --}}
   <div id="videoRoom" class="card collapse show">
     <div class="row responsive mb-2 container mx-auto mt-5">
       <iframe class="video" width=100% src="https://www.youtube.com/embed/{{$actor->video_link}}" frameborder="0" 
@@ -341,9 +336,9 @@
 </div>      
          
 
-<!-- 俳優出演作品 -->
 
-<script>
+{{-- 俳優メニューバー・collapse --}}
+  <script>
     $('.mycontent1').click(function () {
     $('#twieetRoom').addClass('show');
     $('#talkRoom').removeClass('show');
@@ -370,62 +365,62 @@
   });</script>
 
 
+{{-- お気に入り登録ajax --}}
+  <script type="text/javascript">
+    $(function(){
+      $('#favorite_button').on('click', function() {
+        var actor_id = $(this).data('actorId')
 
-<script type="text/javascript">
-  $(function(){
-    $('#favorite_button').on('click', function() {
-      var actor_id = $(this).data('actorId')
-
-      const is_favorite = $(this).data('favorite');
-      console.log('is_favorite: ', is_favorite);
-      if (is_favorite == false) {
-        // 登録処理
-        $.ajax({
-          type: "POST",
-          headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-          },
-          url: 'https://actorhouse.test/favorite/actor/store',
-          dataType: "json",
-          data: {actor_id : actor_id}
-        }).done(function (response) {
-          // 通信成功時の処理
-          if (response['result']) {
-            alert('登録する');
-            // data属性を書き換える
-            // $('.registButton')[0].dataset.favorite = 'true';
-            $('.registButton').data('favorite', true);
-            // ボタンの表記を書き換える
-            $('#regist_text').html('<i class="fas fa-user-minus"></i>');
-          }
-        }).fail(function (err) {
-          // 通信失敗時の処理
-          alert('ファイルの取得に失敗しました。');
-        });
-      } else {
-        // 登録解除処理
-        $.ajax({
-          type: "POST",
-          headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-          },
-          url: 'https://actorhouse.test/favorite/actor/delete',
-          dataType: "json",
-          data: {actor_id : actor_id}
-        }).done(function (response) {
-          // 通信成功時の処理
-          if (response['result']) {
-            alert('登録解除');
-            // $('.registButton')[0].dataset.favorite = 'false';
-            $('.registButton').data('favorite', false);
-            $('#regist_text').html('<i class="fas fa-user-plus"></i>');
-          }
-        }).fail(function (err) {
-          // 通信失敗時の処理
-          alert('ファイルの取得に失敗しました。');
-        });
-      }
+        const is_favorite = $(this).data('favorite');
+        console.log('is_favorite: ', is_favorite);
+        if (is_favorite == false) {
+          // 登録処理
+          $.ajax({
+            type: "POST",
+            headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: 'https://actorhouse.test/favorite/actor/store',
+            dataType: "json",
+            data: {actor_id : actor_id}
+          }).done(function (response) {
+            // 通信成功時の処理
+            if (response['result']) {
+              alert('登録する');
+              // data属性を書き換える
+              // $('.registButton')[0].dataset.favorite = 'true';
+              $('.registButton').data('favorite', true);
+              // ボタンの表記を書き換える
+              $('#regist_text').html('<i class="fas fa-user-minus"></i>');
+            }
+          }).fail(function (err) {
+            // 通信失敗時の処理
+            alert('ファイルの取得に失敗しました。');
+          });
+        } else {
+          // 登録解除処理
+          $.ajax({
+            type: "POST",
+            headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: 'https://actorhouse.test/favorite/actor/delete',
+            dataType: "json",
+            data: {actor_id : actor_id}
+          }).done(function (response) {
+            // 通信成功時の処理
+            if (response['result']) {
+              alert('登録解除');
+              // $('.registButton')[0].dataset.favorite = 'false';
+              $('.registButton').data('favorite', false);
+              $('#regist_text').html('<i class="fas fa-user-plus"></i>');
+            }
+          }).fail(function (err) {
+            // 通信失敗時の処理
+            alert('ファイルの取得に失敗しました。');
+          });
+        }
+      });
     });
-  });
-</script>
+  </script>
 @endsection

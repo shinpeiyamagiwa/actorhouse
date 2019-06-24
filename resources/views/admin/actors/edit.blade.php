@@ -17,10 +17,6 @@
             {!! Form::text('place', null, ['class'=>'form-control']) !!}
         </div>
         <div class="form-group">
-            {{-- {!! Form::label('birthday', '日付:') !!}
-            {{Form::selectRange('birthday_year', 1960, 2019, '', ['placeholder' => ''])}}年
-            {{Form::selectRange('birthday_month', 1, 12, '', ['placeholder' => ''])}}月
-            {{Form::selectRange('birthday_day', 1, 31, '', ['placeholder' => ''])}}日 --}}
             {!! Form::label('birthday', '生年月日:') !!}
             {!! Form::date('birthday', null, ['class'=>'form-control col-sm-4 col-md-3']) !!}
         </div>
@@ -32,10 +28,6 @@
             {!! Form::label('homepage', 'ホームページ:') !!}
             {!! Form::text('homepage', null, ['class'=>'form-control']) !!}
         </div>
-        <!-- <div class="form-group">
-            {!! Form::label('file', 'Image:') !!}
-            {!! Form::file('file', null, ['class'=>'form-control']) !!}
-        </div> -->
         <div class="form-group">
             {!! Form::label('info', '紹介文:') !!}
             {!! Form::text('info', null, ['class'=>'form-control']) !!}
