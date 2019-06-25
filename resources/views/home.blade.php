@@ -369,7 +369,8 @@
       </div>
     </div> 
   </div>
-{{-- 自分の映画レビュー --}}
+
+  {{-- 自分の映画レビュー --}}
   <div id="reviewRoom" class="collapse">
     <div class="responsive mb-2 mx-auto mt-5">
       @if($reviews)
@@ -495,15 +496,17 @@
                     @if(isset($follow_review->evaluate))
                       <p class="mb-0">評価：{{$follow_review->evaluate}}</p>
                     @endif
-                    @if($follow_review->movie_image)
-                      <img src="http://image.tmdb.org/t/p/w500/{{$follow_review->movie_image}}" alt="" class="">
-                    @endif
-                    {{$follow_review->title}}
-                    </div>
-                    <hr class="mt-1">
-                    @if(isset($follow_review->content))
-                      <p class="mb-0">{{$follow_review->content}}</p>
-                    @endif
+                    <a href="/movie/{{$follow_review->tmdb_id}}">
+                      @if($follow_review->movie_image)
+                        <img src="http://image.tmdb.org/t/p/w500/{{$follow_review->movie_image}}" alt="" class="">
+                      @endif
+                      {{$follow_review->title}}
+                      </div>
+                      <hr class="mt-1">
+                      @if(isset($follow_review->content))
+                        <p class="mb-0">{{$follow_review->content}}</p>
+                      @endif
+                    </a>
                   </div>
                 </div>
               @endforeach
@@ -699,7 +702,7 @@
   </div>
   
 {{-- お気に入り俳優 --}}
-  <div id="actorRoom" class="collapse">
+  <div id="actorRoom" class="collapse show">
     <div class="myactorList row responsive mb-2 container mx-auto mt-5">
         @if($favorite_actors)
           @foreach($favorite_actors as $favorite_actor)

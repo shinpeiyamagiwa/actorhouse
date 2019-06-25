@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\FavoriteActor;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PostRequest;
 use Illuminate\Http\Request;
@@ -29,7 +30,8 @@ class PostController extends Controller
             'actor_id' => request('actor_id')
         ]);
         
-        
+        FavoriteActor::where('favorite_actors.actor_id', '=', request('actor_id'))
+                            ->update(['new' => 1]);   
 
         return redirect("/home");
     }

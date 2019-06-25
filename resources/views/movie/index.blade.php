@@ -120,7 +120,7 @@
             @endif
           </div>
     {{-- 映画ホームページ --}}
-          @if(!is_null($movie->homepage))
+          @if(isset($movie->homepage))
             <div class="col-2">
               <button class="btn btn-outline-success btn-xs">
                 <a href={{$movie->homepage}}>

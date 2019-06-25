@@ -108,7 +108,7 @@ class HomeController extends Controller
                                 ->leftjoin('movies', 'reviews.movie_id', '=', 'movies.tmdb_id')
                                 ->where('follower_id', '=', $id)
                                 ->orderBy('reviews.created_at', 'desc')
-                                ->select('reviews.content', 'reviews.id', 'users.name', 'users.image_path as user_image', 'user_id', 'movies.title', 'evaluate', 'movies.image_path as movie_image')
+                                ->select('tmdb_id','reviews.content', 'reviews.id', 'users.name', 'users.image_path as user_image', 'user_id', 'movies.title', 'evaluate', 'movies.image_path as movie_image')
                                 ->get();
         
         $follow_posts = Follow::join('posts', 'follow_id', '=', 'posts.user_id')

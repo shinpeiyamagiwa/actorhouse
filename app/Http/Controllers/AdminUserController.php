@@ -93,7 +93,7 @@ class AdminUserController extends Controller
         User::where('id', Auth::id())
           ->update(['image_path' => $path]);
 
-        return redirect("/");
+        return redirect("/home");
     }
 
     /**

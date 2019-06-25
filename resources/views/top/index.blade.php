@@ -18,13 +18,13 @@
       </a>  
     @endunless
     <br>
-    <h1>映画で繋がろう</h1>
+    <h3>映画記録アプリ</h3>
   </div>
 
 <!-- トレンド俳優（週間でのファン登録数TOP６） -->
   <div class="trendactor text-center">
     <h3>今週のオススメ俳優</h3>
-    <div class="row castList responsive mx-1">
+    <div class="row castList responsive mx-1 no-gutters">
       <div class="col-sm-2 col-4 mb-3">
         <a href="/actor/1">
           <img src="images/emmastone.jpg" alt="" class="img-fluid">
@@ -56,13 +56,12 @@
         </a>
       </div>
     </div>
-    <h5　class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, fugiat adipisci? <br>Harum tempora expedita reprehenderit dolore soluta minus obcaecati corrupti!</h5>
   </div>
 
 <!-- 特集 -->
-  <div class="jumbotron img-fluid w-100">
-    <div class="display-3">HERO特集</div>
-    <div class="row mx-auto">
+  <div class="jumbotron img-fluid w-100 Topic mb-1">
+    <h1>HERO特集</h1>
+    <div class="row mx-auto Topic_bg">
       <div  class="topic1 col-sm-6 m-auto ">
         <a href="/actor/7">
           <img src="images/Captain_american.jpg" alt="" class="img-fluid mb-3 img-responsive">
@@ -99,7 +98,7 @@
 
  <!-- 人気映画（週間で見た人数TOP６） -->
   <div class="jumbotron">
-　  <h2>人気映画</h2>
+　  <h2>おすすめ映画</h2>
     <div class="row RecommendedMovie responsive mb-2">
       <div class="col-4 mb-3">
         <a href="movie">

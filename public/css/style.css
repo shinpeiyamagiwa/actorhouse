@@ -1,8 +1,72 @@
 body{
   margin-top:60px;
 }
+.dropdown-item {
+  background-color: rgba(7, 7, 7, 0.808);
+}
 
+/* topページ */
+@media screen and (max-width:497px) {
+  .Topheader h1, .Topic h1{
+    font-size:30px;
+  }
+  .Topheader h3{
+    font-size:20px;
+  }
+  .castList img{
+    width:100%;
+    height:150px; 
+    object-fit: cover;
+  }
+  }
+@media screen and (min-width:497px) and (max-width:574px) {
+  .Topheader h1, .Topic h1 {
+    font-size:30px;
+  }
+  .Topheader h3{
+    font-size:20px;
+  }
+  .castList img{
+    width:100%;
+    height:150px; 
+    object-fit: cover;
+  }
+}
+@media screen and (min-width:575px) and (max-width:676px) {
+  .Topheader h1, .Topic h1 {
+    font-size:40px;
+  }
+  .Topheader h3{
+    font-size:30px;
+  }
+  .castList img{
+    width:100%;
+    height:150px; 
+    object-fit: cover;
+  }
+}
+@media screen and (min-width:677px) and (max-width:767px) {
+  .castList img{
+    width:100%;
+    height:150px; 
+    object-fit: cover;
+  }
+}
+@media screen and (min-width:768px) and (max-width:991px) {
 
+.castList img{
+  width:100%;
+  height:150px; 
+  object-fit: cover;
+}
+}
+@media screen and (min-width:992px) {
+.castList img{
+  width:100%;
+  height:250px; 
+  object-fit: cover;
+}
+}
 /* 俳優TOP */
 @media screen and (max-width:497px) {
   .actorimage img{
@@ -116,8 +180,8 @@ body{
 }
 @media screen and (min-width:992px) {
   .actorimage img{
-  width:300px;
-  height:450px;
+  width:250px;
+  height:350px;
   object-fit: cover;
   }
   .video {
@@ -129,7 +193,7 @@ body{
     top:0px;
     left:0px;
     width:100%;
-    height:680px;
+    height:580px;
   }
 }
 
@@ -291,13 +355,19 @@ body{
 
 /* mypage */
 @media screen and (max-width:497px) {
-  .userimage img{
-  width:30px;
-  height:30px;
+.navbar-brand h4 {
+  font-size:17px;
+}
+.nav-link {
+  font-size:10px;
+}
+.userimage img{
+  width:60px;
+  height:60px;
   object-fit: cover;
 }
 .userTop {
-  height:280px;
+  height:200px;
 }
 .userTop h1 {
   font-size:13px;
@@ -322,15 +392,23 @@ body{
   color:white;
   height:50px;
 }
+.follow_uservar {
+  background-color: rgb(28, 19, 29);
+  color:white;
+  height:30px;
+}
 }
 @media screen and (min-width:497px) and (max-width:574px) {
+.navbar-brand h4{
+  font-size:20px;
+}
   .userimage img{
   width:100px;
   height:100px;
   object-fit: cover;
 }
-.userTop h6{
-  font-size:10px;
+.userTop h6 {
+  font-size:1px;
 }
 .userTop h1 {
   font-size:30px;
@@ -343,8 +421,19 @@ body{
   color:white;
   height:60px;
 }
+.follow_uservar {
+  background-color: rgb(28, 19, 29);
+  color:white;
+  height:30px;
+}
+.usercontentList h6 {
+  font-size:12px;
+}
 }
 @media screen and (min-width:575px) and (max-width:676px) {
+.navbar-brand h4{
+  font-size:25px;
+}
   .userimage img{
   width:100px;
   height:100px;
@@ -365,8 +454,19 @@ body{
   color:white;
   height:60px;
 }
+.follow_uservar {
+  background-color: rgb(28, 19, 29);
+  color:white;
+  height:30px;
+}
+.usercontentList h6 {
+  font-size:12px;
+}
 }
 @media screen and (min-width:677px) and (max-width:767px) {
+  .navbar-brand h4{
+    font-size:25px;
+  }
   .userimage img{
   width:150px;
   height:150px;
@@ -386,8 +486,17 @@ body{
     color:white;
     height:60px;
   }
+  .follow_uservar {
+    background-color: rgb(28, 19, 29);
+    color:white;
+    height:30px;
+  }
+  .usercontentList h6 {
+    font-size:12px;
+  }
 }
 @media screen and (min-width:768px) and (max-width:991px) {
+
   .userimage img{
   width:150px;
   height:150px;
@@ -399,7 +508,7 @@ body{
   .userTop h1 {
     font-size:35px;
   }
-  .uservar {
+  .uservar, .follow_uservar {
     background-color: rgb(28, 19, 29);
     color:white;
     height:30px;
@@ -420,7 +529,7 @@ body{
   .userTop {
     height:400px;
   }
-  .uservar {
+  .uservar, .follow_uservar {
     background-color: rgb(28, 19, 29);
     color:white;
     height:35px;
@@ -456,7 +565,9 @@ body{
 .mycontent1:hover,
 .mycontent2:hover,
 .mycontent3:hover,
-.mycontent4:hover{
+.mycontent4:hover,
+.mycontent5:hover,
+.mycontent6:hover{
   opacity:0.8;
   cursor:pointer;
 }
@@ -521,7 +632,7 @@ body{
 
 /* お気に入り俳優 キャスト　リスト*/
 @media screen and (max-width:500px) {
-  .favoriteActor img, .castList img{
+  .favoriteActor img {
     width:100%;
     height:80px; 
     object-fit: cover;
@@ -532,14 +643,14 @@ body{
   
 }
 @media screen and (min-width:501px) and (max-width:768px) {
-  .favoriteActor img, .castList img{
+  .favoriteActor img {
     width:100%;
     height:120px; 
     object-fit: cover;
   }
 }
 @media screen and (min-width:769px) {
-  .favoriteActor img, .castList img{
+  .favoriteActor img {
     width:100%;
     height:200px; 
     object-fit: cover;
