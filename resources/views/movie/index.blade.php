@@ -2,7 +2,7 @@
 
 @section('content')
 <!-- 映画紹介 -->
-<div class="movieTop jumbotron mt-4 mb-0"
+<div class="movieTop jumbotron mb-0"
 @isset($movie->backdrop_path)
   style="background-image:url('http://image.tmdb.org/t/p/w500/{{$movie->backdrop_path}}');
   background-repeat:no-repeat;
@@ -11,7 +11,7 @@
   color:white;
   "
   @endisset>
-  <div class="bg"></div>
+  <div class="bg mx-auto"></div>
   <div class="container-fluid">
     <div class="row">
     {{-- 映画データ --}}
@@ -199,12 +199,96 @@
         </div>
       </div>
     </div>
+  </div>
 {{-- 映画予告動画 --}}
     <div id="videoRoom" class="container collapse show bg-light">
       <div class="row responsive mb-2 container mx-auto mt-5">
       <iframe width=100% height=500px src="https://www.youtube.com/embed/{{$movie->video_link}}" 
         frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>    
       </div>
+      <div class="responsive mb-2 mx-auto mt-5">
+          @if($reviews)
+            <div class="review center-block">
+              <div class="container">
+                @foreach($reviews as $review)
+                  <div class="card border-success mb-3" >
+                    <div class="card-header d-inline py-0">
+                      <div class="row no-gutters mt-1">
+                        <div class="col-6 d-inline-block rounded-circle postImages mr-2">
+                          <a href="/user/{{$review->user_id}}">
+                            <p class="mt-2 mb-2">
+                              @if($user->image_path)
+                              <img src="{{Storage::disk('s3')->url($user->image_path)}}" alt="" class="">
+                              @else
+                              <i class="fas fa-user"></i>
+                              @endif
+                              {{$review->name}}
+                            </p>
+                          </a>
+                        </div>
+                        <div class="col-1 float-right">
+                          <div data-toggle="modal" data-target="#reviewreply">
+                            <i class="far fa-comment-dots float-left mt-2"></i>
+                          </div>
+                          <div class="modal fade" id="reviewreply"　tabindex="-1" role="dialog" 
+                            aria-labelledby="reviewReplyLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header bg-success">
+                                  <button class="close" data-dismiss="modal">
+                                    &times;
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                  {!! Form::open(['method'=>'review', 'action'=> 'ReviewCommentController@store']) !!}
+                                    <div class="form-group">
+                                        {!! Form::textarea('content', null, ['class'=>'form-control']) !!} 
+                                    </div>
+                                    <div class="form-group">
+                                        {{Form::hidden('movie_id', $movie->tmdb_id)}} 
+                                    </div>
+                                    <div class="form-group">
+                                        {{Form::hidden('review_id', $review->id)}} 
+                                    </div>
+                                    <div class="form-group">
+                                        {!! Form::submit('返信', null, ['class'=>'btn btn-success']) !!}
+                                    </div>
+                                    {!! Form::close() !!}
+                                    @if (count($errors) > 0 )
+                                      <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach($errors->all() as $error)
+                                              <li>
+                                                  {{ $error }}
+                                              </li>
+                                            @endforeach
+                                          </ul>
+                                      </div>
+                                      @endif
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-body pt-3">
+                      <div class="mb-0">
+                      @if(isset($review->evaluate))
+                        <p class="mb-0">評価：{{$review->evaluate}}</p>
+                      @endif
+                      </div>
+                      <hr class="mt-1">
+                      <p class="text-success">
+                        {{$review->content}}
+                      </p>
+                    </div>
+                  </div>
+                @endforeach
+              </div>
+            </div>
+          @endif
+        </div>   
     </div>
 {{-- レビュー一覧 --}}
     <div id="reviewsRoom" class="collapse bg-light">
@@ -220,7 +304,7 @@
                         <a href="/user/{{$review->user_id}}">
                           <p class="mt-2 mb-2">
                             @if($user->image_path)
-                            <img src="/images/{{$user->image_path}}" alt="" class="">
+                            <img src="{{Storage::disk('s3')->url($user->image_path)}}" alt="" class="">
                             @else
                             <i class="fas fa-user"></i>
                             @endif

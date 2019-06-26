@@ -2,8 +2,8 @@
 
 @section('content')
 
-  <div class="userTop jumbotron mt-4 mb-0">
-    <div class="container-fluid">
+  <div class="userTop jumbotron mb-0">
+    <div class="container">
       <div class="row">
         <div class="userimage col-3 mb-3">
           @if(isset($user->image_path))

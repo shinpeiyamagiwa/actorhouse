@@ -224,6 +224,7 @@
             @endforeach
         </div>
     </div>
+  </div>
 {{-- 俳優トークルーム --}}
     <div id="talkRoom" class="collapse">
       <div class="responsive mb-2 mt-5">
@@ -234,9 +235,115 @@
               <div class="card border-success mb-3" >
                 <div class="card-header d-inline py-0">
                   <div class="row no-gutters mt-1">
+                    <div class="col-6 d-inline-block rounded-circle postImages mr-2">
+                      <a href="/user/{{$post->user_id}}">
+                        <p class="mt-2 mb-2">
+                          @if($user->image_path)
+                          <img src="{{Storage::disk('s3')->url($user->image_path)}}" alt="" class="">
+                          @else
+                          <i class="fas fa-user"></i>
+                          @endif
+                          {{$post->name}}
+                        </p>
+                      </a>
+                    </div>
+                  {{-- TODO返信機能 --}}
+                    {{-- <div class="col-1 float-right">
+                      <div data-toggle="modal" data-target="#postreply">
+                        <i class="far fa-comment-dots float-left mt-2"></i>
+                      </div>
+                      <div class="modal fade" id="postreply"　tabindex="-1" role="dialog" 
+                      aria-labelledby="postReplyLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header bg-success">
+                              <button class="close" data-dismiss="modal">
+                                &times;
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                                {!! Form::open(['method'=>'post', 'action'=> 'PostController@store']) !!}
+                                <div class="form-group">
+                                    {!! Form::label('content', '') !!}
+                                    {!! Form::textarea('content', null, ['class'=>'form-control']) !!} 
+                                </div>
+                                <div class="form-group">
+                                    {{Form::hidden('actor_id', $actor->id)}} 
+                                </div>
+                                <div class="form-group">
+                                    {{Form::hidden('post_id', $post->id)}} 
+                                </div>
+                                <div class="form-group">
+                                    {!! Form::submit('返信', null, ['class'=>'btn btn-success']) !!}
+                                </div>
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+                                {!! Form::close() !!}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div> --}}
+                  {{-- //TODO返信機能 --}}
+                  </div>
+                </div>
+                <div class="card-body">
+                    {{$post->content}}
+                  {{-- TODO返信表示 --}}
+                    {{-- <hr>
+                    @if($post_comments)
+                    @foreach($post_comments as $post_comment)
+                    <div class="row no-gutters mt-1">
+                      <div class="col-1 rounded-circle postImages mr-2 d-inline-block">
+                        @if($post_comment->image_path)
+                          <img src="/images/{{$post_comment->image_path}}" alt="" class="mt-2 float-right">
+                        @else
+                          <i class="fas fa-user mt-2 float-right"></i>
+                        @endif
+                      </div>
+                      <div class="col-5 float-left d-inline-block">
+                        <a href="/user/{{$post_comment->user_id}}">
+                          <p class="ml-1 mt-1 py-0">{{$post_comment->name}}<p>
+                        </a>
+                      </div>
+                    </div>
+                    <p>{{$post_comment->content}}</p>
+                    @endforeach
+                    @endif --}}
+                  {{-- //TODO返信表示 --}}
+                </div>
+              </div>
+              <hr>
+            @endforeach
+          </div>
+        @endif
+      </div>
+    </div>      
+  </div>
+{{-- 俳優youtube     --}}
+  <div id="videoRoom" class="card collapse show">
+    <div class="row responsive mb-2 container mx-auto mt-5">
+      <iframe class="video" width=100% src="https://www.youtube.com/embed/{{$actor->video_link}}" frameborder="0" 
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>    
+    </div>
+    <div class="responsive mb-2 mt-5">
+        @if($posts)
+          <div class="post img-fluid center-block">
+            <div class="container">
+                @foreach($posts as $post)
+              <div class="card border-success mb-3" >
+                <div class="card-header d-inline py-0">
+                  <div class="row no-gutters mt-1">
                     <div class="col-1 rounded-circle postImages mr-2 d-inline-block">
                       @if($user->image_path)
-                        <img src="/images/{{$user->image_path}}" alt="" class="mt-2 float-right">
+                        <img src="{{Storage::disk('s3')->url($user->image_path)}}" alt="" class="mt-2 float-right">
                       @else
                         <i class="fas fa-user mt-2 float-right"></i>
                       @endif
@@ -326,14 +433,6 @@
       </div>
     </div>      
   </div>
-{{-- 俳優youtube     --}}
-  <div id="videoRoom" class="card collapse show">
-    <div class="row responsive mb-2 container mx-auto mt-5">
-      <iframe class="video" width=100% src="https://www.youtube.com/embed/{{$actor->video_link}}" frameborder="0" 
-        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>    
-    </div>
-  </div>
-</div>      
          
 
 

@@ -33,12 +33,13 @@
 <body>
     <div id="app">
     {{-- navbar --}}
-        <nav class="navbar navbar-light navbar-expand-sm fixed-top">
+    <div class="header fixed-top">
+        <nav class="navbar navbar-light navbar-expand-sm">
             <div class="container">
                 <a href="/" class="navbar-brand">
                     <h4>ACTOR HOUSE</h4>
                 </a>
-                <a id="searchDropdown" class="nav-link dropdown-toggle text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                <a id="searchDropdown" class="nav-link dropdown-toggle text-light d-sm-none d-block" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                     検索<i class="fas fa-search"></i>
                 </a>
 
@@ -105,6 +106,28 @@
                 </div>
             </div>
         </nav>
+    {{-- navbar --}}
+        <nav class="searchbar navbar-expand-sm center-block d-none d-sm-block">
+            <div class="container">
+                <div class="sesrchform">
+                    <i class="fas fa-search"></i>
+                    <div style="display:inline-flex" class="center-block">
+                        {!! Form::open(['method'=>'POST', 'action'=> 'MovieSearchController@index']) !!}
+                            <div class="form-group">
+                                {!! Form::text('title', null, ['class'=>'form-control mt-1', 'placeholder'=>'映画']) !!}
+                            </div>
+                        {!! Form::close() !!}  
+                       
+                        {!! Form::open(['method'=>'POST', 'action'=> 'MovieSearchController@index']) !!}
+                            <div class="form-group">
+                                {!! Form::text('name', null, ['class'=>'form-control mt-1', 'placeholder'=>'俳優']) !!}
+                            </div>
+                        {!! Form::close() !!}
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
 
         <main class="py-4">
             @yield('content')
