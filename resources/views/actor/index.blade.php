@@ -53,13 +53,15 @@
         {{-- 俳優お気に入り登録 --}}
             <div class="col-2">
               @if(!$favorite_actors)
-                <button data-actor-id="{{$actor->tmdb_id}}" data-favorite="false" id="favorite_button" type="button" class="registButton btn btn-outline-success btn-xs">
+                <button data-actor-id="{{$actor->tmdb_id}}" data-favorite="false" id="favorite_button" type="button" class="registButton btn btn-outline-success btn-xs"
+                    data-toggle="popover" data-content="お気に入り登録する">
                   <span id="regist_text">
                     <i class="fas fa-user-plus"></i>
                   </span>
                 </button>
               @else
-                <button data-actor-id="{{$actor->tmdb_id}}" data-favorite="true" id="favorite_button" type="button" class="registButton btn btn-outline-success btn-xs">
+                <button data-actor-id="{{$actor->tmdb_id}}" data-favorite="true" id="favorite_button" type="button" class="registButton btn btn-outline-success btn-xs"
+                    data-toggle="popover" data-content="お気に入り解除する">
                   <span id="regist_text">
                     <i class="fas fa-user-minus"></i>
                   </span>
@@ -68,8 +70,8 @@
             </div>
         {{-- 俳優についてコメント --}}
             <div class="col-2">
-              <button tyoe="button" class="btn btn-outline-success"
-              data-toggle="modal" data-target="#moviediary">
+              <button tyoe="button" class="btn btn-outline-success" id="post_button"
+              data-toggle="modal" data-target="#moviediary" data-toggle="popover" data-content="俳優について投稿">
                 <i class="far fa-edit"></i>
               </button>
               <div class="modal fade" id="moviediary"　tabindex="-1" role="dialog" 
@@ -111,9 +113,10 @@
                 </div>
               </div>
             </div>
+        {{-- ホームページ --}}
             @if(!is_null($actor->homepage))
               <div class="col-2">
-                <button class="btn btn-outline-success btn-xs">
+                <button id="homepage" class="btn btn-outline-success btn-xs"　data-toggle="popover" data-content="公式サイト">
                   <a href={{$actor->homepage}}>
                     <i class="far fa-id-card"></i>
                   </a>
@@ -191,7 +194,8 @@
 {{-- 俳優写真投稿   --}}
   <div class="actorcontent"> 
     <div id="twieetRoom" class="card collapse">
-      <h5>{{$actor->name}}のアルバムを作ろう</h5>
+      @if (Auth::check())
+        <h5>{{$actor->name}}のアルバムを作ろう</h5>
         {!! Form::model($actor,['method'=>'PATCH', 'action'=> ['ActorController@upload', $actor->tmdb_id], 'files' => true]) !!}
         {{ csrf_field() }}
           <div class="form-group">
@@ -223,6 +227,13 @@
               @endif
             @endforeach
         </div>
+      @else
+        <div class="container">
+          <div class="card border-success mb-3 mt-4 text-center">
+            <p class="mt-4">ログインしてください</p>
+          </div>
+        </div>
+      @endif
     </div>
   </div>
 {{-- 俳優トークルーム --}}
@@ -238,8 +249,8 @@
                     <div class="col-6 d-inline-block rounded-circle postImages mr-2">
                       <a href="/user/{{$post->user_id}}">
                         <p class="mt-2 mb-2">
-                          @if($user->image_path)
-                          <img src="{{Storage::disk('s3')->url($user->image_path)}}" alt="" class="">
+                          @if($post->image_path)
+                          <img src="{{Storage::disk('s3')->url($post->image_path)}}" alt="" class="">
                           @else
                           <i class="fas fa-user"></i>
                           @endif
@@ -342,8 +353,8 @@
                 <div class="card-header d-inline py-0">
                   <div class="row no-gutters mt-1">
                     <div class="col-1 rounded-circle postImages mr-2 d-inline-block">
-                      @if($user->image_path)
-                        <img src="{{Storage::disk('s3')->url($user->image_path)}}" alt="" class="mt-2 float-right">
+                      @if($post->image_path)
+                        <img src="{{Storage::disk('s3')->url($post->image_path)}}" alt="" class="mt-2 float-right">
                       @else
                         <i class="fas fa-user mt-2 float-right"></i>
                       @endif
@@ -433,8 +444,26 @@
       </div>
     </div>      
   </div>
-         
-
+{{-- ボタンpopver --}}
+  <script>
+      $(function() {
+        $('#favorite_button').popover({
+          trigger: 'hover', 
+        });
+      });
+    
+      $(function() {
+        $('#post_button').popover({
+          trigger: 'hover', 
+        });
+      });
+    
+      $(function() {
+        $('#homepage').popover({
+          trigger: 'hover', 
+        });
+      });
+    </script>
 
 {{-- 俳優メニューバー・collapse --}}
   <script>
@@ -491,6 +520,7 @@
               $('.registButton').data('favorite', true);
               // ボタンの表記を書き換える
               $('#regist_text').html('<i class="fas fa-user-minus"></i>');
+              $('#favorite_button').attr('data-content', 'お気に入り解除する');
             }
           }).fail(function (err) {
             // 通信失敗時の処理
@@ -513,6 +543,7 @@
               // $('.registButton')[0].dataset.favorite = 'false';
               $('.registButton').data('favorite', false);
               $('#regist_text').html('<i class="fas fa-user-plus"></i>');
+              $('#favorite_button').attr('data-content', 'お気に入り登録する');
             }
           }).fail(function (err) {
             // 通信失敗時の処理

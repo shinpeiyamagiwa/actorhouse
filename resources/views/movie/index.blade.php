@@ -41,8 +41,8 @@
     {{-- レビュー投稿 --}}
             @if(!$review)
               <div class="mt-0">
-                <button class="btn btn-outline-success"
-                data-toggle="modal" data-target="#moviediary" >
+                <button class="btn btn-outline-success" id="diary"
+                data-toggle="modal" data-target="#moviediary" data-toggle="popover" data-content="記録をつける">
                   <p class="my-auto"><i class="fas fa-book"></i></p>
                 </button>
                 <br>
@@ -103,7 +103,8 @@
           <div class="col-2">
             @if(isset($watchList))
               <div class="mt-0 text-center">
-                <button data-movie-id="{{$movie->tmdb_id}}" data-watchlist="ture" id="watchlist_button" type="button" class="watchList btn btn-success btn-xs">
+                <button data-movie-id="{{$movie->tmdb_id}}" data-watchlist="ture" id="watchlist_button" type="button" class="watchList btn btn-success btn-xs"
+                    data-toggle="popover" data-content="ウォッチリストから削除">
                   <span id="watchlist_text">
                     <p class="my-auto"><i class="fas fa-tag"></i></i></p>
                   </span>
@@ -111,7 +112,8 @@
               </div>
             @else
               <div class="mt-0">
-                <button data-movie-id="{{$movie->tmdb_id}}" data-watchlist="false" id="watchlist_button" type="button" class="watchList btn btn-outline-success btn-xs">
+                <button data-movie-id="{{$movie->tmdb_id}}" data-watchlist="false" id="watchlist_button" type="button" class="watchList btn btn-outline-success btn-xs"
+                    data-toggle="popover" data-content="ウォッチリストに追加">
                   <span id="watchlist_text">
                     <p class="my-auto"><i class="fas fa-list-ol"></i></p>
                   </span>
@@ -122,7 +124,7 @@
     {{-- 映画ホームページ --}}
           @if(isset($movie->homepage))
             <div class="col-2">
-              <button class="btn btn-outline-success btn-xs">
+              <button id="homepage" class="btn btn-outline-success btn-xs" data-toggle="popover" data-content="公式サイト">
                 <a href={{$movie->homepage}}>
                   <i class="far fa-id-card"></i>
                 </a>
@@ -217,8 +219,8 @@
                         <div class="col-6 d-inline-block rounded-circle postImages mr-2">
                           <a href="/user/{{$review->user_id}}">
                             <p class="mt-2 mb-2">
-                              @if($user->image_path)
-                              <img src="{{Storage::disk('s3')->url($user->image_path)}}" alt="" class="">
+                              @if($review->image_path)
+                              <img src="{{Storage::disk('s3')->url($review->image_path)}}" alt="" class="">
                               @else
                               <i class="fas fa-user"></i>
                               @endif
@@ -303,8 +305,8 @@
                       <div class="col-6 d-inline-block rounded-circle postImages mr-2">
                         <a href="/user/{{$review->user_id}}">
                           <p class="mt-2 mb-2">
-                            @if($user->image_path)
-                            <img src="{{Storage::disk('s3')->url($user->image_path)}}" alt="" class="">
+                            @if($review->image_path)
+                            <img src="{{Storage::disk('s3')->url($review->image_path)}}" alt="" class="">
                             @else
                             <i class="fas fa-user"></i>
                             @endif
@@ -312,7 +314,8 @@
                           </p>
                         </a>
                       </div>
-                      <div class="col-1 float-right">
+                    {{-- TODO返信機能 --}}
+                      {{-- <div class="col-1 float-right">
                         <div data-toggle="modal" data-target="#reviewreply">
                           <i class="far fa-comment-dots float-left mt-2"></i>
                         </div>
@@ -355,7 +358,7 @@
                             </div>
                           </div>
                         </div>
-                      </div>
+                      </div> --}}
                     </div>
                   </div>
                   <div class="card-body pt-3">
@@ -379,6 +382,25 @@
   </div>  
 </div>     
 <hr>
+<script>
+  $(function() {
+    $('#watchlist_button').popover({
+      trigger: 'hover', 
+    });
+  });
+
+  $(function() {
+    $('#diary').popover({
+      trigger: 'hover', 
+    });
+  });
+
+  $(function() {
+    $('#homepage').popover({
+      trigger: 'hover', 
+    });
+  });
+</script>
 {{-- 映画メニューバー --}}
   <script>
     $('.mycontent1').click(function () {
@@ -420,6 +442,7 @@
             alert('ウォッチリスト登録しました！');
             $('.watchList').data('watchlist', true);
             $('#watchlist_text').html('<i class="fas fa-tag"></i>');
+            $('#watchlist_button').attr('data-content', 'ウォッチリストから削除');
           }
         }).fail(function (err) {
           // 通信失敗時の処理
@@ -440,6 +463,7 @@
             alert('ウォッチリスト解除しました！');
             $('.watchList').data('watchlist', false);
             $('#watchlist_text').html('<i class="fas fa-list-ol">');
+            $('#watchlist_button').attr('data-content', 'ウォッチリストに追加');
           }
         }).fail(function (err) {
           // 通信失敗時の処理

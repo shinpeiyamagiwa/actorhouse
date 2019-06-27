@@ -27,7 +27,7 @@ class MovieController extends Controller
                         ->first();
         $reviews = Review::join('users', 'reviews.user_id', '=', 'users.id')
                         ->where('movie_id', '=', $id)
-                        ->select('users.name', 'evaluate', 'reviews.content', 'reviews.user_id', 'reviews.id')
+                        ->select('users.name', 'evaluate', 'reviews.content', 'reviews.user_id', 'reviews.id', 'users.image_path')
                         ->orderBy('reviews.id', 'desc')
                         ->get();
         $avg = Review::join('users', 'reviews.user_id', '=', 'users.id')

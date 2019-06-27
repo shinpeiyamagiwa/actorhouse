@@ -14,14 +14,14 @@
             <div class="col-6">
                 <h3>{{$movie->title}}</h3>
                 <div class="row">
-                  <div class="col-3">
+                  <div class="col-6">
                     @if(round($avg,2) == 0)
                       <h5>評価：なし</h5>
                     @else
                       <h5>評価：{{round($avg,2)}}</h5>
                     @endif
                   </div>
-                  <div class="col-3">
+                  <div class="col-6">
                     <h5>見た人：{{round($avg,2)}}</h5>
                   </div>
                 </div>

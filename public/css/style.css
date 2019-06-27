@@ -4,7 +4,9 @@ body{
 .dropdown-item {
   background-color: rgba(7, 7, 7, 0.808);
 }
-
+.login, .register{
+  margin-top: 85px;
+}
 /* topページ */
 @media screen and (max-width:497px) {
   .Topheader h1, .Topic h1{
@@ -17,6 +19,10 @@ body{
     width:100%;
     height:150px; 
     object-fit: cover;
+  }
+  .Topheader {
+    height:150px;
+    margin-top: 25px;
   }
   }
 @media screen and (min-width:497px) and (max-width:574px) {
@@ -31,6 +37,10 @@ body{
     height:150px; 
     object-fit: cover;
   }
+  .Topheader {
+    height:150px;
+    margin-top: 25px;
+  }
 }
 @media screen and (min-width:575px) and (max-width:676px) {
   .Topheader h1, .Topic h1 {
@@ -44,12 +54,20 @@ body{
     height:150px; 
     object-fit: cover;
   }
+  .Topheader {
+    height:250px;
+    margin-top: 45px;
+  }
 }
 @media screen and (min-width:677px) and (max-width:767px) {
   .castList img{
     width:100%;
     height:150px; 
     object-fit: cover;
+  }
+  .Topheader {
+    height:200px;
+    margin-top: 45px;
   }
 }
 @media screen and (min-width:768px) and (max-width:991px) {
@@ -59,12 +77,20 @@ body{
   height:150px; 
   object-fit: cover;
 }
+.Topheader {
+  height:250px;
+  margin-top: 45px;
+}
 }
 @media screen and (min-width:992px) {
 .castList img{
   width:100%;
   height:250px; 
   object-fit: cover;
+}
+.Topheader {
+  height:250px;
+  margin-top: 45px;
 }
 }
 /* 俳優TOP */

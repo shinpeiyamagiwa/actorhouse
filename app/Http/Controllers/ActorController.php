@@ -29,7 +29,7 @@ class ActorController extends Controller
                         ->get();
         $posts = Post::join('users', 'posts.user_id', '=', 'users.id')
                         ->where('actor_id', '=', $id)
-                        ->select('users.name', 'content', 'user_id', 'posts.id')
+                        ->select('users.name', 'content', 'user_id', 'posts.id', 'users.image_path')
                         ->orderBy('id', 'desc')
                         ->get();
         $favorite_actors = FavoriteActor::where('user_id', '=', $userId)
