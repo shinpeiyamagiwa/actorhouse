@@ -6,12 +6,12 @@
   <div class="Topheader jumbotron text-center">
     <h1>好きな俳優を見つけよう</h1>
     @unless (Auth::check())
-      {{-- <a href="register"> --}}
+      <a href="register">
         <button class="btn btn-primary"
           data-toggle="modal" data-target="#menber">会員登録
         </button>
       </a>  
-      {{-- <a href="login"> --}}
+      <a href="login">
         <button class="btn btn-primary"
           data-toggle="modal" data-target="#menber">ログイン
         </button>
@@ -26,12 +26,12 @@
     <h3>今週のオススメ俳優</h3>
     <div class="row castList responsive mx-1 no-gutters">
       <div class="col-sm-2 col-4 mb-3">
-        <a href="/actor/1">
+        {{-- <a href="/actor/1"> --}}
           <img src="images/emmastone.jpg" alt="" class="img-fluid">
         {{-- </a> --}}
       </div>
       <div class="col-sm-2 col-4 mb-3">
-        <a href="/actor/3">
+        {{-- <a href="/actor/3"> --}}
           <img src="images/Hailee Steinfeld.png" alt="" class="img-fluid">
         {{-- </a>       --}}
       </div>
