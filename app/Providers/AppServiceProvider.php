@@ -27,5 +27,7 @@ class AppServiceProvider extends ServiceProvider
         if (\App::environment('production')) {
             \URL::forceScheme('https');
         }
+        //herokuマイグレーションようにカラム最大値変更
+        Schema::defaultStringLength(191);
     }
 }
