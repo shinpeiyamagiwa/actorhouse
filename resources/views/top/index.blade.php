@@ -6,12 +6,12 @@
   <div class="Topheader jumbotron text-center">
     <h1>好きな俳優を見つけよう</h1>
     @unless (Auth::check())
-      <a href="register">
+      {{-- <a href="register"> --}}
         <button class="btn btn-primary"
           data-toggle="modal" data-target="#menber">会員登録
         </button>
       </a>  
-      <a href="login">
+      {{-- <a href="login"> --}}
         <button class="btn btn-primary"
           data-toggle="modal" data-target="#menber">ログイン
         </button>
@@ -28,32 +28,32 @@
       <div class="col-sm-2 col-4 mb-3">
         <a href="/actor/1">
           <img src="images/emmastone.jpg" alt="" class="img-fluid">
-        </a>
+        {{-- </a> --}}
       </div>
       <div class="col-sm-2 col-4 mb-3">
         <a href="/actor/3">
           <img src="images/Hailee Steinfeld.png" alt="" class="img-fluid">
-        </a>      
+        {{-- </a>       --}}
       </div>
       <div class="col-sm-2 col-4 mb-3">
-        <a href="/actor/13">
+        {{-- <a href="/actor/13"> --}}
           <img src="images/George Clooney.jpg" alt="" class="img-fluid">
-        </a>
+        {{-- </a> --}}
       </div>
       <div class="col-sm-2 col-4 mb-3">
-        <a href="/actor/10">
+        {{-- <a href="/actor/10"> --}}
           <img src="images/AnnaKendrick.jpg" alt="" class="img-fluid">
-        </a> 
+        {{-- </a>  --}}
       </div>
       <div class="col-sm-2 col-4 mb-3">
-        <a href="/actor/11">
+        {{-- <a href="/actor/11"> --}}
           <img src="images/Ryan_Gosling.jpg" alt="" class="img-fluid">
-        </a> 
+        {{-- </a>  --}}
       </div>
       <div class="col-sm-2 col-4 mb-3">
-        <a href="/actor/5">
+        {{-- <a href="/actor/5"> --}}
           <img src="images/Tony_Stark.jpg" alt="" class="img-fluid">
-        </a>
+        {{-- </a> --}}
       </div>
     </div>
   </div>
@@ -63,33 +63,33 @@
     <h1>HERO特集</h1>
     <div class="row mx-auto Topic_bg">
       <div  class="topic1 col-sm-6 m-auto ">
-        <a href="/actor/7">
+        {{-- <a href="/actor/7"> --}}
           <img src="images/Captain_american.jpg" alt="" class="img-fluid mb-3 img-responsive">
-        </a>
+        {{-- </a> --}}
       </div>
       <div class="col-sm-6 topic2 ">
         <div class="row  mb-3">
           <div  class="col-6  m-auto mb-3">
-            <a href="/actor/8">
+            {{-- <a href="/actor/8"> --}}
               <img  src="images/Captain-Marvel.jpg"  alt="" class="img-fluid img-responsive">
-            </a>
+            {{-- </a> --}}
           </div>
           <div  class="col-6 m-auto  mb-3">
-            <a href="/actor/9">
+            {{-- <a href="/actor/9"> --}}
               <img src="images/thor.jpg"   alt="" class="img-fluid img-responsive">
-            </a>
+            {{-- </a> --}}
           </div>
         </div>
         <div  class="row  mb-3">
           <div class="col-6 m-auto  mb-3">
-            <a href="/actor/6">
+            {{-- <a href="/actor/6"> --}}
               <img src="images/Haruku.jpg"  alt="" class="img-fluid img-responsive">
-            </a>
+            {{-- </a> --}}
           </div>
           <div  class="col-6 m-auto  mb-3">
-            <a href="/actor/2">
+            {{-- <a href="/actor/2"> --}}
               <img src="images/Wander_Woman.jpg"   alt="" class="img-fluid img-responsive">
-            </a>
+            {{-- </a> --}}
           </div>
         </div>
       </div>
@@ -101,9 +101,9 @@
 　  <h2>おすすめ映画</h2>
     <div class="row RecommendedMovie responsive mb-2">
       <div class="col-4 mb-3">
-        <a href="movie">
+        {{-- <a href="movie"> --}}
           <img src="images/emma_LALALAND.jpg" alt="" class="img-fluid ">
-        </a>
+        {{-- </a> --}}
       </div>
       <div class="col-4 mb-3">
         <img src="images/Begin again.jpg" alt="" class="img-fluid">
