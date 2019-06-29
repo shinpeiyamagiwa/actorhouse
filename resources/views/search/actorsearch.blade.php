@@ -8,7 +8,7 @@
             <div class="movieSearch row responsive mb-2 container mx-auto mt-5">
               <div class="float-right col-sm-3 col-6">
                 <a href="/movie/{{$movie->tmdb_id}}">
-                  <img src="http://image.tmdb.org/t/p/w300/{{$movie->image_path}}" alt="" class="img-fluid mb-2">
+                    <img src="http://image.tmdb.org/t/p/w300/{{$movie->image_path}}" alt="" class="img-fluid mb-2">
                 </a>
               </div>
             <div class="col-6">
@@ -41,8 +41,12 @@
            @foreach($actors as $actor)
              <div class="favoriteActor col-lg-2 col-sm-3 col-4">
                <a href="/actor/{{$actor->tmdb_id}}">
-                 <img src="http://image.tmdb.org/t/p/w500/{{$actor->image_path}}" alt="" class="img-fluid mb-2">
-               </a>
+                @if(isset($actor->image_path))
+                  <img src="http://image.tmdb.org/t/p/w500/{{$actor->image_path}}" alt="" class="img-fluid mb-2">
+                @else
+                  <img  class="img-fluid"  src="/images/no-image.png" alt="">
+                @endif
+                </a>
                <p>{{$actor->name}}</p>
              </div>
            @endforeach

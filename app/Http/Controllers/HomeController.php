@@ -136,9 +136,9 @@ class HomeController extends Controller
                             ->select(\DB::raw('count(*) as actor_count, casts.actor_id'),'actors.name','actors.tmdb_id','actors.image_path')
                             ->groupBy('casts.actor_id','actors.name','actors.tmdb_id','actors.image_path')
                             ->orderBy('actor_count', 'desc')
+                            ->orderBy('casts.actor_id', 'asc')
                             ->limit(10)
                             ->get();
-                            
         
 
         return view('home', compact('user','favorite_actors', 'favorite_movies', 
