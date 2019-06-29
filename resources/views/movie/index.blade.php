@@ -1,168 +1,170 @@
 @extends('layouts.app')
 
 @section('content')
-<!-- 映画紹介 -->
-<div class="movieTop jumbotron mb-0"
-@isset($movie->backdrop_path)
-  style="background-image:url('http://image.tmdb.org/t/p/w500/{{$movie->backdrop_path}}');
-  background-repeat:no-repeat;
-  background-size:cover;
-  object-fit: cover;
-  color:white;
-  "
-  @endisset>
-  <div class="bg mx-auto"></div>
-  <div class="container-fluid">
-    <div class="row">
-    {{-- 映画データ --}}
-      <div class="movieimage col-sm-4 mb-3">
-        <img  class="img-fluid"  src="http://image.tmdb.org/t/p/w500/{{$movie->image_path}}" alt="">
-      </div>         
-      <div class="movieprofile col-sm-8 mx-auto">
-        <div class="movieName">
-          <h1>{{$movie->title}}</h1>
-        </div>
-        <div class="col row float-left">
-          <div class="col-4">
-            <h6 class="mb-0">評価</h6>
+
+{{-- 映画トップ --}}
+  <div class="movieTop jumbotron mb-0"
+  @isset($movie->backdrop_path)
+    style="background-image:url('http://image.tmdb.org/t/p/w500/{{$movie->backdrop_path}}');
+    background-repeat:no-repeat;
+    background-size:cover;
+    object-fit: cover;
+    color:white;
+    "
+    @endisset>
+    <div class="bg mx-auto"></div>
+    <div class="container-fluid">
+      <div class="row">
+      {{-- 映画データ --}}
+        <div class="movieimage col-sm-4 mb-3">
+          <img  class="img-fluid"  src="http://image.tmdb.org/t/p/w500/{{$movie->image_path}}" alt="">
+        </div>         
+        <div class="movieprofile col-sm-8 mx-auto">
+          <div class="movieName">
+            <h1>{{$movie->title}}</h1>
           </div>
-          <div class="col-4">
-            <h6 class="mb-0">見た人</h6>
+          <div class="col row float-left">
+            <div class="col-4">
+              <h6 class="mb-0">評価</h6>
+            </div>
+            <div class="col-4">
+              <h6 class="mb-0">見た人</h6>
+            </div>
           </div>
-        </div>
-        <div class="col row">
-          <div class="col-3">
-            <h1 class="float-right">{{round($avg,2)}}</h1>
-          </div>
-          <div class="col-3">
-            <h1 class="float-right">{{count($reviews)}}</h1>
-          </div>
-          <div class="col-2">
-    {{-- レビュー投稿 --}}
-            @if(!$review)
-              <div class="mt-0">
-                <button class="btn btn-outline-success" id="diary"
-                data-toggle="modal" data-target="#moviediary" data-toggle="popover" data-content="記録をつける">
-                  <p class="my-auto"><i class="fas fa-book"></i></p>
-                </button>
-                <br>
-                <div class="modal fade" id="moviediary" tabindex="-1" role="dialog" 
-                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header bg-success">
-                        <h5 class="modal-title" id="exampleModalLabel">記録</i></h5>
-                        <button class="close" data-dismiss="modal">
-                          &times;
-                        </button>
-                      </div>
-                      <div class="modal-body text-dark">
-                        {!! Form::open(['method'=>'POST', 'action'=> 'ReviewController@store']) !!}
-                        <div class="form-group">
-                          {!! Form::label('evaluate', '評価：') !!}
-                          {{Form::selectRange('evaluate', 0, 5.0, '', ['placeholder' => ''])}}
+          <div class="col row">
+            <div class="col-3">
+              <h1 class="float-right">{{round($avg,2)}}</h1>
+            </div>
+            <div class="col-3">
+              <h1 class="float-right">{{count($reviews)}}</h1>
+            </div>
+            <div class="col-2">
+      {{-- レビュー投稿 --}}
+              @if(!$review)
+                <div class="mt-0">
+                  <button class="btn btn-outline-success" id="diary"
+                  data-toggle="modal" data-target="#moviediary" data-toggle="popover" data-content="記録をつける">
+                    <p class="my-auto"><i class="fas fa-book"></i></p>
+                  </button>
+                  <br>
+                  <div class="modal fade" id="moviediary" tabindex="-1" role="dialog" 
+                  aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header bg-success">
+                          <h5 class="modal-title" id="exampleModalLabel">記録</i></h5>
+                          <button class="close" data-dismiss="modal">
+                            &times;
+                          </button>
                         </div>
-                        <div class="form-group">
-                          {!! Form::label('genre', 'ジャンル：') !!}
-                          {{Form::select('genre', ['','アクション', 'サスペンス', 'ドラマ', 'コメディ', 'ホラー'], null, ['class' => 'field'])}}
-                        </div>
-                        <div class="form-group">
-                          {!! Form::label('content', '感想：') !!}
-                          {!! Form::textarea('content', '鑑賞しました', ['class'=>'form-control']) !!} 
-                        </div>
+                        <div class="modal-body text-dark">
+                          {!! Form::open(['method'=>'POST', 'action'=> 'ReviewController@store']) !!}
                           <div class="form-group">
-                              {{Form::hidden('movie_id', $movie->tmdb_id)}} 
+                            {!! Form::label('evaluate', '評価：') !!}
+                            {{Form::selectRange('evaluate', 0, 5.0, '', ['placeholder' => ''])}}
+                            {{-- {{Form::range('evaluate', 'value',['min'=>1.0,'max'=>5.0, 'step'=>0.1])}} --}}
                           </div>
                           <div class="form-group">
-                              {!! Form::submit('記録', null, ['class'=>'btn btn-success']) !!}
+                            {!! Form::label('genre', 'ジャンル：') !!}
+                            {{Form::select('genre', ['','アクション', 'サスペンス', 'ドラマ', 'コメディ', 'ホラー'], null, ['class' => 'field'])}}
                           </div>
-                          @if ($errors->any())
-                              <div class="alert alert-danger">
-                                  <ul>
-                                      @foreach ($errors->all() as $error)
-                                          <li>{{ $error }}</li>
-                                      @endforeach
-                                  </ul>
-                              </div>
-                          @endif
-                          {!! Form::close() !!}
+                          <div class="form-group">
+                            {!! Form::label('content', '感想：') !!}
+                            {!! Form::textarea('content', '鑑賞しました', ['class'=>'form-control']) !!} 
+                          </div>
+                            <div class="form-group">
+                                {{Form::hidden('movie_id', $movie->tmdb_id)}} 
+                            </div>
+                            <div class="form-group">
+                                {!! Form::submit('記録', null, ['class'=>'btn btn-success']) !!}
+                            </div>
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                            {!! Form::close() !!}
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            @else
-              <div class="mt-0">
-                <div class="btn btn-success mr-auto">
-                  <i class="fas fa-check-square"></i>
+              @else
+                <div class="mt-0">
+                  <div class="btn btn-success mr-auto">
+                    <i class="fas fa-check-square"></i>
+                  </div>
                 </div>
-              </div>
-            @endif
-          </div>
-    {{-- ウォッチリスト登録 --}}
-          <div class="col-2">
-            @if(isset($watchList))
-              <div class="mt-0 text-center">
-                <button data-movie-id="{{$movie->tmdb_id}}" data-watchlist="ture" id="watchlist_button" type="button" class="watchList btn btn-success btn-xs"
-                    data-toggle="popover" data-content="ウォッチリストから削除">
-                  <span id="watchlist_text">
-                    <p class="my-auto"><i class="fas fa-tag"></i></i></p>
-                  </span>
-                </button>
-              </div>
-            @else
-              <div class="mt-0">
-                <button data-movie-id="{{$movie->tmdb_id}}" data-watchlist="false" id="watchlist_button" type="button" class="watchList btn btn-outline-success btn-xs"
-                    data-toggle="popover" data-content="ウォッチリストに追加">
-                  <span id="watchlist_text">
-                    <p class="my-auto"><i class="fas fa-list-ol"></i></p>
-                  </span>
-                </button>
-              </div>
-            @endif
-          </div>
-    {{-- 映画ホームページ --}}
-          @if(isset($movie->homepage))
-            <div class="col-2">
-              <button id="homepage" class="btn btn-outline-success btn-xs" data-toggle="popover" data-content="公式サイト">
-                <a href={{$movie->homepage}}>
-                  <i class="far fa-id-card"></i>
-                </a>
-              </button>
+              @endif
             </div>
-          @endif          
-        </div>
-    {{-- 映画公開日・作品時間 --}}
-        <div class="col introduction">
-          <p>
-            {{$movie->overview}}
-          </p>
-        </div>
-        <div class="col row">
-          <div class="col-6">
-            公開日
-            <br>
-            {{$movie->released_at}}
+      {{-- ウォッチリスト登録 --}}
+            <div class="col-2">
+              @if(isset($watchList))
+                <div class="mt-0 text-center">
+                  <button data-movie-id="{{$movie->tmdb_id}}" data-watchlist="ture" id="watchlist_button" type="button" class="watchList btn btn-success btn-xs"
+                      data-toggle="popover" data-content="ウォッチリストから削除">
+                    <span id="watchlist_text">
+                      <p class="my-auto"><i class="fas fa-tag"></i></i></p>
+                    </span>
+                  </button>
+                </div>
+              @else
+                <div class="mt-0">
+                  <button data-movie-id="{{$movie->tmdb_id}}" data-watchlist="false" id="watchlist_button" type="button" class="watchList btn btn-outline-success btn-xs"
+                      data-toggle="popover" data-content="ウォッチリストに追加">
+                    <span id="watchlist_text">
+                      <p class="my-auto"><i class="fas fa-list-ol"></i></p>
+                    </span>
+                  </button>
+                </div>
+              @endif
+            </div>
+      {{-- 映画ホームページ --}}
+            @if(isset($movie->homepage))
+              <div class="col-2">
+                <button id="homepage" class="btn btn-outline-success btn-xs" data-toggle="popover" data-content="公式サイト">
+                  <a href={{$movie->homepage}}>
+                    <i class="far fa-id-card"></i>
+                  </a>
+                </button>
+              </div>
+            @endif          
           </div>
-          <div class="col-6">
-            作品時間
-            <br>
-            {{$movie->screen_time}}分
+      {{-- 映画公開日・作品時間 --}}
+          <div class="col introduction">
+            <p>
+              {{$movie->overview}}
+            </p>
           </div>
+          <div class="col row">
+            <div class="col-6">
+              公開日
+              <br>
+              {{$movie->released_at}}
+            </div>
+            <div class="col-6">
+              作品時間
+              <br>
+              {{$movie->screen_time}}分
+            </div>
+          </div>
+          @if($userId === 1)
+            <div class="col">
+              <a href={{route('movies.edit', $movie->tmdb_id)}}>
+                <button>
+                  <p class="my-auto">編集</p>
+                </button>
+              </a>
+            </div>
+          @endif
         </div>
-        @if($userId === 1)
-          <div class="col">
-            <a href={{route('movies.edit', $movie->tmdb_id)}}>
-              <button>
-                <p class="my-auto">編集</p>
-              </button>
-            </a>
-          </div>
-        @endif
       </div>
-    </div>
-  </div>  
-</div>
+    </div>  
+  </div>
 
 <div class="bg-light">
 {{-- 映画メニューバー --}}

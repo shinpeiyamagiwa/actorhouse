@@ -277,10 +277,15 @@
       <div class="row responsive mb-2 container-fluid mx-auto mt-5">
           @if($favorite_movies)
             @foreach($favorite_movies as $favorite_movie)
-              <div class="movieList col-lg-2 col-sm-3 col-4 float-right"
+              <div id="movieList" class="movieList col-lg-2 col-sm-3 col-4 float-right"
               data-toggle="modal" data-target="#moviediary">
                 <a href="/movie/{{$favorite_movie->movie_id}}">
                   <img src="http://image.tmdb.org/t/p/w500/{{$favorite_movie->image_path}}" alt="" class="img-fluid mb-2">
+                  @if(isset($favorite_movie->evaluate))
+                    <div class="badge scoreBadge p-0">
+                      <p class="mt-1">{{$favorite_movie->evaluate}}</p>
+                    </div>
+                  @endif
                   <p>{{$favorite_movie->title}}</p>
                 </a>
               </div>
@@ -297,6 +302,11 @@
               data-toggle="modal" data-target="#moviediary">
                 <a href="/movie/{{$action_movie->movie_id}}">
                   <img src="http://image.tmdb.org/t/p/w500/{{$action_movie->image_path}}" alt="" class="img-fluid mb-2">
+                  @if(isset($favorite_movie->evaluate))
+                    <div class="badge scoreBadge p-0">
+                      <p class="mt-1">{{$favorite_movie->evaluate}}</p>
+                    </div>
+                  @endif
                   <p>{{$action_movie->title}}</p>
                 </a>
               </div>
@@ -313,6 +323,11 @@
               data-toggle="modal" data-target="#moviediary">
                 <a href="/movie/{{$suspense_movie->movie_id}}">
                   <img src="http://image.tmdb.org/t/p/w500/{{$suspense_movie->image_path}}" alt="" class="img-fluid mb-2">
+                  @if(isset($favorite_movie->evaluate))
+                    <div class="badge scoreBadge p-0">
+                      <p class="mt-1">{{$favorite_movie->evaluate}}</p>
+                    </div>
+                  @endif
                   <p>{{$suspense_movie->title}}</p>
                 </a>
               </div>
@@ -329,6 +344,11 @@
               data-toggle="modal" data-target="#moviediary">
                 <a href="/movie/{{$drama_movie->movie_id}}">
                   <img src="http://image.tmdb.org/t/p/w500/{{$drama_movie->image_path}}" alt="" class="img-fluid mb-2">
+                  @if(isset($favorite_movie->evaluate))
+                    <div class="badge scoreBadge p-0">
+                      <p class="mt-1">{{$favorite_movie->evaluate}}</p>
+                    </div>
+                  @endif
                   <p>{{$drama_movie->title}}</p>
                 </a>
               </div>
@@ -345,6 +365,11 @@
               data-toggle="modal" data-target="#moviediary">
                 <a href="/movie/{{$comedy_movie->movie_id}}">
                   <img src="http://image.tmdb.org/t/p/w500/{{$comedy_movie->image_path}}" alt="" class="img-fluid mb-2">
+                  @if(isset($favorite_movie->evaluate))
+                    <div class="badge scoreBadge p-0">
+                      <p class="mt-1">{{$favorite_movie->evaluate}}</p>
+                    </div>
+                  @endif
                   <p>{{$comedy_movie->title}}</p>
                 </a>
               </div>
@@ -361,6 +386,11 @@
               data-toggle="modal" data-target="#moviediary">
                 <a href="/movie/{{$horror_movie->movie_id}}">
                   <img src="http://image.tmdb.org/t/p/w500/{{$horror_movie->image_path}}" alt="" class="img-fluid mb-2">
+                  @if(isset($favorite_movie->evaluate))
+                    <div class="badge scoreBadge p-0">
+                      <p class="mt-1">{{$favorite_movie->evaluate}}</p>
+                    </div>
+                  @endif
                   <p>{{$horror_movie->title}}</p>
                 </a>
               </div>
@@ -370,7 +400,7 @@
     </div> 
   </div>
 
-  {{-- 自分の映画レビュー --}}
+{{-- 自分の映画レビュー --}}
   <div id="reviewRoom" class="collapse">
     <div class="responsive mb-2 mx-auto mt-5">
       @if($reviews)
@@ -394,8 +424,16 @@
                     </div>
                   </div>
                 </div>
-                <div class="card-body">
-                  {{$review->content}}
+                <div class="card-body pt-3">
+                  <div class="mb-0">
+                  @if(isset($review->evaluate))
+                    <p class="mb-0">評価：{{$review->evaluate}}</p>
+                  @endif
+                  </div>
+                  <hr class="mt-1">
+                  <p class="text-success">
+                    {{$review->content}}
+                  </p>
                 </div>
               </div>
             @endforeach
@@ -710,7 +748,7 @@
               <a href="/actor/{{$favorite_actor->actor_id}}">
                 <img src="http://image.tmdb.org/t/p/w500/{{$favorite_actor->image_path}}" alt="" class="img-fluid mb-2">
                 @if($favorite_actor->new == 1)
-                  <div class="badge p-0">
+                  <div class="badge newBadge p-0">
                     <p>New</p>
                   </div>
                 @endif
