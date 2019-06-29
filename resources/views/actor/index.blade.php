@@ -508,7 +508,7 @@
             headers: {
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            url: 'https://actorhouse.test/favorite/actor/store',
+            url: "{{url('/favorite/actor/store')}}",
             dataType: "json",
             data: {actor_id : actor_id}
           }).done(function (response) {
@@ -533,7 +533,7 @@
             headers: {
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            url: 'https://actorhouse.test/favorite/actor/delete',
+            url: "{{url('/favorite/actor/delete')}}",
             dataType: "json",
             data: {actor_id : actor_id}
           }).done(function (response) {

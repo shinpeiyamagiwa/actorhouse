@@ -74,7 +74,7 @@ class MovieUpdateController extends Controller
                         'image_path' => $response['results'][$i]['poster_path'],
                         'backdrop_path' => isset($details['backdrop_path']) ? $details['backdrop_path'] : null,
                         'released_at' => isset($details['release_date']) ? $details['release_date'] : null,
-                        'video_link' => isset($responseObj['items'][0]['id']['videoId']) ? $responseObj['items'][0]['id']['videoId'] : 'test',
+                        'video_link' => isset($responseObj['items'][0]['id']['videoId']) ? $responseObj['items'][0]['id']['videoId'] : null,
                         'screen_time' => $details['runtime'],
                         'overview' => $response['results'][$i]['overview']
                     ]); 

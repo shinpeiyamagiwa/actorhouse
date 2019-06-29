@@ -574,7 +574,7 @@
             headers: {
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            url: 'https://actorhouse.test/follow/user/store',
+            url: "{{url('/follow/user/store')}}",
             dataType: "json",
             data: {follow_id : follow_id}
           })
@@ -595,7 +595,7 @@
             headers: {
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            url: 'https://actorhouse.test/follow/user/delete',
+            url: "{{url('/follow/user/delete')}}",
             dataType: "json",
             data: {follow_id : follow_id}
           }).done(function (response) {

@@ -435,7 +435,7 @@
           headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
           },
-          url: 'https://actorhouse.test/watchlist/movie/store',
+          url: "{{url('/watchlist/movie/store')}}",
           dataType: "json",
           data: {movie_id : movie_id}
         }).done(function (response) {
@@ -456,7 +456,7 @@
           headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
           },
-          url: 'https://actorhouse.test/watchlist/movie/delete',
+          url: "{{url('/watchlist/movie/delete')}}",
           dataType: "json",
           data: {movie_id : movie_id}
         }).done(function (response) {
