@@ -304,7 +304,7 @@
                 <div class="card border-success mb-3" >
                   <div class="card-header d-inline py-0">
                     <div class="row no-gutters mt-1">
-                      <div class="col-6 d-inline-block rounded-circle postImages mr-2">
+                      <div class="col-10 d-inline-block rounded-circle postImages mr-2">
                         <a href="/user/{{$review->user_id}}">
                           <p class="mt-2 mb-2">
                             @if($review->image_path)
@@ -363,13 +363,13 @@
                       </div> --}}
                     </div>
                   </div>
-                  <div class="card-body pt-3">
+                  <div class="card-body pt-3 pb-1">
                     <div class="mb-0">
                     @if(isset($review->evaluate))
                       <p class="mb-0">評価：{{$review->evaluate}}</p>
                     @endif
                     </div>
-                    <hr class="mt-1">
+                    <hr class="mt-1 mb-1">
                     <p class="text-success">
                       {{$review->content}}
                     </p>

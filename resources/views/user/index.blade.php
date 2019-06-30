@@ -135,8 +135,8 @@
               data-toggle="modal" data-target="#moviediary">
                 <a href="/movie/{{$favorite_movie->movie_id}}">
                   <img src="http://image.tmdb.org/t/p/w500/{{$favorite_movie->image_path}}" alt="" class="img-fluid mb-2">
-                  <p>{{$favorite_movie->title}}</p>
                 </a>
+                <p>{{$favorite_movie->title}}</p>
               </div>
             @endforeach
           @endif

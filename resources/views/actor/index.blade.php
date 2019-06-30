@@ -170,7 +170,7 @@
       data-target="#videoRoom">
         <h6>動画</h6>
       </div>
-      <div class="mycontent2 col-3 text-center"date-toggle="collapse"
+      <div class="mycontent2 col-3 text-center pr-0"date-toggle="collapse"
       data-target="#talkRoom">
         <h6>トークルーム</h6>
       </div>
@@ -184,8 +184,8 @@
           <div class="movieList col-lg-2 col-sm-3 col-4">
             <a href="/movie/{{$work->movie_id}}">
               <img src="http://image.tmdb.org/t/p/w500/{{$work->image_path}}" alt="" class="img-fluid mb-2">
-              <p>{{$work->title}}</p>
             </a>
+            <p>{{$work->title}}</p>
           </div>
         @endforeach
       @endif
@@ -198,11 +198,11 @@
         <h5>{{$actor->name}}のアルバムを作ろう</h5>
         {!! Form::model($actor,['method'=>'PATCH', 'action'=> ['ActorController@upload', $actor->tmdb_id], 'files' => true]) !!}
         {{ csrf_field() }}
-          <div class="form-group">
+          <div class="form-group mb-1">
               {!! Form::label('actor_image', 'Image:') !!}
               {!! Form::file('actor_image', null, ['class'=>'form-control']) !!}
           </div> 
-          <div class="form-group">
+          <div class="form-group mb-1">
               {{Form::hidden('user_id', $user->id)}} 
           </div>
           <div class="form-group">
@@ -246,7 +246,7 @@
               <div class="card border-success mb-3" >
                 <div class="card-header d-inline py-0">
                   <div class="row no-gutters mt-1">
-                    <div class="col-6 d-inline-block rounded-circle postImages mr-2">
+                    <div class="col-10 d-inline-block rounded-circle postImages mr-2">
                       <a href="/user/{{$post->user_id}}">
                         <p class="mt-2 mb-2">
                           @if($post->image_path)
@@ -354,12 +354,12 @@
                   <div class="row no-gutters mt-1">
                     <div class="col-1 rounded-circle postImages mr-2 d-inline-block">
                       @if($post->image_path)
-                        <img src="{{Storage::disk('s3')->url($post->image_path)}}" alt="" class="mt-2 float-right">
+                        <img src="{{Storage::disk('s3')->url($post->image_path)}}" alt="" class="mt-1 mb-1 float-right">
                       @else
                         <i class="fas fa-user mt-2 float-right"></i>
                       @endif
                     </div>
-                    <div class="col-5 float-left d-inline-block">
+                    <div class="col-10 float-left d-inline-block">
                       <a href="/user/{{$post->user_id}}">
                         <p class="ml-1 mt-1 py-0">{{$post->name}}<p>
                       </a>

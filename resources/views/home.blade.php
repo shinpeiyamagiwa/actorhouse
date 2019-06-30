@@ -2,7 +2,7 @@
 
 @section('content')
 
-  <div class="userTop jumbotron mb-0">
+  <div class="userTop jumbotron mb-0 pt-5">
     <div class="container">
       <div class="row">
         <div class="userimage col-3 mb-3">
@@ -22,10 +22,10 @@
 {{-- sm以外表示(使用データ) --}}
           <div class="col row float-left">
             <div class="col-3">
-              <h6 class="mb-0  d-none d-sm-block">お気に入り俳優</h6>
+              <h6 class="mb-0 d-none d-sm-block">お気に入り俳優</h6>
             </div>
             <div class="col-3">
-              <h6 class="mb-0  d-none d-sm-block">映画鑑賞数</h6>
+              <h6 class="mb-0 d-none d-sm-block">映画鑑賞数</h6>
             </div>
             <div class="col-3">
               <h6 class="mb-0 d-none d-sm-block">映画評価平均</h6>
@@ -54,13 +54,13 @@
 {{-- smのみ表示(使用データ) --}}
         <div class="row d-sm-none d-block">
           <div class="col row float-left">
-            <div class="col-3">
+            <div class="col-3 pr-0">
               <h6 class="mb-0">お気に入り俳優</h6>
             </div>
             <div class="col-3">
               <h6 class="mb-0">映画鑑賞数</h6>
             </div>
-            <div class="col-3">
+            <div class="col-3 pr-0">
               <h6 class="mb-0">映画評価平均</h6>
             </div>
             <div class="col-3">
@@ -68,7 +68,7 @@
             </div>
           </div>
           <div class="col row">
-            <div class="col-3">
+            <div class="col-3 pr-0">
                 <h1 class="float-right">{{count($favorite_actors)}}人</h1>
             </div>
             <div class="col-3">
@@ -86,9 +86,9 @@
 
 {{-- ツイート機能 --}}
           <div class="col-lg-1 col-3">
-            <button tyoe="button" class="btn btn-outline-success"
+            <button tyoe="button" class="btn btn-outline-success btn-xs px-2 pt-0 pb-1"
             data-toggle="modal" data-target="#tweet">
-              <i class="far fa-comment-dots"></i>
+              <i class="far fa-comment-dots p-0"></i>
             </button>
             <div class="modal fade" id="tweet"　tabindex="-1" role="dialog" 
             aria-labelledby="tweetModalLabel" aria-hidden="true">
@@ -265,7 +265,7 @@
           data-target="#comedy">
             <h6>コメディ</h6>
           </div>
-          <div class="genre6 col-2 text-center"date-toggle="collapse"
+          <div class="genre6 col-md-2 col-4 text-center"date-toggle="collapse"
           data-target="#horror">
             <h6>ホラー</h6>
           </div>
@@ -286,8 +286,8 @@
                       <p class="mt-1">{{$favorite_movie->evaluate}}</p>
                     </div>
                   @endif
-                  <p>{{$favorite_movie->title}}</p>
                 </a>
+                  <p>{{$favorite_movie->title}}</p>
               </div>
             @endforeach
           @endif
@@ -307,8 +307,8 @@
                       <p class="mt-1">{{$favorite_movie->evaluate}}</p>
                     </div>
                   @endif
-                  <p>{{$action_movie->title}}</p>
                 </a>
+                  <p>{{$action_movie->title}}</p>
               </div>
             @endforeach
           @endif
@@ -328,8 +328,8 @@
                       <p class="mt-1">{{$favorite_movie->evaluate}}</p>
                     </div>
                   @endif
-                  <p>{{$suspense_movie->title}}</p>
                 </a>
+                  <p>{{$suspense_movie->title}}</p>
               </div>
             @endforeach
           @endif
@@ -349,8 +349,8 @@
                       <p class="mt-1">{{$favorite_movie->evaluate}}</p>
                     </div>
                   @endif
-                  <p>{{$drama_movie->title}}</p>
                 </a>
+                  <p>{{$drama_movie->title}}</p>
               </div>
             @endforeach
           @endif
@@ -370,8 +370,8 @@
                       <p class="mt-1">{{$favorite_movie->evaluate}}</p>
                     </div>
                   @endif
-                  <p>{{$comedy_movie->title}}</p>
                 </a>
+                  <p>{{$comedy_movie->title}}</p>
               </div>
             @endforeach
           @endif
@@ -391,8 +391,8 @@
                       <p class="mt-1">{{$favorite_movie->evaluate}}</p>
                     </div>
                   @endif
-                  <p>{{$horror_movie->title}}</p>
                 </a>
+                  <p>{{$horror_movie->title}}</p>
               </div>
             @endforeach
           @endif
@@ -412,25 +412,25 @@
                   <div class="row no-gutters mt-1">
                     <div class="col-1 rounded-circle postImages mr-2 d-inline-block">
                       @if($review->image_path)
-                        <img src="http://image.tmdb.org/t/p/w500/{{$review->image_path}}" alt="" class="mt-2 float-right">
+                        <img src="http://image.tmdb.org/t/p/w500/{{$review->image_path}}" alt="" class="mt-2 mb-2 float-right">
                       @else
                         <i class="fas fa-user mt-2 float-right"></i>
                       @endif
                     </div>
-                    <div class="col-5 float-left d-inline-block">
+                    <div class="col-10 float-left d-inline-block">
                       <a href="/movie/{{$review->movie_id}}">
                         <p class="ml-1 mt-1 py-0">{{$review->title}}<p>
                       </a>
                     </div>
                   </div>
                 </div>
-                <div class="card-body pt-3">
+                <div class="card-body pt-1 pb-1">
                   <div class="mb-0">
                   @if(isset($review->evaluate))
                     <p class="mb-0">評価：{{$review->evaluate}}</p>
                   @endif
                   </div>
-                  <hr class="mt-1">
+                  <hr class="mt-1 mb-1">
                   <p class="text-success">
                     {{$review->content}}
                   </p>
@@ -529,22 +529,22 @@
                   {{-- //TODO返信機能 --}}
                     </div>
                   </div>
-                  <div class="card-body pt-3 postImages">
+                  <div class="card-body pt-2 postImages">
                     <div class="mb-0">
-                    @if(isset($follow_review->evaluate))
-                      <p class="mb-0">評価：{{$follow_review->evaluate}}</p>
-                    @endif
-                    <a href="/movie/{{$follow_review->tmdb_id}}">
-                      @if($follow_review->movie_image)
+                      <a href="/movie/{{$follow_review->tmdb_id}}">
+                        @if($follow_review->movie_image)
                         <img src="http://image.tmdb.org/t/p/w500/{{$follow_review->movie_image}}" alt="" class="">
-                      @endif
-                      {{$follow_review->title}}
-                      </div>
-                      <hr class="mt-1">
-                      @if(isset($follow_review->content))
-                        <p class="mb-0">{{$follow_review->content}}</p>
-                      @endif
-                    </a>
+                        @endif
+                        {{$follow_review->title}}
+                      </a>
+                    </div>
+                    <hr class="mt-1 mb-1">
+                    @if(isset($follow_review->evaluate))
+                      評価：{{$follow_review->evaluate}}
+                    @endif
+                    @if(isset($follow_review->content))
+                      <p class="mb-0">{{$follow_review->content}}</p>
+                    @endif
                   </div>
                 </div>
               @endforeach
@@ -619,7 +619,7 @@
                     {{-- //TODO返信機能 --}}
                     </div>
                   </div>
-                  <div class="card-body pt-3 postImages">
+                  <div class="card-body pt-1 postImages">
                     <div class="mb-0">
                       <a href="/actor/{{$follow_post->tmdb_id}}">
                         <p class="mt-2 mb-2">
@@ -632,7 +632,7 @@
                         </p>
                       </a>
                     </div>
-                    <hr class="mt-1">
+                    <hr class="mt-1 mb-1">
                     @if(isset($follow_post->content))
                       <p class="mb-0">{{$follow_post->content}}</p>
                     @endif
@@ -769,8 +769,8 @@
             data-toggle="modal" data-target="#moviediary">
               <a href="/movie/{{$watch_list->movie_id}}">
                 <img src="http://image.tmdb.org/t/p/w500/{{$watch_list->image_path}}" alt="" class="img-fluid mb-2">
-                <p>{{$watch_list->title}}</p>
               </a>
+              <p>{{$watch_list->title}}</p>
             </div>
           @endforeach
         @endif
@@ -784,8 +784,8 @@
             <div class="movieList col-lg-2 col-sm-3 col-4 float-right">
               <a href="/actor/{{$watch_actor->tmdb_id}}">
                 <img src="http://image.tmdb.org/t/p/w500/{{$watch_actor->image_path}}" alt="" class="img-fluid mb-2">
-                <p>{{$watch_actor->name}}</p>
               </a>
+              <p>{{$watch_actor->name}}</p>
             </div>
           @endforeach
         @endif
