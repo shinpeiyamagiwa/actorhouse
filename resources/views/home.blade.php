@@ -772,7 +772,7 @@
                 <img src="http://image.tmdb.org/t/p/w500/{{$favorite_actor->image_path}}" alt="" class="img-fluid mb-2">
                 @if($favorite_actor->new == 1)
                   <div class="badge newBadge p-0">
-                    <p>New</p>
+                    <p class="mb-0 mt-1">New</p>
                   </div>
                 @endif
               </a>
