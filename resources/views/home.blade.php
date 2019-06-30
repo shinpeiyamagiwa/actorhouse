@@ -2,7 +2,75 @@
 
 @section('content')
 
-  <div class="userTop jumbotron mb-0 pt-5">
+<div class="userTop jumbotron mb-0">
+{{-- データ更新（映画・俳優・キャスト）user_id=1のみ --}}
+  <div class="update">
+
+    @if(Auth::id() === 1)
+    <div class="row no-gutters mb-1">
+      <div class="col-lg-1 col-2 px-0">
+        <div data-toggle="modal" data-target='#movieupdate'>
+          <button class="btn btn-outline-success btn-xs p-1">
+            <p class="my-auto">映画更新</p>
+          </button>
+        </div>
+        <div class="modal fade" id="movieupdate"  role="dialog" 
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-body">
+                {!! Form::open(['method'=>'POST', 'action'=> 'MovieUpdateController@update']) !!}
+                {{Form::number('start', null ,['min' => "1"])}}〜{{Form::number('end', null )}}
+                {!! Form::submit('映画更新', null, ['class'=>'success']) !!}
+                {!! Form::close() !!}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-1 col-2 px-0">
+        <div data-toggle="modal" data-target='#actorupdate'>
+          <button class="btn btn-outline-success btn-xs p-1">
+            <p class="my-auto">俳優更新</p>
+          </button>
+        </div>
+        <div class="modal fade" id="actorupdate"  role="dialog" 
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-body">
+                {!! Form::open(['method'=>'POST', 'action'=> 'ActorUpdateController@update']) !!}
+                {{Form::number('start', null ,['min' => "1"])}}〜{{Form::number('end', null )}}
+                {!! Form::submit('俳優更新', null, ['class'=>'success']) !!}
+                {!! Form::close() !!}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-1 col-2 px-0">
+        <div data-toggle="modal" data-target='#castupdate'>
+          <button class="btn btn-outline-success btn-xs p-1">
+            <p class="my-auto">キャスト更新</p>
+          </button>
+        </div>
+        <div class="modal fade" id="castupdate"  role="dialog" 
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-body">
+                {!! Form::open(['method'=>'POST', 'action'=> 'CastUpdateController@update']) !!}
+                {{Form::number('start', null ,['min' => "1"])}}〜{{Form::number('end', null )}}
+                {!! Form::submit('キャスト更新', null, ['class'=>'success']) !!}
+                {!! Form::close() !!}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    @endif
+  </div>
     <div class="container">
       <div class="row">
         <div class="userimage col-3 mb-3">
@@ -132,74 +200,6 @@
               </button>
             </a>
           </div>
-
-
-{{-- データ更新（映画・俳優・キャスト）user_id=1のみ --}}
-          @if(Auth::id() === 1)
-            <div class="col">
-              <div class="row-2">
-                <div class="btn-btn-success" data-toggle="modal" data-target='#movieupdate'>
-                  <button>
-                    <p class="my-auto">映画更新</p>
-                  </button>
-                </div>
-                <div class="modal fade" id="movieupdate"  role="dialog" 
-                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-body">
-                        {!! Form::open(['method'=>'POST', 'action'=> 'MovieUpdateController@update']) !!}
-                        {{Form::number('start', null ,['min' => "1"])}}〜{{Form::number('end', null )}}
-                        {!! Form::submit('映画更新', null, ['class'=>'success']) !!}
-                        {!! Form::close() !!}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row-2">
-                <div class="btn-btn-success" data-toggle="modal" data-target='#actorupdate'>
-                  <button>
-                    <p class="my-auto">俳優更新</p>
-                  </button>
-                </div>
-                <div class="modal fade" id="actorupdate"  role="dialog" 
-                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-body">
-                        {!! Form::open(['method'=>'POST', 'action'=> 'ActorUpdateController@update']) !!}
-                        {{Form::number('start', null ,['min' => "1"])}}〜{{Form::number('end', null )}}
-                        {!! Form::submit('俳優更新', null, ['class'=>'success']) !!}
-                        {!! Form::close() !!}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row-2">
-                <div class="btn-btn-success" data-toggle="modal" data-target='#castupdate'>
-                  <button>
-                    <p class="my-auto">キャスト更新</p>
-                  </button>
-                </div>
-                <div class="modal fade" id="castupdate"  role="dialog" 
-                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-body">
-                        {!! Form::open(['method'=>'POST', 'action'=> 'CastUpdateController@update']) !!}
-                        {{Form::number('start', null ,['min' => "1"])}}〜{{Form::number('end', null )}}
-                        {!! Form::submit('キャスト更新', null, ['class'=>'success']) !!}
-                        {!! Form::close() !!}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          @endif
-
       </div>
     </div>  
   </div>

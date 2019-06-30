@@ -58,9 +58,9 @@
                 </div>
                 
                 
-                <button class="navbar-toggler col-sm-" data-toggle="collapse"
+                <button class="navbar-toggler text-light" data-toggle="collapse"
                     data-target="#navbarCollapse">
-                    <span class="navbar-toggler-icon"></span>
+                    <i class="far fa-caret-square-down"></i>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarCollapse">
