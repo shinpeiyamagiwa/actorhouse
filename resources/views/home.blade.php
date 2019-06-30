@@ -48,7 +48,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-1 col-2 px-0">
+      <div class="col-lg-1 col-3 px-0 mr-3">
         <div data-toggle="modal" data-target='#castupdate'>
           <button class="btn btn-outline-success btn-xs p-1">
             <p class="my-auto">キャスト更新</p>
@@ -68,7 +68,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-1 col-2 px-0">
+      <div class="col-lg-1 col-3 px-0">
         <div data-toggle="modal" data-target='#youtubeUpdate'>
           <button class="btn btn-outline-success btn-xs p-1">
             <p class="my-auto">Youtube更新</p>
