@@ -68,6 +68,29 @@
           </div>
         </div>
       </div>
+      <div class="col-lg-1 col-2 px-0">
+        <div data-toggle="modal" data-target='#youtubeUpdate'>
+          <button class="btn btn-outline-success btn-xs p-1">
+            <p class="my-auto">Youtube更新</p>
+          </button>
+        </div>
+        <div class="modal fade" id="youtubeUpdate"  role="dialog" 
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-body">
+                {!! Form::open(['method'=>'POST', 'action'=> 'YouTubeUpdateController@update']) !!}
+                {{Form::radio('genre', 'actor')}}俳優
+                {{Form::radio('genre', 'movie')}}映画
+                <br>
+                {{Form::number('start', null ,['min' => "1"])}}〜{{Form::number('end', null )}}
+                {!! Form::submit('Youtube更新', null, ['class'=>'success']) !!}
+                {!! Form::close() !!}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     @endif
   </div>

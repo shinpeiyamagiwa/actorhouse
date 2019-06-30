@@ -33,23 +33,23 @@ class MovieUpdateController extends Controller
 
             $response = curl_exec($curl);
             $response = json_decode($response, true);
-
+            // dd($response);
             for ($i=0; $i<=19; $i++) {
                 $movie = Movie::where('tmdb_id', $response['results'][$i]['id'])->first();
                 if(is_null($movie)){
-                    $option = array(
-                        'part' => 'snippet', 
-                        'key' => 'AIzaSyC23guRfvzzJOq4XhSu-8DDWBuj3yPwHfk',
-                        'q' => $response['results'][$i]['title']." "."予告編"
-                     );
-                    $url = "https://www.googleapis.com/youtube/v3/search?".http_build_query($option, 'a', '&');
-                    $curl = curl_init($url);
-                    curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
-                    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, true);
-                    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);  
-                    $json_response = curl_exec($curl);
-                    curl_close($curl);
-                    $responseObj = json_decode($json_response, true);
+                    // $option = array(
+                    //     'part' => 'snippet', 
+                    //     'key' => 'AIzaSyC23guRfvzzJOq4XhSu-8DDWBuj3yPwHfk',
+                    //     'q' => $response['results'][$i]['title']." "."予告編"
+                    //  );
+                    // $url = "https://www.googleapis.com/youtube/v3/search?".http_build_query($option, 'a', '&');
+                    // $curl = curl_init($url);
+                    // curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
+                    // curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, true);
+                    // curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);  
+                    // $json_response = curl_exec($curl);
+                    // curl_close($curl);
+                    // $responseObj = json_decode($json_response, true);
                     $tmdb_id = $response['results'][$i]['id'];
                     
                     $curl = curl_init();
@@ -74,7 +74,7 @@ class MovieUpdateController extends Controller
                         'image_path' => $response['results'][$i]['poster_path'],
                         'backdrop_path' => isset($details['backdrop_path']) ? $details['backdrop_path'] : null,
                         'released_at' => isset($details['release_date']) ? $details['release_date'] : null,
-                        'video_link' => isset($responseObj['items'][0]['id']['videoId']) ? $responseObj['items'][0]['id']['videoId'] : null,
+                        'video_link' =>  null,
                         'screen_time' => isset($details['runtime']) ? $details['runtime'] : null,
                         'overview' => $response['results'][$i]['overview']
                     ]); 
