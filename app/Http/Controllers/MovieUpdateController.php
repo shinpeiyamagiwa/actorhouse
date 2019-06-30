@@ -15,7 +15,7 @@ class MovieUpdateController extends Controller
         
 
         $start = $request->start;
-        $end = $request->end;
+        $end = $request->start;
 
         
 
