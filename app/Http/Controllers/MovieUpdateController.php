@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Movie;
+use App\Cast;
+use App\FavoriteActor;
 use Illuminate\Http\Request;
 
 class MovieUpdateController extends Controller
@@ -67,6 +69,44 @@ class MovieUpdateController extends Controller
                     $details = curl_exec($curl);
                     $details = json_decode($details, true);
                     curl_close($curl);
+
+                    $curl = curl_init();
+                    curl_setopt_array($curl, array(
+                        CURLOPT_URL => "https://api.themoviedb.org/3/movie/$tmdb_id/credits?api_key=c04db39f7aa30c13badfff2f6954efda",
+                        CURLOPT_RETURNTRANSFER => true,
+                        CURLOPT_ENCODING => "",
+                        CURLOPT_MAXREDIRS => 10,
+                        CURLOPT_TIMEOUT => 30,
+                        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                        CURLOPT_CUSTOMREQUEST => "GET",
+                        CURLOPT_POSTFIELDS => "{}",
+                    ));
+                    
+                    $credits = curl_exec($curl);
+                    curl_close($curl);
+                    $credits = json_decode($credits, true);
+                    if(isset($credits['id'])) {
+                        $castlist = Cast::where('movie_id', '=', $tmdb_id)
+                                            ->first();
+                        if(is_null($castlist)){
+                            if(isset($credits['cast'])) {
+                                
+                                foreach ($credits['cast'] as $cast) {
+                                    Cast::create([
+                                        'movie_id' => $tmdb_id,
+                                        'actor_id' => $cast['id'],
+                                    ]); 
+                                    $news = FavoriteActor::where('favorite_actors.actor_id', '=', $cast['id'])
+                                                        ->get();
+                                    foreach ($news as $new) {
+                                        FavoriteActor::where('favorite_actors.actor_id', '=', $cast['id'])
+                                                    ->update(['new' => 1]);                       
+                                    }
+                                }
+                            }
+                        }
+                    }
+
                     Movie::create([
                         'tmdb_id' => $response['results'][$i]['id'],
                         'title' => $response['results'][$i]['title'],
