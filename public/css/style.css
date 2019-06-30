@@ -7,6 +7,9 @@ body{
 .login, .register{
   margin-top: 85px;
 }
+.editUser p{
+  font-size:10px;
+}
 /* topページ */
 @media screen and (max-width:497px) {
   .Topheader h1, .Topic h1{

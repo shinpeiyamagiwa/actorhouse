@@ -216,9 +216,9 @@
 
 
 {{-- user編集 --}}
-          <div class="col">
+          <div class="col editUser">
             <a href={{route('users.edit', $user->id)}}>
-              <button>
+              <button class="btn btn-outline-success btn-xs px-2 py-1">
                 <p class="my-auto">編集</p>
               </button>
             </a>
