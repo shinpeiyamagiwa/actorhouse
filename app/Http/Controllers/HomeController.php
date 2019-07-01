@@ -34,33 +34,45 @@ class HomeController extends Controller
                                         ->get();
         $favorite_movies = FavoriteMovie::join('movies', 'favorite_movies.movie_id', '=', 'movies.tmdb_id')
                                         ->leftJoin('reviews', 'reviews.movie_id', '=', 'movies.tmdb_id')
+                                        ->where('reviews.user_id', '=', $id)
                                         ->where('favorite_movies.user_id', '=', $id)
                                         ->select('favorite_movies.movie_id', 'movies.title', 'movies.image_path','evaluate')
                                         ->get();
+                                       
         $action_movies = FavoriteMovie::join('movies', 'favorite_movies.movie_id', '=', 'movies.tmdb_id')
+                                        ->leftJoin('reviews', 'reviews.movie_id', '=', 'movies.tmdb_id')
+                                        ->where('reviews.user_id', '=', $id)
                                         ->where('favorite_movies.user_id', '=', $id)
                                         ->where('genre', '=', 1)
-                                        ->select('movie_id', 'movies.title', 'movies.image_path')
+                                        ->select('favorite_movies.movie_id', 'movies.title', 'movies.image_path','evaluate')
                                         ->get();
         $suspense_movies = FavoriteMovie::join('movies', 'favorite_movies.movie_id', '=', 'movies.tmdb_id')
+                                        ->leftJoin('reviews', 'reviews.movie_id', '=', 'movies.tmdb_id')
+                                        ->where('reviews.user_id', '=', $id)
                                         ->where('favorite_movies.user_id', '=', $id)
                                         ->where('genre', '=', 2)
-                                        ->select('movie_id', 'movies.title', 'movies.image_path')
+                                        ->select('favorite_movies.movie_id', 'movies.title', 'movies.image_path','evaluate')
                                         ->get();
         $drama_movies = FavoriteMovie::join('movies', 'favorite_movies.movie_id', '=', 'movies.tmdb_id')
+                                        ->leftJoin('reviews', 'reviews.movie_id', '=', 'movies.tmdb_id')
+                                        ->where('reviews.user_id', '=', $id)
                                         ->where('favorite_movies.user_id', '=', $id)
                                         ->where('genre', '=', 3)
-                                        ->select('movie_id', 'movies.title', 'movies.image_path')
+                                        ->select('favorite_movies.movie_id', 'movies.title', 'movies.image_path','evaluate')
                                         ->get();
         $comedy_movies = FavoriteMovie::join('movies', 'favorite_movies.movie_id', '=', 'movies.tmdb_id')
+                                        ->leftJoin('reviews', 'reviews.movie_id', '=', 'movies.tmdb_id')
+                                        ->where('reviews.user_id', '=', $id)
                                         ->where('favorite_movies.user_id', '=', $id)
                                         ->where('genre', '=', 4)
-                                        ->select('movie_id', 'movies.title', 'movies.image_path')
+                                        ->select('favorite_movies.movie_id', 'movies.title', 'movies.image_path','evaluate')
                                         ->get();
         $horror_movies = FavoriteMovie::join('movies', 'favorite_movies.movie_id', '=', 'movies.tmdb_id')
+                                        ->leftJoin('reviews', 'reviews.movie_id', '=', 'movies.tmdb_id')
+                                        ->where('reviews.user_id', '=', $id)
                                         ->where('favorite_movies.user_id', '=', $id)
                                         ->where('genre', '=', 5)
-                                        ->select('movie_id', 'movies.title', 'movies.image_path')
+                                        ->select('favorite_movies.movie_id', 'movies.title', 'movies.image_path','evaluate')
                                         ->get();
 
 

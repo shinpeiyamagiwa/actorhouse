@@ -325,9 +325,9 @@
               data-toggle="modal" data-target="#moviediary">
                 <a href="/movie/{{$action_movie->movie_id}}">
                   <img src="http://image.tmdb.org/t/p/w500/{{$action_movie->image_path}}" alt="" class="img-fluid mb-2">
-                  @if(isset($favorite_movie->evaluate))
+                  @if(isset($action_movie->evaluate))
                     <div class="badge scoreBadge p-0">
-                      <p class="mt-1">{{$favorite_movie->evaluate}}</p>
+                      <p class="mt-1">{{$action_movie->evaluate}}</p>
                     </div>
                   @endif
                 </a>
@@ -346,9 +346,9 @@
               data-toggle="modal" data-target="#moviediary">
                 <a href="/movie/{{$suspense_movie->movie_id}}">
                   <img src="http://image.tmdb.org/t/p/w500/{{$suspense_movie->image_path}}" alt="" class="img-fluid mb-2">
-                  @if(isset($favorite_movie->evaluate))
+                  @if(isset($suspense_movie->evaluate))
                     <div class="badge scoreBadge p-0">
-                      <p class="mt-1">{{$favorite_movie->evaluate}}</p>
+                      <p class="mt-1">{{$suspense_movie->evaluate}}</p>
                     </div>
                   @endif
                 </a>
@@ -367,9 +367,9 @@
               data-toggle="modal" data-target="#moviediary">
                 <a href="/movie/{{$drama_movie->movie_id}}">
                   <img src="http://image.tmdb.org/t/p/w500/{{$drama_movie->image_path}}" alt="" class="img-fluid mb-2">
-                  @if(isset($favorite_movie->evaluate))
+                  @if(isset($drama_movie->evaluate))
                     <div class="badge scoreBadge p-0">
-                      <p class="mt-1">{{$favorite_movie->evaluate}}</p>
+                      <p class="mt-1">{{$drama_movie->evaluate}}</p>
                     </div>
                   @endif
                 </a>
@@ -388,9 +388,9 @@
               data-toggle="modal" data-target="#moviediary">
                 <a href="/movie/{{$comedy_movie->movie_id}}">
                   <img src="http://image.tmdb.org/t/p/w500/{{$comedy_movie->image_path}}" alt="" class="img-fluid mb-2">
-                  @if(isset($favorite_movie->evaluate))
+                  @if(isset($comedy_movie->evaluate))
                     <div class="badge scoreBadge p-0">
-                      <p class="mt-1">{{$favorite_movie->evaluate}}</p>
+                      <p class="mt-1">{{$comedy_movie->evaluate}}</p>
                     </div>
                   @endif
                 </a>
@@ -409,9 +409,9 @@
               data-toggle="modal" data-target="#moviediary">
                 <a href="/movie/{{$horror_movie->movie_id}}">
                   <img src="http://image.tmdb.org/t/p/w500/{{$horror_movie->image_path}}" alt="" class="img-fluid mb-2">
-                  @if(isset($favorite_movie->evaluate))
+                  @if(isset($horror_movie->evaluate))
                     <div class="badge scoreBadge p-0">
-                      <p class="mt-1">{{$favorite_movie->evaluate}}</p>
+                      <p class="mt-1">{{$horror_movie->evaluate}}</p>
                     </div>
                   @endif
                 </a>
