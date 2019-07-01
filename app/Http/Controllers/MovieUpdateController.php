@@ -15,7 +15,7 @@ class MovieUpdateController extends Controller
         
 
         $start = $request->start;
-        $end = $request->start;
+        $end = $request->end;
 
         
 
@@ -39,19 +39,7 @@ class MovieUpdateController extends Controller
             for ($i=0; $i<=19; $i++) {
                 $movie = Movie::where('tmdb_id', $response['results'][$i]['id'])->first();
                 if(is_null($movie)){
-                    // $option = array(
-                    //     'part' => 'snippet', 
-                    //     'key' => 'AIzaSyC23guRfvzzJOq4XhSu-8DDWBuj3yPwHfk',
-                    //     'q' => $response['results'][$i]['title']." "."予告編"
-                    //  );
-                    // $url = "https://www.googleapis.com/youtube/v3/search?".http_build_query($option, 'a', '&');
-                    // $curl = curl_init($url);
-                    // curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
-                    // curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, true);
-                    // curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);  
-                    // $json_response = curl_exec($curl);
-                    // curl_close($curl);
-                    // $responseObj = json_decode($json_response, true);
+                    
                     $tmdb_id = $response['results'][$i]['id'];
                     
                     $curl = curl_init();
