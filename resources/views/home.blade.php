@@ -21,8 +21,13 @@
               <div class="modal-body">
                 {!! Form::open(['method'=>'POST', 'action'=> 'MovieUpdateController@update']) !!}
                 {{Form::number('start', null ,['min' => "1"])}}〜{{Form::number('end', null )}}
-                {!! Form::submit('映画更新', null, ['class'=>'success']) !!}
+                {!! Form::submit('映画更新', null, ['class'=>'success', 'id'=>'update']) !!}
                 {!! Form::close() !!}
+                {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+                <form id="form_1" method="POST" accept-charset="utf-8" return false>
+                    <p>start <input type="text" name = "start" id ="start"> </p>
+                </form>
+                <button id="update">update</button> --}}
               </div>
             </div>
           </div>
@@ -804,12 +809,14 @@
     <div class="row responsive mb-2 container mx-auto mt-5">
         @if($watch_actors)
           @foreach($watch_actors as $watch_actor)
-            <div class="movieList col-lg-2 col-sm-3 col-4 float-right">
-              <a href="/actor/{{$watch_actor->tmdb_id}}">
-                <img src="http://image.tmdb.org/t/p/w500/{{$watch_actor->image_path}}" alt="" class="img-fluid mb-2">
-              </a>
-              <p>{{$watch_actor->name}}</p>
-            </div>
+            @if(isset($watch_actor->image_path))
+              <div class="movieList col-lg-2 col-sm-3 col-4 float-right">
+                <a href="/actor/{{$watch_actor->tmdb_id}}">
+                  <img src="http://image.tmdb.org/t/p/w500/{{$watch_actor->image_path}}" alt="" class="img-fluid mb-2">
+                </a>
+                <p>{{$watch_actor->name}}</p>
+              </div>
+            @endif
           @endforeach
         @endif
     </div>
@@ -932,4 +939,35 @@
     $('#posts').removeClass('show');
   });
   </script>
+
+  {{-- <script type="text/javascript">
+    $(function(){
+      $('#update').on('click', function() {
+        // var count = $('#start').val();
+        var count = 0;
+        
+        var countup = function(){
+          count ++;
+           
+          var update = function(){
+            $.ajax({
+              type: "POST",
+              headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              },
+              url: "{{url('/movie/update')}}",
+              dataType: "json",
+              data: {count : count}
+            });
+          }
+          var id = setTimeout(countup, 20000);
+          
+          if(count > 10){　
+            clearTimeout(id);　//idをclearTimeoutで指定している
+          }
+        }
+       countup();
+      });
+    });
+  </script> --}}
 @endsection
