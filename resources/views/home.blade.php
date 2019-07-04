@@ -19,15 +19,8 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-body">
-                {!! Form::open(['method'=>'POST', 'action'=> 'MovieUpdateController@update']) !!}
-                {{Form::number('start', null ,['min' => "1"])}}〜{{Form::number('end', null )}}
-                {!! Form::submit('映画更新', null, ['class'=>'success', 'id'=>'update']) !!}
-                {!! Form::close() !!}
-                {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-                <form id="form_1" method="POST" accept-charset="utf-8" return false>
-                    <p>start <input type="text" name = "start" id ="start"> </p>
-                </form>
-                <button id="update">update</button> --}}
+                <input type="number" id="movie_start_page"> 〜 <input type="number" id="movie_end_page">
+                <button id="updateMovie">映画情報更新</button>
               </div>
             </div>
           </div>
@@ -44,30 +37,8 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-body">
-                {!! Form::open(['method'=>'POST', 'action'=> 'ActorUpdateController@update']) !!}
-                {{Form::number('start', null ,['min' => "1"])}}〜{{Form::number('end', null )}}
-                {!! Form::submit('俳優更新', null, ['class'=>'success']) !!}
-                {!! Form::close() !!}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-1 col-3 px-0 mr-3">
-        <div data-toggle="modal" data-target='#castupdate'>
-          <button class="btn btn-outline-success btn-xs p-1">
-            <p class="my-auto">キャスト更新</p>
-          </button>
-        </div>
-        <div class="modal fade" id="castupdate"  role="dialog" 
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-body">
-                {!! Form::open(['method'=>'POST', 'action'=> 'CastUpdateController@update']) !!}
-                {{Form::number('start', null ,['min' => "1"])}}〜{{Form::number('end', null )}}
-                {!! Form::submit('キャスト更新', null, ['class'=>'success']) !!}
-                {!! Form::close() !!}
+                  <input type="number" id="actor_start_page"> 〜 <input type="number" id="actor_end_page">
+                  <button id="updateActor">俳優情報更新</button>
               </div>
             </div>
           </div>
@@ -939,35 +910,76 @@
     $('#posts').removeClass('show');
   });
   </script>
-
-  {{-- <script type="text/javascript">
-    $(function(){
+{{-- 映画情報API-ajax --}}
+  <script type="text/javascript">
+     $(function(){
       $('#update').on('click', function() {
-        // var count = $('#start').val();
-        var count = 0;
-        
-        var countup = function(){
-          count ++;
-           
-          var update = function(){
-            $.ajax({
-              type: "POST",
-              headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-              },
-              url: "{{url('/movie/update')}}",
-              dataType: "json",
-              data: {count : count}
-            });
-          }
-          var id = setTimeout(countup, 20000);
+        const start_page = $('#movie_start_page').val();
+        const end_page = $('#movie_end_page').val();
+        let count = start_page;
+        console.log('start count: ', count);
+        let countup = function() {
+          $.ajax({
+            type: "POST",
+            headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: "{{url('/movie/update')}}",
+            dataType: "json",
+            data: {count : count},
+            async: false
+          }).done(function (response) {
+            // 通信成功時の処理
+            console.log('success page: ', count);
+            count ++;
+          }).fail(function (err) {
+            // 通信失敗時の処理
+            console.log('error: ', err);
+          });
           
-          if(count > 10){　
+          var id = setTimeout(countup, 20000);
+          if(count > end_page){　
             clearTimeout(id);　//idをclearTimeoutで指定している
           }
         }
-       countup();
+        countup();
       });
     });
-  </script> --}}
+  </script>
+{{-- 俳優情報API-ajax --}}
+  <script type="text/javascript">
+      $(function(){
+      $('#updateActor').on('click', function() {
+        const start_page = $('#actor_start_page').val();
+        const end_page = $('#actor_end_page').val();
+        let count = start_page;
+        console.log('start count: ', count);
+        let countup = function() {
+          $.ajax({
+            type: "POST",
+            headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: "{{url('/actor/update')}}",
+            dataType: "json",
+            data: {count : count},
+            async: false
+          }).done(function (response) {
+            // 通信成功時の処理
+            console.log('success page: ', count);
+            count ++;
+          }).fail(function (err) {
+            // 通信失敗時の処理
+            console.log('error: ', err);
+          });
+          
+          var id = setTimeout(countup, 20000);
+          if(count > end_page){　
+            clearTimeout(id);　//idをclearTimeoutで指定している
+          }
+        }
+        countup();
+      });
+    });
+  </script>
 @endsection

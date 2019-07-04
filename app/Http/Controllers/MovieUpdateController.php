@@ -14,16 +14,16 @@ class MovieUpdateController extends Controller
             //
         
 
-        $start = $request->start;
-        $end = $request->end;
+        // $start = $request->count;
+        // $end = $request->count;
 
         
 
-        for ($page = $start; $page <= $end; $page++) {
+        // for ($page = $start; $page <= $end; $page++) {
             $curl = curl_init();
             
             curl_setopt_array($curl, array(
-                CURLOPT_URL => "https://api.themoviedb.org/3/discover/movie?page=$page&include_video=false&include_adult=false&sort_by=popularity.desc&language=ja-JP&api_key=c04db39f7aa30c13badfff2f6954efda",
+                CURLOPT_URL => "https://api.themoviedb.org/3/discover/movie?page=$request->count&include_video=false&include_adult=false&sort_by=popularity.desc&language=ja-JP&api_key=c04db39f7aa30c13badfff2f6954efda",
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => "",
                 CURLOPT_MAXREDIRS => 10,
@@ -108,8 +108,10 @@ class MovieUpdateController extends Controller
                     ]); 
                 }
             }
-        }
-        return redirect('/home');        
+        // }
+        return response()->json([
+            'result' => true
+        ]);      
     }
 
 }

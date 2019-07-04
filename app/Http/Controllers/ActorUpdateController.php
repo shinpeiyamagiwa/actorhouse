@@ -9,13 +9,10 @@ class ActorUpdateController extends Controller
     //
     public function update(Request $request)  {
         //
-        $start = $request->start;
-        $end = $request->end;
-
-        for($person = $start; $person <= $end; $person++) {
+        
             $curl = curl_init();
             curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://api.themoviedb.org/3/person/$person?language=ja-JP&api_key=c04db39f7aa30c13badfff2f6954efda",
+            CURLOPT_URL => "https://api.themoviedb.org/3/person/$request->count?language=ja-JP&api_key=c04db39f7aa30c13badfff2f6954efda",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
@@ -45,7 +42,8 @@ class ActorUpdateController extends Controller
                     ]); 
                 }
             }    
-        }
-        return redirect('/home');
+        return response()->json([
+            'result' => true
+        ]);  
     }
 }
