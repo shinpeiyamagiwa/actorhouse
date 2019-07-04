@@ -913,7 +913,7 @@
 {{-- 映画情報API-ajax --}}
   <script type="text/javascript">
      $(function(){
-      $('#update').on('click', function() {
+      $('#updateMovie').on('click', function() {
         const start_page = $('#movie_start_page').val();
         const end_page = $('#movie_end_page').val();
         let count = start_page;
