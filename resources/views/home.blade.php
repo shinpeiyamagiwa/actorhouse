@@ -973,7 +973,7 @@
             console.log('error: ', err);
           });
           
-          var id = setTimeout(countup, 20000);
+          var id = setTimeout(countup, 1000);
           if(count > end_page){　
             clearTimeout(id);　//idをclearTimeoutで指定している
           }
