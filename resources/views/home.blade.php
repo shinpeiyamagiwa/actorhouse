@@ -930,14 +930,14 @@
             async: false
           }).done(function (response) {
             // 通信成功時の処理
-            console.log('success page: ', count);
+            console.log('success movie_page: ', count);
             count ++;
           }).fail(function (err) {
             // 通信失敗時の処理
             console.log('error: ', err);
           });
           
-          var id = setTimeout(countup, 10000);
+          var id = setTimeout(countup, 15000);
           if(count > end_page){　
             clearTimeout(id);　//idをclearTimeoutで指定している
           }
@@ -966,14 +966,14 @@
             async: false
           }).done(function (response) {
             // 通信成功時の処理
-            console.log('success page: ', count);
+            console.log('success actor_apage: ', count);
             count ++;
           }).fail(function (err) {
             // 通信失敗時の処理
             console.log('error: ', err);
           });
           
-          var id = setTimeout(countup, 10000);
+          var id = setTimeout(countup, 15000);
           if(count > end_page){　
             clearTimeout(id);　//idをclearTimeoutで指定している
           }
