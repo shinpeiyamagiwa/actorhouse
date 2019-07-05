@@ -23,7 +23,7 @@
 
 <!-- トレンド俳優（週間でのファン登録数TOP６） -->
   <div class="trendactor text-center">
-    <h3>今週のオススメ俳優</h3>
+    <h3>オススメ俳優</h3>
     <div class="row castList responsive mx-1 no-gutters">
       <div class="col-sm-2 col-4 mb-3">
         <a href="/actor/524">
