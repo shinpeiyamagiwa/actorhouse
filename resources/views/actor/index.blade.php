@@ -177,7 +177,7 @@
     </div>
   </div>
 {{-- 俳優作品一覧 --}}
-  <div id="workRoom" class="card collapse">
+  <div id="workRoom" class="card collapse show">
     <div class="row responsive mb-2 mx-0 mt-5">
       @if($works)
         @foreach($works as $work)
@@ -339,11 +339,16 @@
     </div>      
   </div>
 {{-- 俳優youtube     --}}
-  <div id="videoRoom" class="card collapse show">
+  <div id="videoRoom" class="card collapse">
     <div class="row responsive mb-2 container mx-auto mt-5">
       <iframe class="video" width=100% src="https://www.youtube.com/embed/{{$actor->video_link}}" frameborder="0" 
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>    
-    </div>
+      @if(is_null($movie->video_link))
+        <a href="https://www.youtube.com/results?search_query={{$actor->name}}">
+        動画はありません。{{$actor->name}}の動画(youtebe)はこちら
+      </a>
+    @endif
+      </div>
     <div class="responsive mb-2 mt-5">
         @if($posts)
           <div class="post img-fluid center-block">

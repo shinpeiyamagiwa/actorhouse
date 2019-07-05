@@ -60,7 +60,7 @@
 
 <!-- 特集 -->
   <div class="jumbotron img-fluid w-100 Topic mb-1">
-    <h1>HERO特集</h1>
+    <h1>MARVEL特集</h1>
     <div class="row mx-auto Topic_bg">
       <div  class="topic1 col-sm-6 m-auto ">
         <a href="/actor/3223">
