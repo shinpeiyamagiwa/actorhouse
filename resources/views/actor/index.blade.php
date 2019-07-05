@@ -343,7 +343,7 @@
     <div class="row responsive mb-2 container mx-auto mt-5">
       <iframe class="video" width=100% src="https://www.youtube.com/embed/{{$actor->video_link}}" frameborder="0" 
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>    
-      @if(is_null($movie->video_link))
+      @if(is_null($actor->video_link))
         <a href="https://www.youtube.com/results?search_query={{$actor->name}}">
         動画はありません。{{$actor->name}}の動画(youtebe)はこちら
       </a>
