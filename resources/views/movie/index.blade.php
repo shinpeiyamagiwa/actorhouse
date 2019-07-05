@@ -187,7 +187,7 @@
 
 {{-- キャスト一覧 --}}
   <div class="moviecontent bg-light"> 
-    <div id="actorRoom" class="collapse bg-light">
+    <div id="actorRoom" class="collapse bg-light show">
       <div class="container">
         <div class="row responsive mb-2 mx-0 mt-5">
           @if($casts)
@@ -205,11 +205,16 @@
     </div>
   </div>
 {{-- 映画予告動画 --}}
-    <div id="videoRoom" class="container collapse show bg-light">
+    <div id="videoRoom" class="container collapse bg-light">
       <div class="row responsive mb-2 container mx-auto mt-5">
       <iframe width=100% height=500px src="https://www.youtube.com/embed/{{$movie->video_link}}" 
         frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>    
-      </div>
+      @if(is_null($movie->video_link))
+          <a href="https://www.youtube.com/results?search_query={{$movie->title}}予告編">
+          動画はありません。予告編(youtebe)はこちら
+        </a>
+      @endif
+    </div>
       <div class="responsive mb-2 mx-auto mt-5">
           @if($reviews)
             <div class="review center-block">

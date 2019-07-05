@@ -940,6 +940,7 @@
           var id = setTimeout(countup, 20000);
           if(count > end_page){　
             clearTimeout(id);　//idをclearTimeoutで指定している
+            console.log('updataEND');
           }
         }
         countup();
@@ -976,6 +977,7 @@
           var id = setTimeout(countup, 1000);
           if(count > end_page){　
             clearTimeout(id);　//idをclearTimeoutで指定している
+            console.log('updataEND');
           }
         }
         countup();

@@ -26,34 +26,34 @@
     <h3>今週のオススメ俳優</h3>
     <div class="row castList responsive mx-1 no-gutters">
       <div class="col-sm-2 col-4 mb-3">
-        {{-- <a href="/actor/1"> --}}
-          <img src="images/emmastone.jpg" alt="" class="img-fluid">
-        {{-- </a> --}}
+        <a href="/actor/524">
+          <img src="images/ナタリーポートマン.jpg" alt="" class="img-fluid">
+        </a>
       </div>
       <div class="col-sm-2 col-4 mb-3">
-        {{-- <a href="/actor/3"> --}}
-          <img src="images/Hailee Steinfeld.png" alt="" class="img-fluid">
-        {{-- </a>       --}}
+        <a href="/actor/1813">
+          <img src="images/ハサウェイ.jpg" alt="" class="img-fluid">
+        </a>      
       </div>
       <div class="col-sm-2 col-4 mb-3">
-        {{-- <a href="/actor/13"> --}}
+        <a href="/actor/1461">
           <img src="images/George Clooney.jpg" alt="" class="img-fluid">
-        {{-- </a> --}}
+        </a>
       </div>
       <div class="col-sm-2 col-4 mb-3">
-        {{-- <a href="/actor/10"> --}}
-          <img src="images/AnnaKendrick.jpg" alt="" class="img-fluid">
-        {{-- </a>  --}}
+        <a href="/actor/116">
+          <img src="images/キーラナイトレイ.jpg" alt="" class="img-fluid">
+        </a> 
       </div>
       <div class="col-sm-2 col-4 mb-3">
-        {{-- <a href="/actor/11"> --}}
-          <img src="images/Ryan_Gosling.jpg" alt="" class="img-fluid">
-        {{-- </a>  --}}
+        <a href="/actor/976">
+          <img src="images/201707-N0092682-main.jpg" alt="" class="img-fluid">
+        </a> 
       </div>
       <div class="col-sm-2 col-4 mb-3">
-        {{-- <a href="/actor/5"> --}}
-          <img src="images/Tony_Stark.jpg" alt="" class="img-fluid">
-        {{-- </a> --}}
+        <a href="/actor/500">
+          <img src="images/トムクルーズ.jpeg" alt="" class="img-fluid">
+        </a>
       </div>
     </div>
   </div>
@@ -63,33 +63,33 @@
     <h1>HERO特集</h1>
     <div class="row mx-auto Topic_bg">
       <div  class="topic1 col-sm-6 m-auto ">
-        {{-- <a href="/actor/7"> --}}
-          <img src="images/Captain_american.jpg" alt="" class="img-fluid mb-3 img-responsive">
-        {{-- </a> --}}
+        <a href="/actor/3223">
+          <img src="images/Robert-Downey-Jr.-as-Iron-Man.jpg" alt="" class="img-fluid mb-3 img-responsive">
+        </a>
       </div>
       <div class="col-sm-6 topic2 ">
         <div class="row  mb-3">
           <div  class="col-6  m-auto mb-3">
-            {{-- <a href="/actor/8"> --}}
-              <img  src="images/Captain-Marvel.jpg"  alt="" class="img-fluid img-responsive">
-            {{-- </a> --}}
+            <a href="/actor/1245">
+              <img  src="images/ナターシャ.jpg"  alt="" class="img-fluid img-responsive">
+            </a>
           </div>
           <div  class="col-6 m-auto  mb-3">
-            {{-- <a href="/actor/9"> --}}
-              <img src="images/thor.jpg"   alt="" class="img-fluid img-responsive">
-            {{-- </a> --}}
+            <a href="/actor/7624">
+              <img src="images/スタンリー.jpg"   alt="" class="img-fluid img-responsive">
+            </a>
           </div>
         </div>
         <div  class="row  mb-3">
           <div class="col-6 m-auto  mb-3">
-            {{-- <a href="/actor/6"> --}}
+            <a href="/actor/103">
               <img src="images/Haruku.jpg"  alt="" class="img-fluid img-responsive">
-            {{-- </a> --}}
+            </a>
           </div>
           <div  class="col-6 m-auto  mb-3">
-            {{-- <a href="/actor/2"> --}}
-              <img src="images/Wander_Woman.jpg"   alt="" class="img-fluid img-responsive">
-            {{-- </a> --}}
+            <a href="/actor/12052">
+              <img src="images/Gwyneth Paltrow.jpg"   alt="" class="img-fluid img-responsive">
+            </a>
           </div>
         </div>
       </div>
@@ -101,24 +101,34 @@
 　  <h2>おすすめ映画</h2>
     <div class="row RecommendedMovie responsive mb-2">
       <div class="col-4 mb-3">
-        {{-- <a href="movie"> --}}
+        <a href="/movie/313369">
           <img src="images/emma_LALALAND.jpg" alt="" class="img-fluid ">
-        {{-- </a> --}}
+        </a>
       </div>
       <div class="col-4 mb-3">
-        <img src="images/Begin again.jpg" alt="" class="img-fluid">
+        <a href="/movie/332562">
+          <img src="images/resize_image.jpg" alt="" class="img-fluid">
+        </a>
       </div>
       <div class="col-4 mb-3">
-        <img src="images/wonder-woman.jpg" alt="" class="img-fluid">
+        <a href="/movie/297762">
+          <img src="images/wonder-woman.jpg" alt="" class="img-fluid">
+        </a>
       </div>
       <div class="col-4 mb-3">
-        <img src="images/starwars.jpg" alt="" class="img-fluid">
+        <a href="/movie/140607">
+          <img src="images/starwars.jpg" alt="" class="img-fluid">
+        </a>
       </div>
       <div class="col-4 mb-3">
-        <img src="images/ENDGAME.jpg" alt="" class="img-fluid">
+        <a href="/movie/299536">
+          <img src="images/ENDGAME.jpg" alt="" class="img-fluid">
+        </a>
       </div>
       <div class="col-4 mb-3">
-        <img src="images/impossible_fallout.jpg" alt="" class="img-fluid">
+        <a href="/movie/353081">
+          <img src="images/impossible_fallout.jpg" alt="" class="img-fluid">
+        </a>
       </div>
     </div>
   </div>
