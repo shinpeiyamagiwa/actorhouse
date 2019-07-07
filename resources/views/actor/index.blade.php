@@ -125,8 +125,15 @@
             @endif
             <div class="col-2">
               <a href="https://twitter.com/search?f=users&vertical=default&q={{$actor->name}}" target="_blank">
-                <button id="twitter" class="btn btn-outline-success btn-xs"　data-toggle="popover" data-content="公式サイト">
+                <button id="twitter" class="btn btn-outline-success btn-xs"　data-toggle="popover" data-content="Twitter">
                   <i class="fab fa-twitter"></i>
+                </button>
+              </a>
+            </div>
+            <div class="col-2">
+              <a href="https://ja.wikipedia.org/wiki/{{$actor->name}}">
+                <button id="wikipedia" class="btn btn-outline-success btn-xs"　data-toggle="popover" data-content="ウィキペディア">
+                  <i class="fab fa-wikipedia-w"></i>
                 </button>
               </a>
             </div>
@@ -472,6 +479,16 @@
     
       $(function() {
         $('#homepage').popover({
+          trigger: 'hover', 
+        });
+      });
+      $(function() {
+        $('#twitter').popover({
+          trigger: 'hover', 
+        });
+      });
+      $(function() {
+        $('#wikipedia').popover({
           trigger: 'hover', 
         });
       });
