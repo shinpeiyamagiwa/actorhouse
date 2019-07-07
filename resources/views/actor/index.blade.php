@@ -117,12 +117,19 @@
             @if(!is_null($actor->homepage))
               <div class="col-2">
                 <button id="homepage" class="btn btn-outline-success btn-xs"　data-toggle="popover" data-content="公式サイト">
-                  <a href={{$actor->homepage}}>
+                  <a href={{$actor->homepage}}　target="_blank">
                     <i class="far fa-id-card"></i>
                   </a>
                 </button>
               </div>
             @endif
+            <div class="col-2">
+              <button id="twitter" class="btn btn-outline-success btn-xs"　data-toggle="popover" data-content="公式サイト">
+                <a href=https://twitter.com/search?f=users&vertical=default&q={{$actor->name}} target="_blank">
+                  <i class="fab fa-twitter"></i>
+                </a>
+              </button>
+            </div>
           </div>
         {{-- 俳優生年月日・出身地 --}}
           <div class="col row">

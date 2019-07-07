@@ -38,6 +38,8 @@
             <div class="col-3">
               <h1 class="float-right">{{count($reviews)}}</h1>
             </div>
+          </div>
+          <div class="row">
             <div class="col-2">
       {{-- レビュー投稿 --}}
               @if(!$review)
@@ -127,12 +129,26 @@
             @if(isset($movie->homepage))
               <div class="col-2">
                 <button id="homepage" class="btn btn-outline-success btn-xs" data-toggle="popover" data-content="公式サイト">
-                  <a href={{$movie->homepage}}>
+                  <a href={{$movie->homepage}}　target="_blank">
                     <i class="far fa-id-card"></i>
                   </a>
                 </button>
               </div>
             @endif          
+            <div class="col-2">
+              <button id="amazon" class="btn btn-outline-success btn-xs" data-toggle="popover" data-content="Prime Video">
+                <a href="https://www.amazon.co.jp/s?k={{$movie->title}}=instant-video&__mk_ja_JP=カタカナ=nb_sb_noss" target="_blank">
+                  <i class="fab fa-amazon"></i>
+                </a>
+              </button>
+            </div>          
+            <div class="col-2">
+              <button id="netflix" class="btn btn-outline-success btn-xs" data-toggle="popover" data-content="Netflix" target="_blank">
+                <a href="https://www.netflix.com/search?q={{$movie->title}}">
+                  <p class="mb-0">N</p>
+                </a>
+              </button>
+            </div>          
           </div>
       {{-- 映画公開日・作品時間 --}}
           <div class="col introduction">
@@ -404,6 +420,16 @@
 
   $(function() {
     $('#homepage').popover({
+      trigger: 'hover', 
+    });
+  });
+  $(function() {
+    $('#amazon').popover({
+      trigger: 'hover', 
+    });
+  });
+  $(function() {
+    $('#netflix').popover({
       trigger: 'hover', 
     });
   });
