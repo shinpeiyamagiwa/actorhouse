@@ -116,7 +116,7 @@
         {{-- ホームページ --}}
             @if(!is_null($actor->homepage))
               <div class="col-2">
-                <a href={{$actor->homepage}}　target="_blank">
+                <a href={{$actor->homepage}} target="_blank">
                   <button id="homepage" class="btn btn-outline-success btn-xs"　data-toggle="popover" data-content="公式サイト">
                     <i class="far fa-id-card"></i>
                   </button>
