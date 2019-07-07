@@ -128,26 +128,26 @@
       {{-- 映画ホームページ --}}
             @if(isset($movie->homepage))
               <div class="col-2">
-                <button id="homepage" class="btn btn-outline-success btn-xs" data-toggle="popover" data-content="公式サイト">
-                  <a href={{$movie->homepage}}　target="_blank">
+                <a href={{$movie->homepage}}　target="_blank">
+                  <button id="homepage" class="btn btn-outline-success btn-xs" data-toggle="popover" data-content="公式サイト">
                     <i class="far fa-id-card"></i>
-                  </a>
-                </button>
+                  </button>
+                </a>
               </div>
             @endif          
             <div class="col-2">
-              <button id="amazon" class="btn btn-outline-success btn-xs" data-toggle="popover" data-content="Prime Video">
-                <a href="https://www.amazon.co.jp/s?k={{$movie->title}}=instant-video&__mk_ja_JP=カタカナ=nb_sb_noss" target="_blank">
+              <a href="https://www.amazon.co.jp/s?k={{$movie->title}}&__mk_ja_JP=カタカナ=nb_sb_noss" target="_blank">
+                <button id="amazon" class="btn btn-outline-success btn-xs" data-toggle="popover" data-content="Prime Video">
                   <i class="fab fa-amazon"></i>
-                </a>
-              </button>
+                </button>
+              </a>
             </div>          
             <div class="col-2">
-              <button id="netflix" class="btn btn-outline-success btn-xs" data-toggle="popover" data-content="Netflix" target="_blank">
-                <a href="https://www.netflix.com/search?q={{$movie->title}}">
+              <a href="https://www.netflix.com/search?q={{$movie->title}}">
+                <button id="netflix" class="btn btn-outline-success btn-xs" data-toggle="popover" data-content="Netflix" target="_blank">
                   <p class="mb-0">N</p>
-                </a>
-              </button>
+                </button>
+              </a>
             </div>          
           </div>
       {{-- 映画公開日・作品時間 --}}

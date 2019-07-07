@@ -116,19 +116,19 @@
         {{-- ホームページ --}}
             @if(!is_null($actor->homepage))
               <div class="col-2">
-                <button id="homepage" class="btn btn-outline-success btn-xs"　data-toggle="popover" data-content="公式サイト">
-                  <a href={{$actor->homepage}}　target="_blank">
+                <a href={{$actor->homepage}}　target="_blank">
+                  <button id="homepage" class="btn btn-outline-success btn-xs"　data-toggle="popover" data-content="公式サイト">
                     <i class="far fa-id-card"></i>
-                  </a>
-                </button>
+                  </button>
+                </a>
               </div>
             @endif
             <div class="col-2">
-              <button id="twitter" class="btn btn-outline-success btn-xs"　data-toggle="popover" data-content="公式サイト">
-                <a href=https://twitter.com/search?f=users&vertical=default&q={{$actor->name}} target="_blank">
+              <a href="https://twitter.com/search?f=users&vertical=default&q={{$actor->name}}" target="_blank">
+                <button id="twitter" class="btn btn-outline-success btn-xs"　data-toggle="popover" data-content="公式サイト">
                   <i class="fab fa-twitter"></i>
-                </a>
-              </button>
+                </button>
+              </a>
             </div>
           </div>
         {{-- 俳優生年月日・出身地 --}}
