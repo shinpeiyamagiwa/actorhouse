@@ -8,12 +8,12 @@
     @unless (Auth::check())
       <a href="register">
         <button class="btn btn-primary"
-          data-toggle="modal" data-target="#menber">会員登録
+          data-toggle="modal" data-target="#menber">Register
         </button>
       </a>  
       <a href="login">
         <button class="btn btn-primary"
-          data-toggle="modal" data-target="#menber">ログイン
+          data-toggle="modal" data-target="#menber">Login
         </button>
       </a>  
     @endunless
@@ -23,7 +23,7 @@
 
 <!-- トレンド俳優（週間でのファン登録数TOP６） -->
   <div class="trendactor text-center">
-    <h3>オススメ俳優</h3>
+    <h4>気になる俳優をクリック!!</h4>
     <div class="row castList responsive mx-1 no-gutters">
       <div class="col-sm-2 col-4 mb-3">
         <a href="/actor/524">
@@ -57,7 +57,7 @@
       </div>
     </div>
   </div>
-
+  
 <!-- 特集 -->
   <div class="jumbotron img-fluid w-100 Topic mb-1">
     <h1>MARVEL特集</h1>
@@ -98,7 +98,7 @@
 
  <!-- 人気映画（週間で見た人数TOP６） -->
   <div class="jumbotron">
-　  <h2>おすすめ映画</h2>
+　  <>気になる映画をクリック</>
     <div class="row RecommendedMovie responsive mb-2">
       <div class="col-4 mb-3">
         <a href="/movie/313369">
