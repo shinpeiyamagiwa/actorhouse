@@ -98,7 +98,7 @@
 
  <!-- 人気映画（週間で見た人数TOP６） -->
   <div class="jumbotron">
-　  <>気になる映画をクリック</>
+　  <h5>気になる映画をクリック</h5>
     <div class="row RecommendedMovie responsive mb-2">
       <div class="col-4 mb-3">
         <a href="/movie/313369">
