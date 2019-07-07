@@ -104,7 +104,6 @@ class MovieUpdateController extends Controller
                         'released_at' => isset($details['release_date']) ? $details['release_date'] : null,
                         'video_link' =>  null,
                         'screen_time' => isset($details['runtime']) ? $details['runtime'] : null,
-                        'revenue' => isset($details['revenue']) ? $details['revenue'] : null,
                         'overview' => $response['results'][$i]['overview']
                     ]); 
                 }
