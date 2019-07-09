@@ -8,6 +8,7 @@ class Review extends Model
 {
     //
     protected $fillable = [
+        'id',
         'user_id',
         'movie_id',
         'evaluate',

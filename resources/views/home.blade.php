@@ -416,10 +416,16 @@
                         <i class="fas fa-user mt-2 float-right"></i>
                       @endif
                     </div>
-                    <div class="col-10 float-left d-inline-block">
+                    <div class="col-7 float-left d-inline-block">
                       <a href="/movie/{{$review->movie_id}}">
                         <p class="ml-1 mt-1 py-0">{{$review->title}}<p>
                       </a>
+                    </div>
+                    <div class="col-3 float-left d-inline-block">
+                      {!! Form::open(['method'=>'POST', 'action'=> 'ReviewController@delete']) !!}
+                      {{Form::hidden('movie_id', $review->movie_id)}} 
+                      {{ Form::button('<i class="fas fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn btn-light btn-sm'] )  }}
+                      {!! Form::close() !!} 
                     </div>
                   </div>
                 </div>

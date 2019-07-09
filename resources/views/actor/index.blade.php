@@ -199,7 +199,59 @@
             <a href="/movie/{{$work->movie_id}}">
               <img src="http://image.tmdb.org/t/p/w500/{{$work->image_path}}" alt="" class="img-fluid mb-2">
             </a>
-            <p>{{$work->title}}</p>
+            {{-- <div class="mt-0 review">
+              <button class="btn" id="review"
+              data-toggle="modal" data-target="#moviereview" data-toggle="popover" data-content="記録をつける">
+                <p class="my-auto"><i class="fas fa-book"></i></p>
+              </button>
+              <br>
+              <div class="modal fade" id="moviereview" tabindex="-1" role="dialog" 
+              aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header bg-success">
+                      <h5 class="modal-title" id="exampleModalLabel">記録</i></h5>
+                      <button class="close" data-dismiss="modal">
+                        &times;
+                      </button>
+                    </div>
+                    <div class="modal-body text-dark">
+                      {!! Form::open(['method'=>'POST', 'action'=> 'ReviewController@store']) !!}
+                      <div class="form-group">
+                        {!! Form::label('evaluate', '評価：') !!}
+                        {{Form::selectRange('evaluate', 0, 5.0, '', ['placeholder' => ''])}}
+                        {{-- {{Form::range('evaluate', 'value',['min'=>1.0,'max'=>5.0, 'step'=>0.1])}} --}}
+                      </div>
+                      <div class="form-group">
+                        {!! Form::label('genre', 'ジャンル：') !!}
+                        {{Form::select('genre', ['','アクション', 'サスペンス', 'ドラマ', 'コメディ', 'ホラー'], null, ['class' => 'field'])}}
+                      </div>
+                      <div class="form-group">
+                        {!! Form::label('content', '感想：') !!}
+                        {!! Form::textarea('content', '鑑賞しました', ['class'=>'form-control']) !!} 
+                      </div>
+                        <div class="form-group">
+                          {{Form::hidden('movie_id', $work->movie_id)}} 
+                          {{Form::hidden('actor_id', $actor->tmdb_id)}} 
+                        </div>
+                        <div class="form-group">
+                          {!! Form::submit($work->movie_id, null, ['class'=>'btn btn-success']) !!}
+                        </div>
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        {!! Form::close() !!}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> --}}
           </div>
         @endforeach
       @endif

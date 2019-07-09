@@ -27,20 +27,30 @@ class ReviewController extends Controller
         // 現在認証されているユーザーの取得
         $user = Auth::user();
         // 現在認証されているユーザーのID取得
-       
-      
-        FavoriteMovie::create([
-            'user_id' => $id,
-            'movie_id' => request('movie_id'),
-            'genre' => request('genre')
-        ]);
+        $movie_id = $request->movie_id;
+        $actor_id = $request->actor_id;
+
+        $favorite = FavoriteMovie::where('user_id', '=', $id)
+                                ->where('movie_id', '=', $movie_id)
+                                ->first();
         
-        Review::create([
-            'evaluate' => request('evaluate'),
-            'content' => request('content'),
-            'user_id' => $id,
-            'movie_id' => request('movie_id')
-        ]);
+        if(is_null($favorite)) {
+            FavoriteMovie::create([
+                'user_id' => $id,
+                'movie_id' => request('movie_id'),
+                'genre' => request('genre')
+            ]);
+            
+            Review::create([
+                'evaluate' => request('evaluate'),
+                'content' => request('content'),
+                'user_id' => $id,
+                'movie_id' => request('movie_id')
+            ]);
+        }
+        if(isset($actor_id)) {
+            return redirect("/actor/$actor_id");
+        }
         // Actor::create([
         //     'name' => 'kkkk',
         //     'youtube_link' => $request->aaaa
@@ -49,5 +59,18 @@ class ReviewController extends Controller
         
         return redirect("/home");
         
+    }
+
+    public function delete(Request $request)
+    {
+        $movie_id = $request->movie_id;
+        $userId = Auth::id();
+
+        Review::where('movie_id', '=', $movie_id)->delete();
+        FavoriteMovie::where('movie_id', '=', $movie_id)
+                     ->where('user_id', '=', $userId)
+                     ->delete();
+        
+        return redirect("/home");
     }
 }

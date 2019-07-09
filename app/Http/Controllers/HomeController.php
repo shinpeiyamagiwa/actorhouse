@@ -92,9 +92,10 @@ class HomeController extends Controller
                                         ->get();
         $reviews = Review::join('movies', 'reviews.movie_id', '=', 'movies.tmdb_id')
                                         ->where('user_id', '=', $id)
-                                        ->select('movies.title', 'evaluate', 'content', 'movie_id', 'reviews.id', 'movies.image_path')
+                                        ->select('movies.title', 'evaluate', 'content', 'movie_id', 'reviews.id as review_id', 'movies.image_path')
                                         ->orderBy('reviews.id', 'desc')
                                         ->get();
+                                       
         $avg = Review:: where('user_id', '=', $id)
                                         ->avg('evaluate');
         $posts = Post::where('user_id', '=', $id)

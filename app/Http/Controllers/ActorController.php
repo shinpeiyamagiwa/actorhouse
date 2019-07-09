@@ -25,7 +25,7 @@ class ActorController extends Controller
         $actor = Actor::where('tmdb_id', '=', $id)->first();
         $works = Cast::join('movies', 'casts.movie_id', '=', 'movies.tmdb_id')
                         ->where('casts.actor_id', '=', $id)
-                        ->select('movie_id', 'movies.image_path')
+                        ->select('movie_id', 'movies.image_path', 'title')
                         ->get();
         $posts = Post::join('users', 'posts.user_id', '=', 'users.id')
                         ->where('actor_id', '=', $id)
