@@ -940,10 +940,10 @@ body{
     border: 1px solid #000000;
     color: #030303;
   }
-  #review {
+  .review {
     position: absolute;
     top: 0;
-    left: 2;
+    left: 1;
     font-size: 20px;
     line-height: 13px;
     width: 30px;
@@ -951,14 +951,6 @@ body{
     color: #ffffff;
   }
 
-
-
-
-
-
-
-
-
-
-  
-
+  .review i {
+    color: #ffffff;
+  }

@@ -46,11 +46,15 @@ class ActorController extends Controller
                                 ->select('movies.image_path')
                                 ->first();
                                 
-        $watch_movie = FavoriteMovie::join('casts', 'favorite_movies.movie_id','=', 'casts.movie_id')
+        $watch_movies = FavoriteMovie::join('casts', 'favorite_movies.movie_id','=', 'casts.movie_id')
                                 ->where('user_id', '=', $userId)
                                 ->where('casts.actor_id', '=', $id)
+                                ->select('favorite_movies.movie_id as id')
                                 ->get();
-        
+        $watch_movie_ids = [];
+        foreach($watch_movies as $watch_movie) {
+            array_push($watch_movie_ids, $watch_movie->id);
+        }
         $files = ActorImages::where('actor_id', '=', $id)
                             ->select('actor_images.id', 'actor_image', 'user_id')
                             ->get();
@@ -59,7 +63,7 @@ class ActorController extends Controller
         }
 
         return view('actor.index',compact('user', 'userId', 'actor', 'works', 'posts', 
-        'favorite_actors', 'fun_member', 'bg_image', 'watch_movie', 'files'));
+        'favorite_actors', 'fun_member', 'bg_image', 'watch_movie_ids', 'files'));
     }
 
     public function upload(Request $request, $id)
