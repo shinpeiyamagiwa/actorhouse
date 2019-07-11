@@ -64,7 +64,7 @@
                           <div class="form-group">
                             {!! Form::label('evaluate', '評価：') !!}
                             {{Form::selectRange('evaluate', 0, 5.0, '', ['placeholder' => ''])}}
-                            {{-- {{Form::range('evaluate', 'value',['min'=>1.0,'max'=>5.0, 'step'=>0.1])}} --}}
+                            {{-- {{Form::range('evaluate', 'value',['min'=>0,'max'=>5.0, 'step'=>0.1])}} --}}
                           </div>
                           <div class="form-group">
                             {!! Form::label('genre', 'ジャンル：') !!}

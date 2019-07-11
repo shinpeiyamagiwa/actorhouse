@@ -2,11 +2,11 @@
 
 @section('content')
   
-    <div class="jumbotron review img-fluid w-100 center-block">
+    <div class="jumbotron img-fluid w-100 center-block">
       <div class="card-body row responsive my-0 mx-auto">
         @if($movies)
           @foreach($movies as $movie)
-            <div class="favoritemovie col-lg-2 col-sm-3 col-4">
+            <div class="movieList col-lg-2 col-sm-3 col-4">
               <a href="/movie/{{$movie->tmdb_id}}">
               @if(isset($movie->image_path))
                 <img src="http://image.tmdb.org/t/p/w500/{{$movie->image_path}}" alt="" class="img-fluid mb-2">
