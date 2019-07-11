@@ -948,9 +948,12 @@ body{
     line-height: 13px;
     width: 30px;
     height: 30px;
-    color: #ffffff;
+    color: #69e850;
   }
 
-  .review i {
+  .check {
+    color: #20f44a;
+  }
+  .reviwBook {
     color: #ffffff;
   }

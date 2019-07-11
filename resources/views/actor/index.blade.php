@@ -245,12 +245,12 @@
              <div class="mt-0">
                @if(in_array($work->movie_id, $watch_movie_ids))
                 <button class="btn review">
-                  <p class="my-auto"><i class="far fa-check-circle"></i></p>
+                  <p class="my-auto"><i class="far fa-check-circle check"></i></p>
                 </button>
               @else
                 <button class="btn review" 
                 data-toggle="modal" data-target="#moviereview" data-toggle="popover" data-content="記録をつける" data-movie-id="{{$work->movie_id}}">
-                  <p class="my-auto"><i class="fas fa-book"></i></p>
+                  <p class="my-auto"><i class="fas fa-book reviwBook"></i></p>
                 </button>
               @endif
               <br>
