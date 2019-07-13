@@ -18,15 +18,17 @@ class ActorController extends Controller
     //
     public function index($id) {
          // 現在認証されているユーザーの取得
-         $user = Auth::user();
+        
          // 現在認証されているユーザーのID取得
-         $userId = Auth::id();
-
+        $userId = Auth::id();
+       
         $actor = Actor::where('tmdb_id', '=', $id)->first();
+
         $works = Cast::join('movies', 'casts.movie_id', '=', 'movies.tmdb_id')
                         ->where('casts.actor_id', '=', $id)
                         ->select('movie_id', 'movies.image_path', 'title')
                         ->get();
+
         $posts = Post::join('users', 'posts.user_id', '=', 'users.id')
                         ->where('actor_id', '=', $id)
                         ->select('users.name', 'content', 'user_id', 'posts.id', 'users.image_path')
@@ -35,16 +37,13 @@ class ActorController extends Controller
         $favorite_actors = FavoriteActor::where('user_id', '=', $userId)
                         ->where('actor_id', '=', $id)
                         ->first();
+
         FavoriteActor::where('actor_id', '=', $id)
                     ->where('user_id', '=', $userId)
                     ->update(['new' => 0]);
         $fun_member = FavoriteActor::where('actor_id', '=', $id)
                                 ->select('user_id')
                                 ->get();
-        $bg_image = Cast::join('movies', 'casts.movie_id', '=', 'movies.tmdb_id')
-                                ->where('casts.actor_id', '=', $id)
-                                ->select('movies.image_path')
-                                ->first();
                                 
         $watch_movies = FavoriteMovie::join('casts', 'favorite_movies.movie_id','=', 'casts.movie_id')
                                 ->where('user_id', '=', $userId)
@@ -62,8 +61,8 @@ class ActorController extends Controller
             $file->image_url = Storage::disk('s3')->url($file->actor_image);
         }
 
-        return view('actor.index',compact('user', 'userId', 'actor', 'works', 'posts', 
-        'favorite_actors', 'fun_member', 'bg_image', 'watch_movie_ids', 'files'));
+        return view('actor.index',compact('userId', 'actor', 'works', 'posts', 
+        'favorite_actors', 'fun_member', 'watch_movie_ids', 'files'));
     }
 
     public function upload(Request $request, $id)

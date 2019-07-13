@@ -5,8 +5,8 @@
     <!-- 俳優プロフィール -->
 {{-- 俳優プロフィール --}}
   <div class="actorTop jumbotron mt-4 mb-0 text-light"
-  @isset($bg_image)
-  style="background-image:url('http://image.tmdb.org/t/p/w500/{{$bg_image->image_path}}');
+  @isset($works[0]->image_path)
+  style="background-image:url('http://image.tmdb.org/t/p/w500/{{$works[0]->image_path}}');
   background-repeat:no-repeat;
   background-size:cover;
   object-fit: cover;
@@ -153,7 +153,7 @@
           </div>
           @if($userId === 1)
           <div class="col">
-            <a href={{route('actors.edit', $user->id)}}>
+            <a href={{route('actors.edit', $userId)}}>
               <button>
                 <p class="my-auto">編集</p>
               </button>
@@ -272,7 +272,7 @@
               {!! Form::file('actor_image', null, ['class'=>'form-control']) !!}
           </div> 
           <div class="form-group mb-1">
-              {{Form::hidden('user_id', $user->id)}} 
+              {{Form::hidden('user_id', $userId)}} 
           </div>
           <div class="form-group">
               {{Form::hidden('actor_id', $actor->tmdb_id)}} 
