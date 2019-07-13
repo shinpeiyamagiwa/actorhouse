@@ -295,19 +295,19 @@
   {{-- アクション --}}
     <div id="action" class="collapse">
       <div class="row responsive mb-2 container-fluid mx-auto mt-5">
-          @if($action_movies)
-            @foreach($action_movies as $action_movie)
+          @if($actions)
+            @foreach($actions as $action)
               <div class="movieList col-lg-2 col-sm-3 col-4 float-right"
               data-toggle="modal" data-target="#moviediary">
-                <a href="/movie/{{$action_movie->movie_id}}">
-                  <img src="http://image.tmdb.org/t/p/w500/{{$action_movie->image_path}}" alt="" class="img-fluid mb-2">
-                  @if(isset($action_movie->evaluate))
+                <a href="/movie/{{$action->movie_id}}">
+                  <img src="http://image.tmdb.org/t/p/w500/{{$action->image_path}}" alt="" class="img-fluid mb-2">
+                  @if(isset($action->evaluate))
                     <div class="badge scoreBadge p-0">
-                      <p class="mt-1">{{$action_movie->evaluate}}</p>
+                      <p class="mt-1">{{$action->evaluate}}</p>
                     </div>
                   @endif
                 </a>
-                  <p>{{$action_movie->title}}</p>
+                  <p>{{$action->title}}</p>
               </div>
             @endforeach
           @endif
@@ -316,19 +316,19 @@
   {{-- サスペンス --}}
     <div id="suspense" class="collapse">
       <div class="row responsive mb-2 container-fluid mx-auto mt-5">
-          @if($suspense_movies)
-            @foreach($suspense_movies as $suspense_movie)
+          @if($suspenses)
+            @foreach($suspenses as $suspense)
               <div class="movieList col-lg-2 col-sm-3 col-4 float-right"
               data-toggle="modal" data-target="#moviediary">
-                <a href="/movie/{{$suspense_movie->movie_id}}">
-                  <img src="http://image.tmdb.org/t/p/w500/{{$suspense_movie->image_path}}" alt="" class="img-fluid mb-2">
-                  @if(isset($suspense_movie->evaluate))
+                <a href="/movie/{{$suspense->movie_id}}">
+                  <img src="http://image.tmdb.org/t/p/w500/{{$suspense->image_path}}" alt="" class="img-fluid mb-2">
+                  @if(isset($suspense->evaluate))
                     <div class="badge scoreBadge p-0">
-                      <p class="mt-1">{{$suspense_movie->evaluate}}</p>
+                      <p class="mt-1">{{$suspense->evaluate}}</p>
                     </div>
                   @endif
                 </a>
-                  <p>{{$suspense_movie->title}}</p>
+                  <p>{{$suspense->title}}</p>
               </div>
             @endforeach
           @endif
@@ -337,19 +337,19 @@
   {{-- ドラマ --}}
     <div id="drama" class="collapse">
       <div class="row responsive mb-2 container-fluid mx-auto mt-5">
-          @if($drama_movies)
-            @foreach($drama_movies as $drama_movie)
+          @if($dramas)
+            @foreach($dramas as $drama)
               <div class="movieList col-lg-2 col-sm-3 col-4 float-right"
               data-toggle="modal" data-target="#moviediary">
-                <a href="/movie/{{$drama_movie->movie_id}}">
-                  <img src="http://image.tmdb.org/t/p/w500/{{$drama_movie->image_path}}" alt="" class="img-fluid mb-2">
-                  @if(isset($drama_movie->evaluate))
+                <a href="/movie/{{$drama->movie_id}}">
+                  <img src="http://image.tmdb.org/t/p/w500/{{$drama->image_path}}" alt="" class="img-fluid mb-2">
+                  @if(isset($drama->evaluate))
                     <div class="badge scoreBadge p-0">
-                      <p class="mt-1">{{$drama_movie->evaluate}}</p>
+                      <p class="mt-1">{{$drama->evaluate}}</p>
                     </div>
                   @endif
                 </a>
-                  <p>{{$drama_movie->title}}</p>
+                  <p>{{$drama->title}}</p>
               </div>
             @endforeach
           @endif
@@ -358,19 +358,19 @@
   {{-- コメディ --}}
     <div id="comedy" class="collapse show">
       <div class="row responsive mb-2 container-fluid mx-auto mt-5">
-          @if($comedy_movies)
-            @foreach($comedy_movies as $comedy_movie)
+          @if($comedies)
+            @foreach($comedies as $comedy)
               <div class="movieList col-lg-2 col-sm-3 col-4 float-right"
               data-toggle="modal" data-target="#moviediary">
-                <a href="/movie/{{$comedy_movie->movie_id}}">
-                  <img src="http://image.tmdb.org/t/p/w500/{{$comedy_movie->image_path}}" alt="" class="img-fluid mb-2">
-                  @if(isset($comedy_movie->evaluate))
+                <a href="/movie/{{$comedy->movie_id}}">
+                  <img src="http://image.tmdb.org/t/p/w500/{{$comedy->image_path}}" alt="" class="img-fluid mb-2">
+                  @if(isset($comedy->evaluate))
                     <div class="badge scoreBadge p-0">
-                      <p class="mt-1">{{$comedy_movie->evaluate}}</p>
+                      <p class="mt-1">{{$comedy->evaluate}}</p>
                     </div>
                   @endif
                 </a>
-                  <p>{{$comedy_movie->title}}</p>
+                  <p>{{$comedy->title}}</p>
               </div>
             @endforeach
           @endif
@@ -379,19 +379,19 @@
   {{-- ホラー --}}
     <div id="horror" class="collapse">
       <div class="row responsive mb-2 container-fluid mx-auto mt-5">
-          @if($horror_movies)
-            @foreach($horror_movies as $horror_movie)
+          @if($horrors)
+            @foreach($horrors as $horror)
               <div class="movieList col-lg-2 col-sm-3 col-4 float-right"
               data-toggle="modal" data-target="#moviediary">
-                <a href="/movie/{{$horror_movie->movie_id}}">
-                  <img src="http://image.tmdb.org/t/p/w500/{{$horror_movie->image_path}}" alt="" class="img-fluid mb-2">
-                  @if(isset($horror_movie->evaluate))
+                <a href="/movie/{{$horror->movie_id}}">
+                  <img src="http://image.tmdb.org/t/p/w500/{{$horror->image_path}}" alt="" class="img-fluid mb-2">
+                  @if(isset($horror->evaluate))
                     <div class="badge scoreBadge p-0">
-                      <p class="mt-1">{{$horror_movie->evaluate}}</p>
+                      <p class="mt-1">{{$horror->evaluate}}</p>
                     </div>
                   @endif
                 </a>
-                  <p>{{$horror_movie->title}}</p>
+                  <p>{{$horror->title}}</p>
               </div>
             @endforeach
           @endif

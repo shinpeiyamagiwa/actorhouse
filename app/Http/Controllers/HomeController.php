@@ -32,60 +32,38 @@ class HomeController extends Controller
                                         ->where('favorite_actors.user_id', '=', $id)
                                         ->select('actor_id', 'actors.name', 'actors.image_path', 'new')
                                         ->get();
+
         $favorite_movies = FavoriteMovie::join('movies', 'favorite_movies.movie_id', '=', 'movies.tmdb_id')
                                         ->leftJoin('reviews', 'reviews.movie_id', '=', 'movies.tmdb_id')
                                         ->where('reviews.user_id', '=', $id)
                                         ->where('favorite_movies.user_id', '=', $id)
-                                        ->select('favorite_movies.movie_id', 'movies.title', 'movies.image_path','evaluate')
+                                        ->select('favorite_movies.movie_id', 'movies.title', 'movies.image_path','evaluate', 'genre')
                                         ->get();
-                                       
-        $action_movies = FavoriteMovie::join('movies', 'favorite_movies.movie_id', '=', 'movies.tmdb_id')
-                                        ->leftJoin('reviews', 'reviews.movie_id', '=', 'movies.tmdb_id')
-                                        ->where('reviews.user_id', '=', $id)
-                                        ->where('favorite_movies.user_id', '=', $id)
-                                        ->where('genre', '=', 1)
-                                        ->select('favorite_movies.movie_id', 'movies.title', 'movies.image_path','evaluate')
-                                        ->get();
-        $suspense_movies = FavoriteMovie::join('movies', 'favorite_movies.movie_id', '=', 'movies.tmdb_id')
-                                        ->leftJoin('reviews', 'reviews.movie_id', '=', 'movies.tmdb_id')
-                                        ->where('reviews.user_id', '=', $id)
-                                        ->where('favorite_movies.user_id', '=', $id)
-                                        ->where('genre', '=', 2)
-                                        ->select('favorite_movies.movie_id', 'movies.title', 'movies.image_path','evaluate')
-                                        ->get();
-        $drama_movies = FavoriteMovie::join('movies', 'favorite_movies.movie_id', '=', 'movies.tmdb_id')
-                                        ->leftJoin('reviews', 'reviews.movie_id', '=', 'movies.tmdb_id')
-                                        ->where('reviews.user_id', '=', $id)
-                                        ->where('favorite_movies.user_id', '=', $id)
-                                        ->where('genre', '=', 3)
-                                        ->select('favorite_movies.movie_id', 'movies.title', 'movies.image_path','evaluate')
-                                        ->get();
-        $comedy_movies = FavoriteMovie::join('movies', 'favorite_movies.movie_id', '=', 'movies.tmdb_id')
-                                        ->leftJoin('reviews', 'reviews.movie_id', '=', 'movies.tmdb_id')
-                                        ->where('reviews.user_id', '=', $id)
-                                        ->where('favorite_movies.user_id', '=', $id)
-                                        ->where('genre', '=', 4)
-                                        ->select('favorite_movies.movie_id', 'movies.title', 'movies.image_path','evaluate')
-                                        ->get();
-        $horror_movies = FavoriteMovie::join('movies', 'favorite_movies.movie_id', '=', 'movies.tmdb_id')
-                                        ->leftJoin('reviews', 'reviews.movie_id', '=', 'movies.tmdb_id')
-                                        ->where('reviews.user_id', '=', $id)
-                                        ->where('favorite_movies.user_id', '=', $id)
-                                        ->where('genre', '=', 5)
-                                        ->select('favorite_movies.movie_id', 'movies.title', 'movies.image_path','evaluate')
-                                        ->get();
-
-
-        // TODO: SQL複数回投げずに、ジャンル分けする
-        // $action = [];
-        // $horror = [];
-        // ...etc
-        // foreach ($favorite_movies as $movie) {
-        //     if ($movie->genre == 1) {
-        //         array_push($action, $movie);
-        //     }
-        //     ...etc
-        // }
+        $actions = [];
+        $suspenses = [];
+        $dramas = [];
+        $comedies = [];
+        $horrors = [];
+        
+        foreach ($favorite_movies as $movie) {
+            if ($movie->genre == 1) {
+                array_push($actions, $movie);
+            }
+            if ($movie->genre == 2) {
+                array_push($suspenses, $movie);
+            }
+            if ($movie->genre == 3) {
+                array_push($dramas, $movie);
+            }
+            if ($movie->genre == 4) {
+                array_push($comedies, $movie);
+            }
+            if ($movie->genre == 5) {
+                array_push($horrors, $movie);
+            }
+        }
+        
+        
         $watch_lists = WatchList::join('movies', 'watch_lists.movie_id', '=', 'movies.tmdb_id')
                                         ->where('watch_lists.user_id', '=', $id)
                                         ->select('movie_id', 'movies.title', 'movies.image_path')
@@ -155,8 +133,8 @@ class HomeController extends Controller
         
 
         return view('home', compact('user','favorite_actors', 'favorite_movies', 
-        'watch_lists', 'reviews', 'avg', 'posts', 'tweets', 'follow','action_movies', 
-        'suspense_movies', 'drama_movies', 'comedy_movies', 'horror_movies',
+        'watch_lists', 'reviews', 'avg', 'posts', 'tweets', 'follow','actions', 
+        'suspenses', 'dramas', 'comedies', 'horrors',
         'follow_reviews', 'follow_posts', 'follow_tweets', 'watch_actors'));
     }
     
