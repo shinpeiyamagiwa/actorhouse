@@ -109,7 +109,7 @@
               <h1 class="float-right d-none d-sm-block">{{count($reviews)}}本</h1>
             </div>
             <div class="col-3">
-                <h1 class="float-right d-none d-sm-block">{{round($avg,2)}}</h1>
+                <h1 class="float-right d-none d-sm-block">{{array_sum($evaluates)/count($evaluates)}}</h1>
             </div>
             <div class="col-3">
               <h1 class="float-right d-none d-sm-block">{{count($reviews) + count($posts)}}</h1>
@@ -142,7 +142,7 @@
               <h1 class="float-right">{{count($reviews)}}本</h1>
             </div>
             <div class="col-3">
-                <h1 class="float-right">{{round($avg,2)}}</h1>
+                <h1 class="float-right">{{array_sum($evaluates)/count($evaluates)}}</h1>
             </div>
             <div class="col-3">
               <h1 class="float-right">{{count($reviews) + count($posts)}}</h1>
@@ -274,19 +274,19 @@
   {{-- 全ジャンル --}}
     <div id="all" class="collapse show">
       <div class="row responsive mb-2 container-fluid mx-auto mt-5">
-          @if($favorite_movies)
-            @foreach($favorite_movies as $favorite_movie)
+          @if($reviews)
+            @foreach($reviews as $review)
               <div id="movieList" class="movieList col-lg-2 col-sm-3 col-4 float-right"
               data-toggle="modal" data-target="#moviediary">
-                <a href="/movie/{{$favorite_movie->movie_id}}">
-                  <img src="http://image.tmdb.org/t/p/w500/{{$favorite_movie->image_path}}" alt="" class="img-fluid mb-2">
-                  @if(isset($favorite_movie->evaluate))
+                <a href="/movie/{{$review->movie_id}}">
+                  <img src="http://image.tmdb.org/t/p/w500/{{$review->image_path}}" alt="" class="img-fluid mb-2">
+                  @if(isset($review->evaluate))
                     <div class="badge scoreBadge p-0">
-                      <p class="mt-1">{{$favorite_movie->evaluate}}</p>
+                      <p class="mt-1">{{$review->evaluate}}</p>
                     </div>
                   @endif
                 </a>
-                  <p>{{$favorite_movie->title}}</p>
+                  <p>{{$review->title}}</p>
               </div>
             @endforeach
           @endif

@@ -33,49 +33,44 @@ class HomeController extends Controller
                                         ->select('actor_id', 'actors.name', 'actors.image_path', 'new')
                                         ->get();
 
-        $favorite_movies = FavoriteMovie::join('movies', 'favorite_movies.movie_id', '=', 'movies.tmdb_id')
-                                        ->leftJoin('reviews', 'reviews.movie_id', '=', 'movies.tmdb_id')
-                                        ->where('reviews.user_id', '=', $id)
-                                        ->where('favorite_movies.user_id', '=', $id)
-                                        ->select('favorite_movies.movie_id', 'movies.title', 'movies.image_path','evaluate', 'genre')
-                                        ->get();
-        $actions = [];
-        $suspenses = [];
-        $dramas = [];
-        $comedies = [];
-        $horrors = [];
         
-        foreach ($favorite_movies as $movie) {
-            if ($movie->genre == 1) {
-                array_push($actions, $movie);
-            }
-            if ($movie->genre == 2) {
-                array_push($suspenses, $movie);
-            }
-            if ($movie->genre == 3) {
-                array_push($dramas, $movie);
-            }
-            if ($movie->genre == 4) {
-                array_push($comedies, $movie);
-            }
-            if ($movie->genre == 5) {
-                array_push($horrors, $movie);
-            }
-        }
+        $reviews = Review::join('movies', 'reviews.movie_id', '=', 'movies.tmdb_id')
+                        ->where('user_id', '=', $id)
+                        ->select('movies.title', 'evaluate', 'content', 'movie_id', 'reviews.id as review_id', 'movies.image_path', 'genre')
+                        ->orderBy('reviews.id', 'desc')
+                        ->get();
         
+                $actions = [];
+                $suspenses = [];
+                $dramas = [];
+                $comedies = [];
+                $horrors = [];
+                $evaluates = [];
+
+                foreach ($reviews as $review) {
+                    if ($review->genre == 1) {
+                        array_push($actions, $review);
+                    }
+                    if ($review->genre == 2) {
+                        array_push($suspenses, $review);
+                    }
+                    if ($review->genre == 3) {
+                        array_push($dramas, $review);
+                    }
+                    if ($review->genre == 4) {
+                        array_push($comedies, $review);
+                    }
+                    if ($review->genre == 5) {
+                        array_push($horrors, $review);
+                    }
+                    array_push($evaluates, $review->evaluate);
+                }
         
         $watch_lists = WatchList::join('movies', 'watch_lists.movie_id', '=', 'movies.tmdb_id')
                                         ->where('watch_lists.user_id', '=', $id)
                                         ->select('movie_id', 'movies.title', 'movies.image_path')
                                         ->get();
-        $reviews = Review::join('movies', 'reviews.movie_id', '=', 'movies.tmdb_id')
-                                        ->where('user_id', '=', $id)
-                                        ->select('movies.title', 'evaluate', 'content', 'movie_id', 'reviews.id as review_id', 'movies.image_path')
-                                        ->orderBy('reviews.id', 'desc')
-                                        ->get();
                                        
-        $avg = Review:: where('user_id', '=', $id)
-                                        ->avg('evaluate');
         $posts = Post::where('user_id', '=', $id)
                     ->select('content', 'user_id', 'posts.id')
                     ->orderBy('id', 'desc')
@@ -86,14 +81,7 @@ class HomeController extends Controller
         //                             ->orderBy('post_comments.created_at', 'desc')
         //                             ->select('users.name', 'users.id', 'post_comments.content', 'users.image_path')
         //                             ->get();
-        $tweets = Follow::join('posts', 'follow_id', '=', 'posts.user_id')
-                        ->join('reviews', 'follow_id', '=', 'reviews.user_id')
-                        ->join('tweets', 'follow_id', '=', 'tweets.user_id')
-                        ->join('users', 'follow_id', '=', 'users.id')
-                        ->where('follower_id', '=', $id)
-                        ->select('posts.content','reviews.content', 'tweets.content', 'users.name', 'users.image_path')
-                        ->get();
-                        // dd($tweets);
+        
         $follow_reviews = Follow::join('reviews', 'follow_id', '=', 'reviews.user_id')
                                 ->join('users', 'follow_id', '=', 'users.id')
                                 ->leftjoin('movies', 'reviews.movie_id', '=', 'movies.tmdb_id')
@@ -111,16 +99,10 @@ class HomeController extends Controller
                                 ->get();
         $follow_tweets = Follow::join('tweets', 'follow_id', '=', 'tweets.user_id')
                                 ->join('users', 'follow_id', '=', 'users.id')
-                                // ->join('tweets', 'tweets.user_id', '=', $id)
-                                // ->leftjoin('users', 'users.id', '=', $id)
-                                ->where('follower_id', '=', $id)
                                 ->orderBy('tweets.created_at', 'desc')
                                 ->select('tweets.content', 'users.name as user_name', 'users.image_path', 'user_id')
                                 ->get();
-        $follow = Follow::where('follow_id', '=', $id)
-                        ->where('follower_id', '=', Auth::id())
-                        ->select('follower_id', 'follow_id')
-                        ->first(); 
+
         $watch_actors = FavoriteMovie::join('casts', 'favorite_movies.movie_id', '=', 'casts.movie_id')
                             ->leftJoin('actors', 'casts.actor_id', '=', 'actors.tmdb_id')
                             ->where('favorite_movies.user_id', '=', $id)
@@ -132,10 +114,10 @@ class HomeController extends Controller
                             ->get();
         
 
-        return view('home', compact('user','favorite_actors', 'favorite_movies', 
-        'watch_lists', 'reviews', 'avg', 'posts', 'tweets', 'follow','actions', 
+        return view('home', compact('user','favorite_actors', 
+        'watch_lists', 'reviews', 'posts', 'actions', 
         'suspenses', 'dramas', 'comedies', 'horrors',
-        'follow_reviews', 'follow_posts', 'follow_tweets', 'watch_actors'));
+        'follow_reviews', 'follow_posts', 'follow_tweets', 'watch_actors','evaluates'));
     }
     
 
