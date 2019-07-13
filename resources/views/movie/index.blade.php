@@ -233,7 +233,7 @@
     </div>
       <div class="responsive mb-2 mx-auto mt-5">
           @if($reviews)
-            <div class="review center-block">
+            <div class="center-block">
               <div class="container">
                 @foreach($reviews as $review)
                   <div class="card border-success mb-3" >
