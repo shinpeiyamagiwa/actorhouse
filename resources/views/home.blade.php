@@ -109,7 +109,7 @@
               <h1 class="float-right d-none d-sm-block">{{count($reviews)}}本</h1>
             </div>
             <div class="col-3">
-                <h1 class="float-right d-none d-sm-block">{{array_sum($evaluates)/count($evaluates)}}</h1>
+                <h1 class="float-right d-none d-sm-block">{{round(array_sum($evaluates)/count($evaluates), 2)}}</h1>
             </div>
             <div class="col-3">
               <h1 class="float-right d-none d-sm-block">{{count($reviews) + count($posts)}}</h1>
@@ -142,7 +142,7 @@
               <h1 class="float-right">{{count($reviews)}}本</h1>
             </div>
             <div class="col-3">
-                <h1 class="float-right">{{array_sum($evaluates)/count($evaluates)}}</h1>
+                <h1 class="float-right">{{round(array_sum($evaluates)/count($evaluates), 1)}}</h1>
             </div>
             <div class="col-3">
               <h1 class="float-right">{{count($reviews) + count($posts)}}</h1>
