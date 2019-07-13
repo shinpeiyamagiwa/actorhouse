@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Change2ReviewsTable extends Migration
+class ChangeFavoriteActorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class Change2ReviewsTable extends Migration
      */
     public function up()
     {
-        Schema::table('reviews', function (Blueprint $table) {
+        Schema::table('favorite_actors', function (Blueprint $table) {
             //
-            $table->integer('genre')->nullabel();
+            $table->integer('user_id')->index('user_id')->nullable()->change();
         });
     }
 
@@ -26,8 +26,9 @@ class Change2ReviewsTable extends Migration
      */
     public function down()
     {
-        Schema::table('reviews', function (Blueprint $table) {
+        Schema::table('favorite_actors', function (Blueprint $table) {
             //
+            $table->integer('user_id')->change();
         });
     }
 }

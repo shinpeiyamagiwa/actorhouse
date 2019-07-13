@@ -146,7 +146,7 @@
     <div id="reviewRoom" class="collapse">
       <div class="responsive mb-2 mx-auto mt-5">
         @if($reviews)
-          <div class="review img-fluid  center-block">
+          <div class="img-fluid  center-block">
             <div class="container">
               @foreach($reviews as $review)
                 <div class="card border-success mb-3" >
