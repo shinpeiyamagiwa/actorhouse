@@ -359,18 +359,18 @@
     <div id="comedy" class="collapse show">
       <div class="row responsive mb-2 container-fluid mx-auto mt-5">
           @if($comedies)
-            @foreach($comedies as $comedy)
+            @foreach($comedies as $comedy_movie)
               <div class="movieList col-lg-2 col-sm-3 col-4 float-right"
               data-toggle="modal" data-target="#moviediary">
-                <a href="/movie/{{$comedy->movie_id}}">
-                  <img src="http://image.tmdb.org/t/p/w500/{{$comedy->image_path}}" alt="" class="img-fluid mb-2">
-                  @if(isset($comedy->evaluate))
+                <a href="/movie/{{$comedy_movie->movie_id}}">
+                  <img src="http://image.tmdb.org/t/p/w500/{{$comedy_movie->image_path}}" alt="" class="img-fluid mb-2">
+                  @if(isset($comedy_movie->evaluate))
                     <div class="badge scoreBadge p-0">
-                      <p class="mt-1">{{$comedy->evaluate}}</p>
+                      <p class="mt-1">{{$comedy_movie->evaluate}}</p>
                     </div>
                   @endif
                 </a>
-                  <p>{{$comedy->title}}</p>
+                  <p>{{$comedy_movie->title}}</p>
               </div>
             @endforeach
           @endif
@@ -472,7 +472,7 @@
     <div id="reviews" class="collapse">
       <div class="responsive mb-2 mx-auto mt-5">
         @if($follow_reviews)
-          <div class="review center-block">
+          <div class="center-block">
             <div class="container">
               @foreach($follow_reviews as $follow_review)
                 <div class="card border-success mb-3" >
