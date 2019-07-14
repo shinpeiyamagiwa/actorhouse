@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Actor;
 use App\Cast;
 use App\Post;
+use App\Review;
 use App\FavoriteActor;
 use App\FavoriteMovie;
 use App\ActorImages;
@@ -45,10 +46,10 @@ class ActorController extends Controller
                                 ->select('user_id')
                                 ->get();
                                 
-        $watch_movies = FavoriteMovie::join('casts', 'favorite_movies.movie_id','=', 'casts.movie_id')
+        $watch_movies = Review::join('casts', 'reviews.movie_id','=', 'casts.movie_id')
                                 ->where('user_id', '=', $userId)
                                 ->where('casts.actor_id', '=', $id)
-                                ->select('favorite_movies.movie_id as id')
+                                ->select('reviews.movie_id as id')
                                 ->get();
         $watch_movie_ids = [];
         foreach($watch_movies as $watch_movie) {

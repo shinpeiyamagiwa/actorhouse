@@ -103,9 +103,9 @@ class HomeController extends Controller
                                 ->select('tweets.content', 'users.name as user_name', 'users.image_path', 'user_id')
                                 ->get();
 
-        $watch_actors = FavoriteMovie::join('casts', 'favorite_movies.movie_id', '=', 'casts.movie_id')
+        $watch_actors = Review::join('casts', 'reviews.movie_id', '=', 'casts.movie_id')
                             ->leftJoin('actors', 'casts.actor_id', '=', 'actors.tmdb_id')
-                            ->where('favorite_movies.user_id', '=', $id)
+                            ->where('reviews.user_id', '=', $id)
                             ->select(\DB::raw('count(*) as actor_count, casts.actor_id'),'actors.name','actors.tmdb_id','actors.image_path')
                             ->groupBy('casts.actor_id','actors.name','actors.tmdb_id','actors.image_path')
                             ->orderBy('actor_count', 'desc')

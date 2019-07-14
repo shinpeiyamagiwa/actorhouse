@@ -30,22 +30,17 @@ class ReviewController extends Controller
         $movie_id = $request->movie_id;
         $actor_id = $request->actor_id;
 
-        $favorite = FavoriteMovie::where('user_id', '=', $id)
+        $review = Review::where('user_id', '=', $id)
                                 ->where('movie_id', '=', $movie_id)
                                 ->first();
         
-        if(is_null($favorite)) {
-            FavoriteMovie::create([
-                'user_id' => $id,
-                'movie_id' => request('movie_id'),
-                'genre' => request('genre')
-            ]);
-            
+        if(is_null($review)) { 
             Review::create([
                 'evaluate' => request('evaluate'),
                 'content' => request('content'),
                 'user_id' => $id,
-                'movie_id' => request('movie_id')
+                'movie_id' => request('movie_id'),
+                'genre' => request('genre')
             ]);
         }
         if(isset($actor_id)) {
