@@ -29,20 +29,22 @@ class ReviewController extends Controller
         // 現在認証されているユーザーのID取得
         $movie_id = $request->movie_id;
         $actor_id = $request->actor_id;
-
+        $genre = $request->genre;
         $review = Review::where('user_id', '=', $id)
                                 ->where('movie_id', '=', $movie_id)
                                 ->first();
+        
         
         if(is_null($review)) { 
             Review::create([
                 'evaluate' => request('evaluate'),
                 'content' => request('content'),
+                'genre' => request('genre'),
                 'user_id' => $id,
                 'movie_id' => request('movie_id'),
-                'genre' => request('genre')
             ]);
         }
+        
         if(isset($actor_id)) {
             return redirect("/actor/$actor_id");
         }
@@ -61,10 +63,11 @@ class ReviewController extends Controller
         $movie_id = $request->movie_id;
         $userId = Auth::id();
 
-        Review::where('movie_id', '=', $movie_id)->delete();
-        FavoriteMovie::where('movie_id', '=', $movie_id)
-                     ->where('user_id', '=', $userId)
-                     ->delete();
+        Review::where('movie_id', '=', $movie_id)
+              ->where('user_id', '=', $userId)
+              ->delete();
+             
+              
         
         return redirect("/home");
     }

@@ -12,6 +12,7 @@ class Review extends Model
         'user_id',
         'movie_id',
         'evaluate',
-        'content'
+        'content',
+        'genre'
     ];
 }
