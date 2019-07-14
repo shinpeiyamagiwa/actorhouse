@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Actor;
 use App\FavoriteMovie;
+use App\WatchList;
 use App\Review;
 use App\Http\Requests\ReviewRequest;
 use Illuminate\Support\Facades\Auth;
@@ -44,7 +45,11 @@ class ReviewController extends Controller
                 'movie_id' => request('movie_id'),
             ]);
         }
-        
+
+        WatchList::where('movie_id', '=', $movie_id)
+              ->where('user_id', '=', $id)
+              ->delete();
+             
         if(isset($actor_id)) {
             return redirect("/actor/$actor_id");
         }

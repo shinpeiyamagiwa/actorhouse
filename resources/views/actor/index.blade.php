@@ -243,7 +243,7 @@
               <img src="http://image.tmdb.org/t/p/w500/{{$work->image_path}}" alt="" class="img-fluid mb-2">
             </a>
              <div class="mt-0">
-               @if(in_array($work->movie_id, $watch_movie_ids))
+              @if(in_array($work->movie_id, $watch_movie_ids))
                 <button class="btn review">
                   <p class="my-auto"><i class="far fa-check-circle check"></i></p>
                 </button>
@@ -252,6 +252,21 @@
                 data-toggle="modal" data-target="#moviereview" data-toggle="popover" data-content="記録をつける" data-movie-id="{{$work->movie_id}}">
                   <p class="my-auto"><i class="fas fa-book reviwBook"></i></p>
                 </button>
+                @if(in_array($work->movie_id, $watch_list_ids))
+                  <button data-movie-id="{{$work->movie_id}}" data-watchlist="ture" id="watchlist_button" type="button" class="btn watchlist"
+                    data-toggle="popover" data-content="ウォッチリストから削除">
+                    <span id="watchlist_text">
+                      <p class="my-auto"><i class="far fa-check-circle check watchlistIcon"></i></p>
+                    </span>
+                  </button>
+                @else
+                  <button data-movie-id="{{$work->movie_id}}" data-watchlist="false" id="watchlist_button" type="button" class="watchlist btn"
+                    data-toggle="popover" data-content="ウォッチリストに追加">
+                    <span id="watchlist_text">
+                      <p class="my-auto"><i class="fas fa-tag watchlistIcon"></i></p>
+                    </span>
+                  </button>
+                @endif
               @endif
               <br>
             </div> 
@@ -640,4 +655,58 @@
       });
     });
   </script>
+{{-- ウォッチリスト追加 --}}
+<script type="text/javascript">
+  $(function(){
+    $('#watchlist_button').on('click', function() {
+      var movie_id = $(this).data('movieId')
+      // var actor_id = $('#actor_id').val();
+      const watchList = $(this).data('watchlist')
+      console.log(watchList == false)
+      if (watchList == false) {
+      $.ajax({
+        type: "POST",
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: "{{url('/watchlist/movie/store')}}",
+        dataType: "json",
+        data: {movie_id : movie_id}
+      }).done(function (response) {
+        // 通信成功時の処理
+        if (response['result']) {
+          alert('ウォッチリスト登録しました！');
+          $('.watchlist').data('watchlist', true);
+          $('#watchlist_text').html('<i class="far fa-check-circle check watchlistIcon">');
+          $('#watchlist_button').attr('data-content', 'ウォッチリストから削除');
+        }
+      }).fail(function (err) {
+        // 通信失敗時の処理
+        alert('ファイルの取得に失敗しました。');
+      });
+      }else{
+        $.ajax({
+        type: "POST",
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: "{{url('/watchlist/movie/delete')}}",
+        dataType: "json",
+        data: {movie_id : movie_id}
+      }).done(function (response) {
+        // 通信成功時の処理
+        if (response['result']) {
+          alert('ウォッチリスト解除しました！');
+          $('.watchlist').data('watchlist', false);
+          $('#watchlist_text').html('<i class="fas fa-tag watchlistIcon">');
+          $('#watchlist_button').attr('data-content', 'ウォッチリストに追加');
+        }
+      }).fail(function (err) {
+        // 通信失敗時の処理
+        alert('ファイルの取得に失敗しました。');
+      });
+      }
+    });
+  });
+</script>
 @endsection

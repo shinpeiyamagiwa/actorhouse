@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Cahange3ReviewsTable extends Migration
+class ChangeActorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class Cahange3ReviewsTable extends Migration
      */
     public function up()
     {
-        Schema::table('reviews', function (Blueprint $table) {
+        Schema::table('actors', function (Blueprint $table) {
             //
-            $table->integer('genre')->nullable()->change();
+            $table->index(['name', 'image_path']);
         });
     }
 
@@ -26,7 +26,7 @@ class Cahange3ReviewsTable extends Migration
      */
     public function down()
     {
-        Schema::table('reviews', function (Blueprint $table) {
+        Schema::table('actors', function (Blueprint $table) {
             //
         });
     }

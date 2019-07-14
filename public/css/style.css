@@ -943,7 +943,18 @@ body{
   .review {
     position: absolute;
     top: 0;
-    left: 1;
+    left: 10px;
+    font-size: 20px;
+    line-height: 13px;
+    width: 30px;
+    height: 30px;
+    color: #69e850;
+  }
+
+  .watchlist {
+    position: absolute;
+    top: 0;
+    left: 40px;
     font-size: 20px;
     line-height: 13px;
     width: 30px;
@@ -954,6 +965,6 @@ body{
   .check {
     color: #20f44a;
   }
-  .reviwBook {
+  .reviwBook, .watchlistIcon {
     color: #ffffff;
   }

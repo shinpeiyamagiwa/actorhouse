@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Actor;
 use App\Cast;
 use App\Post;
+use App\WatchList;
 use App\Review;
 use App\FavoriteActor;
 use App\FavoriteMovie;
@@ -51,10 +52,25 @@ class ActorController extends Controller
                                 ->where('casts.actor_id', '=', $id)
                                 ->select('reviews.movie_id as id')
                                 ->get();
+
         $watch_movie_ids = [];
         foreach($watch_movies as $watch_movie) {
             array_push($watch_movie_ids, $watch_movie->id);
         }
+
+        $watch_lists = WatchList::join('movies', 'watch_lists.movie_id', '=', 'movies.tmdb_id')
+                                ->where('watch_lists.user_id', '=', $userId)
+                                ->select('movie_id')
+                                ->get();
+        
+        $watch_list_ids = [];
+        foreach($watch_lists as $watch_list) {
+            array_push($watch_list_ids, $watch_list->movie_id);
+        }
+
+
+
+
         $files = ActorImages::where('actor_id', '=', $id)
                             ->select('actor_images.id', 'actor_image', 'user_id')
                             ->get();
@@ -63,7 +79,7 @@ class ActorController extends Controller
         }
 
         return view('actor.index',compact('userId', 'actor', 'works', 'posts', 
-        'favorite_actors', 'fun_member', 'watch_movie_ids', 'files'));
+        'favorite_actors', 'fun_member', 'watch_movie_ids', 'files', 'watch_list_ids'));
     }
 
     public function upload(Request $request, $id)
