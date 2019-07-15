@@ -973,7 +973,7 @@
             async: false
           }).done(function (response) {
             // 通信成功時の処理
-            console.log('success actor_apage: ', count);
+            console.log('success actor_page: ', count);
             count ++;
           }).fail(function (err) {
             // 通信失敗時の処理
