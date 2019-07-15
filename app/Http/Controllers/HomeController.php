@@ -30,7 +30,7 @@ class HomeController extends Controller
         
         $favorite_actors = FavoriteActor::join('actors', 'favorite_actors.actor_id', '=', 'actors.tmdb_id')
                                         ->where('favorite_actors.user_id', '=', $id)
-                                        ->select('actor_id', 'actors.name', 'actors.image_path', 'new')
+                                        ->select('tmdb_id', 'actors.name', 'actors.image_path', 'new')
                                         ->get();
 
         
@@ -68,7 +68,7 @@ class HomeController extends Controller
         
         $watch_lists = WatchList::join('movies', 'watch_lists.movie_id', '=', 'movies.tmdb_id')
                                         ->where('watch_lists.user_id', '=', $id)
-                                        ->select('movie_id', 'movies.title', 'movies.image_path')
+                                        ->select('tmdb_id', 'movies.title', 'movies.image_path')
                                         ->get();
                                        
         $posts = Post::where('user_id', '=', $id)

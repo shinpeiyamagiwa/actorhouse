@@ -278,7 +278,7 @@
             @foreach($reviews as $review)
               <div id="movieList" class="movieList col-lg-2 col-sm-3 col-4 float-right"
               data-toggle="modal" data-target="#moviediary">
-                <a href="/movie/{{$review->movie_id}}">
+                <a href="/movie/{{$review->tmdb_id}}">
                   <img src="http://image.tmdb.org/t/p/w500/{{$review->image_path}}" alt="" class="img-fluid mb-2">
                   @if(isset($review->evaluate))
                     <div class="badge scoreBadge p-0">
@@ -750,7 +750,7 @@
         @if($favorite_actors)
           @foreach($favorite_actors as $favorite_actor)
             <div id="favoriteActor" class="favoriteActor col-lg-2 col-sm-3 col-4">
-              <a href="/actor/{{$favorite_actor->actor_id}}">
+              <a href="/actor/{{$favorite_actor->tmdb_id}}">
                 <img src="http://image.tmdb.org/t/p/w500/{{$favorite_actor->image_path}}" alt="" class="img-fluid mb-2">
                 @if($favorite_actor->new == 1)
                   <div class="badge newBadge p-0">
