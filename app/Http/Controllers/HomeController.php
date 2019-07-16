@@ -36,7 +36,7 @@ class HomeController extends Controller
         
         $reviews = Review::join('movies', 'reviews.movie_id', '=', 'movies.tmdb_id')
                         ->where('user_id', '=', $id)
-                        ->select('movies.title', 'evaluate', 'content', 'movie_id', 'reviews.id as review_id', 'movies.image_path', 'genre')
+                        ->select('movies.title', 'evaluate', 'content', 'tmdb_id', 'reviews.id as review_id', 'movies.image_path', 'genre')
                         ->orderBy('reviews.id', 'desc')
                         ->get();
         

@@ -299,7 +299,7 @@
             @foreach($actions as $action)
               <div class="movieList col-lg-2 col-sm-3 col-4 float-right"
               data-toggle="modal" data-target="#moviediary">
-                <a href="/movie/{{$action->movie_id}}">
+                <a href="/movie/{{$action->tmdb_id}}">
                   <img src="http://image.tmdb.org/t/p/w500/{{$action->image_path}}" alt="" class="img-fluid mb-2">
                   @if(isset($action->evaluate))
                     <div class="badge scoreBadge p-0">
@@ -320,7 +320,7 @@
             @foreach($suspenses as $suspense)
               <div class="movieList col-lg-2 col-sm-3 col-4 float-right"
               data-toggle="modal" data-target="#moviediary">
-                <a href="/movie/{{$suspense->movie_id}}">
+                <a href="/movie/{{$suspense->tmdb_id}}">
                   <img src="http://image.tmdb.org/t/p/w500/{{$suspense->image_path}}" alt="" class="img-fluid mb-2">
                   @if(isset($suspense->evaluate))
                     <div class="badge scoreBadge p-0">
@@ -341,7 +341,7 @@
             @foreach($dramas as $drama)
               <div class="movieList col-lg-2 col-sm-3 col-4 float-right"
               data-toggle="modal" data-target="#moviediary">
-                <a href="/movie/{{$drama->movie_id}}">
+                <a href="/movie/{{$drama->tmdb_id}}">
                   <img src="http://image.tmdb.org/t/p/w500/{{$drama->image_path}}" alt="" class="img-fluid mb-2">
                   @if(isset($drama->evaluate))
                     <div class="badge scoreBadge p-0">
@@ -362,7 +362,7 @@
             @foreach($comedies as $comedy_movie)
               <div class="movieList col-lg-2 col-sm-3 col-4 float-right"
               data-toggle="modal" data-target="#moviediary">
-                <a href="/movie/{{$comedy_movie->movie_id}}">
+                <a href="/movie/{{$comedy_movie->tmdb_id}}">
                   <img src="http://image.tmdb.org/t/p/w500/{{$comedy_movie->image_path}}" alt="" class="img-fluid mb-2">
                   @if(isset($comedy_movie->evaluate))
                     <div class="badge scoreBadge p-0">
@@ -383,7 +383,7 @@
             @foreach($horrors as $horror)
               <div class="movieList col-lg-2 col-sm-3 col-4 float-right"
               data-toggle="modal" data-target="#moviediary">
-                <a href="/movie/{{$horror->movie_id}}">
+                <a href="/movie/{{$horror->tmdb_id}}">
                   <img src="http://image.tmdb.org/t/p/w500/{{$horror->image_path}}" alt="" class="img-fluid mb-2">
                   @if(isset($horror->evaluate))
                     <div class="badge scoreBadge p-0">
@@ -417,13 +417,13 @@
                       @endif
                     </div>
                     <div class="col-7 float-left d-inline-block">
-                      <a href="/movie/{{$review->movie_id}}">
+                      <a href="/movie/{{$review->tmdb_id}}">
                         <p class="ml-1 mt-1 py-0">{{$review->title}}<p>
                       </a>
                     </div>
                     <div class="col-3 float-left d-inline-block">
                       {!! Form::open(['method'=>'POST', 'action'=> 'ReviewController@delete']) !!}
-                      {{Form::hidden('movie_id', $review->movie_id)}} 
+                      {{Form::hidden('movie_id', $review->tmdb_id)}} 
                       {{ Form::button('<i class="fas fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn btn-light btn-sm'] )  }}
                       {!! Form::close() !!} 
                     </div>
@@ -733,7 +733,7 @@
             @foreach($follow_tweets as $follow_tweet)
               <div class="movieList col-lg-2 col-sm-3 col-4 float-right"
               data-toggle="modal" data-target="#moviediary">
-                <a href="/movie/{{$follow_tweet->movie_id}}">
+                <a href="/movie/{{$follow_tweet->tmdb_id}}">
                   <img src="http://image.tmdb.org/t/p/w500/{{$follow_tweet->image_path}}" alt="" class="img-fluid mb-2">
                   <p>{{$follow_tweet->title}}</p>
                 </a>
@@ -772,7 +772,7 @@
           @foreach($watch_lists as $watch_list)
             <div class="movieList col-lg-2 col-sm-3 col-4 float-right"
             data-toggle="modal" data-target="#moviediary">
-              <a href="/movie/{{$watch_list->movie_id}}">
+              <a href="/movie/{{$watch_list->tmdb_id}}">
                 <img src="http://image.tmdb.org/t/p/w500/{{$watch_list->image_path}}" alt="" class="img-fluid mb-2">
               </a>
               <p>{{$watch_list->title}}</p>
