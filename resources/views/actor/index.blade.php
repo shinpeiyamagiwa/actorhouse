@@ -190,23 +190,23 @@
             {!! Form::label('content', '感想：') !!}
             {!! Form::textarea('content', '鑑賞しました', ['class'=>'form-control']) !!} 
           </div>
-            <div class="form-group">
-              {{Form::hidden('movie_id', '',['id'=>'modalMovieId'])}} 
-              {{Form::hidden('actor_id', $actor->tmdb_id)}} 
-            </div>
-            <div class="form-group">
-              {!! Form::submit('記録', null, ['class'=>'btn btn-success']) !!}
-            </div>
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-            {!! Form::close() !!}
+          <div class="form-group">
+            {{Form::hidden('movie_id', '',['id'=>'modalMovieId'])}} 
+            {{Form::hidden('actor_id', $actor->tmdb_id)}} 
+          </div>
+          <div class="form-group">
+            {!! Form::submit('記録', null, ['class'=>'btn btn-success']) !!}
+          </div>
+          @if ($errors->any())
+              <div class="alert alert-danger">
+                  <ul>
+                      @foreach ($errors->all() as $error)
+                          <li>{{ $error }}</li>
+                      @endforeach
+                  </ul>
+              </div>
+          @endif
+          {!! Form::close() !!}
         </div>
       </div>
     </div>
@@ -598,6 +598,7 @@
       $('.review').on('click', function(){
         $('#modalMovieId').val($(this).data('movieId'))
       });
+
       $('#favorite_button').on('click', function() {
         var actor_id = $(this).data('actorId')
 
@@ -658,7 +659,7 @@
 {{-- ウォッチリスト追加 --}}
 <script type="text/javascript">
   $(function(){
-    $('#watchlist_button').on('click', function() {
+    $('.watchlist').on('click', function() {
       var movie_id = $(this).data('movieId')
       // var actor_id = $('#actor_id').val();
       const watchList = $(this).data('watchlist')
