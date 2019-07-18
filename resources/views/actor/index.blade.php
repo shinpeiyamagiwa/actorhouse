@@ -129,7 +129,7 @@
               </a>
             </div>
             <div class="col-2">
-              <a href="https://ja.wikipedia.org/wiki/{{$actor->name}}">
+              <a href="https://en.wikipedia.org/wiki/{{$actor->name}}">
                 <button id="wikipedia" class="btn btn-outline-success btn-xs"　data-toggle="popover" data-content="ウィキペディア">
                   <i class="fab fa-wikipedia-w"></i>
                 </button>
