@@ -109,7 +109,7 @@ class HomeController extends Controller
                             ->groupBy('casts.actor_id','actors.name','actors.tmdb_id','actors.image_path')
                             ->orderBy('actor_count', 'desc')
                             ->orderBy('casts.actor_id', 'asc')
-                            ->limit(10)
+                            ->limit(20)
                             ->get();
         
 
