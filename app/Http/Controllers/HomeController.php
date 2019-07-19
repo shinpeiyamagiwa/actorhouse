@@ -40,32 +40,31 @@ class HomeController extends Controller
                         ->orderBy('reviews.id', 'desc')
                         ->get();
         
-                $actions = [];
-                $suspenses = [];
-                $dramas = [];
-                $comedies = [];
-                $horrors = [];
+                $action_movies = [];
+                $suspense_movies = [];
+                $drama_movies = [];
+                $comedy_movies = [];
+                $horror_movies = [];
                 $evaluates = [];
 
                 foreach ($reviews as $review) {
                     if ($review->genre == 1) {
-                        array_push($actions, $review);
+                        array_push($action_movies, $review);
                     }
                     if ($review->genre == 2) {
-                        array_push($suspenses, $review);
+                        array_push($suspense_movies, $review);
                     }
                     if ($review->genre == 3) {
-                        array_push($dramas, $review);
+                        array_push($drama_movies, $review);
                     }
                     if ($review->genre == 4) {
-                        array_push($comedies, $review);
+                        array_push($comedy_movies, $review);
                     }
                     if ($review->genre == 5) {
-                        array_push($horrors, $review);
+                        array_push($horror_movies, $review);
                     }
                     array_push($evaluates, $review->evaluate);
                 }
-        
         $watch_lists = WatchList::join('movies', 'watch_lists.movie_id', '=', 'movies.tmdb_id')
                                         ->where('watch_lists.user_id', '=', $id)
                                         ->select('tmdb_id', 'movies.title', 'movies.image_path')
@@ -115,8 +114,8 @@ class HomeController extends Controller
         
 
         return view('home', compact('user','favorite_actors', 
-        'watch_lists', 'reviews', 'posts', 'actions', 
-        'suspenses', 'dramas', 'comedies', 'horrors',
+        'watch_lists', 'reviews', 'posts', 'action_movies', 
+        'suspense_movies', 'drama_movies', 'comedy_movies', 'horror_movies',
         'follow_reviews', 'follow_posts', 'follow_tweets', 'watch_actors','evaluates'));
     }
     
