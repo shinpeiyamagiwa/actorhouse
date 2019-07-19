@@ -135,6 +135,14 @@
                 </button>
               </a>
             </div>
+            <div class="col-2">
+              <div class="share">
+                <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>          
+                <div id="fb-root"></div>
+                <script async defer crossorigin="anonymous" src="https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v3.3"></script>
+              </div>
+                <div class="fb-share-button" data-href="https://www.theactorhouse.com/actor/{{$actor->tmdb_id}}"  data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.theactorhouse.com%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">シェア</a></div>  
+            </div>
           </div>
         {{-- 俳優生年月日・出身地 --}}
           <div class="col row">

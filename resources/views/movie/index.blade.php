@@ -22,21 +22,29 @@
         <div class="movieprofile col-sm-8 mx-auto">
           <div class="movieName">
             <h1>{{$movie->title}}</h1>
-          </div>
-          <div class="col row float-left">
+            
+            <div class="col row float-left">
             <div class="col-4">
               <h6 class="mb-0">評価</h6>
             </div>
             <div class="col-4">
               <h6 class="mb-0">見た人</h6>
             </div>
+            <div class="col-4">
+              <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text=" "  data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>          </div>
+              <div id="fb-root"></div>
+            </div>
           </div>
           <div class="col row">
-            <div class="col-3">
+            <div class="col-4 pr-4">
               <h1 class="float-right">{{round($avg,2)}}</h1>
             </div>
-            <div class="col-3">
+            <div class="col-4 pr-4">
               <h1 class="float-right">{{count($reviews)}}</h1>
+            </div>
+            <div class="col-4">
+              <script async defer crossorigin="anonymous" src="https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v3.3"></script>
+              <div class="fb-share-button" data-href="https://www.theactorhouse.com/movie/{{$movie->tmdb_id}}"  data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.theactorhouse.com%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">シェア</a></div>
             </div>
           </div>
           <div class="row">
