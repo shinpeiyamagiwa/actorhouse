@@ -144,11 +144,13 @@
               </div>
             @endif          
             <div class="col-2">
-              <a href="https://www.amazon.co.jp/s?k={{$movie->title}}&__mk_ja_JP=カタカナ=nb_sb_noss" target="_blank">
-                <button id="amazon" class="btn btn-outline-success btn-xs" data-toggle="popover" data-content="Prime Video">
-                  <i class="fab fa-amazon"></i>
-                </button>
-              </a>
+                <a target="_blank" href="https://www.amazon.co.jp/gp/search?ie=UTF8&tag=actorhouse-22&linkCode=ur2&linkId=973a0f1c46e57d4ec347c0c9c2534b06&camp=247&creative=1211&index=instant-video&keywords={{$movie->title}}">
+                  <button id="amazon" class="btn btn-outline-success btn-xs" data-toggle="popover" data-content="Prime Video">
+                    <i class="fab fa-amazon"></i>
+                  </button>
+                </a><img src="//ir-jp.amazon-adsystem.com/e/ir?t=actorhouse-22&l=ur2&o=9" width="1" height="1" alt="" style="border:none !important; margin:0px !important;" />
+              {{-- <a href="https://www.amazon.co.jp/{{$movie->title}}/dp/B00JM4051Y/ref=dp_olp_1" target="_blank">
+              </a> --}}
             </div>          
             <div class="col-2">
               <a href="https://www.netflix.com/search?q={{$movie->title}}">
