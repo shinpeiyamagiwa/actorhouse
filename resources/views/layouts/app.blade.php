@@ -26,6 +26,17 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="css/bootstrap.css" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" />
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143383623-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143383623-1');
+    </script>
+
 </head>
 <body>
     <div id="app">
@@ -48,6 +59,13 @@
                             </div>
                         {!! Form::close() !!}  
                         </div>
+                    {{-- <div class="dropdown-item">
+                        {!! Form::open(['method'=>'POST', 'action'=> 'ListMovieAgeController@index']) !!}
+                            <div class="form-group">
+                                {!! Form::text('age', null, ['class'=>'form-control', 'placeholder'=>'年代']) !!}
+                            </div>
+                        {!! Form::close() !!}
+                    </div> --}}
                     <div class="dropdown-item">
                         {!! Form::open(['method'=>'POST', 'action'=> 'MovieSearchController@index']) !!}
                             <div class="form-group">
@@ -114,7 +132,13 @@
                                 {!! Form::text('title', null, ['class'=>'form-control mt-1', 'placeholder'=>'映画']) !!}
                             </div>
                         {!! Form::close() !!}  
-                       
+                    
+                        {{-- {!! Form::open(['method'=>'POST', 'action'=> 'ListMovieAgeController@index']) !!}
+                            <div class="form-group">
+                                {!! Form::text('age', null, ['class'=>'form-control', 'placeholder'=>'年代']) !!}
+                            </div>
+                        {!! Form::close() !!} --}}
+                    
                         {!! Form::open(['method'=>'POST', 'action'=> 'MovieSearchController@index']) !!}
                             <div class="form-group">
                                 {!! Form::text('name', null, ['class'=>'form-control mt-1', 'placeholder'=>'俳優']) !!}
