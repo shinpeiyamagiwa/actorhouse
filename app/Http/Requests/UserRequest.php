@@ -25,14 +25,14 @@ class UserRequest extends FormRequest
     {
         return [
             //
-            'name' => 'required|max:50',
+            // 'name' => 'required|max:50',
         ];
     }
 
     public function messages()
     {
         return [
-            'name.required' => '名前を記入してください。',
+            // 'name.required' => '名前を記入してください。',
         ];
     }
 }

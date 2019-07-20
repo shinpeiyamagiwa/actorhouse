@@ -26,17 +26,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="css/bootstrap.css" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" />
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143383623-1"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143383623-1');
-    </script>
-
 </head>
 <body>
     <div id="app">
@@ -47,7 +36,7 @@
                 <a href="/" class="navbar-brand">
                     <h4>ACTOR HOUSE</h4>
                 </a>
-                <a id="searchDropdown" class="nav-link dropdown-toggle text-light d-sm-none d-block" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                <a id="searchDropdown" class="nav-link dropdown-toggle text-light d-md-none d-block" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                     検索<i class="fas fa-search"></i>
                 </a>
 
@@ -59,13 +48,13 @@
                             </div>
                         {!! Form::close() !!}  
                         </div>
-                    {{-- <div class="dropdown-item">
+                    <div class="dropdown-item">
                         {!! Form::open(['method'=>'POST', 'action'=> 'ListMovieAgeController@index']) !!}
                             <div class="form-group">
-                                {!! Form::text('age', null, ['class'=>'form-control', 'placeholder'=>'年代']) !!}
+                                {!! Form::text('age', null, ['class'=>'form-control mt-1', 'placeholder'=>'公開年']) !!}
                             </div>
                         {!! Form::close() !!}
-                    </div> --}}
+                    </div>
                     <div class="dropdown-item">
                         {!! Form::open(['method'=>'POST', 'action'=> 'MovieSearchController@index']) !!}
                             <div class="form-group">
@@ -122,7 +111,7 @@
             </div>
         </nav>
     {{-- navbar --}}
-        <nav class="searchbar navbar-expand-sm center-block d-none d-sm-block">
+        <nav class="searchbar navbar-expand-sm center-block d-none d-md-block">
             <div class="container">
                 <div class="sesrchform">
                     <i class="fas fa-search"></i>
@@ -133,11 +122,11 @@
                             </div>
                         {!! Form::close() !!}  
                     
-                        {{-- {!! Form::open(['method'=>'POST', 'action'=> 'ListMovieAgeController@index']) !!}
+                        {!! Form::open(['method'=>'POST', 'action'=> 'ListMovieAgeController@index']) !!}
                             <div class="form-group">
-                                {!! Form::text('age', null, ['class'=>'form-control', 'placeholder'=>'年代']) !!}
+                                {!! Form::text('age', null, ['class'=>'form-control mt-1', 'placeholder'=>'公開年']) !!}
                             </div>
-                        {!! Form::close() !!} --}}
+                        {!! Form::close() !!}
                     
                         {!! Form::open(['method'=>'POST', 'action'=> 'MovieSearchController@index']) !!}
                             <div class="form-group">
