@@ -37,8 +37,7 @@ class MovieUpdateController extends Controller
             $response = json_decode($response, true);
             // dd($response);
             for ($i=0; $i<=19; $i++) {
-                $movie = Movie::where('tmdb_id', $response['results'][$i]['id'])->first();
-                if(is_null($movie)){
+                
                     
                     $tmdb_id = $response['results'][$i]['id'];
                     
@@ -94,7 +93,8 @@ class MovieUpdateController extends Controller
                             }
                         }
                     }
-
+                $movie = Movie::where('tmdb_id', $response['results'][$i]['id'])->first();
+                if(is_null($movie)){
                     Movie::create([
                         'tmdb_id' => $response['results'][$i]['id'],
                         'title' => $response['results'][$i]['title'],
@@ -103,6 +103,17 @@ class MovieUpdateController extends Controller
                         'backdrop_path' => isset($details['backdrop_path']) ? $details['backdrop_path'] : null,
                         'released_at' => isset($details['release_date']) ? $details['release_date'] : null,
                         'video_link' =>  null,
+                        'screen_time' => isset($details['runtime']) ? $details['runtime'] : null,
+                        'overview' => $response['results'][$i]['overview']
+                    ]); 
+                }else {
+                    Movie::where('tmdb_id', $response['results'][$i]['id'])
+                    ->update([
+                        'title' => $response['results'][$i]['title'],
+                        'homepage' => isset($details['homepage']) ? $details['homepage'] : null,
+                        'image_path' => $response['results'][$i]['poster_path'],
+                        'backdrop_path' => isset($details['backdrop_path']) ? $details['backdrop_path'] : null,
+                        'released_at' => isset($details['release_date']) ? $details['release_date'] : null,
                         'screen_time' => isset($details['runtime']) ? $details['runtime'] : null,
                         'overview' => $response['results'][$i]['overview']
                     ]); 

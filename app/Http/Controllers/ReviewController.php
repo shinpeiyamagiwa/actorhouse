@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Actor;
+use App\Movie;
 use App\FavoriteMovie;
 use App\WatchList;
 use App\Review;
+use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\ReviewRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -34,7 +36,6 @@ class ReviewController extends Controller
         $review = Review::where('user_id', '=', $id)
                                 ->where('movie_id', '=', $movie_id)
                                 ->first();
-        dd($request);
         
         if(is_null($review)) { 
             Review::create([
@@ -53,11 +54,9 @@ class ReviewController extends Controller
         if(isset($actor_id)) {
             return redirect("/actor/$actor_id");
         }
-        // Actor::create([
-        //     'name' => 'kkkk',
-        //     'youtube_link' => $request->aaaa
-        //     'image_path' => 
-        // ]);
+        // $released_at = Movie::where('tmdb_id', '=', $movie_id)
+        //                     ->select('released_at')
+        //                     ->first();
         
         return redirect("/home");
         

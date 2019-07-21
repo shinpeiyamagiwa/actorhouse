@@ -22,7 +22,6 @@ class ListMovieAgeController extends Controller
                     ->select('title', 'movies.image_path', 'movies.tmdb_id')
                     ->get();
         }
-        
         $watch_movies = Review::where('user_id', '=', $userId)
                                 ->select('reviews.movie_id as id')
                                 ->get();
