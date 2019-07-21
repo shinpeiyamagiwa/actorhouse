@@ -67,7 +67,7 @@ class ActorController extends Controller
         foreach($watch_lists as $watch_list) {
             array_push($watch_list_ids, $watch_list->movie_id);
         }
-
+        
 
 
 

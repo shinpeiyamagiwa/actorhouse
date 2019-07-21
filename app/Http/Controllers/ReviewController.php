@@ -34,7 +34,7 @@ class ReviewController extends Controller
         $review = Review::where('user_id', '=', $id)
                                 ->where('movie_id', '=', $movie_id)
                                 ->first();
-        
+        dd($request);
         
         if(is_null($review)) { 
             Review::create([
