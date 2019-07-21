@@ -109,8 +109,12 @@
               <h1 class="float-right d-none d-sm-block">{{count($reviews)}}本</h1>
             </div>
             <div class="col-3">
-                <h1 class="float-right d-none d-sm-block">{{round(array_sum($evaluates)/count($evaluates), 2)}}</h1>
-            </div>
+                @if(isset($evaluate_avg))
+                <h1 class="float-right d-none d-sm-block">{{$evaluate_avg}}</h1>
+              @else
+                <h1 class="float-right d-none d-sm-block">0</h1>
+              @endif
+              </div>
             <div class="col-3">
               <h1 class="float-right d-none d-sm-block">{{count($reviews) + count($posts)}}</h1>
             </div>
@@ -142,7 +146,11 @@
               <h1 class="float-right">{{count($reviews)}}本</h1>
             </div>
             <div class="col-3">
-                <h1 class="float-right">{{round(array_sum($evaluates)/count($evaluates), 1)}}</h1>
+              @if(isset($evaluate_avg))
+                <h1 class="float-right d-none d-sm-block">{{$evaluate_avg}}</h1>
+              @else
+                <h1 class="float-right d-none d-sm-block">0</h1>
+              @endif
             </div>
             <div class="col-3">
               <h1 class="float-right">{{count($reviews) + count($posts)}}</h1>

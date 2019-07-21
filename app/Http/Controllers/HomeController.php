@@ -34,6 +34,10 @@ class HomeController extends Controller
                                         ->get();
 
         
+        $evaluate_avg = Review::where('user_id', '=', $id)
+                        // ->select('evaluate')
+                        ->avg('evaluate');
+                    
         $reviews = Review::join('movies', 'reviews.movie_id', '=', 'movies.tmdb_id')
                         ->where('user_id', '=', $id)
                         ->select('movies.title', 'evaluate', 'content', 'tmdb_id', 'reviews.id as review_id', 'movies.image_path', 'genre')
@@ -113,7 +117,7 @@ class HomeController extends Controller
                             ->get();
         
 
-        return view('home', compact('user','favorite_actors', 
+        return view('home', compact('user','favorite_actors','evaluate_avg',
         'watch_lists', 'reviews', 'posts', 'action_movies', 
         'suspense_movies', 'drama_movies', 'comedy_movies', 'horror_movies',
         'follow_reviews', 'follow_posts', 'follow_tweets', 'watch_actors','evaluates'));
