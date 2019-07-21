@@ -110,7 +110,7 @@
             </div>
             <div class="col-3">
                 @if(isset($evaluate_avg))
-                <h1 class="float-right d-none d-sm-block">{{$evaluate_avg}}</h1>
+                <h1 class="float-right d-none d-sm-block">{{round($evaluate_avg, 2)}}</h1>
               @else
                 <h1 class="float-right d-none d-sm-block">0</h1>
               @endif
