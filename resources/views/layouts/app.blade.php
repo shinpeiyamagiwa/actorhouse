@@ -7,10 +7,11 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
-    <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+    <head prefix="og: http://ogp.me/ns#">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
     
+    <meta property="og:url" content="https://www.theactorhouse.com" /> 
     <meta property="og:type" content="article" />
     <meta property=”og:title” content=”ActorHOUSE”>
     <meta property=”og:image” content=”images/表紙.png”>
