@@ -8,7 +8,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-
+    
+    <meta property=”og:title” content=”ActorHOUSE” />
+    <meta property=”og:image” content=”images/表紙.png”>
+    <meta property=”og:description” content=”俳優好きに特化した映画記録アプリ。人生の映画鑑賞の記録をつけて好きな俳優を見つけよう！” />
     <!-- Scripts -->
     <script src="{{ asset('js/app.js', true) }}"></script>
 
