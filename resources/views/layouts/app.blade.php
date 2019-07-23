@@ -19,11 +19,10 @@
     
     <!-- ※ Twitter 共通設定 -->
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:card" content="summary" />
     @if(isset($actor))
-    <meta name="twitter:title" content="{{$actor->name}}">
+    <meta name="twitter:title" content="ActorHOUSE">
     <meta name="twitter:image" content="http://image.tmdb.org/t/p/w500/{{$actor->image_path}}" />
-    <meta name="twitter:description" content="ActorHOUSE">
+    <meta name="twitter:description" content="{{$actor->name}}">
     @endif
     @if(isset($movie))
     <meta name="twitter:title" content="{{$movie->title}}">
