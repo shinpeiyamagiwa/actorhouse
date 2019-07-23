@@ -1,6 +1,22 @@
 
 @extends('layouts.app')
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  
+  <title>{{ config('app.name', 'Laravel') }}</title>
+  
+  <!-- ※基本共通設定 -->
+  <meta property="og:title" content="ActorHOUSE" />
+  <meta property="og:type" content="artcle" />
+  <meta property="og:url" content="https://www.theactorhouse.com" />
+  <meta property="og:description" content="俳優に特化した新しい映画記録webアプリ。鑑賞映画を記録して好きな俳優を見つけよう！！" />
+  
+  <!-- ※ Twitter 共通設定 -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:image" content="http://image.tmdb.org/t/p/w500/{{$actor->image_path}}" />
+  <meta name="twitter:title" content="ActorHOUSE">
+  <meta name="twitter:description" content="{{$actor->name}}">
 
+</head>
 @section('content')
     <!-- 俳優プロフィール -->
 {{-- 俳優プロフィール --}}
