@@ -19,7 +19,16 @@
     
     <!-- ※ Twitter 共通設定 -->
     <meta name="twitter:card" content="summary" />
-    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="ActorHOUSE">
+    @if(isset($actor))
+    <meta name="twitter:image" content="http://image.tmdb.org/t/p/w500/{{$actor->image_path}}" />
+    <meta name="twitter:description" content="{{$actor->name}}">
+    @endif
+    @if(isset($movie))
+    <meta name="twitter:image" content="http://image.tmdb.org/t/p/w500/{{$movie->image_path}}" />
+    <meta name="twitter:description" content="{{$movie->title}}">
+    @endif
     <!-- Scripts -->
     <script src="{{ asset('js/app.js', true) }}"></script>
 
