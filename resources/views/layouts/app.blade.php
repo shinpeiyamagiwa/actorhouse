@@ -12,11 +12,18 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
     
     <!-- ※基本共通設定 -->
-    <meta property="og:title" content="ActorHOUSE" />
     <meta property="og:type" content="artcle" />
     <meta property="og:url" content="https://www.theactorhouse.com" />
+    @if(isset($actor))
+    <meta property="og:title" content="{{$actor->name}}" />
     <meta property="og:description" content="俳優に特化した新しい映画記録webアプリ。鑑賞映画を記録して好きな俳優を見つけよう！！" />
-    
+    <meta property="og:image" content="http://image.tmdb.org/t/p/w500/{{$actor->image_path}}" />
+    @endif
+    @if(isset($movie))
+    <meta property="og:title" content="{{$movie->title}}" />
+    <meta property="og:description" content="{{$movie->overview}}" />
+    <meta property="og:image" content="http://image.tmdb.org/t/p/w500/{{$movie->image_path}}" />
+    @endif
     <!-- ※ Twitter 共通設定 -->
     <meta name="twitter:card" content="summary" />
     @if(isset($actor))
