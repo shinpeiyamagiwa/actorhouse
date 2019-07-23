@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -11,12 +11,15 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
     
-    <meta property="og:url" content="https://www.theactorhouse.com" /> 
-    <meta property="og:type" content="article" />
-    <meta property=”og:title” content=”ActorHOUSE”>
-    <meta property=”og:image” content=”images/表紙.png”>
-    <meta property=”og:description” content=”俳優好きに特化した映画記録アプリ。人生の映画鑑賞の記録をつけて好きな俳優を見つけよう！”>
+    <!-- ※基本共通設定 -->
+    <meta property="og:title" content="ActorHOUSE" />
+    <meta property="og:type" content="artcle" />
+    <meta property="og:url" content="https://www.theactorhouse.com" />
+    <meta property="og:description" content="俳優に特化した新しい映画記録webアプリ。鑑賞映画を記録して好きな俳優を見つけよう！！" />
+    
+    <!-- ※ Twitter 共通設定 -->
     <meta name="twitter:card" content="summary" />
+    
     <!-- Scripts -->
     <script src="{{ asset('js/app.js', true) }}"></script>
 
