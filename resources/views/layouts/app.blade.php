@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+<head>
+{{-- <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"> --}}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -11,7 +12,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
     
     <!-- ※基本共通設定 -->
-    <meta property="og:type" content="artcle" />
+    {{-- <meta property="og:type" content="artcle" />
     <meta property="og:url" content="https://www.theactorhouse.com" />
     @if(isset($actor))
     <meta property="og:title" content="{{$actor->name}}" />
@@ -22,7 +23,7 @@
     <meta property="og:title" content="{{$movie->title}}" />
     <meta property="og:description" content="{{$movie->overview}}" />
     <meta property="og:image" content="http://image.tmdb.org/t/p/w500/{{$movie->image_path}}" />
-    @endif
+    @endif --}}
 
     <!-- ※ Twitter 共通設定 -->
     @if(isset($actor))
