@@ -8,7 +8,6 @@
     
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
-
     <title>{{ config('app.name', 'Laravel') }}</title>
     
     <!-- ※基本共通設定 -->
@@ -24,8 +23,9 @@
     <meta property="og:description" content="{{$movie->overview}}" />
     <meta property="og:image" content="http://image.tmdb.org/t/p/w500/{{$movie->image_path}}" />
     @endif
+
     <!-- ※ Twitter 共通設定 -->
-    <meta name="twitter:card" content="summary large image" />
+    <meta name="twitter:card" content="summary_large_image" />
     @if(isset($actor))
     <meta name="twitter:title" content="ActorHOUSE">
     <meta name="twitter:image" content="http://image.tmdb.org/t/p/w500/{{$actor->image_path}}" />
@@ -46,7 +46,7 @@
     <!-- Icon -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" 
     crossorigin="anonymous">
-    
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css', true) }}" rel="stylesheet">
     <link href="{{ asset('css/style.css', true) }}" rel="stylesheet">
