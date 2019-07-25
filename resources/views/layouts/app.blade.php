@@ -8,7 +8,6 @@
     
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
-    <head prefix="og: http://ogp.me/ns#">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
     
@@ -26,7 +25,7 @@
     <meta property="og:image" content="http://image.tmdb.org/t/p/w500/{{$movie->image_path}}" />
     @endif
     <!-- ※ Twitter 共通設定 -->
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary large image" />
     @if(isset($actor))
     <meta name="twitter:title" content="ActorHOUSE">
     <meta name="twitter:image" content="http://image.tmdb.org/t/p/w500/{{$actor->image_path}}" />
