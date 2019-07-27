@@ -11,7 +11,7 @@
       <div class="col-lg-1 col-2 px-0">
         <div data-toggle="modal" data-target='#movieupdate'>
           <button class="btn btn-outline-success btn-xs p-1">
-            <p class="my-auto">映画更新</p>
+            <p class="my-auto">映画ページ更新</p>
           </button>
         </div>
         <div class="modal fade" id="movieupdate"  role="dialog" 
@@ -21,6 +21,24 @@
               <div class="modal-body">
                 <input type="number" id="movie_start_page"> 〜 <input type="number" id="movie_end_page">
                 <button id="updateMovie">映画情報更新</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-1 col-2 px-0">
+        <div data-toggle="modal" data-target='#movieIdupdate'>
+          <button class="btn btn-outline-success btn-xs p-1">
+            <p class="my-auto">映画id更新</p>
+          </button>
+        </div>
+        <div class="modal fade" id="movieIdupdate"  role="dialog" 
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-body">
+                <input type="number" id="movie_start_id"> 〜 <input type="number" id="movie_end_id">
+                <button id="updateMovieId">映画情報更新ID</button>
               </div>
             </div>
           </div>
@@ -953,6 +971,43 @@
           
           var id = setTimeout(countup, 30000);
           if(count > end_page){　
+            clearTimeout(id);　//idをclearTimeoutで指定している
+            console.log('updataEND');
+          }
+        }
+        countup();
+      });
+    });
+  </script>
+{{-- 映画情報API-ajax --}}
+  <script type="text/javascript">
+     $(function(){
+      $('#updateMovieId').on('click', function() {
+        const start_id = $('#movie_start_id').val();
+        const end_id = $('#movie_end_id').val();
+        let count = start_id;
+        console.log('start count: ', count);
+        let countup = function() {
+          $.ajax({
+            type: "POST",
+            headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: "{{url('/movie/update/id')}}",
+            dataType: "json",
+            data: {count : count},
+            async: false
+          }).done(function (response) {
+            // 通信成功時の処理
+            console.log('success movie_id: ', count);
+            count ++;
+          }).fail(function (err) {
+            // 通信失敗時の処理
+            console.log('error: ', err);
+          });
+          
+          var id = setTimeout(countup, 1000);
+          if(count > end_id){　
             clearTimeout(id);　//idをclearTimeoutで指定している
             console.log('updataEND');
           }

@@ -62,6 +62,7 @@ Route::resource('admin/users','AdminUserController');
 
 // Route::resource('admin/post','AdminPostController');
 Route::post('movie/update', 'MovieUpdateController@update');
+Route::post('movie/update/id', 'MovieIdUpdateController@update');
 Route::post('actor/update', 'ActorUpdateController@update');
 Route::post('cast/update', 'CastUpdateController@update');
 Route::post('youtube/update', 'YouTubeUpdateController@update');
