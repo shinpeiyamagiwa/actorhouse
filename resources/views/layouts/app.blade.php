@@ -11,6 +11,8 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
     
     <!-- ※基本共通設定 -->
+    <meta name="description" content="俳優に特化した新しい映画記録アプリ。映画を記録していくだけで好きな俳優が見つかる。Twitter.Facebook
+    にシェアでき、Amazonビデオ.Netflixにもリンクしすぐに視聴可能。">
     <meta property="og:type" content="artcle" />
     @if(isset($actor))
     <meta property="og:url" content="https://www.theactorhouse.com/actor/{{$actor->tmdb_id}}" />
