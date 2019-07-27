@@ -99,23 +99,23 @@ class MovieUpdateController extends Controller
                         'tmdb_id' => $response['results'][$i]['id'],
                         'title' => $response['results'][$i]['title'],
                         'homepage' => isset($details['homepage']) ? $details['homepage'] : null,
-                        'image_path' => $response['results'][$i]['poster_path'],
+                        'image_path' => isset($response['results'][$i]['poster_path']) ? $response['results'][$i]['poster_path'] : null,
                         'backdrop_path' => isset($details['backdrop_path']) ? $details['backdrop_path'] : null,
-                        'released_at' => isset($details['release_date']) ? $details['release_date'] : null,
+                        'released_at' => empty($details['release_date']) ? null : $details['release_date'],
                         'video_link' =>  null,
                         'screen_time' => isset($details['runtime']) ? $details['runtime'] : null,
-                        'overview' => $response['results'][$i]['overview']
+                        'overview' => isset($response['results'][$i]['overview']) ? $response['results'][$i]['overview'] : null,
                     ]); 
                 }else {
                     Movie::where('tmdb_id', $response['results'][$i]['id'])
                     ->update([
                         'title' => $response['results'][$i]['title'],
                         'homepage' => isset($details['homepage']) ? $details['homepage'] : null,
-                        'image_path' => $response['results'][$i]['poster_path'],
+                        'image_path' => isset($response['results'][$i]['poster_path']) ? $response['results'][$i]['poster_path'] : null,
                         'backdrop_path' => isset($details['backdrop_path']) ? $details['backdrop_path'] : null,
-                        'released_at' => isset($details['release_date']) ? $details['release_date'] : null,
+                        'released_at' => empty($details['release_date']) ? null : $details['release_date'],
                         'screen_time' => isset($details['runtime']) ? $details['runtime'] : null,
-                        'overview' => $response['results'][$i]['overview']
+                        'overview' => isset($response['results'][$i]['overview']) ? $response['results'][$i]['overview'] : null,
                     ]); 
                 }
             }

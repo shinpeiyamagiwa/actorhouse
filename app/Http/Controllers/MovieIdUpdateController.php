@@ -73,27 +73,28 @@ class MovieIdUpdateController extends Controller
                     }
                     $movie = Movie::where('tmdb_id', $request->count)->first();
                     if(is_null($movie)){
-                        Movie::create([
-                            'tmdb_id' => $details['id'],
-                            'title' => $details['title'],
-                            'homepage' => isset($details['homepage']) ? $details['homepage'] : null,
-                            'image_path' => $details['poster_path'],
-                            'backdrop_path' => isset($details['backdrop_path']) ? $details['backdrop_path'] : null,
-                            'released_at' => isset($details['release_date']) ? $details['release_date'] : null,
-                            'video_link' =>  null,
-                            'screen_time' => isset($details['runtime']) ? $details['runtime'] : null,
-                            'overview' => $details['overview']
-                        ]); 
+                            Movie::create([
+                                'tmdb_id' => $details['id'],
+                                'title' => $details['title'],
+                                'homepage' => isset($details['homepage']) ? $details['homepage'] : null,
+                                'image_path' => isset($details['poster_path']) ? $details['poster_path'] : null,
+                                'backdrop_path' => isset($details['backdrop_path']) ? $details['backdrop_path'] : null,
+                                'released_at' => empty($details['release_date']) ? null : $details['release_date'],
+                                'video_link' =>  null,
+                                'screen_time' => isset($details['runtime']) ? $details['runtime'] : null,
+                                'overview' => isset($details['overview']) ? $details['overview'] : null,
+                            ]); 
+                        
                     }else {
                         Movie::where('tmdb_id', $request->count)
                         ->update([
                             'title' => $details['title'],
                             'homepage' => isset($details['homepage']) ? $details['homepage'] : null,
-                            'image_path' => $details['poster_path'],
+                            'image_path' => isset($details['poster_path']) ? $details['poster_path'] : null,
                             'backdrop_path' => isset($details['backdrop_path']) ? $details['backdrop_path'] : null,
-                            'released_at' => isset($details['release_date']) ? $details['release_date'] : null,
+                            'released_at' => empty($details['release_date']) ? null : $details['release_date'],
                             'screen_time' => isset($details['runtime']) ? $details['runtime'] : null,
-                            'overview' => $details['overview']
+                            'overview' => isset($details['overview']) ? $details['overview'] : null,
                         ]); 
                     }
                     
