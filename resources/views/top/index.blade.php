@@ -167,7 +167,7 @@
     </div>
   </div>
   <h4 class="mx-2 mt-4 topic">公開中&近日公開</h4>
-  <div class="row no-gutters nowOpen">
+  <div class="row no-gutters movieList">
     <div class="col-md-2 col-4">
       <a href="/movie/412117">
         <img src="http://image.tmdb.org/t/p/w500//pXLfG0h89VOvkjS2TqPfuxphmh.jpg" alt="" class="img-fluid">
