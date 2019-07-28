@@ -127,12 +127,12 @@
               <h1 class="float-right d-none d-sm-block">{{count($reviews)}}本</h1>
             </div>
             <div class="col-3">
-                @if(isset($evaluate_avg))
+              @if(isset($evaluate_avg))
                 <h1 class="float-right d-none d-sm-block">{{round($evaluate_avg, 2)}}</h1>
               @else
                 <h1 class="float-right d-none d-sm-block">0</h1>
               @endif
-              </div>
+            </div>
             <div class="col-3">
               <h1 class="float-right d-none d-sm-block">{{count($reviews) + count($posts)}}</h1>
             </div>
@@ -165,9 +165,9 @@
             </div>
             <div class="col-3">
               @if(isset($evaluate_avg))
-                <h1 class="float-right d-none d-sm-block">{{$evaluate_avg}}</h1>
+                <h1 class="float-right">{{round($evaluate_avg, 2)}}</h1>
               @else
-                <h1 class="float-right d-none d-sm-block">0</h1>
+                <h1 class="float-right">0</h1>
               @endif
             </div>
             <div class="col-3">
@@ -810,18 +810,21 @@
 {{-- TOP視聴俳優 --}}
   <div id="top20Room" class="collapse">
     <div class="row responsive mb-2 container mx-auto mt-5">
-        @if($watch_actors)
-          @foreach($watch_actors as $watch_actor)
-            @if(isset($watch_actor->image_path))
-              <div class="movieList col-lg-2 col-sm-3 col-4 float-right">
-                <a href="/actor/{{$watch_actor->tmdb_id}}">
-                  <img src="http://image.tmdb.org/t/p/w500/{{$watch_actor->image_path}}" alt="" class="img-fluid mb-2">
-                </a>
-                <p>{{$watch_actor->name}}</p>
-              </div>
-            @endif
-          @endforeach
-        @endif
+      @if($watch_actors)
+        @for($i = 0; $i < count($watch_actors); ++$i) 
+          @if(isset($watch_actors[$i]['image_path']))
+            <div class="col-md-3 col-6 col-offset-3 d-flex align-items-center pl-5">
+              第<h1 class="py-auto">{{$i+1}}</h1>位
+            </div>
+            <div class="movieList col-md-3 col-5 float-right">
+              <a href="/actor/{{$watch_actors[$i]['tmdb_id']}}">
+                <img src="http://image.tmdb.org/t/p/w500/{{$watch_actors[$i]['image_path']}}" alt="" class="img-fluid mb-2">
+              </a>
+              <p>{{$watch_actors[$i]['name']}}</p>
+            </div>
+          @endif
+        @endfor
+      @endif
     </div>
   </div>
 {{-- メニューバーcollapse --}}

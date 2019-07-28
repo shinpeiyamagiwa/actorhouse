@@ -108,6 +108,7 @@ class HomeController extends Controller
 
         $watch_actors = Review::join('casts', 'reviews.movie_id', '=', 'casts.movie_id')
                             ->leftJoin('actors', 'casts.actor_id', '=', 'actors.tmdb_id')
+                            ->whereNotNull('actors.image_path')
                             ->where('reviews.user_id', '=', $id)
                             ->select(\DB::raw('count(*) as actor_count, casts.actor_id'),'actors.name','actors.tmdb_id','actors.image_path')
                             ->groupBy('casts.actor_id','actors.name','actors.tmdb_id','actors.image_path')
