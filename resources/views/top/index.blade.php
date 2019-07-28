@@ -166,38 +166,74 @@
       </div>
     </div>
   </div>
-  <h4 class="mx-2 mt-4">MOVIE</h4>
-  <div class="row no-gutters">
-    <div class="col-md-4 col-6">
-      <a href="/movie/297762">
-        <img src="http://image.tmdb.org/t/p/w500//6iUNJZymJBMXXriQyFZfLAKnjO6.jpg" alt="" class="img-fluid">
+  <h4 class="mx-2 mt-4 topic">公開中&近日公開</h4>
+  <div class="row no-gutters nowOpen">
+    <div class="col-md-2 col-4">
+      <a href="/movie/412117">
+        <img src="http://image.tmdb.org/t/p/w500//pXLfG0h89VOvkjS2TqPfuxphmh.jpg" alt="" class="img-fluid">
       </a>
     </div>
-    <div class="col-md-4 col-6">
-      <a href="/movie/299534">
-        <img src="http://image.tmdb.org/t/p/w500//7RyHsO4yDXtBv1zUU3mTpHeQ0d5.jpg" alt="" class="img-fluid">
+    <div class="col-md-2 col-4">
+      <a href="/movie/568160">
+        <img src="http://image.tmdb.org/t/p/w500//tvFScjYdjpltGBG6UQ9V6R02owV.jpg" alt="" class="img-fluid">
       </a>
     </div>
-    <div class="col-md-4 col-6">
-      <a href="/movie/140607">
-        <img src="http://image.tmdb.org/t/p/w500//njv65RTipNSTozFLuF85jL0bcQe.jpg" alt="" class="img-fluid">
+    <div class="col-md-2 col-4">
+      <a href="/movie/301528">
+        <img src="http://image.tmdb.org/t/p/w500//fV8IBuRHisDcIBiMcIhRwev6DOJ.jpg" alt="" class="img-fluid">
       </a>
     </div>
-    <div class="col-md-4 col-6">
-      <a href="/movie/168259">
-        <img src="http://image.tmdb.org/t/p/w500//ypyeMfKydpyuuTMdp36rMlkGDUL.jpg" alt="" class="img-fluid">
+    <div class="col-md-2 col-4">
+      <a href="/movie/429617">
+        <img src="http://image.tmdb.org/t/p/w500//iyiXICmKjJieoa1a1Jmni7KGMUl.jpg" alt="" class="img-fluid">
       </a>
     </div>
-    <div class="col-md-4 col-6">
-      <a href="/movie/313369">
-        <img src="http://image.tmdb.org/t/p/w500//fp6X6yhgcxzxCpmM0EVC6V9B8XB.jpg" alt="" class="img-fluid">
+    <div class="col-md-2 col-4">
+      <a href="/movie/420817">
+        <img src="http://image.tmdb.org/t/p/w500//aaFg8xedEr1w5ML4tJUGX3VblBU.jpg" alt="" class="img-fluid">
       </a>
     </div>
-    <div class="col-md-4 col-6">
-      <a href="/movie/161">
-        <img src="http://image.tmdb.org/t/p/w500//z2fiN0tgkgOcAFl5gxvQlYXCn3l.jpg" alt="" class="img-fluid">
+    <div class="col-md-2 col-4">
+      <a href="/movie/384018">
+        <img src="http://image.tmdb.org/t/p/w500//keym7MPn1icW1wWfzMnW3HeuzWU.jpg" alt="" class="img-fluid">
       </a>
     </div>
+  </div>
+  <h4 class="mx-2 mt-4 text-center topic">オススメ映画</h4>
+  <div class="container">
+    <div class="row no-gutters">
+      <div class="col-md-4 col-6">
+        <a href="/movie/297762">
+          <img src="http://image.tmdb.org/t/p/w500//6iUNJZymJBMXXriQyFZfLAKnjO6.jpg" alt="" class="img-fluid">
+        </a>
+      </div>
+      <div class="col-md-4 col-6">
+        <a href="/movie/299534">
+          <img src="http://image.tmdb.org/t/p/w500//7RyHsO4yDXtBv1zUU3mTpHeQ0d5.jpg" alt="" class="img-fluid">
+        </a>
+      </div>
+      <div class="col-md-4 col-6">
+        <a href="/movie/140607">
+          <img src="http://image.tmdb.org/t/p/w500//njv65RTipNSTozFLuF85jL0bcQe.jpg" alt="" class="img-fluid">
+        </a>
+      </div>
+      <div class="col-md-4 col-6">
+        <a href="/movie/168259">
+          <img src="http://image.tmdb.org/t/p/w500//ypyeMfKydpyuuTMdp36rMlkGDUL.jpg" alt="" class="img-fluid">
+        </a>
+      </div>
+      <div class="col-md-4 col-6">
+        <a href="/movie/313369">
+          <img src="http://image.tmdb.org/t/p/w500//fp6X6yhgcxzxCpmM0EVC6V9B8XB.jpg" alt="" class="img-fluid">
+        </a>
+      </div>
+      <div class="col-md-4 col-6">
+        <a href="/movie/161">
+          <img src="http://image.tmdb.org/t/p/w500//z2fiN0tgkgOcAFl5gxvQlYXCn3l.jpg" alt="" class="img-fluid">
+        </a>
+      </div>
+    </div>
+
   </div>
 
 @endsection
