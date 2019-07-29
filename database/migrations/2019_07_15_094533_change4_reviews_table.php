@@ -15,9 +15,9 @@ class Change4ReviewsTable extends Migration
     {
         Schema::table('reviews', function (Blueprint $table) {
             //
-            $table->index('user_id');
-            $table->index('evaluate');
-            $table->index('content');
+            // $table->index('user_id');
+            // $table->index('evaluate');
+            // $table->index('content');
             $table->index('genre');
         });
     }
