@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Movie;
 use App\Cast;
 use App\FavoriteActor;
+use App\Genre;
 use Illuminate\Http\Request;
 
 class MovieIdUpdateController extends Controller
@@ -33,7 +34,6 @@ class MovieIdUpdateController extends Controller
                 $details = curl_exec($curl);
                 $details = json_decode($details, true);
                 curl_close($curl);
-                
                 if(isset($details['id'])) {
                     $curl = curl_init();
                     curl_setopt_array($curl, array(
@@ -83,8 +83,7 @@ class MovieIdUpdateController extends Controller
                                 'video_link' =>  null,
                                 'screen_time' => isset($details['runtime']) ? $details['runtime'] : null,
                                 'overview' => isset($details['overview']) ? $details['overview'] : null,
-                            ]); 
-                        
+                            ]);
                     }else {
                         Movie::where('tmdb_id', $request->count)
                         ->update([
@@ -98,6 +97,16 @@ class MovieIdUpdateController extends Controller
                         ]); 
                     }
                     
+                    $genre = Genre::where('tmdb_id', $request->count)->first();
+                    if(is_null($genre)) {
+                        for($i = 0; $i < count($details['genres']); ++$i) {
+                            Genre::create([
+                                'tmdb_id' => $details['id'],
+                                'genre_id' => $details['genres'][$i]['id'],
+                                'genre_name' => $details['genres'][$i]['name'],
+                            ]); 
+                        }
+                    }
                 }
         
     // }
