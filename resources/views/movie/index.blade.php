@@ -142,7 +142,8 @@
                   </button>
                 </a>
               </div>
-            @endif          
+            @endif 
+      {{-- amazonprime --}}         
             <div class="col-2">
                 <a target="_blank" href="https://www.amazon.co.jp/gp/search?ie=UTF8&tag=actorhouse-22&linkCode=ur2&linkId=973a0f1c46e57d4ec347c0c9c2534b06&camp=247&creative=1211&index=instant-video&keywords={{$movie->title}}">
                   <button id="amazon" class="btn btn-outline-success btn-xs" data-toggle="popover" data-content="Prime Video">
@@ -151,11 +152,20 @@
                 </a><img src="//ir-jp.amazon-adsystem.com/e/ir?t=actorhouse-22&l=ur2&o=9" width="1" height="1" alt="" style="border:none !important; margin:0px !important;" />
               {{-- <a href="https://www.amazon.co.jp/{{$movie->title}}/dp/B00JM4051Y/ref=dp_olp_1" target="_blank">
               </a> --}}
-            </div>          
+            </div> 
+      {{-- Netflix --}}         
             <div class="col-2">
-              <a href="https://www.netflix.com/search?q={{$movie->title}}">
-                <button id="netflix" class="btn btn-outline-success btn-xs" data-toggle="popover" data-content="Netflix" target="_blank">
+              <a href="https://www.netflix.com/search?q={{$movie->title}}" target="_blank">
+                <button id="netflix" class="btn btn-outline-success btn-xs" data-toggle="popover" data-content="Netflix">
                   <p class="mb-0">N</p>
+                </button>
+              </a>
+            </div> 
+      {{-- google music --}}         
+            <div class="col-2">
+              <a href="https://play.google.com/store/search?q={{$movie->title}}&c=music&hl=ja/" target="_blank">
+                <button id="music" class="btn btn-outline-success btn-xs" data-toggle="popover" data-content="music">
+                    <i class="fas fa-headphones-alt"></i>
                 </button>
               </a>
             </div>          
@@ -440,6 +450,11 @@
   });
   $(function() {
     $('#netflix').popover({
+      trigger: 'hover', 
+    });
+  });
+  $(function() {
+    $('#music').popover({
       trigger: 'hover', 
     });
   });
