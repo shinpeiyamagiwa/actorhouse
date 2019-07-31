@@ -27,7 +27,7 @@ body{
     object-fit: cover;
   }
   .Topheader {
-    height:130px;
+    height:80px;
     margin-top: 25px;
   }
   .nowOpen img{
@@ -44,7 +44,7 @@ body{
   }
   .castList img{
     width:100%;
-    height:150px; 
+    height:100px; 
     object-fit: cover;
   }
   .Topheader {
@@ -69,7 +69,7 @@ body{
     object-fit: cover;
   }
   .Topheader {
-    height:150px;
+    height:110px;
     margin-top: 45px;
   }
   .nowOpen img{

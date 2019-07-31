@@ -88,26 +88,26 @@
     </div>
     <div class="Topheader text-center my-0 py-1 height">
  
-        @unless (Auth::check())
-        <a href="register">
-          <button class="btn btn-primary btn-sm mb-2"
-            data-toggle="modal" data-target="#menber">Register
-          </button>
-        </a>  
-        <a href="login">
-          <button class="btn btn-primary btn-sm mb-2 px-3"
-            data-toggle="modal" data-target="#menber">Login
-          </button>
-        </a>
-      @endunless
       <h3>素敵な俳優と素敵な音楽に出会える</h3>
+      @unless (Auth::check())
+      <a href="register">
+        <button class="btn btn-primary btn-sm mb-2"
+          data-toggle="modal" data-target="#menber">Register
+        </button>
+      </a>  
+      <a href="login">
+        <button class="btn btn-primary btn-sm mb-2 px-3"
+          data-toggle="modal" data-target="#menber">Login
+        </button>
+      </a>
+    @endunless
       <h3>映画記録アプリ</h3>
       {{-- <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#searchModal">
           <h6 class="mb-0">いま観る検索</h6>
       </button> --}}
   
       <!-- Modal -->
-      <div class="modal fade" id="searchModal" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+      {{-- <div class="modal fade" id="searchModal" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
           <div class="modal-content">
           <div class="modal-header text-light">
@@ -147,11 +147,11 @@
               @endif
               {!! Form::close() !!}
           </div>
-          </div>
+          </div> --}}
         </div>
       </div>
     </div>
-    <div class="row castList responsive mx-1 no-gutters mb-0 mt-4">
+    <div class="row castList responsive mx-1 no-gutters mb-0">
       <div class="col-md-1 col-2 mb-3">
         <a href="/actor/5081">
           <img src="http://image.tmdb.org/t/p/w500//jqlqq3knztTnty5rcMg5evqZRCa.jpg" alt="" class="img-fluid">

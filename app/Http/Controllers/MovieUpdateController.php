@@ -121,11 +121,11 @@ class MovieUpdateController extends Controller
                 }
                 $genre = Genre::where('tmdb_id', $response['results'][$i]['id'])->first();
                     if(is_null($genre)) {
-                        for($i = 0; $i < count($details['genres']); ++$i) {
+                        for($t = 0; $t < count($details['genres']); ++$t) {
                             Genre::create([
                                 'tmdb_id' => $details['id'],
-                                'genre_id' => $details['genres'][$i]['id'],
-                                'genre_name' => $details['genres'][$i]['name'],
+                                'genre_id' => $details['genres'][$t]['id'],
+                                'genre_name' => $details['genres'][$t]['name'],
                             ]); 
                         }
                     }
