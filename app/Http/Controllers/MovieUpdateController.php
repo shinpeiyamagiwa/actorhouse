@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Movie;
 use App\Cast;
+use App\Genre;
 use App\FavoriteActor;
 use Illuminate\Http\Request;
 
@@ -118,6 +119,16 @@ class MovieUpdateController extends Controller
                         'overview' => isset($response['results'][$i]['overview']) ? $response['results'][$i]['overview'] : null,
                     ]); 
                 }
+                $genre = Genre::where('tmdb_id', $request->count)->first();
+                    if(is_null($genre)) {
+                        for($i = 0; $i < count($details['genres']); ++$i) {
+                            Genre::create([
+                                'tmdb_id' => $details['id'],
+                                'genre_id' => $details['genres'][$i]['id'],
+                                'genre_name' => $details['genres'][$i]['name'],
+                            ]); 
+                        }
+                    }
             }
         // }
         return response()->json([
