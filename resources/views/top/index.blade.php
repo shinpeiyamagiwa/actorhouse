@@ -87,23 +87,71 @@
       </div>
     </div>
     <div class="Topheader text-center my-0 py-1 height">
-      <h1>好きな俳優を見つけよう</h1>
-      @unless (Auth::check())
+ 
+        @unless (Auth::check())
         <a href="register">
-          <button class="btn btn-primary"
+          <button class="btn btn-primary btn-sm mb-2"
             data-toggle="modal" data-target="#menber">Register
           </button>
         </a>  
         <a href="login">
-          <button class="btn btn-primary"
+          <button class="btn btn-primary btn-sm mb-2 px-3"
             data-toggle="modal" data-target="#menber">Login
           </button>
-        </a>  
+        </a>
       @endunless
-      <br>
+      <h3>素敵な俳優と素敵な音楽に出会える</h3>
       <h3>映画記録アプリ</h3>
+      <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#searchModal">
+          <h6 class="mb-0">いま見る検索</h6>
+      </button>
+  
+      <!-- Modal -->
+      <div class="modal fade" id="searchModal" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+          <div class="modal-header text-light">
+              <h5 class="modal-title" id="searchModalLabel">いま見る検索</h5>
+              <button type="button" class="close btn-light" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              {!! Form::open(['method'=>'POST', 'action'=> 'SearchController@index']) !!}
+              <div class="form-group">
+                {!! Form::label('genre', 'ジャンル：') !!}
+                {{Form::select('genre', [18 => 'ドラマ', 28 => 'アクション', 12 => 'アドベンチャー', 878 => 'SF', 35 => 'コメディ', 16 => 'アニメ'], null, ['class' => 'field'])}}
+              </div>
+              <div class="form-group">
+                  {!! Form::label('age', '公開年:') !!}
+                  {{Form::selectRange('age', 2019, 1970, '', ['placeholder' => ''])}}
+                </div>
+              <div class="form-group">
+                {!! Form::label('content', '<気分は?>') !!}
+                <h6>{!! Form::radio('runtime', '1', true) !!} 気軽に観たい(〜100分)</h6>
+                <h6>{!! Form::radio('runtime', '2') !!} 普通に観たい(101分〜120分)</h6>
+                <h6>{!! Form::radio('runtime', '3') !!} のんびり観たい(121分〜140分)</h6>
+                <h6>{!! Form::radio('runtime', '4') !!} めちゃくちゃ暇(141分~)</h6>
+              </div>
+              <div class="form-group">
+                  {!! Form::submit('検索', null, ['class'=>'btn btn-success']) !!}
+              </div>
+              @if ($errors->any())
+                  <div class="alert alert-danger">
+                      <ul>
+                          @foreach ($errors->all() as $error)
+                              <li>{{ $error }}</li>
+                          @endforeach
+                      </ul>
+                  </div>
+              @endif
+              {!! Form::close() !!}
+          </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="row castList responsive mx-1 no-gutters mb-0">
+    <div class="row castList responsive mx-1 no-gutters mb-0 mt-4">
       <div class="col-md-1 col-2 mb-3">
         <a href="/actor/5081">
           <img src="http://image.tmdb.org/t/p/w500//jqlqq3knztTnty5rcMg5evqZRCa.jpg" alt="" class="img-fluid">

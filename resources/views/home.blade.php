@@ -137,9 +137,7 @@
               <h1 class="float-right d-none d-sm-block">{{count($reviews) + count($posts)}}</h1>
             </div>
           </div>
-
         </div>
-
 {{-- smのみ表示(使用データ) --}}
         <div class="row d-sm-none d-block">
           <div class="col row float-left">
