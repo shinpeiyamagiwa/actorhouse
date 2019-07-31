@@ -103,7 +103,7 @@
       <h3>素敵な俳優と素敵な音楽に出会える</h3>
       <h3>映画記録アプリ</h3>
       <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#searchModal">
-          <h6 class="mb-0">いま見る検索</h6>
+          <h6 class="mb-0">いま観る検索</h6>
       </button>
   
       <!-- Modal -->
@@ -128,10 +128,10 @@
                 </div>
               <div class="form-group">
                 {!! Form::label('content', '<気分は?>') !!}
-                <h6>{!! Form::radio('runtime', '1', true) !!} 気軽に観たい(〜100分)</h6>
-                <h6>{!! Form::radio('runtime', '2') !!} 普通に観たい(101分〜120分)</h6>
-                <h6>{!! Form::radio('runtime', '3') !!} のんびり観たい(121分〜140分)</h6>
-                <h6>{!! Form::radio('runtime', '4') !!} めちゃくちゃ暇(141分~)</h6>
+                <h6>{!! Form::radio('runtime', '1', true) !!} サクッと観たい(~90分)</h6>
+                <h6>{!! Form::radio('runtime', '2') !!} じっくり映画を味わいたい(91分~120分)</h6>
+                <h6>{!! Form::radio('runtime', '3') !!} 今日は映画の日！(121分~150分)</h6>
+                <h6>{!! Form::radio('runtime', '4') !!} 気合十分(151分~)</h6>
               </div>
               <div class="form-group">
                   {!! Form::submit('検索', null, ['class'=>'btn btn-success']) !!}

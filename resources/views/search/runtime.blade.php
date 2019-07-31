@@ -38,7 +38,7 @@
         <div>
           <h5>該当する映画が見つかりませんでした。</h5>
           <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#searchModal">
-              <h6 class="mb-0">すぐ見る検索</h6>
+              <h6 class="mb-0">いま観る検索</h6>
           </button>
       
           <!-- Modal -->

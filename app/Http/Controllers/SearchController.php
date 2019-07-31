@@ -15,7 +15,7 @@ class SearchController extends Controller
         if($request->runtime == 1) {
             $movies = Movie::join('genres', 'movies.tmdb_id', '=', 'genres.tmdb_id')
                     ->where('movies.released_at', 'like', '%'.$age.'%')
-                    ->where('screen_time', '<', 100)
+                    ->where('screen_time', '<=', 90)
                     ->where('genres.genre_id', $genre)
                     ->select('title', 'movies.image_path', 'movies.tmdb_id', 'movies.screen_time')
                     ->get();
@@ -24,8 +24,8 @@ class SearchController extends Controller
         elseif ($request->runtime == 2) {
             $movies = Movie::join('genres', 'movies.tmdb_id', '=', 'genres.tmdb_id')
                     ->where('movies.released_at', 'like', '%'.$age.'%')
-                    ->where('screen_time', '>', 100)
-                    ->where('screen_time', '<', 120)
+                    ->where('screen_time', '>', 90)
+                    ->where('screen_time', '<=', 120)
                     ->where('genres.genre_id', $genre)
                     ->select('title', 'movies.image_path', 'movies.tmdb_id', 'movies.screen_time')
                     ->get();
@@ -34,7 +34,7 @@ class SearchController extends Controller
             $movies = Movie::join('genres', 'movies.tmdb_id', '=', 'genres.tmdb_id')
                     ->where('movies.released_at', 'like', '%'.$age.'%')
                     ->where('screen_time', '>', 120)
-                    ->where('screen_time', '<', 150)
+                    ->where('screen_time', '<=', 150)
                     ->where('genres.genre_id', $genre)
                     ->select('title', 'movies.image_path', 'movies.tmdb_id', 'movies.screen_time')
                     ->get();
