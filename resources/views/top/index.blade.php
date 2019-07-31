@@ -102,9 +102,9 @@
       @endunless
       <h3>素敵な俳優と素敵な音楽に出会える</h3>
       <h3>映画記録アプリ</h3>
-      <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#searchModal">
+      {{-- <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#searchModal">
           <h6 class="mb-0">いま観る検索</h6>
-      </button>
+      </button> --}}
   
       <!-- Modal -->
       <div class="modal fade" id="searchModal" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
