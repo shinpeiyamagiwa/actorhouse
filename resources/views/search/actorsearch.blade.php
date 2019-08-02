@@ -2,11 +2,11 @@
 
 @section('content')
   
-    <div class="jumbotron img-fluid w-100 center-block">
-      <div class="card-body row responsive my-0 mx-auto">
+    <div class="card mt-4">
+      <div class="card-body row responsive my-0 mx-auto no-gutters">
         @if($movies)
           @foreach($movies as $movie)
-            <div class="movieList col-lg-2 col-sm-3 col-4">
+            <div class="movieList col-lg-2 col-3 pl-md-5 pl-2">
               <a href="/movie/{{$movie->tmdb_id}}">
               @if(isset($movie->image_path))
                 <img src="http://image.tmdb.org/t/p/w500/{{$movie->image_path}}" alt="" class="img-fluid mb-2">
@@ -35,10 +35,10 @@
           @endforeach
         @endif
       </div>
-      <div class="card-body row responsive my-0 mx-auto">
+      <div class="card-body row responsive my-0 mx-auto no-gutters">
           @if($actors)
            @foreach($actors as $actor)
-             <div class="favoriteActor col-lg-2 col-sm-3 col-4">
+             <div class="favoriteActor col-lg-2 col-3 pl-md-5 pl-2">
                <a href="/actor/{{$actor->tmdb_id}}">
                 @if(isset($actor->image_path))
                   <img src="http://image.tmdb.org/t/p/w500/{{$actor->image_path}}" alt="" class="img-fluid mb-2">

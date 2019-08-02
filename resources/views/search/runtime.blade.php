@@ -6,7 +6,7 @@
       <div class="card-body row responsive my-0 mx-auto no-gutters">
         @if(isset($movies[0]->title))
           @foreach($movies as $movie)
-            <div class="movieList col-lg-2 col-sm-3 col-3 pl-2">
+            <div class="movieList col-lg-2 col-3 pl-md-5 pl-2">
               <a href="/movie/{{$movie->tmdb_id}}">
               @if(isset($movie->image_path))
                 <img src="http://image.tmdb.org/t/p/w500/{{$movie->image_path}}" alt="" class="img-fluid mb-0">

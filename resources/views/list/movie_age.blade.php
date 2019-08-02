@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="jumbotron mt-4 pb-1">
+{{-- <div class="jumbotron mt-4 pb-1">
     {!! Form::open(['method'=>'POST', 'action'=> 'ListMovieAgeController@index']) !!}
     <div class="form-group">
       {!! Form::label('age', '公開年：') !!}
@@ -10,14 +10,14 @@
       {!! Form::button('検索',['class'=>'btn btn-sm btn-light']) !!}
     </div>
       {!! Form::close() !!}
-</div>
+</div> --}}
 
 
-<div id="SearchList" class="card collapse show">
-  <div class="card-body row responsive my-0 mx-auto">
+<div id="SearchList" class="card collapse show mt-4">
+  <div class="card-body row responsive my-0 mx-auto no-gutters">
     @if($movies)
       @foreach($movies as $movie)
-        <div class="movieList col-lg-2 col-sm-3 col-4">
+        <div class="movieList col-lg-2 col-3 pl-md-5 pl-2">
           <a href="/movie/{{$movie->tmdb_id}}">
             <img src="http://image.tmdb.org/t/p/w500/{{$movie->image_path}}" alt="" class="img-fluid mb-2">
           </a>

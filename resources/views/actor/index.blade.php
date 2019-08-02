@@ -198,10 +198,10 @@
   </div>
 {{-- 俳優作品一覧 --}}
   <div id="workRoom" class="card collapse show">
-    <div class="row responsive mb-2 mx-0 mt-5">
+    <div class="row responsive mb-2 mx-0 mt-5 no-gutters">
       @if($works)
         @foreach($works as $work)
-          <div class="movieList col-lg-2 col-sm-3 col-4">
+          <div class="movieList col-lg-2 col-3 pl-md-5 pl-2">
             <a href="/movie/{{$work->movie_id}}">
               <img src="http://image.tmdb.org/t/p/w500/{{$work->image_path}}" alt="" class="img-fluid mb-2">
             </a>
