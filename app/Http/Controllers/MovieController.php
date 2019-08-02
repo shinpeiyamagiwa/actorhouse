@@ -6,6 +6,7 @@ use App\Movie;
 use App\Cast;
 use App\Review;
 use App\WatchList;
+use App\FavoriteMovie;
 use App\ReviewComment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -36,7 +37,10 @@ class MovieController extends Controller
         $watchList = WatchList::where('user_id', '=', Auth::id())
                             ->where('movie_id', '=', $id)
                             ->first();
-        return view('movie.index', compact('movie', 'userId', 'casts', 'review','user', 'reviews', 'watchList', 'avg'));
+        $favorite_movies = FavoriteMovie::where('user_id', '=', $userId)
+                            ->where('movie_id', '=', $id)
+                            ->first();
+        return view('movie.index', compact('movie', 'userId', 'casts', 'review','user', 'reviews', 'watchList', 'avg', 'favorite_movies'));
 
         
     }

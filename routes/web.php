@@ -39,6 +39,8 @@ Route::post('/post/comment/store', 'PostCommentController@store');
 Route::get('/user/{id}', 'UserController@index');
 // Route::get('/user', 'UserController@index');
 // Ajaxにしたい
+Route::post('/favorite/movie/store','FavoriteMovieController@store');
+Route::post('/favorite/movie/delete','FavoriteMovieController@delete');
 Route::post('/favorite/actor/store','FavoriteActorController@store');
 Route::post('/favorite/actor/delete','FavoriteActorController@delete');
 Route::post('/watchlist/movie/store','WatchListController@store');

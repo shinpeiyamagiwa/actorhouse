@@ -33,7 +33,11 @@ class HomeController extends Controller
                                         ->select('tmdb_id', 'actors.name', 'actors.image_path', 'new')
                                         ->get();
 
-        
+        $favorite_movies = FavoriteMovie::join('movies', 'favorite_movies.movie_id', '=', 'movies.tmdb_id')
+                                        ->where('favorite_movies.user_id', '=', $id)
+                                        ->select('tmdb_id', 'movies.title', 'movies.image_path')
+                                        ->get();
+
         $evaluate_avg = Review::where('user_id', '=', $id)
                         // ->select('evaluate')
                         ->avg('evaluate');
@@ -44,29 +48,14 @@ class HomeController extends Controller
                         ->orderBy('reviews.id', 'desc')
                         ->get();
         
-                $action_movies = [];
-                $suspense_movies = [];
-                $drama_movies = [];
-                $comedy_movies = [];
-                $horror_movies = [];
+                // $action_movies = [];
+                // $suspense_movies = [];
+                // $drama_movies = [];
+                // $comedy_movies = [];
+                // $horror_movies = [];
                 $evaluates = [];
 
                 foreach ($reviews as $review) {
-                    if ($review->genre == 1) {
-                        array_push($action_movies, $review);
-                    }
-                    if ($review->genre == 2) {
-                        array_push($suspense_movies, $review);
-                    }
-                    if ($review->genre == 3) {
-                        array_push($drama_movies, $review);
-                    }
-                    if ($review->genre == 4) {
-                        array_push($comedy_movies, $review);
-                    }
-                    if ($review->genre == 5) {
-                        array_push($horror_movies, $review);
-                    }
                     array_push($evaluates, $review->evaluate);
                 }
         $watch_lists = WatchList::join('movies', 'watch_lists.movie_id', '=', 'movies.tmdb_id')
@@ -119,8 +108,7 @@ class HomeController extends Controller
         
 
         return view('home', compact('user','favorite_actors','evaluate_avg',
-        'watch_lists', 'reviews', 'posts', 'action_movies', 
-        'suspense_movies', 'drama_movies', 'comedy_movies', 'horror_movies',
+        'watch_lists', 'reviews', 'posts', 'favorite_movies', 
         'follow_reviews', 'follow_posts', 'follow_tweets', 'watch_actors','evaluates'));
     }
     

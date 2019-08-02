@@ -134,15 +134,32 @@
               @endif
             </div>
       {{-- 映画ホームページ --}}
-            @if(isset($movie->homepage))
+            {{-- @if(isset($movie->homepage))
               <div class="col-2">
                 <a href={{$movie->homepage}}　target="_blank">
-                  <button id="homepage" class="btn btn-outline-success btn-xs" data-toggle="popover" data-content="公式サイト">
-                    <i class="far fa-id-card"></i>
+                  <button id="homepage" class="btn btn-success btn-xs" data-toggle="popover" data-content="お気に入り映画">
+                    <i class="far fa-heart"></i>
                   </button>
                 </a>
               </div>
-            @endif 
+            @endif  --}}
+            <div class="col-2">
+              @if(!$favorite_movies)
+                <button data-movie-id="{{$movie->tmdb_id}}" data-favorite="false" id="favorite_button" type="button" class="registButton btn btn-outline-success btn-xs"
+                    data-toggle="popover" data-content="お気に入り登録する">
+                  <span id="regist_text">
+                    <i class="far fa-heart"></i>
+                  </span>
+                </button>
+              @else
+                <button data-movie-id="{{$movie->tmdb_id}}" data-favorite="true" id="favorite_button" type="button" class="registButton btn btn-success btn-xs"
+                    data-toggle="popover" data-content="お気に入り解除する">
+                  <span id="regist_text">
+                    <i class="fas fa-heart"></i>
+                  </span>
+                </button>
+              @endif
+            </div>
       {{-- amazonprime --}}         
             <div class="col-2">
                 <a target="_blank" href="https://www.amazon.co.jp/gp/search?ie=UTF8&tag=actorhouse-22&linkCode=ur2&linkId=973a0f1c46e57d4ec347c0c9c2534b06&camp=247&creative=1211&index=instant-video&keywords={{$movie->title}}">
@@ -527,6 +544,70 @@
           // 通信失敗時の処理
           alert('ファイルの取得に失敗しました。');
         });
+        }
+      });
+    });
+  </script>
+{{-- お気に入り映画登録 --}}
+  <script type="text/javascript">
+    $(function(){
+      $('#favorite_button').on('click', function() {
+        var movie_id = $(this).data('movieId')
+
+        const is_favorite = $(this).data('favorite');
+        console.log('is_favorite: ', is_favorite);
+        if (is_favorite == false) {
+          // 登録処理
+          $.ajax({
+            type: "POST",
+            headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: "{{url('/favorite/movie/store')}}",
+            dataType: "json",
+            data: {movie_id : movie_id}
+          }).done(function (response) {
+            // 通信成功時の処理
+            if (response['result']) {
+              alert('登録する');
+              // data属性を書き換える
+              // $('.registButton')[0].dataset.favorite = 'true';
+              $('.registButton').data('favorite', true);
+              // ボタンの表記を書き換える
+              $('#regist_text').html('<i class="fas fa-heart"></i>');
+              $('#favorite_button').attr('data-content', 'お気に入り解除する');
+              let target = document.getElementById("favorite_button");
+              target.className = "registButton btn btn-success btn-xs";//class名変更
+            }
+          }).fail(function (err) {
+            // 通信失敗時の処理
+            alert('ファイルの取得に失敗しました。');
+          });
+        } else {
+          // 登録解除処理
+          $.ajax({
+            type: "POST",
+            headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: "{{url('/favorite/movie/delete')}}",
+            dataType: "json",
+            data: {movie_id : movie_id}
+          }).done(function (response) {
+            // 通信成功時の処理
+            if (response['result']) {
+              alert('登録解除');
+              // $('.registButton')[0].dataset.favorite = 'false';
+              $('.registButton').data('favorite', false);
+              $('#regist_text').html('<i class="far fa-heart"></i>');
+              $('#favorite_button').attr('data-content', 'お気に入り登録する');
+              let target = document.getElementById("favorite_button");
+              target.className = "registButton btn btn-outline-success btn-xs";//class名変更
+            }
+          }).fail(function (err) {
+            // 通信失敗時の処理
+            alert('ファイルの取得に失敗しました。');
+          });
         }
       });
     });

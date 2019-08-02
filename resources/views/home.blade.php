@@ -268,39 +268,23 @@
     <div class="genretList border-bottom align-items-center ">
       <div class="genrevar pt-2">
         <div class="row container mx-auto responsive">
-          <div class="genre1 col-md-2 col-4 text-center"date-toggle="collapse"
+          <div class="genre1 col-md-2 col-6 text-center"date-toggle="collapse"
           data-target="#all">
-            <h6>全ジャンル</h6>
+            <h6>鑑賞映画</h6>
           </div>
-          <div class="genre2 col-md-2 col-4 text-center"date-toggle="collapse"
-          data-target="#action">
-            <h6>アクション</h6>
-          </div>
-          <div class="genre3 col-md-2 col-4 text-center"date-toggle="collapse"
-          data-target="#suspense">
-            <h6>サスペンス</h6>
-          </div>
-          <div class="genre4 col-md-2 col-4 text-center"date-toggle="collapse"
-          data-target="#drama">
-            <h6>ドラマ</h6>
-          </div>
-          <div class="genre5 col-md-2 col-4 text-center"date-toggle="collapse"
-          data-target="#comedy">
-            <h6>コメディ</h6>
-          </div>
-          <div class="genre6 col-md-2 col-4 text-center"date-toggle="collapse"
-          data-target="#horror">
-            <h6>ホラー</h6>
+          <div class="genre2 col-md-2 col-6 text-center"date-toggle="collapse"
+          data-target="#favorite">
+            <h6>お気に入り映画</h6>
           </div>
         </div>
       </div>
     </div>
   {{-- 全ジャンル --}}
     <div id="all" class="collapse show">
-      <div class="row responsive mb-2 container-fluid mx-auto mt-5">
+      <div class="row responsive mb-2 container-fluid mx-auto mt-5 no-gutters">
           @if($reviews)
             @foreach($reviews as $review)
-              <div id="movieList" class="movieList col-lg-2 col-sm-3 col-4 float-right"
+              <div id="movieList" class="movieList col-lg-2 col-3  float-right pl-md-5 pl-2"
               data-toggle="modal" data-target="#moviediary">
                 <a href="/movie/{{$review->tmdb_id}}">
                   <img src="http://image.tmdb.org/t/p/w500/{{$review->image_path}}" alt="" class="img-fluid mb-2">
@@ -317,105 +301,16 @@
       </div>
     </div>
   {{-- アクション --}}
-    <div id="action" class="collapse">
-      <div class="row responsive mb-2 container-fluid mx-auto mt-5">
-          @if($action_movies)
-            @foreach($action_movies as $action_movie)
-              <div class="movieList col-lg-2 col-sm-3 col-4 float-right"
+    <div id="favorite" class="collapse">
+      <div class="row responsive mb-2 container-fluid mx-auto mt-5 no-gutters">
+          @if($favorite_movies)
+            @foreach($favorite_movies as $favorite_movie)
+              <div class="movieList col-lg-2 col-sm-3 col-3 float-right pl-md-5 pl-2"
               data-toggle="modal" data-target="#moviediary">
-                <a href="/movie/{{$action_movie->tmdb_id}}">
-                  <img src="http://image.tmdb.org/t/p/w500/{{$action_movie->image_path}}" alt="" class="img-fluid mb-2">
-                  @if(isset($action_movie->evaluate))
-                    <div class="badge scoreBadge p-0">
-                      <p class="mt-1">{{$action_movie->evaluate}}</p>
-                    </div>
-                  @endif
+                <a href="/movie/{{$favorite_movie->tmdb_id}}">
+                  <img src="http://image.tmdb.org/t/p/w500/{{$favorite_movie->image_path}}" alt="" class="img-fluid mb-2">
                 </a>
-                  <p>{{$action_movie->title}}</p>
-              </div>
-            @endforeach
-          @endif
-      </div>
-    </div> 
-  {{-- サスペンス --}}
-    <div id="suspense" class="collapse">
-      <div class="row responsive mb-2 container-fluid mx-auto mt-5">
-          @if($suspense_movies)
-            @foreach($suspense_movies as $suspense_movie)
-              <div class="movieList col-lg-2 col-sm-3 col-4 float-right"
-              data-toggle="modal" data-target="#moviediary">
-                <a href="/movie/{{$suspense_movie->tmdb_id}}">
-                  <img src="http://image.tmdb.org/t/p/w500/{{$suspense_movie->image_path}}" alt="" class="img-fluid mb-2">
-                  @if(isset($suspense_movie->evaluate))
-                    <div class="badge scoreBadge p-0">
-                      <p class="mt-1">{{$suspense_movie->evaluate}}</p>
-                    </div>
-                  @endif
-                </a>
-                  <p>{{$suspense_movie->title}}</p>
-              </div>
-            @endforeach
-          @endif
-      </div>
-    </div>
-  {{-- ドラマ --}}
-    <div id="drama" class="collapse">
-      <div class="row responsive mb-2 container-fluid mx-auto mt-5">
-          @if($drama_movies)
-            @foreach($drama_movies as $drama_movie)
-              <div class="movieList col-lg-2 col-sm-3 col-4 float-right"
-              data-toggle="modal" data-target="#moviediary">
-                <a href="/movie/{{$drama_movie->tmdb_id}}">
-                  <img src="http://image.tmdb.org/t/p/w500/{{$drama_movie->image_path}}" alt="" class="img-fluid mb-2">
-                  @if(isset($drama_movie->evaluate))
-                    <div class="badge scoreBadge p-0">
-                      <p class="mt-1">{{$drama_movie->evaluate}}</p>
-                    </div>
-                  @endif
-                </a>
-                  <p>{{$drama_movie->title}}</p>
-              </div>
-            @endforeach
-          @endif
-      </div>
-    </div>
-  {{-- コメディ --}}
-    <div id="comedy" class="collapse">
-      <div class="row responsive mb-2 container-fluid mx-auto mt-5">
-          @if($comedy_movies)
-            @foreach($comedy_movies as $comedy_movie)
-              <div class="movieList col-lg-2 col-sm-3 col-4 float-right"
-              data-toggle="modal" data-target="#moviediary">
-                <a href="/movie/{{$comedy_movie->tmdb_id}}">
-                  <img src="http://image.tmdb.org/t/p/w500/{{$comedy_movie->image_path}}" alt="" class="img-fluid mb-2">
-                  @if(isset($comedy_movie->evaluate))
-                    <div class="badge scoreBadge p-0">
-                      <p class="mt-1">{{$comedy_movie->evaluate}}</p>
-                    </div>
-                  @endif
-                </a>
-                  <p>{{$comedy_movie->title}}</p>
-              </div>
-            @endforeach
-          @endif
-      </div>
-    </div>
-  {{-- ホラー --}}
-    <div id="horror" class="collapse">
-      <div class="row responsive mb-2 container-fluid mx-auto mt-5">
-          @if($horror_movies)
-            @foreach($horror_movies as $horror_movie)
-              <div class="movieList col-lg-2 col-sm-3 col-4 float-right"
-              data-toggle="modal" data-target="#moviediary">
-                <a href="/movie/{{$horror_movie->tmdb_id}}">
-                  <img src="http://image.tmdb.org/t/p/w500/{{$horror_movie->image_path}}" alt="" class="img-fluid mb-2">
-                  @if(isset($horror_movie->evaluate))
-                    <div class="badge scoreBadge p-0">
-                      <p class="mt-1">{{$horror_movie->evaluate}}</p>
-                    </div>
-                  @endif
-                </a>
-                  <p>{{$horror_movie->title}}</p>
+                  <p>{{$favorite_movie->title}}</p>
               </div>
             @endforeach
           @endif
@@ -879,52 +774,13 @@
   <script>
     $('.genre1').click(function () {
     $('#all').addClass('show');
-    $('#action').removeClass('show');
-    $('#suspense').removeClass('show');
-    $('#drama').removeClass('show');
-    $('#comedy').removeClass('show');
-    $('#horror').removeClass('show');
+    $('#favorite').removeClass('show');
   });
   $('.genre2').click(function () {
-    $('#action').addClass('show');
+    $('#favorite').addClass('show');
     $('#all').removeClass('show');
-    $('#suspense').removeClass('show');
-    $('#drama').removeClass('show');
-    $('#comedy').removeClass('show');
-    $('#horror').removeClass('show');
   });
-  $('.genre3').click(function () {
-    $('#suspense').addClass('show');
-    $('#all').removeClass('show');
-    $('#action').removeClass('show');
-    $('#drama').removeClass('show');
-    $('#comedy').removeClass('show');
-    $('#horror').removeClass('show');
-  });
-  $('.genre4').click(function () {
-    $('#drama').addClass('show');
-    $('#all').removeClass('show');
-    $('#action').removeClass('show');
-    $('#suspense').removeClass('show');
-    $('#comedy').removeClass('show');
-    $('#horror').removeClass('show');
-  });
-  $('.genre5').click(function () {
-    $('#comedy').addClass('show');
-    $('#all').removeClass('show');
-    $('#action').removeClass('show');
-    $('#suspense').removeClass('show');
-    $('#drama').removeClass('show');
-    $('#horror').removeClass('show');
-  });
-  $('.genre6').click(function () {
-    $('#horror').addClass('show');
-    $('#all').removeClass('show');
-    $('#action').removeClass('show');
-    $('#suspense').removeClass('show');
-    $('#drama').removeClass('show');
-    $('#comedy').removeClass('show');
-  });</script>
+  </script>
 {{-- フォローメニューバー --}}
   <script>
     $('.follow1').click(function () {
