@@ -281,10 +281,10 @@
     </div>
   {{-- 全ジャンル --}}
     <div id="all" class="collapse show">
-      <div class="row responsive mb-2 container-fluid mx-auto mt-5 no-gutters">
+      <div class="row responsive mb-2 container-fluid mx-auto mt-5">
           @if($reviews)
             @foreach($reviews as $review)
-              <div id="movieList" class="movieList col-lg-2 col-3  float-right pl-md-5 pl-2"
+              <div id="movieList" class="movieList col-lg-2 col-sm-3 col-4 float-right"
               data-toggle="modal" data-target="#moviediary">
                 <a href="/movie/{{$review->tmdb_id}}">
                   <img src="http://image.tmdb.org/t/p/w500/{{$review->image_path}}" alt="" class="img-fluid mb-2">
@@ -302,10 +302,10 @@
     </div>
   {{-- アクション --}}
     <div id="favorite" class="collapse">
-      <div class="row responsive mb-2 container-fluid mx-auto mt-5 no-gutters">
+      <div class="row responsive mb-2 container-fluid mx-auto mt-5">
           @if($favorite_movies)
             @foreach($favorite_movies as $favorite_movie)
-              <div class="movieList col-lg-2 col-sm-3 col-3 float-right pl-md-5 pl-2"
+              <div class="movieList col-lg-2 col-sm-3 col-4 float-right"
               data-toggle="modal" data-target="#moviediary">
                 <a href="/movie/{{$favorite_movie->tmdb_id}}">
                   <img src="http://image.tmdb.org/t/p/w500/{{$favorite_movie->image_path}}" alt="" class="img-fluid mb-2">

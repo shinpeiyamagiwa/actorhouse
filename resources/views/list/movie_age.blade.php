@@ -14,10 +14,10 @@
 
 
 <div id="SearchList" class="card collapse show mt-4">
-  <div class="card-body row responsive my-0 mx-auto no-gutters">
+  <div class="card-body row responsive my-0 mx-auto">
     @if($movies)
       @foreach($movies as $movie)
-        <div class="movieList col-lg-2 col-3 pl-md-5 pl-2">
+        <div class="movieList col-lg-2 col-sm-3 col-4">
           <a href="/movie/{{$movie->tmdb_id}}">
             <img src="http://image.tmdb.org/t/p/w500/{{$movie->image_path}}" alt="" class="img-fluid mb-2">
           </a>
