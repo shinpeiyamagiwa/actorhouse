@@ -3,8 +3,57 @@
 @section('content')
   
     <div class="jumbotron img-fluid w-100 center-block mt-3">
+      <button type="button" class="btn btn-primary btn-sm mt-md-4" data-toggle="modal" data-target="#searchModal">
+          <h6 class="mb-0">いま観る検索</h6>
+      </button>
+      <!-- Modal -->
+      <div class="modal fade" id="searchModal" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header text-light">
+                <h5 class="modal-title" id="searchModalLabel">Modal title</h5>
+                <button type="button" class="close btn-light" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+              {!! Form::open(['method'=>'POST', 'action'=> 'SearchController@index']) !!}
+              <div class="form-group">
+                {!! Form::label('genre', 'ジャンル：') !!}
+                {{Form::select('genre', [18 => 'ドラマ', 28 => 'アクション', 12 => 'アドベンチャー', 878 => 'SF', 35 => 'コメディ', 16 => 'アニメ'], null, ['class' => 'field'])}}
+              </div>
+              <div class="form-group">
+                  {!! Form::label('age', '公開年:') !!}
+                  {{Form::selectRange('start_age', 2019, 1970, 2017)}}~
+                  {{Form::selectRange('end_age', 2019, 1970, 2019)}}
+                </div>
+              <div class="form-group">
+                {!! Form::label('content', '<気分は?>') !!}
+                <h6>{!! Form::radio('runtime', '1', true) !!} サクッと観たい(~90分)</h6>
+                <h6>{!! Form::radio('runtime', '2') !!} じっくり映画を味わいたい(91分~120分)</h6>
+                <h6>{!! Form::radio('runtime', '3') !!} 今日は映画の日！(121分~150分)</h6>
+                <h6>{!! Form::radio('runtime', '4') !!} 気合十分(151分~)</h6>
+              </div>
+              <div class="form-group">
+                  {!! Form::submit('検索', null, ['class'=>'btn btn-success']) !!}
+              </div>
+              @if ($errors->any())
+                  <div class="alert alert-danger">
+                      <ul>
+                          @foreach ($errors->all() as $error)
+                              <li>{{ $error }}</li>
+                          @endforeach
+                      </ul>
+                  </div>
+              @endif
+              {!! Form::close() !!}
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="card-body row responsive my-0 mx-auto no-gutters">
         @if(isset($movies[0]->title))
+    
           @foreach($movies as $movie)
             <div class="movieList col-lg-2 col-3 pl-md-5 pl-2">
               <a href="/movie/{{$movie->tmdb_id}}">
@@ -37,56 +86,8 @@
         @else
         <div>
           <h5>該当する映画が見つかりませんでした。</h5>
-          <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#searchModal">
-              <h6 class="mb-0">いま観る検索</h6>
-          </button>
-      
-          <!-- Modal -->
-          <div class="modal fade" id="searchModal" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header text-light">
-                    <h5 class="modal-title" id="searchModalLabel">Modal title</h5>
-                    <button type="button" class="close btn-light" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    {!! Form::open(['method'=>'POST', 'action'=> 'SearchController@index']) !!}
-                    <div class="form-group">
-                      {!! Form::label('genre', 'ジャンル：') !!}
-                      {{Form::select('genre', [18 => 'ドラマ', 28 => 'アクション', 12 => 'アドベンチャー', 878 => 'SF', 35 => 'コメディ', 16 => 'アニメ'], null, ['class' => 'field'])}}
-                    </div>
-                    <div class="form-group">
-                        {!! Form::label('age', '公開年:') !!}
-                        {{Form::selectRange('age', 2019, 1970, '', ['placeholder' => ''])}}
-                      </div>
-                    <div class="form-group">
-                      {!! Form::label('content', '<気分は?>') !!}
-                      <h6>{!! Form::radio('runtime', '1', true) !!} 気軽に観たい(〜100分)</h6>
-                      <h6>{!! Form::radio('runtime', '2') !!} 普通に観たい(101分〜120分)</h6>
-                      <h6>{!! Form::radio('runtime', '3') !!} のんびり観たい(121分〜140分)</h6>
-                      <h6>{!! Form::radio('runtime', '4') !!} めちゃくちゃ暇(141分~)</h6>
-                    </div>
-                    <div class="form-group">
-                        {!! Form::submit('検索', null, ['class'=>'btn btn-success']) !!}
-                    </div>
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-                    {!! Form::close() !!}
-                </div>
-              </div>
-            </div>
-            @endif
-          </div>
         </div>
+        @endif
       </div>
     </div>
 @endsection

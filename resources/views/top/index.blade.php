@@ -124,7 +124,8 @@
               </div>
               <div class="form-group">
                   {!! Form::label('age', '公開年:') !!}
-                  {{Form::selectRange('age', 2019, 1970, '', ['placeholder' => ''])}}
+                  {{Form::selectRange('start_age', 2019, 1970, 2017)}}~
+                  {{Form::selectRange('end_age', 2019, 1970, 2019)}}
                 </div>
               <div class="form-group">
                 {!! Form::label('content', '<気分は?>') !!}
