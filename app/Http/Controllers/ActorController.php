@@ -23,7 +23,7 @@ class ActorController extends Controller
         
          // 現在認証されているユーザーのID取得
         $userId = Auth::id();
-       
+        
         $actor = Actor::where('tmdb_id', '=', $id)->first();
 
         $works = Cast::join('movies', 'casts.movie_id', '=', 'movies.tmdb_id')

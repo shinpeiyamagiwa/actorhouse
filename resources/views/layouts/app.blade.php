@@ -8,23 +8,34 @@
     
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    
+    <meta property="og:type" content="artcle" />
+    @if(isset($actor))
+        <title>{{$actor->name}}-俳優情報ーActorHOUSE</title>
+        <meta property="og:url" content="https://www.theactorhouse.com/actor/{{$actor->tmdb_id}}" />
+        <meta name="description" content="俳優に特化した新しい映画記録アプリ。映画を記録していくだけで好きな俳優が見つかる。Twitter.Facebook
+        にシェアでき、Amazonビデオ.Netflixにもリンクしすぐに視聴可能。">
+        <meta property="og:title" content="{{$actor->name}}" />
+        <meta property="og:description" content="俳優に特化した新しい映画記録webアプリ。鑑賞映画を記録して好きな俳優を見つけよう！！" />
+        <meta property="og:image" content="http://image.tmdb.org/t/p/w500/{{$actor->image_path}}" />
+    @elseif(isset($movie))
+        <title>{{$movie->title}}-映画情報ーActorHOUSE</title>
+        @if(isset($movie->overview))
+            <meta name="description" content={{$movie->overview}}>
+        @else
+            <meta name="description" content="俳優に特化した新しい映画記録アプリ。映画を記録していくだけで好きな俳優が見つかる。Twitter.Facebook
+            にシェアでき、Amazonビデオ.Netflixにもリンクしすぐに視聴可能。">
+        @endif
+        <meta property="og:url" content="https://www.theactorhouse.com/movie/{{$movie->tmdb_id}}" />
+        <meta property="og:title" content="{{$movie->title}}" />
+        <meta property="og:description" content="{{$movie->overview}}" />
+        <meta property="og:image" content="http://image.tmdb.org/t/p/w500/{{$movie->image_path}}" />
+    @else
+    <title>ActorHOUSE 素敵な俳優と素敵な音楽が見つかるー映画記録webアプリ</title>
     
     <!-- ※基本共通設定 -->
     <meta name="description" content="俳優に特化した新しい映画記録アプリ。映画を記録していくだけで好きな俳優が見つかる。Twitter.Facebook
     にシェアでき、Amazonビデオ.Netflixにもリンクしすぐに視聴可能。">
-    <meta property="og:type" content="artcle" />
-    @if(isset($actor))
-    <meta property="og:url" content="https://www.theactorhouse.com/actor/{{$actor->tmdb_id}}" />
-    <meta property="og:title" content="{{$actor->name}}" />
-    <meta property="og:description" content="俳優に特化した新しい映画記録webアプリ。鑑賞映画を記録して好きな俳優を見つけよう！！" />
-    <meta property="og:image" content="http://image.tmdb.org/t/p/w500/{{$actor->image_path}}" />
-    @endif
-    @if(isset($movie))
-    <meta property="og:url" content="https://www.theactorhouse.com/movie/{{$movie->tmdb_id}}" />
-    <meta property="og:title" content="{{$movie->title}}" />
-    <meta property="og:description" content="{{$movie->overview}}" />
-    <meta property="og:image" content="http://image.tmdb.org/t/p/w500/{{$movie->image_path}}" />
     @endif
 
     <!-- ※ Twitter 共通設定 -->
@@ -91,7 +102,7 @@
                         {!! Form::close() !!}  
                         </div>
                     <div class="dropdown-item">
-                        {!! Form::open(['method'=>'POST', 'action'=> 'ListMovieAgeController@index']) !!}
+                        {!! Form::open(['method'=>'GET', 'action'=> 'ListMovieAgeController@index']) !!}
                             <div class="form-group">
                                 {!! Form::text('age', null, ['class'=>'form-control mt-1', 'placeholder'=>'公開年']) !!}
                             </div>
@@ -164,7 +175,7 @@
                             </div>
                         {!! Form::close() !!}  
                     
-                        {!! Form::open(['method'=>'POST', 'action'=> 'ListMovieAgeController@index']) !!}
+                        {!! Form::open(['method'=>'GET', 'action'=> 'ListMovieAgeController@index']) !!}
                             <div class="form-group">
                                 {!! Form::text('age', null, ['class'=>'form-control mt-1', 'placeholder'=>'公開年']) !!}
                             </div>

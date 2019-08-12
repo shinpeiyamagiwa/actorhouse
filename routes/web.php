@@ -18,7 +18,7 @@ Route::get('/actor/{tmdb_id}', 'ActorController@index');
 Route::patch('/actor/{tmdb_id}/images', 'ActorController@upload');
 Route::post('/search/movie', 'MovieSearchController@index');
 Route::post('/search/runtime', 'SearchController@index');
-Route::post('/search/movie/age', 'ListMovieAgeController@index');
+Route::get('/search/movie/search', 'ListMovieAgeController@index');
 Route::post('/actor/images/delete','ActorController@delete');
 
 // ログインしていないとできない

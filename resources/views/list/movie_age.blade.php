@@ -13,8 +13,8 @@
 </div> --}}
 
 
-<div id="SearchList" class="card collapse show mt-4">
-  <div class="card-body row responsive my-0 mx-auto">
+<div id="SearchList" class="card collapse show mt-4 pt-4">
+  <div class="card-body row responsive mt-4 mx-auto">
     @if($movies)
       @foreach($movies as $movie)
         <div class="movieList col-lg-2 col-sm-3 col-4">
