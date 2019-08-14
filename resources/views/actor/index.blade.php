@@ -240,35 +240,24 @@
   </div>
   <div class="modal fade" id="moviereview" tabindex="-1" role="dialog" 
               aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-sm" role="document">
       <div class="modal-content">
-        <div class="modal-header bg-success">
-          <h5 class="modal-title" id="exampleModalLabel">記録</i></h5>
-          <button class="close" data-dismiss="modal">
-            &times;
-          </button>
-        </div>
         <div class="modal-body text-dark">
-          {!! Form::open(['method'=>'POST', 'action'=> 'ReviewController@store']) !!}
-          <div class="form-group">
-            {!! Form::label('evaluate', '評価：') !!}
-            {{Form::selectRange('evaluate', 0, 5.0, '', ['placeholder' => ''])}}
-            {{-- {{Form::range('evaluate', 'value',['min'=>1.0,'max'=>5.0, 'step'=>0.1])}} --}}
-          </div>
-          <div class="form-group">
-            {!! Form::label('genre', 'ジャンル：') !!}
-            {{Form::select('genre', ['','アクション', 'サスペンス', 'ドラマ', 'コメディ', 'ホラー'], null, ['class' => 'field'])}}
-          </div>
-          <div class="form-group">
-            {!! Form::label('content', '感想：') !!}
-            {!! Form::textarea('content', '鑑賞しました', ['class'=>'form-control']) !!} 
+          {!! Form::open(['method'=>'POST', 'action'=> 'ReviewController@evaluate']) !!}
+          <div class="form-group mb-0 mt-2">
+              <i class="fas fa-star"></i>
+            {!! Form::label('evaluate', '評価') !!}
+            {{Form::range('evaluate', '3',['id'=>'range', 'min'=>0,'max'=>5.0, 'step'=>0.1])}}<span id="value" class="mx-3">3</span>
+            {{-- {!! Form::button('記録', array(
+              'type' => 'submit',
+              'class'=> 'submit btn-sm',
+      )) !!} --}}
+            {!! Form::submit('記録', null, ['class'=>'btn btn-success']) !!}
+
           </div>
           <div class="form-group">
             {{Form::hidden('movie_id', '',['id'=>'modalMovieId'])}} 
             {{Form::hidden('actor_id', $actor->tmdb_id)}} 
-          </div>
-          <div class="form-group">
-            {!! Form::submit('記録', null, ['class'=>'btn btn-success']) !!}
           </div>
           @if ($errors->any())
               <div class="alert alert-danger">

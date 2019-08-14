@@ -7,6 +7,7 @@ use App\Movie;
 use App\FavoriteMovie;
 use App\WatchList;
 use App\Review;
+use App\Evaluate;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\ReviewRequest;
 use Illuminate\Support\Facades\Auth;
@@ -18,6 +19,7 @@ class ReviewController extends Controller
     //
     public function store(ReviewRequest $request)
     {
+        dd($request);
         $validated = $request->validated();
         //
         $id = Auth::id();
@@ -42,6 +44,48 @@ class ReviewController extends Controller
                 'evaluate' => request('evaluate'),
                 'content' => request('content'),
                 'genre' => request('genre'),
+                'user_id' => $id,
+                'movie_id' => request('movie_id'),
+            ]);
+        }
+
+        WatchList::where('movie_id', '=', $movie_id)
+              ->where('user_id', '=', $id)
+              ->delete();
+             
+        if(isset($actor_id)) {
+            return redirect("/actor/$actor_id");
+        }
+        // $released_at = Movie::where('tmdb_id', '=', $movie_id)
+        //                     ->select('released_at')
+        //                     ->first();
+        
+        return redirect("/home");
+        
+    }
+    public function evaluate(Request $request)
+    {
+        
+        
+        $id = Auth::id();
+        // Validator::make($request, [
+        //     'movie_id' => Rule::unique('reviews')->where(function ($query) {
+        //         return $query->where('user_id', $id);
+        //     })
+        // ]);
+        //  dd($request->all());
+        // 現在認証されているユーザーの取得
+        $user = Auth::user();
+        // 現在認証されているユーザーのID取得
+        $movie_id = $request->movie_id;
+        $actor_id = $request->actor_id;
+        $evaluate = Evaluate::where('user_id', '=', $id)
+                                ->where('movie_id', '=', $movie_id)
+                                ->first();
+
+        if(is_null($evaluate)) { 
+            Evaluate::create([
+                'evaluate' => request('evaluate'),
                 'user_id' => $id,
                 'movie_id' => request('movie_id'),
             ]);

@@ -11,6 +11,7 @@ use App\Review;
 use App\FavoriteActor;
 use App\FavoriteMovie;
 use App\ActorImages;
+use App\Evaluate;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
@@ -47,10 +48,10 @@ class ActorController extends Controller
                                 ->select('user_id')
                                 ->get();
                                 
-        $watch_movies = Review::join('casts', 'reviews.movie_id','=', 'casts.movie_id')
+        $watch_movies = Evaluate::join('casts', 'evaluates.movie_id','=', 'casts.movie_id')
                                 ->where('user_id', '=', $userId)
                                 ->where('casts.actor_id', '=', $id)
-                                ->select('reviews.movie_id as id')
+                                ->select('evaluates.movie_id as id')
                                 ->get();
 
         $watch_movie_ids = [];

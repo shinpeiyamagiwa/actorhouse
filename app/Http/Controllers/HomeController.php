@@ -11,6 +11,7 @@ use App\Review;
 use App\Post;
 use App\Follow;
 use App\PostComment;
+use App\Evaluate;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 
@@ -38,10 +39,15 @@ class HomeController extends Controller
                                         ->select('tmdb_id', 'movies.title', 'movies.image_path')
                                         ->get();
 
-        $evaluate_avg = Review::where('user_id', '=', $id)
+        $evaluate_avg = Evaluate::where('user_id', '=', $id)
                         // ->select('evaluate')
                         ->avg('evaluate');
                     
+        $evaluates = Evaluate::join('movies', 'evaluates.movie_id', '=', 'movies.tmdb_id')
+                        ->where('user_id', '=', $id)
+                        ->select('movies.title', 'evaluate', 'evaluates.movie_id', 'evaluates.id as evaluate_id', 'movies.image_path')
+                        ->orderBy('evaluates.id', 'desc')
+                        ->get();
         $reviews = Review::join('movies', 'reviews.movie_id', '=', 'movies.tmdb_id')
                         ->where('user_id', '=', $id)
                         ->select('movies.title', 'evaluate', 'content', 'tmdb_id', 'reviews.id as review_id', 'movies.image_path', 'genre')
@@ -53,11 +59,11 @@ class HomeController extends Controller
                 // $drama_movies = [];
                 // $comedy_movies = [];
                 // $horror_movies = [];
-                $evaluates = [];
+                // $evaluates = [];
 
-                foreach ($reviews as $review) {
-                    array_push($evaluates, $review->evaluate);
-                }
+                // foreach ($reviews as $review) {
+                //     array_push($evaluates, $review->evaluate);
+                // }
         $watch_lists = WatchList::join('movies', 'watch_lists.movie_id', '=', 'movies.tmdb_id')
                                         ->where('watch_lists.user_id', '=', $id)
                                         ->select('tmdb_id', 'movies.title', 'movies.image_path')
@@ -95,10 +101,10 @@ class HomeController extends Controller
                                 ->select('tweets.content', 'users.name as user_name', 'users.image_path', 'user_id')
                                 ->get();
 
-        $watch_actors = Review::join('casts', 'reviews.movie_id', '=', 'casts.movie_id')
+        $watch_actors = Evaluate::join('casts', 'evaluates.movie_id', '=', 'casts.movie_id')
                             ->leftJoin('actors', 'casts.actor_id', '=', 'actors.tmdb_id')
                             ->whereNotNull('actors.image_path')
-                            ->where('reviews.user_id', '=', $id)
+                            ->where('evaluates.user_id', '=', $id)
                             ->select(\DB::raw('count(*) as actor_count, casts.actor_id'),'actors.name','actors.tmdb_id','actors.image_path')
                             ->groupBy('casts.actor_id','actors.name','actors.tmdb_id','actors.image_path')
                             ->orderBy('actor_count', 'desc')
