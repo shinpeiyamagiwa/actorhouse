@@ -24,6 +24,7 @@ Route::post('/actor/images/delete','ActorController@delete');
 // ログインしていないとできない
 Route::group(['middleware' => ['auth']], function () {
     Route::post('/review/store', 'ReviewController@store');
+    Route::post('/review/evaluate', 'ReviewController@evaluate');
     Route::post('/review/delete', 'ReviewController@delete');
     Route::post('/post/store', 'PostController@store');
     Route::post('/tweet/store', 'TweetController@store');

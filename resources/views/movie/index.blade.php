@@ -50,43 +50,33 @@
           <div class="row">
             <div class="col-2">
       {{-- レビュー投稿 --}}
-              @if(!$review)
+              @if(!$evaluate)
                 <div class="mt-0">
-                  <button class="btn btn-outline-success" id="diary"
+                  <button class="btn btn-outline-light" id="diary"
                   data-toggle="modal" data-target="#moviediary" data-toggle="popover" data-content="記録をつける">
-                    <p class="my-auto"><i class="fas fa-book"></i></p>
+                    <p class="my-auto"><i class="fas fa-star icon"></i>
+                    </p>
                   </button>
                   <br>
                   <div class="modal fade" id="moviediary" tabindex="-1" role="dialog" 
                   aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
+                    <div class="modal-dialog modal-sm" role="document">
                       <div class="modal-content">
-                        <div class="modal-header bg-success">
-                          <h5 class="modal-title" id="exampleModalLabel">記録</i></h5>
-                          <button class="close" data-dismiss="modal">
-                            &times;
-                          </button>
-                        </div>
-                        <div class="modal-body text-dark">
-                          {!! Form::open(['method'=>'POST', 'action'=> 'ReviewController@store']) !!}
-                          <div class="form-group">
-                            {!! Form::label('evaluate', '評価：') !!}
-                            {{Form::selectRange('evaluate', 0, 5.0, '', ['placeholder' => ''])}}
-                            {{-- {{Form::range('evaluate', 'value',['min'=>0,'max'=>5.0, 'step'=>0.1])}} --}}
-                          </div>
-                          <div class="form-group">
-                            {!! Form::label('genre', 'ジャンル：') !!}
-                            {{Form::select('genre', ['','アクション', 'サスペンス', 'ドラマ', 'コメディ', 'ホラー'], null, ['class' => 'field'])}}
-                          </div>
-                          <div class="form-group">
-                            {!! Form::label('content', '感想：') !!}
-                            {!! Form::textarea('content', '鑑賞しました', ['class'=>'form-control']) !!} 
+                        <div class="modal-body text-dark pb-0 pt-1">
+                          {!! Form::open(['method'=>'POST', 'action'=> 'ReviewController@evaluate']) !!}
+                          <div class="form-group mb-0 mt-2">
+                              <i class="fas fa-star"></i>
+                            {!! Form::label('evaluate', '評価') !!}
+                            {{Form::range('evaluate', '3',['id'=>'range', 'min'=>0,'max'=>5.0, 'step'=>0.1])}}<span id="value" class="mx-3">3</span>
+                            {{-- {!! Form::button('記録', array(
+                              'type' => 'submit',
+                              'class'=> 'submit btn-sm',
+                      )) !!} --}}
+                            {!! Form::submit('記録', null, ['class'=>'btn btn-success']) !!}
+
                           </div>
                             <div class="form-group">
                                 {{Form::hidden('movie_id', $movie->tmdb_id)}} 
-                            </div>
-                            <div class="form-group">
-                                {!! Form::submit('記録', null, ['class'=>'btn btn-success']) !!}
                             </div>
                             @if ($errors->any())
                                 <div class="alert alert-danger">
@@ -105,9 +95,8 @@
                 </div>
               @else
                 <div class="mt-0">
-                  <div class="btn btn-success mr-auto">
-                    <i class="fas fa-check-square"></i>
-                  </div>
+                  <div class="btn btn-light mr-auto">
+                    <i class="fas fa-check"></i>               </div>
                 </div>
               @endif
             </div>
@@ -115,25 +104,25 @@
             <div class="col-2">
               @if(isset($watchList))
                 <div class="mt-0 text-center">
-                  <button data-movie-id="{{$movie->tmdb_id}}" data-watchlist="ture" id="watchlist_button" type="button" class="watchList btn btn-success btn-xs"
+                  <button data-movie-id="{{$movie->tmdb_id}}" data-watchlist="ture" id="watchlist_button" type="button" class="watchList btn btn-light btn-xs"
                       data-toggle="popover" data-content="ウォッチリストから削除">
                     <span id="watchlist_text">
-                      <p class="my-auto"><i class="fas fa-tag"></i></i></p>
+                      <p class="my-auto"><i class="fas fa-tag tagIcon"></i></p>
                     </span>
                   </button>
                 </div>
               @else
-                <div class="mt-0">
-                  <button data-movie-id="{{$movie->tmdb_id}}" data-watchlist="false" id="watchlist_button" type="button" class="watchList btn btn-outline-success btn-xs"
+                <div class="mt-0 text-cente">
+                  <button data-movie-id="{{$movie->tmdb_id}}" data-watchlist="false" id="watchlist_button" type="button" class="watchList btn btn-outline-light btn-xs"
                       data-toggle="popover" data-content="ウォッチリストに追加">
                     <span id="watchlist_text">
-                      <p class="my-auto"><i class="fas fa-list-ol"></i></p>
+                      <p class="my-auto"><i class="fas fa-tag tagIcon"></i></p>
                     </span>
                   </button>
                 </div>
               @endif
             </div>
-      {{-- 映画ホームページ --}}
+      {{-- お気に入り --}}
             {{-- @if(isset($movie->homepage))
               <div class="col-2">
                 <a href={{$movie->homepage}}　target="_blank">
@@ -145,17 +134,17 @@
             @endif  --}}
             <div class="col-2">
               @if(!$favorite_movies)
-                <button data-movie-id="{{$movie->tmdb_id}}" data-favorite="false" id="favorite_button" type="button" class="registButton btn btn-outline-success btn-xs"
+                <button data-movie-id="{{$movie->tmdb_id}}" data-favorite="false" id="favorite_button" type="button" class="registButton btn btn-outline-light btn-xs"
                     data-toggle="popover" data-content="お気に入り登録する">
                   <span id="regist_text">
-                    <i class="far fa-heart"></i>
+                    <i class="fas fa-heart icon"></i>
                   </span>
                 </button>
               @else
-                <button data-movie-id="{{$movie->tmdb_id}}" data-favorite="true" id="favorite_button" type="button" class="registButton btn btn-success btn-xs"
+                <button data-movie-id="{{$movie->tmdb_id}}" data-favorite="true" id="favorite_button" type="button" class="registButton btn btn-light btn-xs"
                     data-toggle="popover" data-content="お気に入り解除する">
                   <span id="regist_text">
-                    <i class="fas fa-heart"></i>
+                    <i class="fas fa-heart icon"></i>
                   </span>
                 </button>
               @endif
@@ -163,7 +152,7 @@
       {{-- amazonprime --}}         
             <div class="col-2">
                 <a target="_blank" href="https://www.amazon.co.jp/gp/search?ie=UTF8&tag=actorhouse-22&linkCode=ur2&linkId=973a0f1c46e57d4ec347c0c9c2534b06&camp=247&creative=1211&index=instant-video&keywords={{$movie->title}}">
-                  <button id="amazon" class="btn btn-outline-success btn-xs" data-toggle="popover" data-content="Prime Video">
+                  <button id="amazon" class="btn btn-outline-light btn-xs" data-toggle="popover" data-content="Prime Video">
                     <i class="fab fa-amazon"></i>
                   </button>
                 </a><img src="//ir-jp.amazon-adsystem.com/e/ir?t=actorhouse-22&l=ur2&o=9" width="1" height="1" alt="" style="border:none !important; margin:0px !important;" />
@@ -173,15 +162,15 @@
       {{-- Netflix --}}         
             <div class="col-2">
               <a href="https://www.netflix.com/search?q={{$movie->title}}" target="_blank">
-                <button id="netflix" class="btn btn-outline-success btn-xs" data-toggle="popover" data-content="Netflix">
-                  <p class="mb-0">N</p>
+                <button id="netflix" class="btn btn-outline-light btn-xs" data-toggle="popover" data-content="Netflix">
+                  <p class="mb-0 text-danger">N</p>
                 </button>
               </a>
             </div> 
       {{-- google music --}}         
             <div class="col-2">
               <a href="https://play.google.com/store/search?q={{$movie->title}}&c=music&hl=ja/" target="_blank">
-                <button id="music" class="btn btn-outline-success btn-xs" data-toggle="popover" data-content="music">
+                <button id="music" class="btn btn-outline-light btn-xs" data-toggle="popover" data-content="music">
                     <i class="fas fa-headphones-alt"></i>
                 </button>
               </a>
@@ -443,6 +432,16 @@
 </div>     
 <hr>
 <script>
+  var elem = document.getElementById('range');
+  var target = document.getElementById('value');
+  var rangeValue = function (elem, target) {
+    return function(evt){
+      target.innerHTML = elem.value;
+    }
+  }
+  elem.addEventListener('input', rangeValue(elem, target));
+</script>
+<script>
   $(function() {
     $('#watchlist_button').popover({
       trigger: 'hover', 
@@ -516,8 +515,10 @@
           if (response['result']) {
             alert('ウォッチリスト登録しました！');
             $('.watchList').data('watchlist', true);
-            $('#watchlist_text').html('<i class="fas fa-tag"></i>');
+            $('#watchlist_text').html('<p class="my-auto"><i class="fas fa-tag tagIcon"></i></p>');
             $('#watchlist_button').attr('data-content', 'ウォッチリストから削除');
+            let target = document.getElementById("watchlist_button");
+              target.className = "registButton btn btn-light btn-xs";
           }
         }).fail(function (err) {
           // 通信失敗時の処理
@@ -537,8 +538,10 @@
           if (response['result']) {
             alert('ウォッチリスト解除しました！');
             $('.watchList').data('watchlist', false);
-            $('#watchlist_text').html('<i class="fas fa-list-ol">');
+            $('#watchlist_text').html('<p class="my-auto"><i class="fas fa-tag tagIcon"></i></p>');
             $('#watchlist_button').attr('data-content', 'ウォッチリストに追加');
+            let target = document.getElementById("watchlist_button");
+              target.className = "registButton btn btn-outline-light btn-xs";
           }
         }).fail(function (err) {
           // 通信失敗時の処理
@@ -574,10 +577,10 @@
               // $('.registButton')[0].dataset.favorite = 'true';
               $('.registButton').data('favorite', true);
               // ボタンの表記を書き換える
-              $('#regist_text').html('<i class="fas fa-heart"></i>');
+              $('#regist_text').html('<i class="fas fa-heart icon"></i>');
               $('#favorite_button').attr('data-content', 'お気に入り解除する');
               let target = document.getElementById("favorite_button");
-              target.className = "registButton btn btn-success btn-xs";//class名変更
+              target.className = "registButton btn btn-light btn-xs";//class名変更
             }
           }).fail(function (err) {
             // 通信失敗時の処理
@@ -599,10 +602,10 @@
               alert('登録解除');
               // $('.registButton')[0].dataset.favorite = 'false';
               $('.registButton').data('favorite', false);
-              $('#regist_text').html('<i class="far fa-heart"></i>');
+              $('#regist_text').html('<i class="fas fa-heart icon"></i>');
               $('#favorite_button').attr('data-content', 'お気に入り登録する');
               let target = document.getElementById("favorite_button");
-              target.className = "registButton btn btn-outline-success btn-xs";//class名変更
+              target.className = "registButton btn btn-outline-light btn-xs";//class名変更
             }
           }).fail(function (err) {
             // 通信失敗時の処理

@@ -7,6 +7,7 @@ use App\Cast;
 use App\Review;
 use App\WatchList;
 use App\FavoriteMovie;
+use App\Evaluate;
 use App\ReviewComment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -24,14 +25,14 @@ class MovieController extends Controller
                     ->where('casts.movie_id', '=', $id)
                     ->select('actor_id', 'actors.image_path')
                     ->get();
-        $review = Review::where('user_id', '=', Auth::id())->where('movie_id', '=', $id)
+        $evaluate = Evaluate::where('user_id', '=', Auth::id())->where('movie_id', '=', $id)
                         ->first();
         $reviews = Review::join('users', 'reviews.user_id', '=', 'users.id')
                         ->where('movie_id', '=', $id)
                         ->select('users.name', 'evaluate', 'reviews.content', 'reviews.user_id', 'reviews.id', 'users.image_path')
                         ->orderBy('reviews.id', 'desc')
                         ->get();
-        $avg = Review::join('users', 'reviews.user_id', '=', 'users.id')
+        $avg = Evaluate::join('users', 'evaluates.user_id', '=', 'users.id')
                         ->where('movie_id', '=', $id)
                         ->avg('evaluate');          
         $watchList = WatchList::where('user_id', '=', Auth::id())
@@ -40,7 +41,7 @@ class MovieController extends Controller
         $favorite_movies = FavoriteMovie::where('user_id', '=', $userId)
                             ->where('movie_id', '=', $id)
                             ->first();
-        return view('movie.index', compact('movie', 'userId', 'casts', 'review','user', 'reviews', 'watchList', 'avg', 'favorite_movies'));
+        return view('movie.index', compact('movie', 'userId', 'casts', 'user', 'reviews', 'watchList', 'avg', 'favorite_movies', 'evaluate'));
 
         
     }

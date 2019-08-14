@@ -10,6 +10,29 @@ body{
 .editUser p{
   font-size:10px;
 }
+.submit {
+  background-color: rgb(255, 255, 255);
+}
+.fa-star {
+  color:rgb(255, 247, 0);
+  font-size: 1.5em 
+}
+.fa-heart {
+  color:rgb(255, 0, 204);
+  font-size: 1.5em 
+}
+.tagIcon {
+  color:rgb(0, 255, 251);
+  font-size: 1em 
+}
+.fa-headphones-alt {
+  color:rgb(255, 132, 0);
+  font-size: 1em 
+}
+.icon {
+  font-size: 1em 
+}
+
 /* topページ */
 @media screen and (max-width:497px) {
   .Topheader h1, .Topic h1{
