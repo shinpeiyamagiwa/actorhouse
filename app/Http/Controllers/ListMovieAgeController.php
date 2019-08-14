@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Movie;
 use App\WatchList;
 use App\Review;
+use App\Evaluate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -22,8 +23,8 @@ class ListMovieAgeController extends Controller
                     ->select('title', 'movies.image_path', 'movies.tmdb_id')
                     ->get();
         }
-        $watch_movies = Review::where('user_id', '=', $userId)
-                                ->select('reviews.movie_id as id')
+        $watch_movies = Evaluate::where('user_id', '=', $userId)
+                                ->select('evaluates.movie_id as id')
                                 ->get();
         
         $watch_movie_ids = [];
