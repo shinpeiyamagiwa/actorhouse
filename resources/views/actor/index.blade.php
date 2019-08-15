@@ -51,24 +51,24 @@
         {{-- 俳優お気に入り登録 --}}
             <div class="col-2">
               @if(!$favorite_actors)
-                <button data-actor-id="{{$actor->tmdb_id}}" data-favorite="false" id="favorite_button" type="button" class="registButton btn btn-outline-success btn-xs"
+                <button data-actor-id="{{$actor->tmdb_id}}" data-favorite="false" id="favorite_button" type="button" class="registButton btn btn-outline-light btn-xs"
                     data-toggle="popover" data-content="お気に入り登録する">
                   <span id="regist_text">
-                    <i class="fas fa-user-plus"></i>
+                    <i class="fas fa-heart icon"></i>
                   </span>
                 </button>
               @else
-                <button data-actor-id="{{$actor->tmdb_id}}" data-favorite="true" id="favorite_button" type="button" class="registButton btn btn-outline-success btn-xs"
+                <button data-actor-id="{{$actor->tmdb_id}}" data-favorite="true" id="favorite_button" type="button" class="registButton btn btn-light btn-xs"
                     data-toggle="popover" data-content="お気に入り解除する">
                   <span id="regist_text">
-                    <i class="fas fa-user-minus"></i>
+                    <i class="fas fa-heart icon"></i>
                   </span>
                 </button>
               @endif
             </div>
         {{-- 俳優についてコメント --}}
             <div class="col-2">
-              <button tyoe="button" class="btn btn-outline-success" id="post_button"
+              <button tyoe="button" class="btn btn-outline-light" id="post_button"
               data-toggle="modal" data-target="#moviediary" data-toggle="popover" data-content="俳優について投稿">
                 <i class="far fa-edit"></i>
               </button>
@@ -76,7 +76,7 @@
               aria-labelledby="actorModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
-                    <div class="modal-header bg-success">
+                    <div class="modal-header bg-light">
                       <h5 class="modal-title"　id="actorModalLabel">{{$actor->name}}についてコメント</h5>
                       <button class="close" data-dismiss="modal">
                         &times;
@@ -91,7 +91,7 @@
                           {{Form::hidden('actor_id', $actor->tmdb_id)}} 
                       </div>
                       <div class="form-group">
-                          {!! Form::submit('記録', null, ['class'=>'btn btn-success']) !!}
+                          {!! Form::submit('記録', null, ['class'=>'btn btn-light']) !!}
                       </div>
                       @if (count($errors) > 0 )
                       <div class="alert alert-danger">
@@ -115,7 +115,7 @@
             @if(!is_null($actor->homepage))
               <div class="col-2">
                 <a href={{$actor->homepage}} target="_blank">
-                  <button id="homepage" class="btn btn-outline-success btn-xs"　data-toggle="popover" data-content="公式サイト">
+                  <button id="homepage" class="btn btn-outline-light btn-xs"　data-toggle="popover" data-content="公式サイト">
                     <i class="far fa-id-card"></i>
                   </button>
                 </a>
@@ -123,14 +123,14 @@
             @endif
             <div class="col-2">
               <a href="https://twitter.com/search?f=users&vertical=default&q={{$actor->name}}" target="_blank">
-                <button id="twitter" class="btn btn-outline-success btn-xs"　data-toggle="popover" data-content="Twitter">
+                <button id="twitter" class="btn btn-outline-light btn-xs"　data-toggle="popover" data-content="Twitter">
                   <i class="fab fa-twitter"></i>
                 </button>
               </a>
             </div>
             <div class="col-2">
               <a href="https://en.wikipedia.org/wiki/{{$actor->name}}">
-                <button id="wikipedia" class="btn btn-outline-success btn-xs"　data-toggle="popover" data-content="ウィキペディア">
+                <button id="wikipedia" class="btn btn-outline-light btn-xs"　data-toggle="popover" data-content="ウィキペディア">
                   <i class="fab fa-wikipedia-w"></i>
                 </button>
               </a>
@@ -218,14 +218,14 @@
                 @if(in_array($work->movie_id, $watch_list_ids))
                   <button data-movie-id="{{$work->movie_id}}" data-watchlist="ture" id="watchlist_button" type="button" class="btn watchlist"
                     data-toggle="popover" data-content="ウォッチリストから削除">
-                    <span id="watchlist_text">
+                    <span class="watchlist_text">
                       <p class="my-auto"><i class="far fa-check-circle check watchlistIcon"></i></p>
                     </span>
                   </button>
                 @else
                   <button data-movie-id="{{$work->movie_id}}" data-watchlist="false" id="watchlist_button" type="button" class="watchlist btn"
                     data-toggle="popover" data-content="ウォッチリストに追加">
-                    <span id="watchlist_text">
+                    <span class="watchlist_text">
                       <p class="my-auto"><i class="fas fa-tag watchlistIcon"></i></p>
                     </span>
                   </button>
@@ -248,11 +248,10 @@
               <i class="fas fa-star"></i>
             {!! Form::label('evaluate', '評価') !!}
             {{Form::range('evaluate', '3',['id'=>'range', 'min'=>0,'max'=>5.0, 'step'=>0.1])}}<span id="value" class="mx-3">3</span>
-            {{-- {!! Form::button('記録', array(
+            {!! Form::button('記録', array(
               'type' => 'submit',
               'class'=> 'submit btn-sm',
-      )) !!} --}}
-            {!! Form::submit('記録', null, ['class'=>'btn btn-success']) !!}
+      )) !!}
 
           </div>
           <div class="form-group">
@@ -569,25 +568,26 @@
     $('#talkRoom').removeClass('show');
     $('#workRoom').removeClass('show');
     $('#videoRoom').removeClass('show');
-  });
-  $('.mycontent2').click(function () {
+    });
+    $('.mycontent2').click(function () {
     $('#talkRoom').addClass('show');
     $('#twieetRoom').removeClass('show');
     $('#workRoom').removeClass('show');
     $('#videoRoom').removeClass('show');
-  });
-  $('.mycontent3').click(function () {
+    });
+    $('.mycontent3').click(function () {
     $('#workRoom').addClass('show');
     $('#talkRoom').removeClass('show');
     $('#twieetRoom').removeClass('show');
     $('#videoRoom').removeClass('show');
-  });
-  $('.mycontent4').click(function () {
+    });
+    $('.mycontent4').click(function () {
     $('#videoRoom').addClass('show');
     $('#talkRoom').removeClass('show');
     $('#workRoom').removeClass('show');
     $('#twieetRoom').removeClass('show');
-  });</script>
+    });
+  </script>
 
 
 {{-- お気に入り登録ajax --}}
@@ -620,8 +620,10 @@
               // $('.registButton')[0].dataset.favorite = 'true';
               $('.registButton').data('favorite', true);
               // ボタンの表記を書き換える
-              $('#regist_text').html('<i class="fas fa-user-minus"></i>');
+              $('#regist_text').html('<i class="fas fa-heart icon"></i>');
               $('#favorite_button').attr('data-content', 'お気に入り解除する');
+              let target = document.getElementById("favorite_button");
+              target.className = "registButton btn btn-light btn-xs";
             }
           }).fail(function (err) {
             // 通信失敗時の処理
@@ -643,8 +645,10 @@
               alert('登録解除');
               // $('.registButton')[0].dataset.favorite = 'false';
               $('.registButton').data('favorite', false);
-              $('#regist_text').html('<i class="fas fa-user-plus"></i>');
+              $('#regist_text').html('<i class="fas fa-heart icon"></i>');
               $('#favorite_button').attr('data-content', 'お気に入り登録する');
+              let target = document.getElementById("favorite_button");
+              target.className = "registButton btn btn-outline-light btn-xs";
             }
           }).fail(function (err) {
             // 通信失敗時の処理
@@ -676,7 +680,7 @@
         if (response['result']) {
           alert('ウォッチリスト登録しました！');
           $('.watchlist').data('watchlist', true);
-          $('#watchlist_text').html('<i class="far fa-check-circle check watchlistIcon">');
+          $(this)('.watchlist_text').html('<i class="far fa-check-circle check watchlistIcon">');
           $('#watchlist_button').attr('data-content', 'ウォッチリストから削除');
         }
       }).fail(function (err) {
@@ -697,7 +701,7 @@
         if (response['result']) {
           alert('ウォッチリスト解除しました！');
           $('.watchlist').data('watchlist', false);
-          $('#watchlist_text').html('<i class="fas fa-tag watchlistIcon">');
+          $(this)('.watchlist_text').html('<i class="fas fa-tag watchlistIcon">');
           $('#watchlist_button').attr('data-content', 'ウォッチリストに追加');
         }
       }).fail(function (err) {

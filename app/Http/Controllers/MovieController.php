@@ -28,8 +28,8 @@ class MovieController extends Controller
         $evaluate = Evaluate::where('user_id', '=', Auth::id())->where('movie_id', '=', $id)
                         ->first();
         $reviews = Review::join('users', 'reviews.user_id', '=', 'users.id')
-                        ->where('movie_id', '=', $id)
-                        ->select('users.name', 'evaluate', 'reviews.content', 'reviews.user_id', 'reviews.id', 'users.image_path')
+                        ->where('reviews.movie_id', '=', $id)
+                        ->select('users.name', 'reviews.content', 'reviews.user_id', 'reviews.id', 'users.image_path')
                         ->orderBy('reviews.id', 'desc')
                         ->get();
         $avg = Evaluate::join('users', 'evaluates.user_id', '=', 'users.id')

@@ -65,11 +65,10 @@
               <i class="fas fa-star"></i>
             {!! Form::label('evaluate', '評価') !!}
             {{Form::range('evaluate', '3',['id'=>'range', 'min'=>0,'max'=>5.0, 'step'=>0.1])}}<span id="value" class="mx-3">3</span>
-            {{-- {!! Form::button('記録', array(
+            {!! Form::button('記録', array(
               'type' => 'submit',
               'class'=> 'submit btn-sm',
-      )) !!} --}}
-            {!! Form::submit('記録', null, ['class'=>'btn btn-success']) !!}
+      )) !!}
 
           </div>
           <div class="form-group">

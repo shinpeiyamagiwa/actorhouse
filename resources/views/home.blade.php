@@ -342,7 +342,7 @@
                     </div>
                     <div class="col-3 float-left d-inline-block">
                       {!! Form::open(['method'=>'POST', 'action'=> 'ReviewController@delete']) !!}
-                      {{Form::hidden('movie_id', $review->tmdb_id)}} 
+                      {{Form::hidden('review_id', $review->review_id)}} 
                       {{ Form::button('<i class="fas fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn btn-light btn-sm'] )  }}
                       {!! Form::close() !!} 
                     </div>

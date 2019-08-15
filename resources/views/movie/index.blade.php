@@ -68,11 +68,11 @@
                               <i class="fas fa-star"></i>
                             {!! Form::label('evaluate', '評価') !!}
                             {{Form::range('evaluate', '3',['id'=>'range', 'min'=>0,'max'=>5.0, 'step'=>0.1])}}<span id="value" class="mx-3">3</span>
-                            {{-- {!! Form::button('記録', array(
+                            {!! Form::button('記録', array(
                               'type' => 'submit',
                               'class'=> 'submit btn-sm',
-                      )) !!} --}}
-                            {!! Form::submit('記録', null, ['class'=>'btn btn-success']) !!}
+                      )) !!}
+                            {{-- {!! Form::submit('記録', null, ['class'=>'btn btn-success']) !!} --}}
 
                           </div>
                             <div class="form-group">
@@ -342,6 +342,51 @@
         </div>   
     </div>
 {{-- レビュー一覧 --}}
+              <button tyoe="button" class="btn btn-outline-dark" id="post_button"
+              data-toggle="modal" data-target="#review" data-toggle="popover" data-content="俳優について投稿">
+                <i class="far fa-edit">コメントする</i>
+              </button>
+              <div class="modal fade" id="review"　tabindex="-1" role="dialog" 
+              aria-labelledby="reviewModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header bg-light">
+                      <h5 class="modal-title"　id="reviewModalLabel">{{$movie->title}}についてコメント</h5>
+                      <button class="close" data-dismiss="modal">
+                        &times;
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                          {!! Form::open(['method'=>'POST', 'action'=> 'ReviewController@store']) !!}
+                      <div class="form-group">
+                          {!! Form::textarea('content', null, ['class'=>'form-control','placeholder'=>'好きにレビューを書こう']) !!} 
+                      </div>
+                      <div class="form-group">
+                          {{Form::hidden('movie_id', $movie->tmdb_id)}} 
+                      </div>
+                      <div class="form-group">
+                        {!! Form::button('記録', array(
+                                      'type' => 'submit',
+                                      'class'=> 'submit btn-sm',
+                              )) !!}
+                      </div>
+                      @if (count($errors) > 0 )
+                      <div class="alert alert-danger">
+                        <p>投稿できませんでした</p>
+                        <ul>
+                            @foreach($errors->all() as $error)
+                              <li>
+                                  {{ $error }}
+                              </li>
+                            @endforeach
+                          </ul>
+                      </div>
+                      @endif
+                      {!! Form::close() !!}
+                    </div>
+                  </div>
+                </div>
+              </div>
     <div id="reviewsRoom" class="collapse bg-light">
       <div class="responsive mb-2 mx-auto mt-5">
         @if($reviews)
@@ -411,12 +456,12 @@
                     </div>
                   </div>
                   <div class="card-body pt-3 pb-1">
-                    <div class="mb-0">
                     @if(isset($review->evaluate))
-                      <p class="mb-0">評価：{{$review->evaluate}}</p>
+                      <div class="mb-0">
+                        <p class="mb-0">評価：{{$review->evaluate}}</p>
+                      </div>
+                      <hr class="mt-1 mb-1">
                     @endif
-                    </div>
-                    <hr class="mt-1 mb-1">
                     <p class="text-success">
                       {{$review->content}}
                     </p>

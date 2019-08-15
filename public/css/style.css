@@ -25,12 +25,24 @@ body{
   color:rgb(0, 255, 251);
   font-size: 1em 
 }
+.fa-id-card {
+  color:rgb(255, 234, 0);
+}
+/* .fa-edit {
+  color:rgb(55, 255, 0);
+} */
+.fa-twitter {
+  color:rgb(0, 166, 255);
+}
 .fa-headphones-alt {
   color:rgb(255, 132, 0);
   font-size: 1em 
 }
 .icon {
   font-size: 1em 
+}
+.reviewModal {
+  background-color:rgba(7, 7, 7, 0.808);
 }
 
 /* topページ */

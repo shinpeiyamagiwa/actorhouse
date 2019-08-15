@@ -24,15 +24,16 @@ class ReviewRequest extends FormRequest
     public function rules()
     {
         return [
-            //
-            // 'content' => 'required|max:300',
+            
+            'content' => 'required|max:300',
         ];
     }
 
     public function messages()
     {
-        // return [
-        //     'content.max:200' => '内容は200文字以内で記入してください。',
-        // ];
+        return [
+            'content.required'=>'内容を記載してください',
+            'content.max:300' => '内容は300文字以内で記入してください。',
+        ];
     }
 }
