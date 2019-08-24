@@ -13,8 +13,8 @@
 
 // みんなが見れるページ
 Route::get('/', 'TopController@index');
-Route::get('/movie/{tmdb_id}', 'MovieController@index');
-Route::get('/actor/{tmdb_id}', 'ActorController@index');
+Route::get('/movie/{tmdb_id}', 'MovieController@index')->name('movie');
+Route::get('/actor/{tmdb_id}', 'ActorController@index')->name('actor');
 Route::patch('/actor/{tmdb_id}/images', 'ActorController@upload');
 Route::post('/search/movie', 'MovieSearchController@index');
 Route::post('/search/runtime', 'SearchController@index');

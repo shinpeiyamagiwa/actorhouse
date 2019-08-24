@@ -218,16 +218,15 @@
                 @if(in_array($work->movie_id, $watch_list_ids))
                   <button data-movie-id="{{$work->movie_id}}" data-watchlist="ture" id="watchlist_button" type="button" class="btn watchlist"
                     data-toggle="popover" data-content="ウォッチリストから削除">
-                    <span class="watchlist_text">
                       <p class="my-auto"><i class="far fa-check-circle check watchlistIcon"></i></p>
-                    </span>
+                    
                   </button>
                 @else
                   <button data-movie-id="{{$work->movie_id}}" data-watchlist="false" id="watchlist_button" type="button" class="watchlist btn"
                     data-toggle="popover" data-content="ウォッチリストに追加">
-                    <span class="watchlist_text">
+                    
                       <p class="my-auto"><i class="fas fa-tag watchlistIcon"></i></p>
-                    </span>
+                    
                   </button>
                 @endif
               @endif
@@ -665,7 +664,8 @@
       var movie_id = $(this).data('movieId')
       // var actor_id = $('#actor_id').val();
       const watchList = $(this).data('watchlist')
-      console.log(watchList == false)
+      const clicked = $(this).html();
+      console.log('clicked1: ', clicked);
       if (watchList == false) {
       $.ajax({
         type: "POST",
@@ -675,13 +675,16 @@
         url: "{{url('/watchlist/movie/store')}}",
         dataType: "json",
         data: {movie_id : movie_id}
-      }).done(function (response) {
+      }).done(response => {
         // 通信成功時の処理
         if (response['result']) {
           alert('ウォッチリスト登録しました！');
           $('.watchlist').data('watchlist', true);
-          $(this)('.watchlist_text').html('<i class="far fa-check-circle check watchlistIcon">');
+          const clicked2 = $(this).html();
+          console.log('clicked2: ', clicked2);
+          $(this).html('<p class="my-auto"><i class="far fa-check-circle check watchlistIcon"></i></p>');
           $('#watchlist_button').attr('data-content', 'ウォッチリストから削除');
+          
         }
       }).fail(function (err) {
         // 通信失敗時の処理
@@ -696,12 +699,12 @@
         url: "{{url('/watchlist/movie/delete')}}",
         dataType: "json",
         data: {movie_id : movie_id}
-      }).done(function (response) {
+      }).done(response => {
         // 通信成功時の処理
         if (response['result']) {
           alert('ウォッチリスト解除しました！');
           $('.watchlist').data('watchlist', false);
-          $(this)('.watchlist_text').html('<i class="fas fa-tag watchlistIcon">');
+          $(this).html('<p class="my-auto"><i class="fas fa-tag watchlistIcon"></i></p>');
           $('#watchlist_button').attr('data-content', 'ウォッチリストに追加');
         }
       }).fail(function (err) {

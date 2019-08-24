@@ -113,12 +113,12 @@
         url: "{{url('/watchlist/movie/store')}}",
         dataType: "json",
         data: {movie_id : movie_id}
-      }).done(function (response) {
+      }).done(response => {
         // 通信成功時の処理
         if (response['result']) {
           alert('ウォッチリスト登録しました！');
           $('.watchlist').data('watchlist', true);
-          $('#watchlist_text').html('<i class="far fa-check-circle check watchlistIcon">');
+          $(this).html('<i class="far fa-check-circle check watchlistIcon">');
           $('#watchlist_button').attr('data-content', 'ウォッチリストから削除');
         }
       }).fail(function (err) {
@@ -134,12 +134,12 @@
         url: "{{url('/watchlist/movie/delete')}}",
         dataType: "json",
         data: {movie_id : movie_id}
-      }).done(function (response) {
+      }).done(response => {
         // 通信成功時の処理
         if (response['result']) {
           alert('ウォッチリスト解除しました！');
           $('.watchlist').data('watchlist', false);
-          $('#watchlist_text').html('<i class="fas fa-tag watchlistIcon">');
+          $(this).html('<i class="fas fa-tag watchlistIcon">');
           $('#watchlist_button').attr('data-content', 'ウォッチリストに追加');
         }
       }).fail(function (err) {

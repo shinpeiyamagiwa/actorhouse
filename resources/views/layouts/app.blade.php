@@ -10,16 +10,16 @@
     
     
     <meta property="og:type" content="artcle" />
-    @if(isset($actor))
-        <title>{{$actor->name}}/俳優情報</title>
+    @if(\Route::current() -> getName() == 'actor')
+        <title>{{$actor->name}}/俳優情報-ActorHOUSE</title>
         <meta property="og:url" content="https://www.theactorhouse.com/actor/{{$actor->tmdb_id}}" />
         <meta name="description" content="俳優に特化した新しい映画記録アプリ。映画を記録していくだけで好きな俳優が見つかる。Twitter.Facebook
         にシェアでき、Amazonビデオ.Netflixにもリンクしすぐに視聴可能。">
-        <meta property="og:title" content="{{$actor->name}}-俳優情報ーActorHOUS" />
+        <meta property="og:title" content="{{$actor->name}}-俳優情報ーActorHOUSE" />
         <meta property="og:description" content="俳優に特化した新しい映画記録webアプリ。鑑賞映画を記録して好きな俳優を見つけよう！！" />
         <meta property="og:image" content="http://image.tmdb.org/t/p/w500/{{$actor->image_path}}" />
-    @elseif(isset($movie))
-        <title>{{$movie->title}}/映画情報</title>
+    @elseif(\Route::current() -> getName() == 'movie')
+        <title>{{$movie->title}}/映画情報-ActorHOUSE</title>
         @if(isset($movie->overview))
             <meta name="description" content={{$movie->overview}}>
         @else
