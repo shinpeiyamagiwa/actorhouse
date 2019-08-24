@@ -41,6 +41,7 @@ class ReviewController extends Controller
                 'content' => request('content'),
                 'user_id' => $id,
                 'movie_id' => request('movie_id'),
+                'genre' => 0,
             ]);
         
 
