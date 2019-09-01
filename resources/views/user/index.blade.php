@@ -127,21 +127,61 @@
 {{-- ユーザーメニューアイテム --}}
   <div class="usercontent"> 
   {{-- 映画鑑賞リスト --}}
-    <div id="movieRoom" class="card collapse">
-      <div class="row responsive mb-2 container-fluid mx-auto mt-5">
-          @if($favorite_movies)
-            @foreach($favorite_movies as $favorite_movie)
-              <div class="movieList col-lg-2 col-sm-3 col-4 float-right"
-              data-toggle="modal" data-target="#moviediary">
-                <a href="/movie/{{$favorite_movie->movie_id}}">
-                  <img src="http://image.tmdb.org/t/p/w500/{{$favorite_movie->image_path}}" alt="" class="img-fluid mb-2">
-                </a>
-                <p>{{$favorite_movie->title}}</p>
+  <div id="movieRoom" class="card collapse">
+      {{-- 映画ジャンルメニューバー --}}
+        <div class="genretList border-bottom align-items-center ">
+          <div class="genrevar pt-2">
+            <div class="row container mx-auto responsive">
+              <div class="genre1 col-md-2 col-6 text-center"date-toggle="collapse"
+              data-target="#all">
+                <h6>鑑賞映画</h6>
               </div>
-            @endforeach
-          @endif
+              <div class="genre2 col-md-2 col-6 text-center"date-toggle="collapse"
+              data-target="#favorite">
+                <h6>お気に入り映画</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      {{-- 全ジャンル --}}
+        <div id="all" class="collapse show">
+          <div class="row responsive mb-2 container-fluid mx-auto mt-5">
+              @if($evaluates)
+                @foreach($evaluates as $evaluate)
+                  <div id="movieList" class="movieList col-lg-2 col-sm-3 col-4 float-right"
+                  data-toggle="modal" data-target="#moviediary">
+                    <a href="/movie/{{$evaluate->movie_id}}">
+                      <img src="http://image.tmdb.org/t/p/w500/{{$evaluate->image_path}}" alt="" class="img-fluid mb-2">
+                      @if(isset($evaluate->evaluate))
+                        <div class="badge scoreBadge p-0">
+                          <p class="mt-1">{{$evaluate->evaluate}}</p>
+                        </div>
+                      @endif
+                    </a>
+                      <p>{{$evaluate->title}}</p>
+                  </div>
+                @endforeach
+              @endif
+          </div>
+        </div>
+      {{-- アクション --}}
+        <div id="favorite" class="collapse">
+          <div class="row responsive mb-2 container-fluid mx-auto mt-5">
+              @if($favorite_movies)
+                @foreach($favorite_movies as $favorite_movie)
+                  <div class="movieList col-lg-2 col-sm-3 col-4 float-right"
+                  data-toggle="modal" data-target="#moviediary">
+                    <a href="/movie/{{$favorite_movie->tmdb_id}}">
+                      <img src="http://image.tmdb.org/t/p/w500/{{$favorite_movie->image_path}}" alt="" class="img-fluid mb-2">
+                    </a>
+                      <p>{{$favorite_movie->title}}</p>
+                  </div>
+                @endforeach
+              @endif
+          </div>
+        </div> 
       </div>
-    </div>
+    
   {{-- 映画レビュー一覧 --}}
     <div id="reviewRoom" class="collapse">
       <div class="responsive mb-2 mx-auto mt-5">
@@ -541,6 +581,17 @@
     $('#movieRoom').removeClass('show');
     $('#reviewRoom').removeClass('show');
     $('#tweetRoom').removeClass('show');
+  });
+  </script>
+{{-- ジャンルcollapse --}}
+  <script>
+    $('.genre1').click(function () {
+    $('#all').addClass('show');
+    $('#favorite').removeClass('show');
+  });
+  $('.genre2').click(function () {
+    $('#favorite').addClass('show');
+    $('#all').removeClass('show');
   });
   </script>
 {{-- フォローメニューバー --}}

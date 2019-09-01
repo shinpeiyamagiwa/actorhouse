@@ -10,6 +10,7 @@ use App\WatchList;
 use App\Review;
 use App\Post;
 use App\Follow;
+use App\Evaluate;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -23,14 +24,22 @@ class UserController extends Controller
                                         ->where('favorite_actors.user_id', '=', $id)
                                         ->select('actor_id', 'actors.name', 'actors.image_path')
                                         ->get();
-        $favorite_actors = FavoriteActor::join('actors', 'favorite_actors.actor_id', '=', 'actors.tmdb_id')
-                                        ->where('favorite_actors.user_id', '=', $id)
-                                        ->select('actor_id', 'actors.name', 'actors.image_path')
-                                        ->get();
+        
         $favorite_movies = FavoriteMovie::join('movies', 'favorite_movies.movie_id', '=', 'movies.tmdb_id')
                                         ->where('favorite_movies.user_id', '=', $id)
-                                        ->select('movie_id', 'movies.title', 'movies.image_path')
+                                        ->select('tmdb_id', 'movies.title', 'movies.image_path')
                                         ->get();
+
+        $evaluate_avg = Evaluate::where('user_id', '=', $id)
+                        // ->select('evaluate')
+                        ->avg('evaluate');
+                    
+        $evaluates = Evaluate::join('movies', 'evaluates.movie_id', '=', 'movies.tmdb_id')
+                        ->where('user_id', '=', $id)
+                        ->select('movies.title', 'evaluate', 'evaluates.movie_id', 'evaluates.id as evaluate_id', 'movies.image_path')
+                        ->orderBy('evaluates.id', 'desc')
+                        ->get();
+
         $watch_lists = WatchList::join('movies', 'watch_lists.movie_id', '=', 'movies.tmdb_id')
                                         ->where('watch_lists.user_id', '=', $id)
                                         ->select('movie_id', 'movies.title', 'movies.image_path')
@@ -81,7 +90,7 @@ class UserController extends Controller
                         ->orderBy('tweets.created_at', 'desc')
                         ->select('tweets.content', 'users.name as user_name', 'users.image_path', 'user_id')
                         ->get();
-        return view('user.index', compact('follow_reviews', 'follow_posts', 'follow_tweets', 'user','favorite_actors', 'favorite_movies', 'watch_lists', 'reviews', 'avg', 'posts', 'follow'));
+        return view('user.index', compact('follow_reviews', 'follow_posts', 'follow_tweets', 'user','favorite_actors', 'favorite_movies', 'watch_lists', 'reviews', 'avg', 'posts', 'follow', 'evaluate_avg', 'evaluates'));
     }
     
 }
