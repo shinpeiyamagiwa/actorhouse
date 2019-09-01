@@ -113,12 +113,12 @@
           <h6>レビュー</h6>
         </div>
         <div class="mycontent3 col-md-3 col-3 text-center"date-toggle="collapse"
-        data-target="#tweetRoom">
-          <h6>ツイート</h6>
-        </div>
-        <div class="mycontent4 col-md-3 col-3 text-center"date-toggle="collapse"
         data-target="#actorRoom">
           <h6>お気に入り俳優</h6>
+        </div>
+        <div class="mycontent4 col-md-3 col-3 text-center"date-toggle="collapse"
+        data-target="#top20Room">
+          <h6>視聴俳優TOP</h6>
         </div>
       </div>
     </div>
@@ -259,328 +259,68 @@
         </div>
       </div>
     </div>
-  {{-- ツイート一覧 --}}
-    <div id="tweetRoom" class="collapse">
+  
     {{-- ツイート種類メニューバー --}}
-      <div class="followList border-bottom align-items-center ">
-        <div class="followvar pt-2">
-          <div class="row container mx-auto responsive">
-            <div class="follow1 col-4 text-center"date-toggle="collapse"
-            data-target="#reviews">
-              <h6>映画レビュー</h6>
-            </div>
-            <div class="follow2 col-4 text-center"date-toggle="collapse"
-            data-target="#posts">
-              <h6>俳優登録</h6>
-            </div>
-            <div class="follow3 col-4 text-center"date-toggle="collapse"
-            data-target="#tweets">
-              <h6>ツイート</h6>
-            </div>
-          </div>
-        </div>
-      </div>
-    {{-- フォローユーザーレビュー --}}
-      <div id="reviews" class="collapse">
-        <div class="responsive mb-2 mx-auto mt-5">
-          @if($follow_reviews)
-            <div class="review center-block">
-              <div class="container">
-                @foreach($follow_reviews as $follow_review)
-                  <div class="card border-success mb-3" >
-                    <div class="card-header d-inline py-0">
-                      <div class="row no-gutters mt-1">
-                        <div class="col-6 d-inline-block rounded-circle postImages mr-2">
-                          <a href="/user/{{$follow_review->user_id}}">
-                            <p class="mt-2 mb-2">
-                              @if($follow_review->user_image)
-                              <img src="{{Storage::disk('s3')->url($follow_review->user_image)}}" alt="" class="">
-                              @else
-                              <i class="fas fa-user"></i>
-                              @endif
-                              {{$follow_review->name}}
-                            </p>
-                          </a>
-                        </div>
-                    {{-- TODO返信機能 --}}
-                        {{-- <div class="col-1 float-right">
-                          <div data-toggle="modal" data-target="#reviewreply">
-                            <i class="far fa-comment-dots float-left mt-2"></i>
-                          </div>
-                          <div class="modal fade" id="reviewreply"　tabindex="-1" role="dialog" 
-                            aria-labelledby="reviewReplyLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                              <div class="modal-content">
-                                <div class="modal-header bg-success">
-                                  <button class="close" data-dismiss="modal">
-                                    &times;
-                                  </button>
-                                </div>
-                                <div class="modal-body">
-                                  {!! Form::open(['method'=>'review', 'action'=> 'ReviewCommentController@store']) !!}
-                                    <div class="form-group">
-                                        {!! Form::label('content', '') !!}
-                                        {!! Form::textarea('content', null, ['class'=>'form-control']) !!} 
-                                    </div>
-                                    <div class="form-group">
-                                        {{Form::hidden('review_id', $follow_review->id)}} 
-                                    </div>
-                                    <div class="form-group">
-                                        {!! Form::submit('返信', null, ['class'=>'btn btn-success']) !!}
-                                    </div>
-                                    @if ($errors->any())
-                                      <div class="alert alert-danger">
-                                        <ul>
-                                          @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                          @endforeach
-                                        </ul>
-                                      </div>
-                                    @endif
-                                  {!! Form::close() !!}
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div> --}}
-                    {{-- //TODO返信機能 --}}
-                      </div>
-                    </div>
-                    <div class="card-body pt-3 postImages">
-                      <div class="mb-0">
-                      @if(isset($follow_review->evaluate))
-                        <p class="mb-0">評価：{{$follow_review->evaluate}}</p>
-                      @endif
-                      <a href="/movie/{{$follow_review->tmdb_id}}">
-                        @if($follow_review->movie_image)
-                          <img src="http://image.tmdb.org/t/p/w500/{{$follow_review->movie_image}}" alt="" class="">
-                        @endif
-                        {{$follow_review->title}}
-                        </div>
-                        <hr class="mt-1">
-                        @if(isset($follow_review->content))
-                          <p class="mb-0">{{$follow_review->content}}</p>
-                        @endif
-                      </a>
-                    </div>
-                  </div>
-                @endforeach
-              </div>
-            </div>
-          @endif
-        </div>  
-      </div>
-    {{-- フォローユーザー俳優コメント  --}}
-      <div id="posts" class="collapse">
-        <div class="responsive mb-2 mx-auto mt-5">
-          @if($follow_posts)
-            <div class="posts center-block">
-              <div class="container">
-                @foreach($follow_posts as $follow_post)
-                  <div class="card border-success mb-3" >
-                    <div class="card-header d-inline py-0">
-                      <div class="row no-gutters mt-1">
-                        <div class="col-6 d-inline-block rounded-circle postImages mr-2">
-                          <a href="/user/{{$follow_post->user_id}}">
-                            <p class="mt-2 mb-2">
-                              @if($user->image_path)
-                              <img src="{{Storage::disk('s3')->url($follow_review->user_image)}}" alt="" class="">
-                              @else
-                              <i class="fas fa-user"></i>
-                              @endif
-                              {{$follow_post->user_name}}
-                            </p>
-                          </a>
-                        </div>
-                      {{-- TODO返信機能 --}}
-                        {{-- <div class="col-1 float-right">
-                          <div data-toggle="modal" data-target="#postreply">
-                            <i class="far fa-comment-dots float-left mt-2"></i>
-                          </div>
-                          <div class="modal fade" id="postreply"　tabindex="-1" role="dialog" 
-                            aria-labelledby="postReplyLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                              <div class="modal-content">
-                                <div class="modal-header bg-success">
-                                  <button class="close" data-dismiss="modal">
-                                    &times;
-                                  </button>
-                                </div>
-                                <div class="modal-body">
-                                  {!! Form::open(['method'=>'post', 'action'=> 'PostCommentController@store']) !!}
-                                    <div class="form-group">
-                                        {!! Form::label('content', '') !!}
-                                        {!! Form::textarea('content', null, ['class'=>'form-control']) !!} 
-                                    </div>
-                                    <div class="form-group">
-                                        {{Form::hidden('post_id', $follow_post->id)}} 
-                                    </div>
-                                    <div class="form-group">
-                                        {!! Form::submit('返信', null, ['class'=>'btn btn-success']) !!}
-                                    </div>
-                                    @if ($errors->any())
-                                      <div class="alert alert-danger">
-                                        <ul>
-                                          @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                          @endforeach
-                                        </ul>
-                                      </div>
-                                    @endif
-                                  {!! Form::close() !!}
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div> --}}
-                      {{-- //TODO返信機能 --}}
-                      </div>
-                    </div>
-                    <div class="card-body pt-3 postImages">
-                      <div class="mb-0">
-                        <a href="/actor/{{$follow_post->tmdb_id}}">
-                          <p class="mt-2 mb-2">
-                            @if($follow_post->actor_image)
-                            <img src="http://image.tmdb.org/t/p/w500/{{$follow_post->actor_image}}" alt="" class="">
-                            @else
-                            <i class="fas fa-user"></i>
-                            @endif
-                            {{$follow_post->actor_name}}
-                          </p>
-                        </a>
-                      </div>
-                      <hr class="mt-1">
-                      @if(isset($follow_post->content))
-                        <p class="mb-0">{{$follow_post->content}}</p>
-                      @endif
-                    </div>
-                  </div>
-                @endforeach
-              </div>
-            </div>
-          @endif
-        </div>  
-      </div> 
-    {{-- フォローユーザーツイート --}}
-      <div id="tweets" class="collapse">
-        <div class="responsive mb-2 mx-auto mt-5">
-          @if($follow_tweets)
-            <div class="tweets center-block">
-              <div class="container">
-                @foreach($follow_tweets as $follow_tweet)
-                  <div class="card border-success mb-3" >
-                    <div class="card-header d-inline py-0">
-                      <div class="row no-gutters mt-1">
-                        <div class="col-6 d-inline-block rounded-circle postImages mr-2">
-                          <a href="/user/{{$follow_tweet->user_id}}">
-                            <p class="mt-2 mb-2">
-                              @if($user->image_path)
-                              <img src="/images/{{$follow_tweet->image_path}}" alt="" class="">
-                              @else
-                              <i class="fas fa-user"></i>
-                              @endif
-                              {{$follow_tweet->user_name}}
-                            </p>
-                          </a>
-                        </div>
-                      {{-- TODO返信機能 --}}
-                        {{-- <div class="col-1 float-right">
-                          <div data-toggle="modal" data-target="#reviewreply">
-                            <i class="far fa-comment-dots float-left mt-2"></i>
-                            @if(isset($review->review_id))
-                            <a href="/review/comment/{{$review->id}}">
-                              <p>{{count($review->review_id)}}</p>
-                            </a>
-                            @endif
-                          </div> --}}
-                          {{-- <div class="modal fade" id="reviewreply"　tabindex="-1" role="dialog" 
-                            aria-labelledby="reviewReplyLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                              <div class="modal-content">
-                                <div class="modal-header bg-success">
-                                  <button class="close" data-dismiss="modal">
-                                    &times;
-                                  </button>
-                                </div>
-                                <div class="modal-body">
-                                  {!! Form::open(['method'=>'tweet', 'action'=> 'TweetCommentController@store']) !!}
-                                    <div class="form-group">
-                                        {!! Form::label('content', '') !!}
-                                        {!! Form::textarea('content', null, ['class'=>'form-control']) !!} 
-                                    </div>
-                                    <div class="form-group">
-                                        {!! Form::submit('返信', null, ['class'=>'btn btn-success']) !!}
-                                    </div>
-                                    @if ($errors->any())
-                                      <div class="alert alert-danger">
-                                        <ul>
-                                          @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                          @endforeach
-                                        </ul>
-                                      </div>
-                                    @endif
-                                  {!! Form::close() !!}
-                                </div>
-                              </div>
-                            </div>
-                          </div> --}}
-                        {{-- </div> --}}
-                      {{-- //TODO返信機能 --}}
-                      </div>
-                    </div>
-                    <div class="card-body pt-3">
-                        <p class="mb-0">{{$follow_tweet->content}}</p>
-                    </div>
-                  </div>
-                @endforeach
-              </div>
-            </div>
-          @endif
-        </div>  
-      </div> 
-    </div>
-  {{-- お気に入り俳優 --}}
+    {{-- お気に入り俳優 --}}
     <div id="actorRoom" class="collapse show">
       <div class="myactorList row responsive mb-2 container mx-auto mt-5">
         @if($favorite_actors)
-          @foreach($favorite_actors as $favorite_actor)
-            <div class="favoriteActor col-lg-2 col-sm-3 col-4">
-              <a href="/actor/{{$favorite_actor->actor_id}}">
-                <img src="http://image.tmdb.org/t/p/w500/{{$favorite_actor->image_path}}" alt="" class="img-fluid mb-2">
-              </a>
-              <p>{{$favorite_actor->name}}</p>
-            </div>
-          @endforeach
+        @foreach($favorite_actors as $favorite_actor)
+        <div class="favoriteActor col-lg-2 col-sm-3 col-4">
+          <a href="/actor/{{$favorite_actor->actor_id}}">
+            <img src="http://image.tmdb.org/t/p/w500/{{$favorite_actor->image_path}}" alt="" class="img-fluid mb-2">
+          </a>
+          <p>{{$favorite_actor->name}}</p>
+        </div>
+        @endforeach
         @endif
       </div>
-    </div>      
+    </div>  
+    <div id="top20Room" class="collapse">
+        <div class="row responsive mb-2 container mx-auto mt-5">
+          @if($watch_actors)
+            @for($i = 0; $i < count($watch_actors); ++$i) 
+              @if(isset($watch_actors[$i]['image_path']))
+                <div class="col-md-3 col-6 col-offset-3 d-flex align-items-center pl-5">
+                  第<h1 class="py-auto">{{$i+1}}</h1>位
+                </div>
+                <div class="movieList col-md-3 col-5 float-right">
+                  <a href="/actor/{{$watch_actors[$i]['tmdb_id']}}">
+                    <img src="http://image.tmdb.org/t/p/w500/{{$watch_actors[$i]['image_path']}}" alt="" class="img-fluid mb-2">
+                  </a>
+                  <p>{{$watch_actors[$i]['name']}}</p>
+                </div>
+              @endif
+            @endfor
+          @endif
+        </div>
+      </div>
   </div>
 {{-- メニューバー --}}
   <script>
     $('.mycontent1').click(function () {
     $('#movieRoom').addClass('show');
     $('#reviewRoom').removeClass('show');
-    $('#tweetRoom').removeClass('show');
+    $('#top20Room').removeClass('show');
     $('#actorRoom').removeClass('show');
   });
   $('.mycontent2').click(function () {
     $('#reviewRoom').addClass('show');
     $('#movieRoom').removeClass('show');
-    $('#tweetRoom').removeClass('show');
+    $('#top20Room').removeClass('show');
     $('#actorRoom').removeClass('show');
   });
   $('.mycontent3').click(function () {
-    $('#tweetRoom').addClass('show');
-    $('#movieRoom').removeClass('show');
-    $('#reviewRoom').removeClass('show');
-    $('#actorRoom').removeClass('show');
-  });
-  $('.mycontent4').click(function () {
     $('#actorRoom').addClass('show');
     $('#movieRoom').removeClass('show');
     $('#reviewRoom').removeClass('show');
-    $('#tweetRoom').removeClass('show');
+    $('#top20Room').removeClass('show');
+  });
+  $('.mycontent4').click(function () {
+    $('#top20Room').addClass('show');
+    $('#movieRoom').removeClass('show');
+    $('#reviewRoom').removeClass('show');
+    $('#actorRoom').removeClass('show');
   });
   </script>
 {{-- ジャンルcollapse --}}

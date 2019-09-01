@@ -90,7 +90,19 @@ class UserController extends Controller
                         ->orderBy('tweets.created_at', 'desc')
                         ->select('tweets.content', 'users.name as user_name', 'users.image_path', 'user_id')
                         ->get();
-        return view('user.index', compact('follow_reviews', 'follow_posts', 'follow_tweets', 'user','favorite_actors', 'favorite_movies', 'watch_lists', 'reviews', 'avg', 'posts', 'follow', 'evaluate_avg', 'evaluates'));
+
+        $watch_actors = Evaluate::join('casts', 'evaluates.movie_id', '=', 'casts.movie_id')
+                        ->leftJoin('actors', 'casts.actor_id', '=', 'actors.tmdb_id')
+                        ->whereNotNull('actors.image_path')
+                        ->where('evaluates.user_id', '=', $id)
+                        ->select(\DB::raw('count(*) as actor_count, casts.actor_id'),'actors.name','actors.tmdb_id','actors.image_path')
+                        ->groupBy('casts.actor_id','actors.name','actors.tmdb_id','actors.image_path')
+                        ->orderBy('actor_count', 'desc')
+                        ->orderBy('casts.actor_id', 'asc')
+                        ->limit(20)
+                        ->get();
+
+        return view('user.index', compact('follow_reviews', 'follow_posts', 'follow_tweets', 'user','favorite_actors', 'favorite_movies', 'watch_lists', 'reviews', 'avg', 'posts', 'follow', 'evaluate_avg', 'evaluates', 'watch_actors'));
     }
     
 }
