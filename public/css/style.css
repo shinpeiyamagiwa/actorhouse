@@ -133,6 +133,10 @@ body{
   width:100%;
   height:280px; 
 }
+.userMovies img{
+  width:100px;
+  height:140px; 
+}
 }
   
 

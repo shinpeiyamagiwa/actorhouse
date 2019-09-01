@@ -282,7 +282,57 @@
         </a>
       </div>
     </div>
+    <h4 class="mx-2 mt-4 text-center topic">最新ユーザー視聴情報</h4>
+    <div class="container">
+      <div class="row">
+        @foreach($evaluates as $evaluate)
+          <div class="col-sm-6">
+            
+            <div class="card border mb-3">
+                <div class="d-inline py-0 px-3">
+                  <div class="row no-gutters mt-1">
+                    <div class="col-10 d-inline-block rounded-circle postImages mr-2">
+                      <a href="/user/{{$evaluate->user_id}}">
+                        <p class="mt-2 mb-2">
+                          @if($evaluate->user_image)
+                          <img src="{{Storage::disk('s3')->url($evaluate->user_image)}}" alt="" class="">
+                          @else
+                          <i class="fas fa-user"></i>
+                          @endif
+                          {{$evaluate->name}}
+                        </p>
+                      </a>
+                    </div>
+                    <div class="card-body pt-0 pb-1 w-50 pl-3">
+                      <div class="row">
+                        <div class="col-4">
+                          <div class="userMovies">
+                          <a href="/movie/{{$evaluate->movie_id}}">
+                            <img src="http://image.tmdb.org/t/p/w500//{{$evaluate->movie_image}}" alt="" class="img-fluid">
+                          </a>
+                          </div>
+                        </div>
+                      <div class="col-7">
+                        @if(isset($evaluate->evaluate))
+                        <div class="mb-0">
+                          <p class="mb-0">評価：{{$evaluate->evaluate}}</p>
+                        </div>
+                        <hr class="mt-1 mb-1">
+                        <p class="text">
+                          {{$evaluate->title}}を鑑賞しました。
+                        </p>
+                        @endif
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+            @endforeach
 
+      </div>
+    </div>
   </div>
 
 @endsection
