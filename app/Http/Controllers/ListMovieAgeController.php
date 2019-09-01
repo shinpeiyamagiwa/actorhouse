@@ -19,6 +19,7 @@ class ListMovieAgeController extends Controller
         if($movieAge) {
             
             $movies = Movie::where('movies.released_at', 'like', '%'.$movieAge.'%')
+                    ->orderBy('movies.released_at', 'desc')
                     // ->orWhere('actors.name', 'like', '%'.$moviekeyword.'%')
                     ->select('title', 'movies.image_path', 'movies.tmdb_id')
                     ->get();
