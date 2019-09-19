@@ -8,6 +8,10 @@
     {!! Form::model($user,['method'=>'PATCH', 'action'=> ['AdminUserController@update', $user->id],'files' => true]) !!}
 
     <div class="form-group">
+        {!! Form::label('name', 'プロフィール写真:') !!}
+        {!! Form::text('name', null, ['class'=>'form-control']) !!}
+    </div> 
+    <div class="form-group">
         {!! Form::label('image_path', 'プロフィール写真:') !!}
         {!! Form::file('image_path', null, ['class'=>'form-control']) !!}
     </div> 

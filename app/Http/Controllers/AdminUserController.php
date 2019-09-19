@@ -82,21 +82,24 @@ class AdminUserController extends Controller
      */
     public function update(UserRequest $request, $id)
     {
-       
-        
 
-
+        if ($request->file('image_path')) {
         $file = $request->file('image_path');
         
         // s3のuploadsファイルに追加
         $path = Storage::disk('s3')->putFile('/', $file, 'public');
 
-    
         
-        User::where('id', Auth::id())
-          ->update([
-              'image_path' => $path,
-              ]);
+            User::where('id', Auth::id())
+                 ->update([
+                    'image_path' => $path,
+                  ]);
+                }
+                
+                User::where('id', Auth::id())
+                  ->update([
+                      'name' => $request->name,
+                      ]);
 
         return redirect("/home");
     }
